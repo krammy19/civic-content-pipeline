@@ -1,0 +1,2787 @@
+cities:
+- name: Agoura Hills
+  homepage: https://www.agourahillscity.org/
+  platform: legistar
+  legistar_url: https://agourahills.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Alameda
+  homepage: https://www.alamedaca.gov/Home
+  platform: legistar
+  legistar_url: https://alameda.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Albany
+  homepage: https://www.albanyca.org/
+  platform: legistar
+  legistar_url: https://albany.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Alhambra
+  homepage: https://www.cityofalhambra.org/
+  agenda_url: https://www.cityofalhambra.org/city-meetings
+  platform: civicplus
+  civicplus_base_url: https://www.cityofalhambra.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Aliso Viejo
+  homepage: https://avcity.org/
+  agenda_url: https://avcity.org/129/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Alturas
+  homepage: http://www.cityofalturas.us/
+  platform: legistar
+  legistar_url: https://alturas.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Amador City
+  homepage: https://amador-city.com/
+  platform: legistar
+  legistar_url: https://amadorcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: American Canyon
+  homepage: https://www.cityofamericancanyon.org/
+  platform: legistar
+  legistar_url: https://americancanyon.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Anaheim
+  homepage: https://www.anaheim.net/
+  agenda_url: https://www.anaheim.net/2527/Agendas
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: anaheim resort maintenance district, atid advisory
+    board, budget, investment & technology, community services board, cultural & heritage
+    commission, homeless policy working group, housing & community development commission,
+    joint special meeting of anaheim boards and commissions, library board, mayor''s
+    task force - welcoming anaheim initiative, occhmera advisory committee, occhmera
+    board of directors, older adults commission, oversight board-successor agency,
+    parks and recreation commission, planning commission, police review board, public
+    safety board, public utilities board, sister city commission, workforce development
+    board'
+- name: Anderson
+  homepage: https://www.ci.anderson.ca.us/
+  platform: legistar
+  legistar_url: https://anderson.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Angels
+  homepage: https://en.wikipedia.org/wiki/Angels_Camp
+  platform: legistar
+  legistar_url: https://angels.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Antioch
+  homepage: https://www.antiochca.gov/
+  agenda_url: https://www.antiochca.gov/government/agendas-and-minutes/
+  platform: civicplus
+  civicplus_base_url: https://www.antiochca.gov
+  civicplus_category_id: '9'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Apple Valley
+  homepage: https://www.applevalley.org/
+  agenda_url: https://www.ci.apple-valley.mn.us/91/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://applevalley.org/AgendaCenter'
+- name: Arcadia
+  homepage: https://www.arcadiaca.gov/
+  platform: legistar
+  legistar_url: https://arcadia.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Arcata
+  homepage: https://www.cityofarcata.org/
+  agenda_url: https://www.cityofarcata.org/405/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Arroyo Grande
+  homepage: https://www.arroyogrande.org/
+  agenda_url: https://www.arroyogrande.org/201/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.arroyogrande.org
+  civicplus_category_id: '8'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Artesia
+  homepage: https://www.cityofartesia.us/
+  agenda_url: https://www.cityofartesia.us/index.aspx?NID=173
+  platform: civicplus
+  civicplus_base_url: https://www.cityofartesia.us
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Arvin
+  homepage: https://www.arvin.org/
+  agenda_url: https://www.arvin.org/aboutnews/council-agendas/
+  platform: civicplus
+  civicplus_base_url: https://www.arvin.org
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Atascadero
+  homepage: https://www.atascadero.org/
+  platform: legistar
+  legistar_url: https://atascadero.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Atherton
+  homepage: https://www.ci.atherton.ca.us/
+  agenda_url: https://www.ci.atherton.ca.us/135/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Atwater
+  homepage: https://www.atwater.org/
+  platform: legistar
+  legistar_url: https://atwater.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Auburn
+  homepage: https://www.auburn.ca.gov/
+  agenda_url: https://www.auburn.ca.gov/129/Agendas-Minutes
+  platform: granicus
+- name: Avalon
+  homepage: http://www.cityofavalon.com/
+  agenda_url: http://www.cityofavalon.com/content/3180/3372/3392.aspx
+  platform: civicplus
+  civicplus_base_url: http://www.cityofavalon.com
+  civicplus_category_id: '4'
+  civicplus_category_name: city council agendas
+  civicplus_status: ok
+  connector: civicplus
+- name: Avenal
+  homepage: https://www.cityofavenal.com/
+  agenda_url: https://www.cityofavenal.com/164/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.cityofavenal.com
+  civicplus_category_id: '1'
+  civicplus_category_name: city council/successor agency/public finance authority
+  civicplus_status: ok
+  connector: civicplus
+- name: Azusa
+  homepage: https://www.ci.azusa.ca.us/
+  platform: legistar
+  legistar_url: https://azusa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Bakersfield
+  homepage: https://bakersfieldcity.us/
+  agenda_url: https://bakersfieldcity.us/gov/meetings_n_agendas/default.htm
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Baldwin Park
+  homepage: https://www.baldwinpark.com/
+  agenda_url: https://www.baldwinpark.com/87-election-or-elected/186-meeting-information
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Banning
+  homepage: http://banning.ca.us/
+  agenda_url: http://banning.ca.us/59/Schedules-Agendas
+  platform: civicplus
+  civicplus_base_url: http://banning.ca.us
+  civicplus_category_id: '1'
+  civicplus_category_name: city council meeting agendas
+  civicplus_status: ok
+  connector: civicplus
+- name: Barstow
+  homepage: https://www.barstowca.org/
+  agenda_url: http://barstowcityca.iqm2.com/
+  platform: granicus
+- name: Beaumont
+  homepage: https://www.beaumontca.gov/
+  agenda_url: https://beaumonttexas.gov/city-council/council-agenda/
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://www.beaumontca.gov/AgendaCenter'
+- name: Bell
+  homepage: https://www.cityofbell.org/
+  platform: legistar
+  legistar_url: https://bell.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Bell Gardens
+  homepage: https://www.bellgardens.org/
+  platform: legistar
+  legistar_url: https://bellgardens.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Bellflower
+  homepage: https://www.bellflower.org/
+  platform: legistar
+  legistar_url: https://bellflower.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Belmont
+  homepage: https://www.belmont.gov/
+  platform: legistar
+  legistar_url: https://belmont.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Belvedere
+  homepage: https://www.cityofbelvedere.org/
+  platform: legistar
+  legistar_url: https://belvedere.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Benicia
+  homepage: https://www.ci.benicia.ca.us/
+  agenda_url: https://www.ci.benicia.ca.us/agendas
+  platform: granicus
+- name: Berkeley
+  homepage: https://www.cityofberkeley.info/
+  platform: legistar
+  legistar_url: https://berkeley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Beverly Hills
+  homepage: https://www.beverlyhills.org/
+  agenda_url: http://www.beverlyhills.org/citycouncilmeetings
+  platform: granicus
+- name: Big Bear Lake
+  homepage: https://www.citybigbearlake.com/
+  platform: legistar
+  legistar_url: https://bigbearlake.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Biggs
+  homepage: https://www.biggs-ca.gov/
+  platform: legistar
+  legistar_url: https://biggs.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Bishop
+  homepage: https://www.cityofbishop.com/
+  agenda_url: https://www.cityofbishop.com/government/city_council/index.php
+  platform: granicus
+- name: Blue Lake
+  homepage: https://bluelake.ca.gov/
+  platform: legistar
+  legistar_url: https://bluelake.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Blythe
+  homepage: https://www.cityofblythe.ca.gov/
+  agenda_url: https://www.cityofblythe.ca.gov/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityofblythe.ca.gov
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Bradbury
+  homepage: https://cityofbradbury.org/
+  platform: legistar
+  legistar_url: https://bradbury.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Brawley
+  homepage: http://www.brawley-ca.gov/
+  platform: legistar
+  legistar_url: https://brawley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Brea
+  homepage: https://www.ci.brea.ca.us/
+  platform: legistar
+  legistar_url: https://brea.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Brentwood
+  homepage: https://www.brentwoodca.gov/
+  platform: legistar
+  legistar_url: https://brentwood.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Brisbane
+  homepage: https://www.brisbaneca.org/
+  agenda_url: https://www.brisbaneca.org/meetings
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Buellton
+  homepage: https://www.cityofbuellton.com/
+  platform: legistar
+  legistar_url: https://buellton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Buena Park
+  homepage: http://www.buenapark.com/
+  platform: legistar
+  legistar_url: https://buenapark.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Burbank
+  homepage: https://www.burbankca.gov/
+  platform: legistar
+  legistar_url: https://burbank.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Burlingame
+  homepage: https://www.burlingame.org/
+  agenda_url: https://www.burlingame.org/government/city_council/city_council_meeting_documents_and_minutes.php
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Calabasas
+  homepage: https://www.cityofcalabasas.com/
+  platform: legistar
+  legistar_url: https://calabasas.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Calexico
+  homepage: https://www.calexico.ca.gov/
+  platform: legistar
+  legistar_url: https://calexico.legistar.com/Calendar.aspx
+  connector: legistar
+- name: California City
+  homepage: http://www.californiacity-ca.gov/
+  platform: legistar
+  legistar_url: https://californiacity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Calimesa
+  homepage: http://www.cityofcalimesa.net/
+  agenda_url: http://www.cityofcalimesa.net/councilrdaagendas.htm
+  platform: civicplus
+  civicplus_base_url: http://www.cityofcalimesa.net
+  civicplus_category_id: '2'
+  civicplus_category_name: city council/successor agency to the rda
+  civicplus_status: ok
+  connector: civicplus
+- name: Calipatria
+  homepage: http://www.calipatria.com/
+  platform: legistar
+  legistar_url: https://calipatria.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Calistoga
+  homepage: https://www.ci.calistoga.ca.us/
+  platform: legistar
+  legistar_url: https://calistoga.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Camarillo
+  homepage: https://www.ci.camarillo.ca.us/
+  platform: legistar
+  legistar_url: https://camarillo.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Campbell
+  homepage: https://www.ci.campbell.ca.us/
+  agenda_url: https://www.ci.campbell.ca.us/189/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.ci.campbell.ca.us
+  civicplus_category_id: '10'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Canyon Lake
+  homepage: http://www.cityofcanyonlake.org/
+  platform: legistar
+  legistar_url: https://canyonlake.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Capitola
+  homepage: https://www.cityofcapitola.org/
+  agenda_url: https://www.cityofcapitola.org/meetings
+  platform: civicplus
+  civicplus_base_url: https://www.cityofcapitola.org
+  civicplus_category_id: '2'
+  civicplus_category_name: city council meeting agendas
+  civicplus_status: ok
+  connector: civicplus
+- name: Carlsbad
+  homepage: https://www.carlsbadca.gov/
+  platform: legistar
+  legistar_url: https://carlsbad.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Carmel-by-the-Sea
+  homepage: https://ci.carmel.ca.us/
+  agenda_url: https://ci.carmel.ca.us/meetings
+  platform: civicclerk
+- name: Carpinteria
+  homepage: https://carpinteriaca.gov/
+  platform: legistar
+  legistar_url: https://carpinteria.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Carson
+  homepage: http://ci.carson.ca.us/
+  platform: legistar
+  legistar_url: https://carson.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Cathedral City
+  homepage: https://www.cathedralcity.gov/
+  platform: legistar
+  legistar_url: https://cathedralcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Ceres
+  homepage: https://www.ci.ceres.ca.us/
+  agenda_url: http://www.ci.ceres.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.ci.ceres.ca.us
+  civicplus_category_id: '8'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Cerritos
+  homepage: http://www.cerritos.us/
+  platform: legistar
+  legistar_url: https://cerritos.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Chico
+  homepage: https://en.wikipedia.org/wiki/Chico
+  platform: legistar
+  legistar_url: https://chico.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Chino
+  homepage: https://www.cityofchino.org/
+  platform: legistar
+  legistar_url: https://chino.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Chino Hills
+  homepage: https://www.chinohills.org/
+  agenda_url: https://www.chinohills.org/60/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Chowchilla
+  homepage: https://www.cityofchowchilla.org/
+  agenda_url: https://cityofchowchilla.org/193/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.cityofchowchilla.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Chula Vista
+  homepage: https://www.chulavistaca.gov/
+  platform: legistar
+  legistar_url: https://chulavista.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Citrus Heights
+  homepage: https://www.citrusheights.net/
+  agenda_url: https://www.citrusheights.net/152/Council-Meetings
+  platform: civicplus
+  civicplus_base_url: https://www.citrusheights.net
+  civicplus_category_id: '1'
+  civicplus_category_name: citrus heights city council meetings
+  civicplus_status: ok
+  connector: civicplus
+- name: Claremont
+  homepage: https://www.ci.claremont.ca.us/
+  platform: legistar
+  legistar_url: https://claremont.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Clayton
+  homepage: https://ci.clayton.ca.us/
+  platform: legistar
+  legistar_url: https://clayton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Clearlake
+  homepage: https://www.clearlake.ca.us/
+  agenda_url: https://www.clearlake.ca.us/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.clearlake.ca.us
+  civicplus_category_id: '4'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Cloverdale
+  homepage: https://www.cloverdale.net/
+  agenda_url: https://www.cloverdale.net/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.cloverdale.net
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Clovis
+  homepage: https://cityofclovis.com/
+  agenda_url: https://cityofclovis.com/government/city-council/city-council-agendas/
+  platform: civicclerk
+- name: Coachella
+  homepage: https://www.coachella.org/
+  platform: legistar
+  legistar_url: https://coachella.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Coalinga
+  homepage: https://www.coalinga.com/
+  agenda_url: https://www.coalinga.com/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.coalinga.com
+  civicplus_category_id: '5'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Colfax
+  homepage: https://colfax-ca.gov/
+  platform: legistar
+  legistar_url: https://colfax.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Colma
+  homepage: https://www.colma.ca.gov/
+  platform: legistar
+  legistar_url: https://colma.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Colton
+  homepage: https://www.ci.colton.ca.us/
+  agenda_url: https://www.ci.colton.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.ci.colton.ca.us
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Colusa
+  homepage: https://www.cityofcolusa.com/
+  platform: legistar
+  legistar_url: https://colusa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Commerce
+  homepage: https://www.ci.commerce.ca.us/
+  platform: legistar
+  legistar_url: https://commerce.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Compton
+  homepage: http://www.comptoncity.org/
+  platform: legistar
+  legistar_url: https://compton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Concord
+  homepage: https://www.cityofconcord.org/
+  agenda_url: https://www.cityofconcord.org/771/Public-Meetings
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: bicycle & pedestrian advisory committee, cannabis
+    regulations, commission on aging, community advisory committee, community services
+    commission, concord pavilion community outreach committee, concord/pleasant hill
+    health care district (cphhcd) grant committee, design review board, homeless strategic
+    plan working group, housing & economic development, infrastructure & franchise,
+    measure v oversight committee, parks, recreation & open space commission, planning
+    commission, policy development & internal operations, recreation, cultural affairs
+    & community services, residential rent review, retirement board, successor agency
+    oversight board, youth & education, zoning administrator'
+- name: Corcoran
+  homepage: http://www.cityofcorcoran.com/
+  platform: legistar
+  legistar_url: https://corcoran.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Corning
+  homepage: https://www.corning.org/
+  platform: legistar
+  legistar_url: https://corning.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Corona
+  homepage: https://www.coronaca.gov/
+  platform: legistar
+  legistar_url: https://corona.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Coronado
+  homepage: https://www.coronado.ca.us/
+  agenda_url: https://www.coronado.ca.us/government/city_council/agendas_and_minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Corte Madera
+  homepage: https://www.townofcortemadera.org/
+  agenda_url: https://www.townofcortemadera.org/140/Town-Council
+  platform: civicplus
+  civicplus_base_url: https://www.townofcortemadera.org
+  civicplus_category_id: '11'
+  civicplus_category_name: fire council - central marin fire authority
+  civicplus_status: ok
+  connector: civicplus
+- name: Costa Mesa
+  homepage: https://www.costamesaca.gov/
+  platform: legistar
+  legistar_url: https://costamesa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Cotati
+  homepage: http://www.cotaticity.org/
+  agenda_url: https://cotaticityca.iqm2.com/Citizens/calendar.aspx
+  platform: granicus
+- name: Covina
+  homepage: https://covinaca.gov/
+  platform: legistar
+  legistar_url: https://covina.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Crescent City
+  homepage: https://crescentcity.org/
+  platform: legistar
+  legistar_url: https://crescentcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Cudahy
+  homepage: https://www.cityofcudahy.com/
+  agenda_url: https://cityofcudahy.com/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityofcudahy.com
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Culver City
+  homepage: https://www.culvercity.org/
+  platform: legistar
+  legistar_url: https://culver-city.legistar.com/Calendar.aspx
+  body: City Council Meeting Agenda
+  connector: legistar
+- name: Cupertino
+  homepage: https://www.cupertino.org/
+  platform: legistar
+  legistar_url: https://cupertino.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Cypress
+  homepage: https://www.cypressca.org/
+  platform: legistar
+  legistar_url: https://cypress.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Daly City
+  homepage: https://www.dalycity.org/
+  agenda_url: https://www.dalycity.org/942/Agendas-Meetings
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: arts & culture commission, daly city youth advisory
+    committee, housing development finance agency, hr personnel board, small business
+    commission'
+- name: Dana Point
+  homepage: https://www.danapoint.org/
+  platform: legistar
+  legistar_url: https://danapoint.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Danville
+  homepage: https://www.danville.ca.gov/
+  agenda_url: https://www.danville-va.gov/387/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Davis
+  homepage: https://www.cityofdavis.org/
+  platform: legistar
+  legistar_url: https://davis.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Del Mar
+  homepage: https://www.delmar.ca.us/
+  agenda_url: https://www.delmar.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.delmar.ca.us
+  civicplus_category_id: '12'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Del Rey Oaks
+  homepage: https://www.delreyoaks.org/
+  platform: legistar
+  legistar_url: https://delreyoaks.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Delano
+  homepage: https://www.cityofdelano.org/
+  agenda_url: https://www.cityofdelano.org/82/Minutes-Agendas
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Desert Hot Springs
+  homepage: https://www.cityofdhs.org/
+  platform: legistar
+  legistar_url: https://deserthotsprings.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Diamond Bar
+  homepage: https://www.diamondbarca.gov/
+  agenda_url: https://www.diamondbarca.gov/262/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Dinuba
+  homepage: http://www.dinuba.org/
+  agenda_url: http://www.dinuba.org/government/city-council/meeting-agendas
+  platform: civicclerk
+- name: Dixon
+  homepage: https://www.ci.dixon.ca.us/
+  agenda_url: https://www.ci.dixon.ca.us/339/Agendas-Videos-Live-Streaming
+  platform: granicus
+- name: Dorris
+  homepage: https://www.dorrisca.us/
+  platform: legistar
+  legistar_url: https://dorris.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Dos Palos
+  homepage: https://dospaloscity.wixsite.com/dospalos
+  platform: legistar
+  legistar_url: https://dospalos.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Downey
+  homepage: https://www.downeyca.org/
+  platform: legistar
+  legistar_url: https://downey.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Duarte
+  homepage: https://www.accessduarte.com/
+  platform: legistar
+  legistar_url: https://duarte.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Dublin
+  homepage: https://www.dublin.ca.gov/
+  agenda_url: https://dublin.ca.gov/1604/Meetings-Agendas-Minutes-Video-on-Demand
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Dunsmuir
+  homepage: http://www.ci.dunsmuir.ca.us/
+  platform: legistar
+  legistar_url: https://dunsmuir.legistar.com/Calendar.aspx
+  connector: legistar
+- name: East Palo Alto
+  homepage: https://www.ci.east-palo-alto.ca.us/
+  agenda_url: http://eastpaloalto.iqm2.com/
+  platform: granicus
+- name: Eastvale
+  homepage: https://www.eastvaleca.gov/
+  platform: legistar
+  legistar_url: https://eastvale.legistar.com/Calendar.aspx
+  connector: legistar
+- name: El Cajon
+  homepage: https://www.cityofelcajon.us/
+  platform: legistar
+  legistar_url: https://elcajon.legistar.com/Calendar.aspx
+  connector: legistar
+- name: El Centro
+  homepage: http://www.cityofelcentro.org/
+  agenda_url: http://www.cityofelcentro.org/clerksoffice/index.asp?m=1&page=87
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: El Cerrito
+  homepage: https://www.el-cerrito.org/
+  agenda_url: https://el-cerrito.org/698/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: El Monte
+  homepage: https://www.ci.el-monte.ca.us/
+  agenda_url: http://www.ci.el-monte.ca.us/129/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.ci.el-monte.ca.us
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: El Paso de Robles (Paso Robles)
+  homepage: https://www.prcity.com/
+  agenda_url: https://www.prcity.com/178/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.prcity.com
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: El Segundo
+  homepage: https://www.elsegundo.org/
+  platform: legistar
+  legistar_url: https://elsegundo.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Elk Grove
+  homepage: https://www.elkgrovecity.org/
+  platform: legistar
+  legistar_url: https://elkgrove.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Emeryville
+  homepage: https://www.ci.emeryville.ca.us/
+  agenda_url: https://www.ci.emeryville.ca.us/88/Video-Agendas-Reports-Minutes-Archive
+  platform: granicus
+- name: Encinitas
+  homepage: https://encinitasca.gov/
+  platform: legistar
+  legistar_url: https://encinitas.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Escalon
+  homepage: http://cityofescalon.org/
+  platform: legistar
+  legistar_url: https://escalon.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Escondido
+  homepage: https://www.escondido.org/home.aspx
+  agenda_url: https://www.escondido.org/meeting-agendas.aspx
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Etna
+  homepage: https://www.etnaca.com/
+  platform: legistar
+  legistar_url: https://etna.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Eureka
+  homepage: https://en.wikipedia.org/wiki/Eureka
+  platform: legistar
+  legistar_url: https://eureka.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Exeter
+  homepage: https://cityofexeter.com/
+  platform: legistar
+  legistar_url: https://exeter.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fairfax
+  homepage: https://www.townoffairfax.org/
+  platform: legistar
+  legistar_url: https://fairfax.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fairfield
+  homepage: https://www.fairfield.ca.gov/
+  platform: legistar
+  legistar_url: https://fairfield.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Farmersville
+  homepage: https://www.cityoffarmersville-ca.gov/
+  agenda_url: https://www.cityoffarmersville-ca.gov/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityoffarmersville-ca.gov
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Ferndale
+  homepage: https://ci.ferndale.ca.us/
+  platform: legistar
+  legistar_url: https://ferndale.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fillmore
+  homepage: https://www.fillmoreca.com/
+  agenda_url: https://www.fillmoreca.com/i-want-to/i-want-to-view-an-agenda
+  platform: civicplus
+  civicplus_base_url: https://www.fillmoreca.com
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Firebaugh
+  homepage: https://firebaugh.org/
+  platform: legistar
+  legistar_url: https://firebaugh.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Folsom
+  homepage: https://www.folsom.ca.us/
+  platform: legistar
+  legistar_url: https://folsom.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fontana
+  homepage: https://www.fontana.org/
+  platform: legistar
+  legistar_url: https://fontana.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fort Bragg
+  homepage: https://city.fortbragg.com/
+  platform: legistar
+  legistar_url: https://cityfortbragg.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fort Jones
+  homepage: https://fortjonesca.org/
+  platform: legistar
+  legistar_url: https://fortjones.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fortuna
+  homepage: https://www.friendlyfortuna.com/
+  platform: legistar
+  legistar_url: https://fortuna.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Foster City
+  homepage: https://www.fostercity.org/
+  agenda_url: https://www.fostercity.org/agendasandminutes
+  platform: primegov
+- name: Fountain Valley
+  homepage: https://www.fountainvalley.org/
+  agenda_url: https://www.fountainvalley.org/AgendaCenter/City-Council-2
+  platform: civicplus
+  civicplus_base_url: https://www.fountainvalley.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Fowler
+  homepage: http://fowlercity.org/
+  platform: legistar
+  legistar_url: https://fowler.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fremont
+  homepage: https://www.fremont.gov/
+  platform: legistar
+  legistar_url: https://fremont.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fresno
+  homepage: https://www.fresno.gov/
+  platform: legistar
+  legistar_url: https://fresno.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Fullerton
+  homepage: https://www.cityoffullerton.com/
+  platform: legistar
+  legistar_url: https://fullerton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Galt
+  homepage: http://www.ci.galt.ca.us/
+  platform: legistar
+  legistar_url: https://galt.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Garden Grove
+  homepage: https://ggcity.org/
+  platform: legistar
+  legistar_url: https://gardengrove.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Gardena
+  homepage: https://www.cityofgardena.org/
+  platform: legistar
+  legistar_url: https://gardena.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Gilroy
+  homepage: https://www.cityofgilroy.org/
+  agenda_url: https://cityofgilroy.org/341/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.cityofgilroy.org
+  civicplus_category_id: '12'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Glendale
+  homepage: https://www.glendaleca.gov/
+  platform: legistar
+  legistar_url: https://glendale.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Glendora
+  homepage: https://www.cityofglendora.org/
+  platform: legistar
+  legistar_url: https://glendora.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Goleta
+  homepage: https://www.cityofgoleta.org/
+  platform: legistar
+  legistar_url: https://goleta.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Gonzales
+  homepage: https://gonzalesca.gov/
+  agenda_url: https://gonzalesca.gov/government/city-council-agendas-minutes
+  platform: iqm2
+- name: Grand Terrace
+  homepage: https://www.grandterrace-ca.gov/
+  platform: legistar
+  legistar_url: https://grandterrace.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Grass Valley
+  homepage: https://www.cityofgrassvalley.com/
+  agenda_url: https://www.cityofgrassvalley.com/agendas-minutes-meetings
+  platform: granicus
+- name: Greenfield
+  homepage: https://ci.greenfield.ca.us/
+  agenda_url: https://ci.greenfield.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://ci.greenfield.ca.us
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Gridley
+  homepage: http://gridley.ca.us/
+  agenda_url: http://gridley.ca.us/government-and-departments/city-council/
+  platform: civicplus
+  civicplus_base_url: http://gridley.ca.us
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Grover Beach
+  homepage: https://www.grover.org/
+  agenda_url: https://www.grover.org/160/Agendas-Staff-Reports-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Guadalupe
+  homepage: https://ci.guadalupe.ca.us/
+  platform: legistar
+  legistar_url: https://guadalupe.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Gustine
+  homepage: https://www.cityofgustine.com/
+  platform: legistar
+  legistar_url: https://gustine.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Half Moon Bay
+  homepage: https://www.half-moon-bay.ca.us/
+  agenda_url: https://www.half-moon-bay.ca.us/315/City-Council-Agendas
+  platform: granicus
+- name: Hanford
+  homepage: https://www.ci.hanford.ca.us/
+  agenda_url: https://www.ci.hanford.ca.us/government/city_council/index.php
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://www.ci.hanford.ca.us/AgendaCenter'
+- name: Hawaiian Gardens
+  homepage: https://www.hgcity.org/
+  platform: legistar
+  legistar_url: https://hawaiiangardens.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hawthorne
+  homepage: http://www.cityofhawthorne.org/
+  platform: legistar
+  legistar_url: https://hawthorne.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hayward
+  homepage: https://www.hayward-ca.gov/
+  platform: legistar
+  legistar_url: https://hayward.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Healdsburg
+  homepage: https://www.ci.healdsburg.ca.us/
+  agenda_url: https://www.ci.healdsburg.ca.us/543/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.ci.healdsburg.ca.us
+  civicplus_category_id: '7'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Hemet
+  homepage: https://www.hemetca.gov/
+  agenda_url: https://www.hemetca.gov/388/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.hemetca.gov
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Hercules
+  homepage: https://www.ci.hercules.ca.us/
+  platform: legistar
+  legistar_url: https://hercules.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hermosa Beach
+  homepage: https://www.hermosabeach.gov/
+  platform: legistar
+  legistar_url: https://hermosabeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hesperia
+  homepage: https://www.cityofhesperia.us/
+  agenda_url: https://www.cityofhesperia.us/135/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Hidden Hills
+  homepage: https://hiddenhillscity.org/
+  platform: legistar
+  legistar_url: https://hiddenhills.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Highland
+  homepage: https://www.cityofhighland.org/
+  platform: legistar
+  legistar_url: https://highland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hillsborough
+  homepage: https://www.hillsborough.net/
+  agenda_url: https://www.hillsborough.net/AgendaCenter/City-Council-3
+  platform: civicplus
+  civicplus_base_url: https://www.hillsborough.net
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Hollister
+  homepage: http://hollister.ca.gov/
+  platform: legistar
+  legistar_url: https://hollister.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Holtville
+  homepage: https://www.holtville.ca.gov/
+  platform: legistar
+  legistar_url: https://holtville.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Hughson
+  homepage: http://hughson.org/
+  platform: legistar
+  legistar_url: https://hughson.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Huntington Beach
+  homepage: https://www.huntingtonbeachca.gov/
+  platform: legistar
+  legistar_url: https://huntingtonbeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Huntington Park
+  homepage: https://www.hpca.gov/
+  agenda_url: https://www.hpca.gov/58/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Huron
+  homepage: http://cityofhuron.com/
+  platform: legistar
+  legistar_url: https://huron.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Imperial
+  homepage: https://en.wikipedia.org/wiki/Imperial
+  platform: legistar
+  legistar_url: https://imperial.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Imperial Beach
+  homepage: https://www.imperialbeachca.gov/
+  agenda_url: http://www.imperialbeachca.gov/council_meetings
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Indian Wells
+  homepage: https://www.cityofindianwells.org/
+  platform: legistar
+  legistar_url: https://indianwells.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Indio
+  homepage: https://www.indio.org/
+  platform: legistar
+  legistar_url: https://indio.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Industry
+  homepage: https://en.wikipedia.org/wiki/City_of_Industry
+  agenda_url: https://www.cityofindustry.org/city-hall/departments/administrative-services/city-clerk/agendas-minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://en.wikipedia.org/AgendaCenter'
+- name: Inglewood
+  homepage: https://www.cityofinglewood.org/
+  agenda_url: https://www.cityofinglewood.org/AgendaCenter/City-Council-3
+  platform: civicplus
+  civicplus_base_url: https://www.cityofinglewood.org
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Ione
+  homepage: https://www.ione-ca.com/
+  platform: legistar
+  legistar_url: https://ione.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Irvine
+  homepage: https://www.cityofirvine.org/
+  platform: legistar
+  legistar_url: https://irvine.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Irwindale
+  homepage: https://www.irwindaleca.gov/
+  agenda_url: https://www.irwindaleca.gov/132/City-Council
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: oversight board, parks & recreation commission,
+    planning commission, senior citizen commission'
+- name: Isleton
+  homepage: http://cityofisleton.com/
+  platform: legistar
+  legistar_url: https://isleton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Jackson
+  homepage: https://www.ci.jackson.ca.us/
+  platform: legistar
+  legistar_url: https://jackson.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Jurupa Valley
+  homepage: https://www.jurupavalley.org/
+  agenda_url: https://www.jurupavalley.org/AgendaCenter/City-Council-2
+  platform: civicplus
+  civicplus_base_url: https://www.jurupavalley.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Kerman
+  homepage: https://cityofkerman.net/
+  agenda_url: https://cityofkerman.net/city-council-meeting-agendas-minutes/
+  platform: civicplus
+  civicplus_base_url: https://cityofkerman.net
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: King City
+  homepage: http://www.kingcity.com/
+  agenda_url: http://www.kingcity.com/city-government/mayor-city-council/city-council-agendas/
+  platform: civicplus
+  civicplus_base_url: http://www.kingcity.com
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Kingsburg
+  homepage: https://www.cityofkingsburg-ca.gov/
+  agenda_url: https://www.cityofkingsburg-ca.gov/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityofkingsburg-ca.gov
+  civicplus_category_id: '9'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: La Cañada Flintridge
+  homepage: https://cityoflcf.org/
+  agenda_url: https://cityoflcf.org/city-clerk/agenda-minutes/
+  platform: civicclerk
+- name: La Habra
+  homepage: https://www.lahabracity.com/
+  platform: legistar
+  legistar_url: https://lahabra.legistar.com/Calendar.aspx
+  connector: legistar
+- name: La Habra Heights
+  homepage: https://www.lhhcity.org/
+  agenda_url: https://www.lhhcity.org/129/Agendas-Minutes
+  platform: granicus
+- name: La Mesa
+  homepage: https://www.cityoflamesa.us/
+  agenda_url: https://www.cityoflamesa.us/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityoflamesa.us
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: La Mirada
+  homepage: https://www.cityoflamirada.org/
+  platform: legistar
+  legistar_url: https://lamirada.legistar.com/Calendar.aspx
+  connector: legistar
+- name: La Palma
+  homepage: https://www.cityoflapalma.org/
+  agenda_url: https://www.cityoflapalma.org/72/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.cityoflapalma.org
+  civicplus_category_id: '1'
+  civicplus_category_name: city council agendas
+  civicplus_status: ok
+  connector: civicplus
+- name: La Puente
+  homepage: https://www.lapuente.org/
+  platform: legistar
+  legistar_url: https://lapuente.legistar.com/Calendar.aspx
+  connector: legistar
+- name: La Quinta
+  homepage: https://www.laquintaca.gov/
+  platform: legistar
+  legistar_url: https://laquinta.legistar.com/Calendar.aspx
+  connector: legistar
+- name: La Verne
+  homepage: https://www.cityoflaverne.org/
+  agenda_url: https://www.cityoflaverne.org/index.php/government/city-council-agendas
+  platform: civicplus
+  civicplus_base_url: https://www.cityoflaverne.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Lafayette
+  homepage: https://www.lovelafayette.org/
+  platform: legistar
+  legistar_url: https://lafayette.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Laguna Beach
+  homepage: http://www.lagunabeachcity.net/
+  platform: legistar
+  legistar_url: https://lagunabeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Laguna Hills
+  homepage: https://www.ci.laguna-hills.ca.us/
+  platform: legistar
+  legistar_url: https://lagunahills.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Laguna Niguel
+  homepage: https://www.cityoflagunaniguel.org/
+  agenda_url: https://www.cityoflagunaniguel.org/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityoflagunaniguel.org
+  civicplus_category_id: '9'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Laguna Woods
+  homepage: https://www.cityoflagunawoods.org/
+  platform: legistar
+  legistar_url: https://lagunawoods.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lake Elsinore
+  homepage: http://www.lake-elsinore.org/
+  agenda_url: http://www.lake-elsinore.org/
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Lake Forest
+  homepage: https://www.lakeforestca.gov/
+  platform: legistar
+  legistar_url: https://lakeforest.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lakeport
+  homepage: https://www.cityoflakeport.com/
+  platform: legistar
+  legistar_url: https://lakeport.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lakewood
+  homepage: https://www.lakewoodcity.org/
+  platform: legistar
+  legistar_url: https://lakewood.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lancaster
+  homepage: https://www.cityoflancasterca.org/
+  platform: legistar
+  legistar_url: https://lancaster.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Larkspur
+  homepage: https://www.ci.larkspur.ca.us/
+  agenda_url: https://www.ci.larkspur.ca.us/288/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Lathrop
+  homepage: https://www.ci.lathrop.ca.us/
+  platform: legistar
+  legistar_url: https://lathrop.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lawndale
+  homepage: http://www.lawndalecity.org/
+  platform: legistar
+  legistar_url: https://lawndale.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lemon Grove
+  homepage: https://www.lemongrove.ca.gov/
+  platform: legistar
+  legistar_url: https://lemongrove.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lemoore
+  homepage: https://lemoore.com/
+  platform: legistar
+  legistar_url: https://lemoore.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lincoln
+  homepage: http://www.lincolnca.gov/
+  platform: legistar
+  legistar_url: https://lincoln.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lindsay
+  homepage: https://www.lindsay.ca.us/
+  platform: legistar
+  legistar_url: https://lindsay.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Live Oak
+  homepage: https://www.liveoakcity.org/
+  platform: legistar
+  legistar_url: https://liveoak.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Livermore
+  homepage: https://www.cityoflivermore.net/
+  platform: legistar
+  legistar_url: https://livermore.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Livingston
+  homepage: https://www.cityoflivingston.org/
+  agenda_url: https://cityoflivingston-tx.com/148/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '403 Client Error: Forbidden for url: https://www.cityoflivingston.org/AgendaCenter'
+- name: Lodi
+  homepage: https://www.lodi.gov/
+  agenda_url: https://www.lodi.gov/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.lodi.gov
+  civicplus_category_id: '5'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Loma Linda
+  homepage: https://www.lomalinda-ca.gov/
+  platform: legistar
+  legistar_url: https://lomalinda.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lomita
+  homepage: http://www.lomita.com/cityhall
+  platform: legistar
+  legistar_url: https://lomita.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lompoc
+  homepage: https://www.cityoflompoc.com/
+  platform: legistar
+  legistar_url: https://lompoc.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Long Beach
+  homepage: http://www.longbeach.gov/
+  platform: legistar
+  legistar_url: https://longbeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Loomis
+  homepage: https://loomis.ca.gov/
+  platform: legistar
+  legistar_url: https://loomis.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Los Alamitos
+  homepage: https://cityoflosalamitos.org/
+  agenda_url: https://cityoflosalamitos.org/your-government/city-council/agendas-and-minutes/
+  platform: civicplus
+  civicplus_base_url: https://cityoflosalamitos.org
+  civicplus_category_id: '5'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Los Altos
+  homepage: https://www.losaltosca.gov/
+  agenda_url: https://www.losaltosca.gov/citycouncil/page/city-council-meeting-14
+  platform: civicplus
+  civicplus_base_url: https://www.losaltosca.gov
+  civicplus_category_id: '4'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Los Altos Hills
+  homepage: https://www.losaltoshills.ca.gov/
+  agenda_url: http://www.losaltoshills.ca.gov/129/CITY-COUNCIL-AGENDAS-MINUTES
+  platform: civicplus
+  civicplus_base_url: https://www.losaltoshills.ca.gov
+  civicplus_category_id: '15'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Los Angeles
+  homepage: https://www.lacity.org/
+  platform: legistar
+  legistar_url: https://losangeles.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Los Banos
+  homepage: http://www.losbanos.org/
+  platform: legistar
+  legistar_url: https://losbanos.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Los Gatos
+  homepage: https://www.losgatosca.gov/
+  agenda_url: https://www.losgatosca.gov/13/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.losgatosca.gov
+  civicplus_category_id: '26'
+  civicplus_category_name: council ad hoc wildfire committee (sunsetted)
+  civicplus_status: ok
+  connector: civicplus
+- name: Loyalton
+  homepage: https://www.cityofloyalton.org/
+  platform: legistar
+  legistar_url: https://loyalton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Lynwood
+  homepage: http://lynwood.ca.us/
+  platform: legistar
+  legistar_url: https://lynwood.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Madera
+  homepage: https://www.madera.gov/
+  platform: legistar
+  legistar_url: https://madera.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Malibu
+  homepage: https://www.malibucity.org/
+  agenda_url: https://www.malibucity.org/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.malibucity.org
+  civicplus_category_id: '8'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Mammoth Lakes
+  homepage: https://www.townofmammothlakes.ca.gov/
+  agenda_url: https://www.townofmammothlakes.ca.gov/84/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Manhattan Beach
+  homepage: https://www.citymb.info/
+  platform: legistar
+  legistar_url: https://manhattanbeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Manteca
+  homepage: https://www.ci.manteca.ca.us/Pages/default.aspx
+  platform: legistar
+  legistar_url: https://manteca.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Maricopa
+  homepage: https://cityofmaricopa.org/
+  platform: legistar
+  legistar_url: https://maricopa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Marina
+  homepage: https://cityofmarina.org/
+  agenda_url: https://www.cityofmarina.org/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://cityofmarina.org
+  civicplus_category_id: '1'
+  civicplus_category_name: city council agendas & minutes
+  civicplus_status: ok
+  connector: civicplus
+- name: Martinez
+  homepage: https://www.cityofmartinez.org/
+  platform: legistar
+  legistar_url: https://martinez.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Marysville
+  homepage: https://marysville.ca.us/
+  agenda_url: https://marysvillewa.gov/194/Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://www.marysville.ca.us/AgendaCenter'
+- name: Maywood
+  homepage: https://www.cityofmaywood.com/
+  agenda_url: https://www.cityofmaywood.com/city-council-meetings
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: McFarland
+  homepage: https://www.mcfarlandcity.org/
+  platform: legistar
+  legistar_url: https://mcfarland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Mendota
+  homepage: https://ci.mendota.ca.us/
+  platform: legistar
+  legistar_url: https://mendota.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Menifee
+  homepage: https://www.cityofmenifee.us/
+  agenda_url: https://www.cityofmenifee.us/89/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Menlo Park
+  homepage: https://www.menlopark.org/
+  platform: legistar
+  legistar_url: https://menlopark.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Merced
+  homepage: https://www.cityofmerced.org/
+  platform: legistar
+  legistar_url: https://merced.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Mill Valley
+  homepage: https://www.cityofmillvalley.org/
+  agenda_url: https://www.cityofmillvalley.org/gov/citycouncil/default.htm
+  platform: civicplus
+  civicplus_base_url: https://www.cityofmillvalley.org
+  civicplus_category_id: '12'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Millbrae
+  homepage: https://www.ci.millbrae.ca.us/
+  agenda_url: https://www.ci.millbrae.ca.us/departments-services/city-clerk/city-council-meetings-agendas
+  platform: civicplus
+  civicplus_base_url: https://www.ci.millbrae.ca.us
+  civicplus_category_id: '3'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Milpitas
+  homepage: http://www.ci.milpitas.ca.gov/
+  agenda_url: http://www.ci.milpitas.ca.gov/our-government/city-council/city-council-agendas-and-minutes-2/
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://www.milpitas.gov/AgendaCenter'
+- name: Mission Viejo
+  homepage: https://cityofmissionviejo.org/
+  agenda_url: https://cityofmissionviejo.org/departments/city-clerk/city-council-agenda
+  platform: granicus
+- name: Modesto
+  homepage: https://www.modestogov.com/
+  agenda_url: https://www.modestogov.com/749/City-Council-Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: airport advisory committee, blight abatement
+    advisory committee, blue ribbon commission on homelessness, board of building
+    appeals, board of zoning adjustment, cannabis committee, charter review committee,
+    citizen''s districting commission, citizen''s housing and community development
+    committee (ch&cdc), citizen''s salary setting commission, citizens’ transportation
+    sales tax commission, comision de distrito de ciudadanos, community police review
+    board, comprehensive fees task force, culture commission, disabled access appeals
+    board, entertainment commission, equity commission, forward together work group,
+    golf courses advisory committee, healthy economy committee, housing rehabilitation
+    loan committee (hrlc), human relations commission, landmark preservation commission,
+    measure h oversight board, planning commission, public financing authority, safer
+    neighborhoods initiative advisory board, tuolumne river regional park citizens
+    advisory committee, tuolumne river regional park joint powers authority commission,
+    waste to energy executive committee, youth commission'
+- name: Monrovia
+  homepage: https://www.cityofmonrovia.org/
+  platform: legistar
+  legistar_url: https://monrovia.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Montague
+  homepage: https://cityofmontagueca.com/
+  platform: legistar
+  legistar_url: https://montague.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Montclair
+  homepage: https://www.cityofmontclair.org/
+  platform: legistar
+  legistar_url: https://montclair.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Monte Sereno
+  homepage: https://cityofmontesereno.org/
+  platform: legistar
+  legistar_url: https://montesereno.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Montebello
+  homepage: https://www.cityofmontebello.com/
+  platform: legistar
+  legistar_url: https://montebello.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Monterey
+  homepage: https://en.wikipedia.org/wiki/Monterey
+  platform: legistar
+  legistar_url: https://monterey.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Monterey Park
+  homepage: https://www.montereypark.ca.gov/
+  agenda_url: https://www.montereypark.ca.gov/AgendaCenter
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Moorpark
+  homepage: https://www.moorparkca.gov/
+  agenda_url: https://www.moorparkca.gov/327/City-CouncilSAElection-District-Meeting-
+  platform: granicus
+- name: Moraga
+  homepage: https://www.moraga.ca.us/
+  agenda_url: https://www.moraga.ca.us/230/Town-Council
+  platform: civicplus
+  civicplus_base_url: https://www.moraga.ca.us
+  civicplus_category_id: '2'
+  civicplus_category_name: 1 - town council
+  civicplus_status: ok
+  connector: civicplus
+- name: Moreno Valley
+  homepage: http://www.moval.org/
+  platform: legistar
+  legistar_url: https://morenovalley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Morgan Hill
+  homepage: https://www.morgan-hill.ca.gov/
+  platform: legistar
+  legistar_url: https://morganhill.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Morro Bay
+  homepage: https://www.morro-bay.ca.us/
+  agenda_url: http://www.morrobayca.gov/267/Mayor-City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Mount Shasta
+  homepage: https://visitmtshasta.com/
+  platform: legistar
+  legistar_url: https://mountshasta.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Mountain View
+  homepage: https://www.mountainview.gov/
+  platform: legistar
+  legistar_url: https://mountainview.legistar.com/Calendar.aspx
+  body: City Council
+  connector: legistar
+- name: Murrieta
+  homepage: https://www.murrietaca.gov/
+  platform: legistar
+  legistar_url: https://murrieta.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Napa
+  homepage: https://www.cityofnapa.org/
+  platform: legistar
+  legistar_url: https://napacity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: National City
+  homepage: https://www.nationalcityca.gov/
+  platform: legistar
+  legistar_url: https://nationalcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Needles
+  homepage: http://cityofneedles.com/
+  platform: legistar
+  legistar_url: https://needles.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Nevada City
+  homepage: https://en.wikipedia.org/wiki/Nevada_City
+  agenda_url: https://www.nevadacityca.gov/agenda.aspx?categoryid=0
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://en.wikipedia.org/AgendaCenter'
+- name: Newark
+  homepage: https://www.newark.org/
+  agenda_url: https://newarkde.gov/985/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '403 Client Error: Forbidden for url: https://www.newarkca.gov/AgendaCenter'
+- name: Newman
+  homepage: http://www.cityofnewman.com/
+  platform: legistar
+  legistar_url: https://newman.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Newport Beach
+  homepage: https://www.newportbeachca.gov/
+  platform: legistar
+  legistar_url: https://newportbeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Norco
+  homepage: http://www.norco.ca.us/
+  platform: legistar
+  legistar_url: https://norco.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Norwalk
+  homepage: https://www.norwalk.org/
+  platform: legistar
+  legistar_url: https://norwalk.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Novato
+  homepage: https://www.novato.org/
+  platform: legistar
+  legistar_url: https://novato.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Oakdale
+  homepage: https://www.oakdalegov.com/
+  platform: legistar
+  legistar_url: https://oakdale.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Oakland
+  homepage: https://www.oaklandca.gov/
+  platform: legistar
+  legistar_url: https://oakland.legistar.com/calendar.aspx
+  body: Successor Agency and the City Council
+  connector: legistar
+- name: Oakley
+  homepage: https://www.ci.oakley.ca.us/
+  agenda_url: https://www.ci.oakley.ca.us/agendas-minutes-videos-archive/
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Oceanside
+  homepage: https://www.ci.oceanside.ca.us/
+  platform: legistar
+  legistar_url: https://oceanside.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Ojai
+  homepage: https://ojaicity.org/
+  platform: legistar
+  legistar_url: https://ojai.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Ontario
+  homepage: https://www.ontarioca.gov/
+  agenda_url: https://www.ontarioca.gov/Agendas/CityCouncil
+  platform: granicus
+- name: Orange
+  homepage: https://www.cityoforange.org/
+  platform: legistar
+  legistar_url: https://orange.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Orange Cove
+  homepage: http://cityoforangecove.com/
+  platform: legistar
+  legistar_url: https://orangecove.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Orinda
+  homepage: https://www.cityoforinda.org/
+  agenda_url: https://www.cityoforinda.org/319/City-Council-Agendas
+  platform: civicplus
+  civicplus_base_url: https://www.cityoforinda.org
+  civicplus_category_id: '18'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Orland
+  homepage: http://cityoforland.com/
+  platform: legistar
+  legistar_url: https://orland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Oroville
+  homepage: https://www.cityoforoville.org/
+  agenda_url: https://www.cityoforoville.org/government/agendas-minutes/city-council-agendas-and-minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Oxnard
+  homepage: https://www.oxnard.org/
+  platform: legistar
+  legistar_url: https://oxnard.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pacific Grove
+  homepage: https://www.cityofpacificgrove.org/
+  platform: legistar
+  legistar_url: https://pacificgrove.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pacifica
+  homepage: https://www.cityofpacifica.org/
+  platform: legistar
+  legistar_url: https://pacifica.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Palm Desert
+  homepage: https://www.cityofpalmdesert.org/
+  platform: legistar
+  legistar_url: https://palmdesert.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Palm Springs
+  homepage: https://www.palmspringsca.gov/
+  platform: legistar
+  legistar_url: https://palmsprings.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Palmdale
+  homepage: https://www.cityofpalmdale.org/
+  agenda_url: https://www.cityofpalmdale.org/310/City-Council-Meetings
+  platform: granicus
+- name: Palo Alto
+  homepage: https://www.cityofpaloalto.org/
+  platform: legistar
+  legistar_url: https://paloalto.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Palos Verdes Estates
+  homepage: https://www.pvestates.org/
+  platform: legistar
+  legistar_url: https://palosverdesestates.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Paradise
+  homepage: https://en.wikipedia.org/wiki/Paradise
+  platform: legistar
+  legistar_url: https://paradise.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Paramount
+  homepage: http://www.paramountcity.com/
+  platform: legistar
+  legistar_url: https://paramount.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Parlier
+  homepage: http://parlier.ca.us/
+  agenda_url: http://parlier.ca.us/agendas/
+  platform: civicplus
+  civicplus_base_url: http://parlier.ca.us
+  civicplus_category_id: '2'
+  civicplus_category_name: city council meetings
+  civicplus_status: ok
+  connector: civicplus
+- name: Pasadena
+  homepage: https://www.cityofpasadena.net/
+  platform: legistar
+  legistar_url: https://pasadena.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Patterson
+  homepage: https://www.ci.patterson.ca.us/
+  agenda_url: http://www.ci.patterson.ca.us/agendacenter
+  platform: civicplus
+  civicplus_base_url: https://www.ci.patterson.ca.us
+  civicplus_category_id: '15'
+  civicplus_category_name: vacancy city council seat
+  civicplus_status: ok
+  connector: civicplus
+- name: Perris
+  homepage: https://www.cityofperris.org/
+  platform: legistar
+  legistar_url: https://perris.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Petaluma
+  homepage: https://cityofpetaluma.org/
+  platform: legistar
+  legistar_url: https://petaluma.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pico Rivera
+  homepage: http://www.pico-rivera.org/
+  platform: legistar
+  legistar_url: https://picorivera.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Piedmont
+  homepage: https://piedmont.ca.gov/
+  platform: legistar
+  legistar_url: https://piedmont.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pinole
+  homepage: https://www.ci.pinole.ca.us/
+  platform: legistar
+  legistar_url: https://pinole.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pismo Beach
+  homepage: http://www.pismobeach.org/1
+  agenda_url: https://pismobeach.org/897/Agenda-Center
+  platform: granicus
+- name: Pittsburg
+  homepage: http://www.ci.pittsburg.ca.us/
+  platform: legistar
+  legistar_url: https://pittsburg.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Placentia
+  homepage: https://www.placentia.org/
+  agenda_url: https://www.placentia.org/667/City-Council-Meeting-Archives
+  platform: granicus
+- name: Placerville
+  homepage: https://www.cityofplacerville.org/
+  platform: legistar
+  legistar_url: https://placerville.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pleasant Hill
+  homepage: https://www.ci.pleasant-hill.ca.us/
+  agenda_url: https://www.ci.pleasant-hill.ca.us/277/Agendas
+  platform: civicplus
+  civicplus_base_url: https://www.ci.pleasant-hill.ca.us
+  civicplus_category_id: '1'
+  civicplus_category_name: city council meetings
+  civicplus_status: ok
+  connector: civicplus
+- name: Pleasanton
+  homepage: https://www.cityofpleasantonca.gov/
+  platform: legistar
+  legistar_url: https://pleasanton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Plymouth
+  homepage: https://cityofplymouth.org/
+  platform: legistar
+  legistar_url: https://plymouth.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Point Arena
+  homepage: https://pointarena.ca.gov/
+  platform: legistar
+  legistar_url: https://pointarena.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Pomona
+  homepage: https://www.ci.pomona.ca.us/
+  platform: legistar
+  legistar_url: https://pomona.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Port Hueneme
+  homepage: https://www.ci.port-hueneme.ca.us/
+  agenda_url: https://www.ci.port-hueneme.ca.us/27/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Porterville
+  homepage: http://www.ci.porterville.ca.us/
+  platform: legistar
+  legistar_url: https://porterville.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Portola
+  homepage: https://www.ci.portola.ca.us/
+  platform: legistar
+  legistar_url: https://portola.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Portola Valley
+  homepage: https://www.portolavalley.net/
+  platform: legistar
+  legistar_url: https://portolavalley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Poway
+  homepage: https://poway.org/
+  agenda_url: https://poway.org/636/Council-Meetings
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Rancho Cordova
+  homepage: https://www.cityofranchocordova.org/
+  platform: legistar
+  legistar_url: https://ranchocordova.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rancho Cucamonga
+  homepage: https://www.cityofrc.us/
+  agenda_url: https://www.cityofrc.us/your-government/city-council-agendas
+  platform: primegov
+- name: Rancho Mirage
+  homepage: https://ranchomirageca.gov/
+  platform: legistar
+  legistar_url: https://ranchomirage.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rancho Palos Verdes
+  homepage: https://www.rpvca.gov/
+  agenda_url: https://rpvca.gov/772/City-Meeting-Video-and-Agendas
+  platform: granicus
+- name: Rancho Santa Margarita
+  homepage: https://www.cityofrsm.org/
+  agenda_url: https://www.cityofrsm.org/129/Agendas-Minutes
+  platform: granicus
+- name: Red Bluff
+  homepage: http://www.cityofredbluff.org/
+  agenda_url: http://www.cityofredbluff.org/citycouncil/
+  platform: iqm2
+- name: Redding
+  homepage: https://www.cityofredding.org/
+  agenda_url: https://www.cityofredding.org/city-council
+  platform: iqm2
+- name: Redlands
+  homepage: https://www.cityofredlands.org/
+  platform: legistar
+  legistar_url: https://redlands.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Redondo Beach
+  homepage: https://www.redondo.org/
+  platform: legistar
+  legistar_url: https://redondobeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Redwood City
+  homepage: https://en.wikipedia.org/wiki/Redwood_City
+  platform: legistar
+  legistar_url: https://redwoodcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Reedley
+  homepage: https://reedley.ca.gov/
+  platform: legistar
+  legistar_url: https://reedley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rialto
+  homepage: https://www.yourrialto.com/
+  platform: legistar
+  legistar_url: https://rialto.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Richmond
+  homepage: http://www.ci.richmond.ca.us/
+  agenda_url: https://www.ci.richmond.ca.us/305/Agenda-Documents
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Ridgecrest
+  homepage: https://www.ridgecrest-ca.gov/
+  agenda_url: https://www.ridgecrest-ca.gov/212/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.ridgecrest-ca.gov
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Rio Dell
+  homepage: https://cityofriodell.ca.gov/
+  agenda_url: https://cityofriodell.ca.gov/agendas-minutes-0
+  platform: civicplus
+  civicplus_base_url: https://cityofriodell.ca.gov
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Rio Vista
+  homepage: https://www.riovistacity.com/
+  platform: legistar
+  legistar_url: https://riovista.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Ripon
+  homepage: http://www.cityofripon.org/
+  agenda_url: http://www.cityofripon.org/city_hall/city_government/city_council_
+  platform: civicplus
+  civicplus_base_url: http://www.cityofripon.org
+  civicplus_category_id: '2'
+  civicplus_category_name: city council standing committees
+  civicplus_status: ok
+  connector: civicplus
+- name: Riverbank
+  homepage: https://www.riverbank.org/
+  agenda_url: https://www.riverbank.org/192/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.riverbank.org
+  civicplus_category_id: '2'
+  civicplus_category_name: city council / local redevelopment authority / public financing
+    authority
+  civicplus_status: ok
+  connector: civicplus
+- name: Riverside
+  homepage: https://riversideca.gov/
+  platform: legistar
+  legistar_url: https://riversideca.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rocklin
+  homepage: https://www.rocklin.ca.us/
+  platform: legistar
+  legistar_url: https://rocklin.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rohnert Park
+  homepage: https://www.rpcity.org/
+  agenda_url: https://www.rpcity.org/city_hall/city_council/meeting_central
+  platform: granicus
+- name: Rolling Hills
+  homepage: https://www.rolling-hills.org/
+  platform: legistar
+  legistar_url: https://rollinghills.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rolling Hills Estates
+  homepage: https://www.ci.rolling-hills-estates.ca.us/
+  platform: legistar
+  legistar_url: https://rollinghillsestates.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Rosemead
+  homepage: http://www.cityofrosemead.org/
+  platform: legistar
+  legistar_url: https://rosemead.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Roseville
+  homepage: https://www.roseville.ca.us/
+  agenda_url: https://www.roseville.ca.us/government/city_council/agendas_minutes
+  platform: civicclerk
+- name: Ross
+  homepage: https://www.townofross.org/
+  platform: legistar
+  legistar_url: https://ross.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Sacramento
+  homepage: https://www.cityofsacramento.org/
+  platform: legistar
+  legistar_url: https://sacramento.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Salinas
+  homepage: https://www.cityofsalinas.org/
+  platform: legistar
+  legistar_url: https://salinas.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Anselmo
+  homepage: https://www.townofsananselmo.org/
+  agenda_url: https://townofsananselmo.org/779/Town-Council-Meeting-Packets
+  platform: granicus
+- name: San Bernardino
+  homepage: http://www.ci.san-bernardino.ca.us/
+  platform: legistar
+  legistar_url: https://sanbernardino.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Bruno
+  homepage: https://www.sanbruno.ca.gov/
+  agenda_url: https://www.sanbruno.ca.gov/gov/elected_officials/city_council_minutes_n_agendas.htm
+  platform: civicplus
+  civicplus_base_url: https://www.sanbruno.ca.gov
+  civicplus_category_id: '17'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: San Buenaventura (Ventura)
+  homepage: https://www.cityofventura.ca.gov/
+  agenda_url: https://www.cityofventura.ca.gov/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityofventura.ca.gov
+  civicplus_category_id: '25'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: San Carlos
+  homepage: https://www.cityofsancarlos.org/
+  platform: legistar
+  legistar_url: https://sancarlos.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Clemente
+  homepage: https://www.san-clemente.org/
+  agenda_url: https://www.san-clemente.org/government/city-council/agendas
+  platform: civicplus
+  civicplus_base_url: https://www.san-clemente.org
+  civicplus_category_id: '13'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: San Diego
+  homepage: https://www.sandiego.gov/
+  platform: legistar
+  legistar_url: https://sandiego.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Dimas
+  homepage: https://sandimasca.gov/
+  platform: legistar
+  legistar_url: https://sandimas.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Fernando
+  homepage: https://ci.san-fernando.ca.us/
+  platform: legistar
+  legistar_url: https://sanfernando.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Francisco
+  homepage: https://sf.gov/
+  platform: legistar
+  legistar_url: https://sfgov.legistar.com/Calendar.aspx
+  body: Board of Supervisors
+  connector: legistar
+- name: San Gabriel
+  homepage: https://www.sangabrielcity.com/
+  agenda_url: https://www.sangabrielcity.com/134/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.sangabrielcity.com
+  civicplus_category_id: '3'
+  civicplus_category_name: city council meetings– san gabriel city council meeting
+  civicplus_status: ok
+  connector: civicplus
+- name: San Jacinto
+  homepage: https://www.sanjacintoca.gov/
+  platform: legistar
+  legistar_url: https://sanjacinto.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Joaquin
+  homepage: http://www.cityofsanjoaquin.org/
+  platform: legistar
+  legistar_url: https://sanjoaquin.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Jose
+  homepage: https://www.sanjoseca.gov/your-government/departments
+  platform: legistar
+  legistar_url: https://sanjose.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Juan Bautista
+  homepage: https://www.san-juan-bautista.ca.us/
+  platform: legistar
+  legistar_url: https://sanjuanbautista.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Juan Capistrano
+  homepage: https://sanjuancapistrano.org/
+  agenda_url: https://sanjuancapistrano.org/Government/Public-Meetings
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://sanjuancapistrano.org/AgendaCenter'
+- name: San Leandro
+  homepage: https://www.sanleandro.org/
+  platform: legistar
+  legistar_url: https://sanleandro.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Luis Obispo
+  homepage: https://www.slocity.org/
+  platform: legistar
+  legistar_url: https://sanluisobispo.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Marcos
+  homepage: https://www.san-marcos.net/
+  platform: legistar
+  legistar_url: https://sanmarcos.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Marino
+  homepage: https://www.cityofsanmarino.org/
+  platform: legistar
+  legistar_url: https://sanmarino.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Mateo
+  homepage: https://www.cityofsanmateo.org/
+  agenda_url: https://www.cityofsanmateo.org/55/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: San Pablo
+  homepage: https://www.sanpabloca.gov/
+  agenda_url: https://www.sanpabloca.gov/1211/Agendas-and-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: San Rafael
+  homepage: https://www.cityofsanrafael.org/
+  platform: legistar
+  legistar_url: https://sanrafael.legistar.com/Calendar.aspx
+  connector: legistar
+- name: San Ramon
+  homepage: http://www.sanramon.ca.gov/
+  platform: legistar
+  legistar_url: https://sanramon.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Sand City
+  homepage: https://www.sandcity.org/
+  platform: legistar
+  legistar_url: https://sandcity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Sanger
+  homepage: https://www.ci.sanger.ca.us/
+  agenda_url: https://www.ci.sanger.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.ci.sanger.ca.us
+  civicplus_category_id: '4'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Santa Ana
+  homepage: https://www.santa-ana.org/
+  platform: legistar
+  legistar_url: https://santaana.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Barbara
+  homepage: https://www.santabarbaraca.gov/
+  platform: legistar
+  legistar_url: https://santabarbara.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Clara
+  homepage: https://www.santaclaraca.gov/
+  platform: legistar
+  legistar_url: https://santaclara.legistar.com/Calendar.aspx
+  body: City Council and Authorities Concurrent
+  connector: legistar
+- name: Santa Clarita
+  homepage: https://www.santa-clarita.com/
+  platform: legistar
+  legistar_url: https://santaclarita.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Cruz
+  homepage: https://www.cityofsantacruz.com/
+  platform: legistar
+  legistar_url: https://santacruz.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Fe Springs
+  homepage: https://www.santafesprings.org/
+  platform: legistar
+  legistar_url: https://santafesprings.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Maria
+  homepage: https://www.cityofsantamaria.org/
+  platform: legistar
+  legistar_url: https://santamaria.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santa Monica
+  homepage: https://www.santamonica.gov/
+  agenda_url: https://www.smgov.net/departments/clerk/agendas.aspx
+  platform: granicus
+- name: Santa Paula
+  homepage: https://spcity.org/
+  agenda_url: https://santapaulaca.iqm2.com/
+  platform: granicus
+- name: Santa Rosa
+  homepage: https://srcity.org/
+  platform: legistar
+  legistar_url: https://santa-rosa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Santee
+  homepage: https://www.cityofsanteeca.gov/
+  platform: legistar
+  legistar_url: https://santee.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Saratoga
+  homepage: https://www.saratoga.ca.us/
+  agenda_url: https://www.saratoga.ca.us/241/City-Council
+  platform: civicplus
+  civicplus_base_url: https://www.saratoga.ca.us
+  civicplus_category_id: '13'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Sausalito
+  homepage: https://www.sausalito.gov/
+  platform: legistar
+  legistar_url: https://sausalito.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Scotts Valley
+  homepage: https://www.scottsvalley.org/
+  agenda_url: https://www.scottsvalley.org/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.scottsvalley.org
+  civicplus_category_id: '5'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Seal Beach
+  homepage: https://www.sealbeachca.gov/
+  platform: legistar
+  legistar_url: https://sealbeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Seaside
+  homepage: https://www.ci.seaside.ca.us/
+  agenda_url: https://www.ci.seaside.ca.us/129/City-Council-Committee-Agendas
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Sebastopol
+  homepage: https://www.ci.sebastopol.ca.us/
+  platform: legistar
+  legistar_url: https://sebastopol.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Selma
+  homepage: http://www.cityofselma.com/
+  platform: legistar
+  legistar_url: https://selma.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Shafter
+  homepage: https://www.shafter.com/
+  agenda_url: https://www.shafter.com/26/Agendas
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Shasta Lake
+  homepage: https://www.cityofshastalake.org/
+  agenda_url: https://www.cityofshastalake.org/319/City-Council
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Sierra Madre
+  homepage: http://www.cityofsierramadre.com/
+  platform: legistar
+  legistar_url: https://sierramadre.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Signal Hill
+  homepage: https://www.cityofsignalhill.org/
+  platform: legistar
+  legistar_url: https://cityofsignalhill.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Simi Valley
+  homepage: https://www.simivalley.org/
+  platform: legistar
+  legistar_url: https://simivalley.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Solana Beach
+  homepage: https://www.ci.solana-beach.ca.us/
+  platform: legistar
+  legistar_url: https://solanabeach.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Soledad
+  homepage: https://cityofsoledad.com/
+  platform: legistar
+  legistar_url: https://soledad.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Solvang
+  homepage: https://www.solvangusa.com/
+  agenda_url: https://www.cityofsolvang.com/AgendaCenter
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: https://solvangusa.com/AgendaCenter'
+- name: Sonoma
+  homepage: https://www.sonomacity.org/
+  platform: legistar
+  legistar_url: https://sonoma.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Sonora
+  homepage: https://www.sonoraca.com/
+  platform: legistar
+  legistar_url: https://sonora.legistar.com/Calendar.aspx
+  connector: legistar
+- name: South El Monte
+  homepage: https://www.cityofsouthelmonte.org/
+  agenda_url: https://www.cityofsouthelmonte.org/129/City-Council-Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.cityofsouthelmonte.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: South Gate
+  homepage: https://www.cityofsouthgate.org/
+  platform: legistar
+  legistar_url: https://southgate.legistar.com/Calendar.aspx
+  connector: legistar
+- name: South Lake Tahoe
+  homepage: https://www.cityofslt.us/
+  agenda_url: https://cityofslt.us/84/Watch-City-CouncilPlanning-Commission-Me
+  platform: granicus
+- name: South Pasadena
+  homepage: https://www.southpasadenaca.gov/
+  platform: legistar
+  legistar_url: https://southpasadena.legistar.com/Calendar.aspx
+  connector: legistar
+- name: South San Francisco
+  homepage: https://www.ssf.net/
+  agenda_url: https://www.ssf.net/departments/city-clerk/city-council-meetings
+  platform: granicus
+- name: St. Helena
+  homepage: https://www.cityofsthelena.org/
+  agenda_url: https://www.cityofsthelena.org/bc-citycouncil
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: board of appeals'
+- name: Stanton
+  homepage: https://www.ci.stanton.ca.us/
+  platform: legistar
+  legistar_url: https://stanton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Stockton
+  homepage: https://en.wikipedia.org/wiki/Stockton
+  platform: legistar
+  legistar_url: https://stockton.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Suisun City
+  homepage: https://www.suisun.com/
+  platform: legistar
+  legistar_url: https://suisuncity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Sunnyvale
+  homepage: https://sunnyvale.ca.gov/
+  platform: legistar
+  legistar_url: https://sunnyvaleca.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Susanville
+  homepage: http://cityofsusanville.net/
+  agenda_url: https://www.cityofsusanville.net/city-council/agendas-and-minutes-2/
+  platform: civicplus
+  civicplus_base_url: http://cityofsusanville.net
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Sutter Creek
+  homepage: https://cityofsuttercreek.org/
+  platform: legistar
+  legistar_url: https://suttercreek.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Taft
+  homepage: https://www.cityoftaft.org/
+  platform: legistar
+  legistar_url: https://taft.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Tehachapi
+  homepage: https://www.liveuptehachapi.com/
+  agenda_url: https://www.liveuptehachapi.com/94/Council-Meetings
+  platform: civicplus
+  civicplus_base_url: https://www.liveuptehachapi.com
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Tehama
+  homepage: https://cityoftehama.us/
+  platform: legistar
+  legistar_url: https://tehama.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Temecula
+  homepage: https://temeculaca.gov/
+  agenda_url: https://temeculaca.gov/agendas
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Temple City
+  homepage: https://www.ci.temple-city.ca.us/
+  agenda_url: https://www.ci.temple-city.ca.us/117/Agendas-Minutes
+  platform: civicplus
+  civicplus_base_url: https://www.ci.temple-city.ca.us
+  civicplus_category_id: '11'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Thousand Oaks
+  homepage: https://www.toaks.org/
+  platform: legistar
+  legistar_url: https://thousandoaks.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Tiburon
+  homepage: https://www.townoftiburon.org/
+  agenda_url: http://www.townoftiburon.org/163/Town-Council
+  platform: civicplus
+  civicplus_base_url: https://www.townoftiburon.org
+  civicplus_category_id: '6'
+  civicplus_category_name: town council
+  civicplus_status: ok
+  connector: civicplus
+- name: Torrance
+  homepage: https://www.torranceca.gov/
+  platform: legistar
+  legistar_url: https://torrance.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Tracy
+  homepage: https://www.ci.tracy.ca.us/
+  platform: legistar
+  legistar_url: https://tracy.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Trinidad
+  homepage: https://trinidad.ca.gov/
+  platform: legistar
+  legistar_url: https://trinidad.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Truckee
+  homepage: https://www.townoftruckee.com/
+  agenda_url: https://www.townoftruckee.com/i-want-to/view/town-council-agendas-meetings-minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Tulare
+  homepage: https://www.tulare.ca.gov/
+  platform: legistar
+  legistar_url: https://tulare.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Tulelake
+  homepage: https://cityoftulelake.com/
+  platform: legistar
+  legistar_url: https://tulelake.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Turlock
+  homepage: https://www.cityofturlock.org/
+  agenda_url: https://www.cityofturlock.org/government/turlockcitycouncil/councilmeetings.asp
+  platform: civicclerk
+- name: Tustin
+  homepage: https://www.tustinca.org/
+  agenda_url: https://www.tustinca.org/282/Meetings-Agendas
+  platform: granicus
+- name: Twentynine Palms
+  homepage: https://www.ci.twentynine-palms.ca.us/
+  platform: legistar
+  legistar_url: https://twentyninepalms.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Ukiah
+  homepage: https://www.cityofukiah.com/
+  platform: legistar
+  legistar_url: https://ukiah.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Union City
+  homepage: https://www.unioncity.org/
+  agenda_url: https://www.unioncity.org/199/City-Meetings-Video
+  platform: granicus
+- name: Upland
+  homepage: https://www.uplandca.gov/
+  platform: legistar
+  legistar_url: https://upland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Vacaville
+  homepage: https://www.ci.vacaville.ca.us/
+  platform: legistar
+  legistar_url: https://vacaville.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Vallejo
+  homepage: https://www.cityofvallejo.net/
+  platform: legistar
+  legistar_url: https://vallejo.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Vernon
+  homepage: http://www.cityofvernon.org/
+  platform: legistar
+  legistar_url: https://vernon.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Victorville
+  homepage: https://www.victorvilleca.gov/
+  platform: legistar
+  legistar_url: https://victorville.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Villa Park
+  homepage: http://villapark.org/
+  platform: legistar
+  legistar_url: https://villapark.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Visalia
+  homepage: https://www.visalia.city/
+  agenda_url: https://www.visalia.city/government/city_council/sire_iframe.asp
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: citizens advisory committee, historic preservation
+    advisory committee, measure n oversight committee, parks & recreation commission,
+    planning commission, redevelopment successor agency, site plan review'
+- name: Vista
+  homepage: https://www.cityofvista.com/
+  platform: legistar
+  legistar_url: https://vista.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Walnut
+  homepage: https://www.cityofwalnut.org/
+  platform: legistar
+  legistar_url: https://walnut.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Walnut Creek
+  homepage: https://www.walnut-creek.org/
+  platform: legistar
+  legistar_url: https://walnutcreek.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Wasco
+  homepage: https://www.cityofwasco.org/
+  agenda_url: https://www.cityofwasco.org/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://www.cityofwasco.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Waterford
+  homepage: https://www.cityofwaterford.org/
+  platform: legistar
+  legistar_url: https://waterford.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Watsonville
+  homepage: https://cityofwatsonville.org/
+  agenda_url: https://www.cityofwatsonville.org/183/City-Council
+  platform: civicplus
+  civicplus_base_url: https://cityofwatsonville.org
+  civicplus_category_id: '2'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Weed
+  homepage: https://www.ci.weed.ca.us/
+  platform: legistar
+  legistar_url: https://weed.legistar.com/Calendar.aspx
+  connector: legistar
+- name: West Covina
+  homepage: https://www.westcovina.org/
+  agenda_url: https://www.westcovina.org/departments/city-clerk/agendas-and-meetings
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: traffic committee'
+- name: West Hollywood
+  homepage: https://www.weho.org/
+  platform: legistar
+  legistar_url: https://westhollywood.legistar.com/Calendar.aspx
+  connector: legistar
+- name: West Sacramento
+  homepage: https://www.cityofwestsacramento.org/
+  platform: legistar
+  legistar_url: https://westsacramento.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Westlake Village
+  homepage: https://www.wlv.org/
+  agenda_url: https://www.wlv.org/132/City-Council
+  platform: granicus
+- name: Westminster
+  homepage: https://www.westminster-ca.gov/
+  platform: legistar
+  legistar_url: https://westminster.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Westmorland
+  homepage: http://www.cityofwestmorland.net/
+  platform: legistar
+  legistar_url: https://westmorland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Wheatland
+  homepage: https://www.wheatland.ca.gov/
+  platform: legistar
+  legistar_url: https://wheatland.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Whittier
+  homepage: https://www.cityofwhittier.org/
+  platform: legistar
+  legistar_url: https://whittier.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Wildomar
+  homepage: http://cityofwildomar.org/
+  agenda_url: https://www.cityofwildomar.org/government/agendas___minutes/city_council_agendas___minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: '404 Client Error: Not Found for url: http://cityofwildomar.org/AgendaCenter'
+- name: Williams
+  homepage: https://www.cityofwilliams.org/
+  platform: legistar
+  legistar_url: https://williams.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Willits
+  homepage: https://cityofwillits.org/
+  agenda_url: https://cityofwillits.org/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://cityofwillits.org
+  civicplus_category_id: '1'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Willows
+  homepage: https://www.cityofwillows.org/
+  platform: legistar
+  legistar_url: https://willows.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Windsor
+  homepage: https://www.townofwindsor.com/
+  agenda_url: https://www.townofwindsor.com/355/Town-Council-Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Winters
+  homepage: http://www.cityofwinters.org/
+  agenda_url: http://www.cityofwinters.org/city-council-meetings_/
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: climate action committee, economic development
+    advisory committee, hispanic advisory committee, lower putah creek coordinating
+    committee (lpccc), natural resources commission, parking committee, planning commission,
+    putah creek committee, senior center furniture and fixture committee, successor
+    agency / oversight board, winters fire protection district board meetings, wjusd
+    2x2, yolo county 2x2'
+- name: Woodlake
+  homepage: http://www.cityofwoodlake.com/
+  platform: legistar
+  legistar_url: https://woodlake.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Woodland
+  homepage: https://www.cityofwoodland.org/
+  agenda_url: https://www.cityofwoodland.org/654/Meetings-Agendas
+  platform: civicplus
+  civicplus_status: no_council_category
+  civicplus_note: 'categories found: community choice energy advisory committee, flood
+    control advisory committee, homelessness sub-committee, library board of trustees,
+    manufactured home fair practices (mhfp) commission, operational team, springlake
+    fire protection district governing board, sustainability advisory committee, water
+    utility advisory committee (wuac)'
+- name: Woodside
+  homepage: https://www.woodsidetown.org/
+  agenda_url: https://www.woodsidetown.org/meetings
+  platform: civicplus
+  civicplus_base_url: https://www.woodsidetown.org
+  civicplus_category_id: '2'
+  civicplus_category_name: town council
+  civicplus_status: ok
+  connector: civicplus
+- name: Yorba Linda
+  homepage: https://www.yorbalindaca.gov/
+  agenda_url: https://www.yorbalindaca.gov/197/Council-Meeting-Agendas-Minutes
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Yountville
+  homepage: https://www.townofyountville.com/
+  agenda_url: https://www.townofyountville.com/council-3
+  platform: civicplus
+  civicplus_status: no_agenda_center
+  civicplus_note: AgendaCenter returned no categories
+- name: Yreka
+  homepage: https://ci.yreka.ca.us/
+  agenda_url: https://ci.yreka.ca.us/AgendaCenter
+  platform: civicplus
+  civicplus_base_url: https://ci.yreka.ca.us
+  civicplus_category_id: '4'
+  civicplus_category_name: City Council
+  civicplus_status: ok
+  connector: civicplus
+- name: Yuba City
+  homepage: https://www.yubacity.net/
+  platform: legistar
+  legistar_url: https://yubacity.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Yucaipa
+  homepage: http://yucaipa.org/
+  platform: legistar
+  legistar_url: https://yucaipa.legistar.com/Calendar.aspx
+  connector: legistar
+- name: Yucca Valley
+  homepage: https://www.yucca-valley.org/
+  platform: legistar
+  legistar_url: https://yuccavalley.legistar.com/Calendar.aspx
+  connector: legistar

@@ -9,6 +9,7 @@ idna==3.13
 outcome==1.3.0.post0
 pycparser==3.0
 PySocks==1.7.1
+PyYAML==6.0.3
 requests==2.33.1
 selenium==4.43.0
 sniffio==1.3.1
