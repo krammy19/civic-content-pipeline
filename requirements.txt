@@ -1,3 +1,7 @@
+# AI extraction
+anthropic==0.103.1
+pdfplumber==0.11.9
+
 attrs==26.1.0
 beautifulsoup4==4.14.3
 bs4==0.0.2
