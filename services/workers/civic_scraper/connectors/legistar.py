@@ -1,3 +1,4 @@
+import re
 from typing import List, Optional
 from urllib.parse import urljoin
 import time
@@ -12,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 
 from civic_scraper.connectors.base import CivicConnector
-from civic_scraper.models import Meeting, AgendaItem
+from civic_scraper.models import Attachment, LegislationDetails, Meeting, AgendaItem
 
 
 # Alternate lowercase header names some Legistar sites use for each canonical column
@@ -333,3 +334,49 @@ class LegistarConnector(CivicConnector):
         if link and link.get("href") and "LegislationDetail.aspx" in link["href"]:
             return urljoin(self.base_url, link["href"])
         return None
+
+    def get_legislation_details(self, legislation_url: str) -> LegislationDetails:
+        """Fetch a LegislationDetail.aspx page and extract status, text, and attachments."""
+        try:
+            resp = requests.get(legislation_url, timeout=30)
+            resp.raise_for_status()
+        except Exception:
+            return LegislationDetails(
+                legislation_url=legislation_url,
+                status=None,
+                text=None,
+                recommendations=None,
+                attachments=[],
+            )
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        def _span(id_suffix: str) -> Optional[str]:
+            el = soup.find("span", id=re.compile(id_suffix + r"$", re.IGNORECASE))
+            if el:
+                return el.get_text(" ", strip=True).replace("\xa0", " ") or None
+            return None
+
+        status = _span("lblStatus2")
+        text = _span("lblText2") or _span("lblDescription2") or _span("lblSynopsis2")
+        recommendations = _span("lblRecommendations2") or _span("lblActionText2")
+
+        attachments: list[Attachment] = []
+        seen: set[str] = set()
+        for a in soup.find_all("a", href=re.compile(r"View\.ashx|/Documents?/", re.IGNORECASE)):
+            href = a.get("href", "")
+            name = a.get_text(strip=True)
+            if not name or not href:
+                continue
+            full_url = urljoin(self.base_url, href)
+            if full_url not in seen:
+                seen.add(full_url)
+                attachments.append(Attachment(name=name, url=full_url))
+
+        return LegislationDetails(
+            legislation_url=legislation_url,
+            status=status,
+            text=text,
+            recommendations=recommendations,
+            attachments=attachments,
+        )
