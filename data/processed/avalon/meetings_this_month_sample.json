@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Avalon",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://www.cityofavalon.com/AgendaCenter/ViewFile/Agenda/_05192026-176",
+    "agenda_url": "http://www.cityofavalon.com/AgendaCenter/ViewFile/Agenda/_05192026-176",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/live/WtOGSBLLgxI?si=P5PJ6R2wqYqPoajW"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Avalon",
+    "body": "City Council",
+    "date": "May 4, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://www.cityofavalon.com/AgendaCenter/ViewFile/Agenda/_05042026-174",
+    "agenda_url": "http://www.cityofavalon.com/AgendaCenter/ViewFile/Agenda/_05042026-174",
+    "minutes_url": null,
+    "video_url": "https://youtube.com/live/wL27BlEH8Bk?feature=share"
+  }
+]

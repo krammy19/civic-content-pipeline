@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Bruno",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05192026-2573",
+    "agenda_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05192026-2573",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Bruno",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2567",
+    "agenda_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2567",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Bruno",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2566",
+    "agenda_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2566",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Bruno",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2564",
+    "agenda_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2564",
+    "minutes_url": null,
+    "video_url": "https://sanbruno.primegov.com/Portal/MeetingPreview?compiledMeetingDocumentFileId=5533"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Bruno",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2563",
+    "agenda_url": "https://www.sanbruno.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2563",
+    "minutes_url": null,
+    "video_url": "https://sanbruno.primegov.com/Portal/MeetingPreview?compiledMeetingDocumentFileId=5503"
+  }
+]

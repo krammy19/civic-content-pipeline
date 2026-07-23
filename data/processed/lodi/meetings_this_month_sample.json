@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Lodi",
+    "body": "City Council",
+    "date": "May 20, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.lodi.gov/AgendaCenter/ViewFile/Agenda/_05202026-2019",
+    "agenda_url": "https://www.lodi.gov/AgendaCenter/ViewFile/Agenda/_05202026-2019",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Lodi",
+    "body": "City Council",
+    "date": "May 6, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.lodi.gov/AgendaCenter/ViewFile/Agenda/_05062026-2004",
+    "agenda_url": "https://www.lodi.gov/AgendaCenter/ViewFile/Agenda/_05062026-2004",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

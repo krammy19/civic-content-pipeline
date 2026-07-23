@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Moraga",
+    "body": "City Council",
+    "date": "September 10, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_09102025-2051",
+    "agenda_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_09102025-2051",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/watch?v=mYXKbx74JAo"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Moraga",
+    "body": "City Council",
+    "date": "August 27, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_08272025-2044",
+    "agenda_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_08272025-2044",
+    "minutes_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Minutes/_08272025-2044",
+    "video_url": "https://www.youtube.com/watch?v=UQLIdfGT920"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Moraga",
+    "body": "City Council",
+    "date": "July 9, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_07092025-2040",
+    "agenda_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_07092025-2040",
+    "minutes_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Minutes/_07092025-2040",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Moraga",
+    "body": "City Council",
+    "date": "July 9, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_07092025-2041",
+    "agenda_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_07092025-2041",
+    "minutes_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Minutes/_07092025-2041",
+    "video_url": "https://www.youtube.com/watch?v=BTL03vxstY8"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Moraga",
+    "body": "City Council",
+    "date": "June 25, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_06252025-2037",
+    "agenda_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Agenda/_06252025-2037",
+    "minutes_url": "https://www.moraga.ca.us/AgendaCenter/ViewFile/Minutes/_06252025-2037",
+    "video_url": "https://www.youtube.com/watch?v=Q2mP_e5RbjE"
+  }
+]

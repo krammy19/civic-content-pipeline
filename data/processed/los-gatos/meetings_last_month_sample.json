@@ -1,0 +1,50 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Gatos",
+    "body": "City Council",
+    "date": "November 16, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_11162020-1909",
+    "agenda_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_11162020-1909",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Gatos",
+    "body": "City Council",
+    "date": "November 9, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_11092020-1908",
+    "agenda_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_11092020-1908",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Gatos",
+    "body": "City Council",
+    "date": "October 29, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_10292020-1907",
+    "agenda_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_10292020-1907",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Gatos",
+    "body": "City Council",
+    "date": "October 21, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_10212020-1906",
+    "agenda_url": "https://www.losgatosca.gov/AgendaCenter/ViewFile/Agenda/_10212020-1906",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

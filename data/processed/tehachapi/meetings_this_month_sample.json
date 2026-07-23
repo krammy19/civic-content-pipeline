@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Tehachapi",
+    "body": "City Council",
+    "date": "May 18, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.liveuptehachapi.com/AgendaCenter/ViewFile/Agenda/_05182026-385",
+    "agenda_url": "https://www.liveuptehachapi.com/AgendaCenter/ViewFile/Agenda/_05182026-385",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Tehachapi",
+    "body": "City Council",
+    "date": "May 4, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.liveuptehachapi.com/AgendaCenter/ViewFile/Agenda/_05042026-383",
+    "agenda_url": "https://www.liveuptehachapi.com/AgendaCenter/ViewFile/Agenda/_05042026-383",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

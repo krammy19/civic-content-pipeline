@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Watsonville",
+    "body": "City Council",
+    "date": "December 8, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_12082020-562",
+    "agenda_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_12082020-562",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/watch?v=64YLw_A-C6o&list=PLkdKQedgxlq8JfgLHDyb-sNIDUQ8FeNiL&index=12"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Watsonville",
+    "body": "City Council",
+    "date": "November 10, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_11102020-563",
+    "agenda_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_11102020-563",
+    "minutes_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Minutes/_11102020-563",
+    "video_url": "https://www.youtube.com/watch?v=m89iVNmqS14&list=PLkdKQedgxlq8JfgLHDyb-sNIDUQ8FeNiL&index=11"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Watsonville",
+    "body": "City Council",
+    "date": "October 27, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_10272020-564",
+    "agenda_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_10272020-564",
+    "minutes_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Minutes/_10272020-564",
+    "video_url": "https://www.youtube.com/watch?v=LSvTB83HlGg&list=PLkdKQedgxlq8JfgLHDyb-sNIDUQ8FeNiL&index=10"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Watsonville",
+    "body": "City Council",
+    "date": "October 13, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_10132020-565",
+    "agenda_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_10132020-565",
+    "minutes_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Minutes/_10132020-565",
+    "video_url": "https://www.youtube.com/watch?v=EVBnG7BF_0M&list=PLkdKQedgxlq8JfgLHDyb-sNIDUQ8FeNiL&index=9"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Watsonville",
+    "body": "City Council",
+    "date": "September 22, 2020",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_09222020-566",
+    "agenda_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Agenda/_09222020-566",
+    "minutes_url": "https://cityofwatsonville.org/AgendaCenter/ViewFile/Minutes/_09222020-566",
+    "video_url": "https://www.youtube.com/watch?v=WZrXPEndRGg&list=PLkdKQedgxlq8JfgLHDyb-sNIDUQ8FeNiL&index=8"
+  }
+]

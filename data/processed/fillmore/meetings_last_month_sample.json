@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Fillmore",
+    "body": "City Council",
+    "date": "November 10, 2015",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_11102015-63",
+    "agenda_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_11102015-63",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Fillmore",
+    "body": "City Council",
+    "date": "November 3, 2015",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_11032015-67?html=true",
+    "agenda_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_11032015-67?html=true",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Fillmore",
+    "body": "City Council",
+    "date": "October 27, 2015",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_10272015-65",
+    "agenda_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_10272015-65",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Fillmore",
+    "body": "City Council",
+    "date": "October 13, 2015",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_10132015-29",
+    "agenda_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_10132015-29",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Fillmore",
+    "body": "City Council",
+    "date": "September 22, 2015",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_09222015-31",
+    "agenda_url": "https://www.fillmoreca.com/AgendaCenter/ViewFile/Agenda/_09222015-31",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

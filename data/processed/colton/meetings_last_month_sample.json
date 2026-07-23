@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Colton",
+    "body": "City Council",
+    "date": "November 6, 2018",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_11062018-862",
+    "agenda_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_11062018-862",
+    "minutes_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Minutes/_11062018-862",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Colton",
+    "body": "City Council",
+    "date": "October 16, 2018",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_10162018-860",
+    "agenda_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_10162018-860",
+    "minutes_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Minutes/_10162018-860",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Colton",
+    "body": "City Council",
+    "date": "October 2, 2018",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_10022018-846",
+    "agenda_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_10022018-846",
+    "minutes_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Minutes/_10022018-846",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Colton",
+    "body": "City Council",
+    "date": "September 18, 2018",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_09182018-843",
+    "agenda_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_09182018-843",
+    "minutes_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Minutes/_09182018-843",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Colton",
+    "body": "City Council",
+    "date": "September 4, 2018",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_09042018-838",
+    "agenda_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Agenda/_09042018-838",
+    "minutes_url": "https://www.ci.colton.ca.us/AgendaCenter/ViewFile/Minutes/_09042018-838",
+    "video_url": null
+  }
+]

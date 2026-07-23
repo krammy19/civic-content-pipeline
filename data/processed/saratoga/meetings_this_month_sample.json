@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Saratoga",
+    "body": "City Council",
+    "date": "May 20, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05202026-1442",
+    "agenda_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05202026-1442",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Saratoga",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-1441",
+    "agenda_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-1441",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Saratoga",
+    "body": "City Council",
+    "date": "May 13, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05132026-1437",
+    "agenda_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05132026-1437",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Saratoga",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05122026-1436",
+    "agenda_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05122026-1436",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Saratoga",
+    "body": "City Council",
+    "date": "May 6, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05062026-1435",
+    "agenda_url": "https://www.saratoga.ca.us/AgendaCenter/ViewFile/Agenda/_05062026-1435",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

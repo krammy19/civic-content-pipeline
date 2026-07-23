@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Buenaventura (Ventura)",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofventura.ca.gov/AgendaCenter/ViewFile/Agenda/_05192026-3635",
+    "agenda_url": "https://www.cityofventura.ca.gov/AgendaCenter/ViewFile/Agenda/_05192026-3635",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "San Buenaventura (Ventura)",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofventura.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-3631",
+    "agenda_url": "https://www.cityofventura.ca.gov/AgendaCenter/ViewFile/Agenda/_05122026-3631",
+    "minutes_url": "https://www.cityofventura.ca.gov/AgendaCenter/ViewFile/Minutes/_05122026-3631",
+    "video_url": "https://www.youtube.com/watch?v=JDMTHAmEkUY&t=7774s"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Scotts Valley",
+    "body": "City Council",
+    "date": "May 3, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_05032023-784",
+    "agenda_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_05032023-784",
+    "minutes_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Minutes/_05032023-784",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Scotts Valley",
+    "body": "City Council",
+    "date": "April 19, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04192023-780",
+    "agenda_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04192023-780",
+    "minutes_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Minutes/_04192023-780",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Scotts Valley",
+    "body": "City Council",
+    "date": "April 5, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-775",
+    "agenda_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-775",
+    "minutes_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Minutes/_04052023-775",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Scotts Valley",
+    "body": "City Council",
+    "date": "April 5, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-773",
+    "agenda_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-773",
+    "minutes_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Minutes/_04052023-773",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Scotts Valley",
+    "body": "City Council",
+    "date": "April 5, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-774",
+    "agenda_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Agenda/_04052023-774",
+    "minutes_url": "https://www.scottsvalley.org/AgendaCenter/ViewFile/Minutes/_04052023-774",
+    "video_url": null
+  }
+]

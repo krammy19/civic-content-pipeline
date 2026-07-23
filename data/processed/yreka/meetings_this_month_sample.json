@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Yreka",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://ci.yreka.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-557",
+    "agenda_url": "https://ci.yreka.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-557",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Yreka",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://ci.yreka.ca.us/AgendaCenter/ViewFile/Agenda/_05052026-556",
+    "agenda_url": "https://ci.yreka.ca.us/AgendaCenter/ViewFile/Agenda/_05052026-556",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/AF1XdlRqNkc"
+  }
+]

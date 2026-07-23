@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Jurupa Valley",
+    "body": "City Council",
+    "date": "May 21, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.jurupavalley.org/AgendaCenter/ViewFile/Agenda/_05212026-950?html=true",
+    "agenda_url": "https://www.jurupavalley.org/AgendaCenter/ViewFile/Agenda/_05212026-950?html=true",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Jurupa Valley",
+    "body": "City Council",
+    "date": "May 7, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.jurupavalley.org/AgendaCenter/ViewFile/Agenda/_05072026-946?html=true",
+    "agenda_url": "https://www.jurupavalley.org/AgendaCenter/ViewFile/Agenda/_05072026-946?html=true",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

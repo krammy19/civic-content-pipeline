@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "La Mesa",
+    "body": "City Council",
+    "date": "November 9, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_11092021-1384?html=true",
+    "agenda_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_11092021-1384?html=true",
+    "minutes_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Minutes/_11092021-1384",
+    "video_url": "https://lamesaca.swagit.com/play/11102021-907"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "La Mesa",
+    "body": "City Council",
+    "date": "October 26, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_10262021-1374?html=true",
+    "agenda_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_10262021-1374?html=true",
+    "minutes_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Minutes/_10262021-1374",
+    "video_url": "https://lamesaca.swagit.com/play/10272021-912"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "La Mesa",
+    "body": "City Council",
+    "date": "October 12, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_10122021-1368?html=true",
+    "agenda_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_10122021-1368?html=true",
+    "minutes_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Minutes/_10122021-1368",
+    "video_url": "https://lamesaca.swagit.com/play/10132021-1003"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "La Mesa",
+    "body": "City Council",
+    "date": "September 28, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_09282021-1358?html=true",
+    "agenda_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_09282021-1358?html=true",
+    "minutes_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Minutes/_09282021-1358",
+    "video_url": "https://lamesaca.swagit.com/play/09292021-980"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "La Mesa",
+    "body": "City Council",
+    "date": "September 14, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_09142021-1345?html=true",
+    "agenda_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Agenda/_09142021-1345?html=true",
+    "minutes_url": "https://www.cityoflamesa.us/AgendaCenter/ViewFile/Minutes/_09142021-1345",
+    "video_url": "https://lamesaca.swagit.com/play/09142021-677"
+  }
+]

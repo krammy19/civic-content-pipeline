@@ -1,0 +1,50 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Riverbank",
+    "body": "City Council",
+    "date": "January 27, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01272026-1837",
+    "agenda_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01272026-1837",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/live/bRownDLCXyc?si=-NUeKM6H_BaOir-I"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Riverbank",
+    "body": "City Council",
+    "date": "January 27, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01272026-1835",
+    "agenda_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01272026-1835",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/live/bRownDLCXyc?si=-NUeKM6H_BaOir-I"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Riverbank",
+    "body": "City Council",
+    "date": "January 13, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01132026-1829",
+    "agenda_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01132026-1829",
+    "minutes_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Minutes/_01132026-1829",
+    "video_url": "https://youtube.com/live/rvF_h3iweMs"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Riverbank",
+    "body": "City Council",
+    "date": "January 13, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01132026-1830",
+    "agenda_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Agenda/_01132026-1830",
+    "minutes_url": "https://www.riverbank.org/AgendaCenter/ViewFile/Minutes/_01132026-1830",
+    "video_url": "https://youtube.com/live/rvF_h3iweMs"
+  }
+]

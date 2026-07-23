@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Rio Dell",
+    "body": "City Council",
+    "date": "October 7, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofriodell.ca.gov/AgendaCenter/ViewFile/Agenda/_10072025-15",
+    "agenda_url": "https://cityofriodell.ca.gov/AgendaCenter/ViewFile/Agenda/_10072025-15",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Rio Dell",
+    "body": "City Council",
+    "date": "January 21, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofriodell.ca.gov/AgendaCenter/ViewFile/Agenda/_01212025-1",
+    "agenda_url": "https://cityofriodell.ca.gov/AgendaCenter/ViewFile/Agenda/_01212025-1",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

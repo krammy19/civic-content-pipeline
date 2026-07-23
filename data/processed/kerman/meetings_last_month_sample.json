@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Kerman",
+    "body": "City Council",
+    "date": "January 25, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofkerman.net/AgendaCenter/ViewFile/Agenda/_01252023-7?html=true",
+    "agenda_url": "https://cityofkerman.net/AgendaCenter/ViewFile/Agenda/_01252023-7?html=true",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Kerman",
+    "body": "City Council",
+    "date": "January 11, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofkerman.net/AgendaCenter/ViewFile/Agenda/_01112023-6?html=true",
+    "agenda_url": "https://cityofkerman.net/AgendaCenter/ViewFile/Agenda/_01112023-6?html=true",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

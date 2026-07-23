@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Arroyo Grande",
+    "body": "City Council",
+    "date": "October 12, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_10122021-1372?html=true",
+    "agenda_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_10122021-1372?html=true",
+    "minutes_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Minutes/_10122021-1372",
+    "video_url": "https://cal-span.org/unipage/?site=slo-span&owner=AGCC&date=2021-10-12"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Arroyo Grande",
+    "body": "City Council",
+    "date": "September 28, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_09282021-1369?html=true",
+    "agenda_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_09282021-1369?html=true",
+    "minutes_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Minutes/_09282021-1369",
+    "video_url": "https://cal-span.org/unipage/?site=slo-span&owner=AGCC&date=2021-09-28"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Arroyo Grande",
+    "body": "Special and Regular City Council",
+    "date": "September 14, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_09142021-1366?html=true",
+    "agenda_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_09142021-1366?html=true",
+    "minutes_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Minutes/_09142021-1366",
+    "video_url": "https://cal-span.org/unipage/?site=slo-span&owner=AGCC&date=2021-09-14"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Arroyo Grande",
+    "body": "Special and Regular City Council",
+    "date": "August 24, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_08242021-1363?html=true",
+    "agenda_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_08242021-1363?html=true",
+    "minutes_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Minutes/_08242021-1363",
+    "video_url": "https://cal-span.org/unipage/?site=slo-span&owner=AGCC&date=2021-08-24"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Arroyo Grande",
+    "body": "City Council",
+    "date": "August 10, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_08102021-1359?html=true",
+    "agenda_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Agenda/_08102021-1359?html=true",
+    "minutes_url": "https://www.arroyogrande.org/AgendaCenter/ViewFile/Minutes/_08102021-1359",
+    "video_url": "https://cal-span.org/unipage/?site=slo-span&owner=AGCC&date=2021-08-10"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Cudahy",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofcudahy.com/AgendaCenter/ViewFile/Agenda/_05192026-508",
+    "agenda_url": "https://www.cityofcudahy.com/AgendaCenter/ViewFile/Agenda/_05192026-508",
+    "minutes_url": null,
+    "video_url": "https://townhallstreams.com/stream.php?location_id=115&id=74695"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Cudahy",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofcudahy.com/AgendaCenter/ViewFile/Agenda/_05052026-506",
+    "agenda_url": "https://www.cityofcudahy.com/AgendaCenter/ViewFile/Agenda/_05052026-506",
+    "minutes_url": null,
+    "video_url": "https://townhallstreams.com/stream.php?location_id=115&id=74421"
+  }
+]

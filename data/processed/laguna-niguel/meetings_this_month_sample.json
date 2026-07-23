@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Laguna Niguel",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflagunaniguel.org/AgendaCenter/ViewFile/Agenda/_05192026-1045",
+    "agenda_url": "https://www.cityoflagunaniguel.org/AgendaCenter/ViewFile/Agenda/_05192026-1045",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Laguna Niguel",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityoflagunaniguel.org/AgendaCenter/ViewFile/Agenda/_05052026-1040",
+    "agenda_url": "https://www.cityoflagunaniguel.org/AgendaCenter/ViewFile/Agenda/_05052026-1040",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

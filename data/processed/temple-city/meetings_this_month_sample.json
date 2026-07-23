@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Temple City",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.temple-city.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-86",
+    "agenda_url": "https://www.ci.temple-city.ca.us/AgendaCenter/ViewFile/Agenda/_05192026-86",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Temple City",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.temple-city.ca.us/AgendaCenter/ViewFile/Agenda/_05052026-84",
+    "agenda_url": "https://www.ci.temple-city.ca.us/AgendaCenter/ViewFile/Agenda/_05052026-84",
+    "minutes_url": null,
+    "video_url": "https://templecity.ec1c24.com/citycouncil/2026/05/tc_050526.html"
+  }
+]

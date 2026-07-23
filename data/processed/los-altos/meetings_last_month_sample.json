@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Altos",
+    "body": "City Council",
+    "date": "April 22, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-3855",
+    "agenda_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-3855",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Altos",
+    "body": "City Council",
+    "date": "April 22, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-5111?html=true",
+    "agenda_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-5111?html=true",
+    "minutes_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Minutes/_04222025-5111",
+    "video_url": "https://www.youtube.com/live/ExVEAruZGnE?si=HVfGoaPG4OniQSPH"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Altos",
+    "body": "City Council",
+    "date": "April 22, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-3856?html=true",
+    "agenda_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04222025-3856?html=true",
+    "minutes_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Minutes/_04222025-3856",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Altos",
+    "body": "City Council",
+    "date": "April 8, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04082025-52",
+    "agenda_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04082025-52",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Altos",
+    "body": "City Council",
+    "date": "April 8, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04082025-5110?html=true",
+    "agenda_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Agenda/_04082025-5110?html=true",
+    "minutes_url": "https://www.losaltosca.gov/AgendaCenter/ViewFile/Minutes/_04082025-5110",
+    "video_url": "https://www.youtube.com/live/kugRVgZyBpM?si=CfVoNI0IUBjbcU5I"
+  }
+]

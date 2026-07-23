@@ -1,0 +1,50 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Marina",
+    "body": "City Council",
+    "date": "May 22, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05222026-728",
+    "agenda_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05222026-728",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Marina",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05192026-727",
+    "agenda_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05192026-727",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Marina",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05052026-723",
+    "agenda_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05052026-723",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Marina",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05052026-724",
+    "agenda_url": "https://cityofmarina.org/AgendaCenter/ViewFile/Agenda/_05052026-724",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

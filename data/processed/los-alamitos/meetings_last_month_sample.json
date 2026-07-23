@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Alamitos",
+    "body": "City Council",
+    "date": "August 15, 2022",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_08152022-218",
+    "agenda_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_08152022-218",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/DSv4fV29Kd0"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Alamitos",
+    "body": "City Council",
+    "date": "July 18, 2022",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_07182022-212",
+    "agenda_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_07182022-212",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/pPm9gtvEdVY"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Alamitos",
+    "body": "City Council",
+    "date": "July 13, 2022",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_07132022-210",
+    "agenda_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_07132022-210",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Alamitos",
+    "body": "City Council",
+    "date": "June 13, 2022",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_06132022-201",
+    "agenda_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_06132022-201",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/z1-J6GCvnPk"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Los Alamitos",
+    "body": "City Council",
+    "date": "May 16, 2022",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_05162022-191",
+    "agenda_url": "https://cityoflosalamitos.org/AgendaCenter/ViewFile/Agenda/_05162022-191",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/QfigpaamIHo"
+  }
+]

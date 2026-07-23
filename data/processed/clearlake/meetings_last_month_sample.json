@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Clearlake",
+    "body": "City Council",
+    "date": "July 15, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_07152021-537",
+    "agenda_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_07152021-537",
+    "minutes_url": null,
+    "video_url": "https://www.youtube.com/watch?v=s7epsezMTkE"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Clearlake",
+    "body": "City Council",
+    "date": "June 24, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06242021-536",
+    "agenda_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06242021-536",
+    "minutes_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Minutes/_06242021-536",
+    "video_url": "https://youtu.be/5M538pihWQo"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Clearlake",
+    "body": "City Council",
+    "date": "June 17, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06172021-534",
+    "agenda_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06172021-534",
+    "minutes_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Minutes/_06172021-534",
+    "video_url": "https://youtu.be/fXT6ZxJZNeQ"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Clearlake",
+    "body": "City Council",
+    "date": "June 3, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06032021-531",
+    "agenda_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_06032021-531",
+    "minutes_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Minutes/_06032021-531",
+    "video_url": "https://youtu.be/BRqMoMDoi1U"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Clearlake",
+    "body": "City Council",
+    "date": "May 20, 2021",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_05202021-529",
+    "agenda_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Agenda/_05202021-529",
+    "minutes_url": "https://www.clearlake.ca.us/AgendaCenter/ViewFile/Minutes/_05202021-529",
+    "video_url": "https://youtu.be/VPnd0L7Jkv8"
+  }
+]

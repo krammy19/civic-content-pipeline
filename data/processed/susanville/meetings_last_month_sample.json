@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Susanville",
+    "body": "City Council",
+    "date": "November 19, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_11192025-189",
+    "agenda_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_11192025-189",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Susanville",
+    "body": "City Council",
+    "date": "November 5, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_11052025-187",
+    "agenda_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_11052025-187",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Susanville",
+    "body": "City Council",
+    "date": "October 15, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10152025-184",
+    "agenda_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10152025-184",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Susanville",
+    "body": "City Council",
+    "date": "October 1, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10012025-129",
+    "agenda_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10012025-129",
+    "minutes_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Minutes/_10012025-129",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Susanville",
+    "body": "City Council",
+    "date": "October 1, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10012025-130",
+    "agenda_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Agenda/_10012025-130",
+    "minutes_url": "http://cityofsusanville.net/AgendaCenter/ViewFile/Minutes/_10012025-130",
+    "video_url": null
+  }
+]

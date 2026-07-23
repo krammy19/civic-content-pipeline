@@ -1,0 +1,38 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Inglewood",
+    "body": "City Council",
+    "date": "May 19, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05192026-4519",
+    "agenda_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05192026-4519",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Inglewood",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05122026-4514",
+    "agenda_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05122026-4514",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Inglewood",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05052026-4510",
+    "agenda_url": "https://www.cityofinglewood.org/AgendaCenter/ViewFile/Agenda/_05052026-4510",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

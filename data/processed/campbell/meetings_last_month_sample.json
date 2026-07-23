@@ -1,0 +1,62 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Campbell",
+    "body": "City Council",
+    "date": "October 7, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_10072025-3158",
+    "agenda_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_10072025-3158",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Campbell",
+    "body": "City Council",
+    "date": "October 7, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_10072025-3159",
+    "agenda_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_10072025-3159",
+    "minutes_url": null,
+    "video_url": "https://video.isilive.ca/campbellca/35-City-Council-Regular-Session-Meeting-2025-10-8-2-1.mp4"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Campbell",
+    "body": "City Council",
+    "date": "September 16, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3147",
+    "agenda_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3147",
+    "minutes_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Minutes/_09162025-3147",
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Campbell",
+    "body": "City Council",
+    "date": "September 16, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3145",
+    "agenda_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3145",
+    "minutes_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Minutes/_09162025-3145",
+    "video_url": "https://cityofcampbell.granicus.com/MediaPlayer.php?publish_id=1f3360a1-93f5-11f0-8df7-005056a89546"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Campbell",
+    "body": "City Council",
+    "date": "September 16, 2025",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3146",
+    "agenda_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Agenda/_09162025-3146",
+    "minutes_url": "https://www.ci.campbell.ca.us/AgendaCenter/ViewFile/Minutes/_09162025-3146",
+    "video_url": "https://cityofcampbell.granicus.com/MediaPlayer.php?publish_id=fa5805e5-93f3-11f0-8df7-005056a89546"
+  }
+]

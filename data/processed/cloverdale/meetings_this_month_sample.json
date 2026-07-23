@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Cloverdale",
+    "body": "City Council",
+    "date": "May 13, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cloverdale.net/AgendaCenter/ViewFile/Agenda/_05132026-1414",
+    "agenda_url": "https://www.cloverdale.net/AgendaCenter/ViewFile/Agenda/_05132026-1414",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Cloverdale",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.cloverdale.net/AgendaCenter/ViewFile/Agenda/_05052026-1413",
+    "agenda_url": "https://www.cloverdale.net/AgendaCenter/ViewFile/Agenda/_05052026-1413",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Antioch",
+    "body": "City Council",
+    "date": "May 13, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05132026-2485?html=true",
+    "agenda_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05132026-2485?html=true",
+    "minutes_url": null,
+    "video_url": "https://antiochca.portal.civicclerk.com/event/3553/media"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Antioch",
+    "body": "City Council",
+    "date": "May 12, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2484?html=true",
+    "agenda_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05122026-2484?html=true",
+    "minutes_url": null,
+    "video_url": "https://antiochca.portal.civicclerk.com/event/8/media"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Antioch",
+    "body": "City Council",
+    "date": "May 5, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05052026-2477?html=true",
+    "agenda_url": "https://www.antiochca.gov/AgendaCenter/ViewFile/Agenda/_05052026-2477?html=true",
+    "minutes_url": null,
+    "video_url": "https://antiochca.portal.civicclerk.com/event/3551/media"
+  }
+]

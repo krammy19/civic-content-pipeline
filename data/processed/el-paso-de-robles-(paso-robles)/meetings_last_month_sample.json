@@ -1,0 +1,26 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "El Paso de Robles (Paso Robles)",
+    "body": "City Council",
+    "date": "January 17, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.prcity.com/AgendaCenter/ViewFile/Agenda/_01172023-911",
+    "agenda_url": "https://www.prcity.com/AgendaCenter/ViewFile/Agenda/_01172023-911",
+    "minutes_url": null,
+    "video_url": "https://pub-pasorobles.escribemeetings.com/Meeting.aspx?Id=5cffbb89-03ae-42f2-88e3-f8adb8788395&Agenda=Agenda&lang=English"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "El Paso de Robles (Paso Robles)",
+    "body": "City Council",
+    "date": "January 12, 2023",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.prcity.com/AgendaCenter/ViewFile/Agenda/_01122023-910",
+    "agenda_url": "https://www.prcity.com/AgendaCenter/ViewFile/Agenda/_01122023-910",
+    "minutes_url": "https://www.prcity.com/AgendaCenter/ViewFile/Minutes/_01122023-910",
+    "video_url": "https://www.youtube.com/watch?v=Xk_GeWYdLns&list=PL5HvRKG7w0v5DJNxfMeaay6Hg2HSvV1sa&index=2"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "source": "civicplus",
+    "jurisdiction": "Ridgecrest",
+    "body": "City Council",
+    "date": "May 20, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05202026-4119",
+    "agenda_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05202026-4119",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Ridgecrest",
+    "body": "City Council",
+    "date": "May 6, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05062026-4101",
+    "agenda_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05062026-4101",
+    "minutes_url": null,
+    "video_url": "https://youtu.be/JWF8xbEZE18"
+  },
+  {
+    "source": "civicplus",
+    "jurisdiction": "Ridgecrest",
+    "body": "City Council",
+    "date": "May 6, 2026",
+    "time": null,
+    "location": null,
+    "meeting_details_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05062026-4102",
+    "agenda_url": "https://www.ridgecrest-ca.gov/AgendaCenter/ViewFile/Agenda/_05062026-4102",
+    "minutes_url": null,
+    "video_url": null
+  }
+]
