@@ -2,35 +2,30 @@ import json
 import traceback
 from pathlib import Path
 
+import yaml
+
 from civic_scraper.connectors.legistar import LegistarConnector
 
-CITIES = [
-    {
-        "jurisdiction": "Oakland",
-        "calendar_url": "https://oakland.legistar.com/calendar.aspx",
-        "body": "Successor Agency and the City Council",
-    },
-    {
-        "jurisdiction": "Culver City",
-        "calendar_url": "https://culver-city.legistar.com/Calendar.aspx",
-        "body": "City Council Meeting Agenda",
-    },
-    {
-        "jurisdiction": "Mountain View",
-        "calendar_url": "https://mountainview.legistar.com/Calendar.aspx",
-        "body": "City Council",
-    },
-    {
-        "jurisdiction": "San Francisco",
-        "calendar_url": "https://sfgov.legistar.com/Calendar.aspx",
-        "body": "Board of Supervisors",
-    },
-    {
-        "jurisdiction": "Santa Clara",
-        "calendar_url": "https://santaclara.legistar.com/Calendar.aspx",
-        "body": "City Council and Authorities Concurrent",
-    },
-]
+_CONFIG_PATH = Path(__file__).parent / "cities.yaml"
+
+
+def _load_legistar_cities(config_path: Path = _CONFIG_PATH) -> list[dict]:
+    """Return all Legistar cities from cities.yaml as connector-ready dicts."""
+    with config_path.open(encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    cities = []
+    for entry in data.get("cities", []):
+        if entry.get("platform") != "legistar":
+            continue
+        cities.append({
+            "jurisdiction": entry["name"],
+            "calendar_url": entry["legistar_url"],
+            "body": entry.get("body"),
+        })
+    return cities
+
+
+CITIES = _load_legistar_cities()
 
 PERIOD = "This Month"
 FALLBACK_PERIOD = "Last Month"
@@ -46,7 +41,8 @@ def scrape_meetings(city: dict, period: str) -> list:
         calendar_url=city["calendar_url"],
         headless=True,
     )
-    return connector.list_meetings(period=period, body=city["body"], limit=MEETING_LIMIT)
+    body = city["body"] or "City Council"
+    return connector.list_meetings(period=period, body=body, limit=MEETING_LIMIT)
 
 
 def save_meetings(jurisdiction: str, meetings: list, period_label: str) -> Path:
