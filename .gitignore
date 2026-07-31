@@ -6,5 +6,9 @@ venv/
 .ruff_cache/
 .pytest_cache/
 
+# Fetched-document cache — regenerable via document_fetch.fetch_document(),
+# not meant to be versioned (grows unbounded, binary PDFs).
+data/raw/
+
 # Internal build spec — guides local development only, not for the public repo.
 SPEC.md

@@ -1,10 +1,11 @@
 # Architecture
 
 This describes the system as it exists today: a connector-based
-ingestion layer that normalizes municipal meeting data into one schema.
-It does not describe the extraction, validation, eval, or digest layers
-planned on top of it (see the [README](../README.md#roadmap)) — those
-don't exist yet. This doc will be updated as each of those lands.
+ingestion layer that normalizes municipal meeting data into a validated
+schema, plus a document-fetch/text-extraction stage on top of it. It
+does not describe the extraction, validation, eval, or digest layers
+still planned (see the [README](../README.md#roadmap)) — those don't
+exist yet. This doc will be updated as each of those lands.
 
 ## Overview
 
@@ -15,21 +16,26 @@ don't exist yet. This doc will be updated as each of those lands.
    Platform Connector          <- only place that knows platform-specific HTML/DOM
             |
             v
-   Normalized dataclasses      <- Meeting, AgendaItem, LegislationDetails, Attachment
+   Pydantic models              <- Meeting, LegistarAgendaEntry, LegislationDetails, Attachment
             |
             v
    data/processed/<city>/*.json <- current persistence layer
+            |
+            v
+   Document fetch + text        <- data/raw/<city>/, content-addressed;
+   extraction (document_fetch.py,   PDF text extraction with scan detection
+   document_text.py)
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
-every dataclass, and [`ingestion-pipeline.md`](ingestion-pipeline.md) for
+every model, and [`ingestion-pipeline.md`](ingestion-pipeline.md) for
 how a run actually executes end to end.
 
 ## Guiding principles
 
 - **Normalize immediately after scraping.** A connector's public methods
   never return raw HTML, `BeautifulSoup` elements, or dicts shaped like
-  the source platform's DOM — only the dataclasses in
+  the source platform's DOM — only the Pydantic models in
   [`models.py`](../services/workers/civic_scraper/models.py).
 - **Platform-specific behavior stays inside connectors.** If you find
   yourself writing an `if platform == "legistar"` branch anywhere outside
@@ -40,7 +46,7 @@ how a run actually executes end to end.
   index-based parsing doesn't survive contact with real data, and
   [`docs/engineering-log.md`](engineering-log.md) for how that was
   discovered.
-- **Preserve source URLs for traceability.** Every dataclass that
+- **Preserve source URLs for traceability.** Every model that
   represents a fetched page keeps the URL it came from
   (`meeting_details_url`, `legislation_url`, etc.).
 - **Build for dozens of municipalities, not one.** Config (`cities.yaml`),
@@ -100,6 +106,23 @@ per-meeting agenda table, which has a different column set entirely
 (`File #`, `Ver.`, `Agenda Note`, `Type`, `Title`, `Action`, `Result`).
 This logic is covered by `tests/connectors/test_legistar.py`.
 
+A related, separately-discovered issue: several link columns —
+consistently the `Video` column, confirmed live on Oakland's and San
+Francisco's Legistar calendars — don't use a real `href` at all. The
+anchor is `href="#"` with the actual target hidden in a JS popup
+handler: `onclick="window.open('Video.aspx?Mode=Granicus&ID1=...','video')"`.
+A plain `cell.find("a")["href"]` extraction silently produces a useless
+`.../#` URL in this case rather than failing — which is exactly what
+shipped for a while (visible in older committed sample data).
+`_extract_link()` now falls back to parsing the `onclick` handler when
+the `href` is empty or `"#"`.
+
+Rows with no resolvable `title` are now skipped outright in
+`_parse_agenda_items()`, rather than constructing an agenda entry with a
+missing title — `LegistarAgendaEntry.title` is a required field under
+Pydantic, so this used to be a validation error rather than a graceful
+skip.
+
 ## Platform detection and the city registry
 
 [`cities.yaml`](../services/workers/civic_scraper/cities.yaml) is the
@@ -127,6 +150,31 @@ a different platform — see the README's
 [current limitations](../README.md#current-limitations) — so building
 out every detected platform is explicitly not the near-term goal.
 
+## Document fetch and text extraction
+
+Two small, single-purpose modules sit downstream of the connector layer:
+
+- **`document_fetch.py`** — `fetch_document(url, jurisdiction)` downloads
+  a URL to `data/raw/<jurisdiction-slug>/<hash-of-url><ext>`. The cache
+  key is a hash of the URL itself, not the response body, so
+  "has this already been fetched" is a directory glob, not a network
+  round trip. Content-Type (falling back to the URL's own suffix)
+  decides the file extension.
+- **`document_text.py`** — `extract_pdf_text(path)` runs `pdfplumber`
+  with `layout=True` (preserves visual column/whitespace structure
+  rather than collapsing it) and flags `ocr_required=True` when the
+  extracted text is implausibly sparse for the page count — the proxy
+  for "this PDF is a scan with no embedded text layer." Municipal
+  agenda/minutes PDFs are frequently exactly that. `fetch_and_extract()`
+  combines both steps and returns a `FetchedDocument` (see
+  [`data-model.md`](data-model.md#document-fetch-output)).
+
+Neither module is wired into the connectors or runners yet — nothing
+calls `fetch_and_extract()` on a `Meeting`'s `agenda_url`/`minutes_url`
+automatically. That wiring, plus the LLM extraction step that would
+consume the fetched text, is the next piece of the
+[roadmap](../README.md#roadmap).
+
 ## Directory layout (current)
 
 ```
@@ -136,9 +184,11 @@ civic-engagement-app/
 │   └── scrape_meetings.py         early prototype, kept for reference
 ├── services/workers/
 │   ├── civic_scraper/
-│   │   ├── models.py              canonical dataclasses
+│   │   ├── models.py              canonical Pydantic schema
 │   │   ├── connectors/            one module per platform + the shared ABC
 │   │   ├── extractors/            early AI-powered document extraction (staff reports)
+│   │   ├── document_fetch.py      content-addressed document download/cache
+│   │   ├── document_text.py       PDF text extraction + scan detection
 │   │   ├── cities.yaml            city registry
 │   │   ├── generate_cities_yaml.py
 │   │   ├── detect_platforms.py
@@ -147,14 +197,14 @@ civic-engagement-app/
 │   │   └── run_all.py             multi-connector ingestion runner
 │   └── data/processed/            sample output when run from services/workers/
 ├── data/processed/                sample output when run from repo root
-└── tests/                         pytest coverage of the header-mapping logic
+├── data/raw/                      fetched agenda/minutes documents, content-addressed
+└── tests/                         pytest coverage of parsing, models, fetch, and text extraction
 ```
 
 `data/processed/` exists in two places because the runners resolve their
 output path relative to the current working directory rather than the
 repo root — a known inconsistency, not yet fixed.
 
-See the [README's roadmap](../README.md#roadmap) for the target
-architecture this is migrating toward (a validated schema, an extraction
-layer, an eval harness, digest generation) and the order it's being
-built in.
+See the [README's roadmap](../README.md#roadmap) for what's still ahead
+(wiring document fetch into the connectors, the LLM extraction layer, an
+eval harness, digest generation) and the order it's being built in.

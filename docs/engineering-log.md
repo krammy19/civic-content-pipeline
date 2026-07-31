@@ -125,3 +125,62 @@ become a quality-controlled content system, where extraction is graded
 against an eval suite and gated in CI, not just a normalization layer.
 The connector architecture and the header-mapping discipline described
 above are exactly what that next phase is built on top of.
+
+## 2026-07-31 — Schema migration, a real connector bug, and document fetch
+
+First step of the roadmap above: move `models.py` off dataclasses onto
+Pydantic, and start on connector hardening and document fetch.
+
+**The schema now enforces what used to be assumed.** Dataclasses never
+validated anything at runtime — `AgendaItem(title=None, ...)` was
+accepted silently. Pydantic rejects it, which immediately surfaced a
+real gap: `LegistarConnector._parse_agenda_items()` could construct an
+agenda entry with no title if that cell happened to be empty. Fixed by
+skipping rows with no resolvable title, the same way rows with no
+resolvable date already get skipped in `_parse_meetings()` — a missing
+required field is now a parse-time skip decision, not something that
+reaches a model constructor.
+
+**The new schema also splits "scraped" from "extracted."** The old
+`AgendaItem` (Legistar's own File #/Title/Action/Result row) and the
+target schema's `AgendaItem` (motions, votes, people, locations, dollar
+amounts — extraction-layer output) are not the same shape, and were
+never going to be. Keeping one name for both would have made "does this
+object hold real analysis or just a scraped listing" something you could
+only tell by inspecting field values. Renamed the scraped version to
+`LegistarAgendaEntry` and kept `AgendaItem` for the extraction-layer
+model, populated by nothing yet — see `docs/data-model.md`'s "Why two
+agenda item models" for the fuller version of this.
+
+**Found a real bug by actually looking at production HTML instead of
+guessing.** The design doc's own backlog had flagged "video URL
+extraction unreliable" months ago without saying why. Fetching Oakland's
+and San Francisco's live Legistar calendars (both with Selenium, to get
+past-meeting rows with real video links) showed the actual mechanism:
+Legistar's Video column renders `href="#"` with the real target hidden
+in `onclick="window.open('Video.aspx?Mode=Granicus&ID1=...','video')"`.
+Committed sample data already showed the symptom —
+`https://oakland.legistar.com/#` as a "video URL" — which is exactly the
+useless output that bug produces. `_extract_link()` now falls back to
+parsing the `onclick` handler when `href` is empty or `"#"`.
+
+Lesson worth naming: "this field is unreliable" sitting in a backlog for
+months without a concrete cause is a sign nobody's actually looked at
+the HTML recently. Fetching two real cities' live calendars took a few
+minutes and turned a vague complaint into a three-line, tested fix.
+
+**Document fetch and text extraction are new, standalone, and not wired
+up yet.** `document_fetch.py` downloads a URL to
+`data/raw/<jurisdiction>/<hash-of-url><ext>`, keyed by a hash of the URL
+so a re-fetch is a directory glob, not a network call.
+`document_text.py` extracts PDF text with `pdfplumber`'s layout-
+preserving mode and flags `ocr_required` when extracted text is
+implausibly sparse for the page count — the proxy for "this is a scan
+with no text layer." Validated against 35 real San Jose agenda/minutes
+PDFs (25 agendas + 10 minutes, all of 2025): all born-digital, zero
+scans, zero failures. That's a clean result, not a thorough one — none
+of San Jose's recent documents happened to be scans, so the OCR-flagging
+path is proven correct against synthetic fixtures
+(`tests/test_document_text.py`) but not yet against a real scanned
+municipal PDF. Neither module is called automatically by any connector
+or runner yet; that wiring is still ahead.

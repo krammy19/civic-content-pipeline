@@ -16,9 +16,12 @@ output (hallucinated facts, miscategorized items, sloppy summaries)
 before a reader ever sees it.
 
 **Current status: early.** The ingestion layer — connectors that turn a
-platform's calendar page into a normalized `Meeting` object — works and
-is tested. The extraction, validation, and eval layers that make this a
-genuinely quality-controlled system are not built yet. See
+platform's calendar page into a normalized, schema-validated `Meeting`
+— works and is tested, and now includes a content-addressed document
+fetch/cache and PDF text extraction with scan detection. The LLM
+extraction, validation, and eval layers that make this a genuinely
+quality-controlled system are not built yet, and fetch isn't wired into
+the connectors/runners automatically. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -31,10 +34,14 @@ genuinely quality-controlled system are not built yet. See
    Platform Connector          <- only place that knows platform-specific HTML/DOM
             |
             v
-   Normalized dataclasses      <- Meeting, AgendaItem, LegislationDetails, Attachment
+   Pydantic models              <- Meeting, LegistarAgendaEntry, LegislationDetails, Attachment
             |
             v
    data/processed/<city>/*.json <- current persistence layer (flat JSON, no DB)
+            |
+            v
+   Document fetch + text        <- data/raw/<city>/, content-addressed;
+   extraction                       PDF text extraction with scan detection
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -76,7 +83,7 @@ HTTP and needs nothing extra.
    [`connectors/base.py`](services/workers/civic_scraper/connectors/base.py)
    — one method required: `list_meetings()`, returning `list[Meeting]`).
 2. Never let platform-specific parsing leak outside that file. Everything
-   downstream depends only on the `Meeting` dataclass in
+   downstream depends only on the `Meeting` model in
    [`models.py`](services/workers/civic_scraper/models.py).
 3. Parse by semantic column/field name, not position — see
    [`docs/architecture.md#header-driven-parsing-legistar`](docs/architecture.md#header-driven-parsing-legistar)
@@ -97,9 +104,14 @@ HTTP and needs nothing extra.
 Stated plainly:
 
 - **No extraction, validation, eval, or digest layers yet.** Everything
-  past "get a normalized `Meeting` object onto disk" — the actual
-  quality-controlled content system described above — is unbuilt. See
-  [Roadmap](#roadmap).
+  past "get a normalized `Meeting` object onto disk, and fetch/extract
+  text from its documents on request" — the actual quality-controlled
+  content system described above — is unbuilt. See [Roadmap](#roadmap).
+- **Document fetch isn't wired into the connectors or runners.**
+  `fetch_and_extract()` in `document_text.py` works standalone but
+  nothing calls it automatically on a scraped `Meeting`'s
+  `agenda_url`/`minutes_url` yet — that plumbing is the next step, not
+  done.
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
   The near-term plan is to prove the pipeline well on a small, deliberate
@@ -107,33 +119,35 @@ Stated plainly:
   across many — two platforms proven well is worth more than dozens
   proven shallowly. The registry is left as-is (useful for future
   breadth) but isn't the near-term priority.
-- **Header-mapping logic is unit-tested; the rest of the pipeline
-  mostly isn't.** `tests/connectors/test_legistar.py` covers the
-  resilient-parsing logic in detail. Document fetch, agenda/minutes PDF
-  handling, and the CivicPlus connector do not have equivalent coverage
-  yet.
+- **The CivicPlus connector has no test coverage.** Header-mapping,
+  Pydantic model validation, document fetch/caching, and PDF text
+  extraction all do (`tests/`); `CivicPlusConnector` itself doesn't yet.
+- **Scan detection is a heuristic, not a real classifier.** A PDF page is
+  flagged `ocr_required` when extracted text is implausibly sparse for
+  its page count (`document_text.MIN_CHARS_PER_PAGE`) — good enough to
+  catch genuinely text-free scans, not rigorously validated against a
+  labeled set of real scanned municipal PDFs.
 - **Two `data/processed/` directories exist** because the runners
   resolve output paths relative to the current working directory, not
   the repo root. Known, not yet fixed — see
   [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md#output-layout).
 - **No database.** Output is JSON files on disk, overwritten on every
   run — no history, no query interface beyond reading files directly.
-- **Storage model still uses plain dataclasses, not a validated schema.**
-  Provenance (which source text a value was drawn from) and per-field
-  confidence — both required for a real eval harness — don't exist in
-  the current model at all. That's a prerequisite for the extraction
-  layer below, not an afterthought.
 
 ## Roadmap
 
 Rough shape of what comes after the current ingestion layer, in the
 order it's planned:
 
-1. **Schema migration.** Move off plain dataclasses onto a validated
-   schema with mandatory provenance (source text + offset) and per-field
-   confidence on every extracted value, plus connector hardening
-   (optional-column handling, video URL reliability) and real document
-   fetch/caching for agenda and minutes PDFs.
+1. **Schema migration and document fetch — done.** `models.py` is now a
+   validated Pydantic schema with mandatory provenance (source text +
+   offset) and per-field confidence on every extracted value
+   (`Extracted[T]`), plus connector hardening (the Legistar video-link
+   `onclick`-popup fix, `LegistarAgendaEntry.title` now required rather
+   than silently nullable) and content-addressed document fetch/caching
+   with PDF text extraction and scan detection
+   (`document_fetch.py`, `document_text.py`). Not done: wiring fetch into
+   the connectors/runners automatically.
 2. **Extraction layer.** LLM-based structured extraction of agenda items
    — motions, votes, people, locations, dollar amounts — using tool use
    so output conforms to the schema by construction, not free-text
@@ -160,8 +174,8 @@ order it's planned:
 
 | Doc | Covers |
 |---|---|
-| [`docs/architecture.md`](docs/architecture.md) | Connector framework, header-driven parsing, the city registry, directory layout |
-| [`docs/data-model.md`](docs/data-model.md) | Every field on `Meeting`, `AgendaItem`, `LegislationDetails`, `Attachment` |
+| [`docs/architecture.md`](docs/architecture.md) | Connector framework, header-driven parsing, document fetch, the city registry, directory layout |
+| [`docs/data-model.md`](docs/data-model.md) | Every field on every model — scrape output, extraction output, and document fetch output |
 | [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
@@ -170,13 +184,16 @@ order it's planned:
 ```
 docs/                   architecture, data model, pipeline, engineering log
 services/workers/civic_scraper/
-    models.py             canonical dataclasses
+    models.py             canonical Pydantic schema
     connectors/           one module per platform + shared interface
     extractors/           early AI-powered document extraction (staff reports)
+    document_fetch.py      content-addressed document download/cache
+    document_text.py       PDF text extraction + scan detection
     cities.yaml            the city registry
     run_all.py             multi-connector ingestion runner
-tests/                  pytest coverage of the header-mapping logic
+tests/                  pytest coverage of parsing, models, fetch, and text extraction
 data/processed/         sample output (JSON, one file per city per period)
+data/raw/               fetched agenda/minutes documents, content-addressed
 ```
 
 Full breakdown in [`docs/architecture.md`](docs/architecture.md#directory-layout-current).
