@@ -1,127 +1,34 @@
-# Civic Engagement App — Phase 1 Progress Summary
+# Engineering Log
 
-## Project Vision
+> This log was drafted with Claude during the initial build session and
+> then edited by hand into the document below — cut down to the
+> decisions and reasoning worth keeping, with environment-setup notes
+> and other session noise removed. It is not hidden that AI assistance
+> was part of building this project; the editing is the point. See
+> [SPEC.md](../SPEC.md) for how work on this repo is directed going
+> forward, and this log for why the parts that already exist look the
+> way they do.
 
-The project goal is to build a civic engagement platform capable of:
+## Project origin
 
-- Aggregating local government meeting data
-- Structuring agendas, minutes, videos, and metadata
-- Supporting multiple municipal platforms (Legistar, Granicus, PrimeGov, etc.)
-- Eventually enabling search, summarization, AI analysis, alerts, and civic transparency tooling
+The goal, from the start: aggregate local government meeting data —
+agendas, minutes, video, metadata — across multiple municipal platforms
+(Legistar, Granicus, PrimeGov, CivicClerk), normalize it to one shape,
+and build toward search, summarization, and AI analysis on top of it.
+Phase 1 was narrowly scoped to robust ingestion and normalization,
+starting with a single platform: Legistar, starting from San Jose's
+calendar at `sanjose.legistar.com/Calendar.aspx`.
 
-The current focus is:
+## Architectural decisions
 
-> Phase 1 — Robust ingestion and normalization of municipal meeting data.
+**Connector-based scraping.** Each municipal platform gets its own
+connector (`connectors/legistar.py`, and eventually `granicus.py`,
+`primegov.py`, `civicclerk.py`). This keeps platform-specific
+assumptions from leaking into the rest of the system — nothing outside
+`connectors/` should ever need to know which platform a given city runs.
 
-The first target platform is Legistar.
-
----
-
-# Development Environment Setup
-
-## Tools Installed / Configured
-
-### VS Code
-Installed and configured as the primary IDE.
-
-Recommended extensions:
-- Python
-- Pylance
-- Prettier
-- GitLens (future optional)
-
-### Git + GitHub
-
-Repository:
-- https://github.com/krammy19/civic-engagement-app
-
-Git installed and configured globally:
-
-```bash
-git config --global user.name "Mark Noack"
-git config --global user.email "marknoack9@gmail.com"
-```
-
-Repo cloned locally.
-
-### Python Environment
-
-Installed:
-- Python
-- pip
-- Selenium
-- BeautifulSoup4
-- requests
-
-Installed packages:
-
-```bash
-pip install selenium beautifulsoup4 requests
-```
-
----
-
-# Current Project Structure
-
-```text
-civic-engagement-app/
-├── data/
-│   ├── raw/
-│   └── processed/
-│       └── san-jose/
-│
-├── docs/
-│   ├── architecture.md
-│   ├── ingestion-pipeline.md
-│   └── data-model.md
-│
-├── scripts/
-│   └── scrape_meeting_detail.py
-│
-├── services/
-│   └── workers/
-│       └── civic_scraper/
-│           ├── __init__.py
-│           ├── models.py
-│           ├── run_legistar.py
-│           └── connectors/
-│               ├── __init__.py
-│               ├── base.py
-│               └── legistar.py
-│
-├── requirements.txt
-└── README.md
-```
-
----
-
-# Architectural Decisions
-
-## Connector-Based Scraping Architecture
-
-The scraper system is intentionally modular.
-
-Key design decision:
-
-> Each municipal platform gets its own connector.
-
-Example future structure:
-
-```text
-connectors/
-  legistar.py
-  granicus.py
-  primegov.py
-  civicclerk.py
-```
-
-This avoids platform-specific assumptions leaking into the entire system.
-
-## Uniform Output Model
-
-Regardless of source platform, all connectors should emit a standardized meeting object.
-
-Current canonical meeting model:
+**Uniform output model.** Regardless of source platform, every connector
+emits the same normalized `Meeting` object:
 
 ```python
 @dataclass
@@ -138,102 +45,36 @@ class Meeting:
     video_url: Optional[str]
 ```
 
-Important design principle:
+The governing principle: **flexible parsing, standardized output.**
+Different cities expose different Legistar columns; the model they parse
+into must not.
 
-> Flexible parsing, standardized output.
+## Legistar connector development
 
-This is critical because different cities expose different Legistar columns.
+Initial findings from San Jose's calendar: the meeting list is
+dynamically searchable and requires Selenium — pagination, year/body
+filtering, and historical archive traversal are all JS-driven, so a
+requests-only approach can't reach past meetings at all. The table
+itself has up to 12 columns, several of them optional and city-dependent
+(Accessible Agenda, Accessible Minutes, Agenda Packet, Video).
 
----
+An older scraper project (`city-agenda-scraper`) was reviewed for
+reference but not reused directly — its Selenium API usage was outdated,
+it was tightly coupled to one site's layout, and it had no normalized
+data model underneath it. `LegistarConnector` was written fresh, with
+the explicit expectation that more connectors would follow it.
 
-# Legistar Connector Development
+## Dynamic column mapping
 
-## Initial Discovery
+This was the central discovery of the Phase 1 build. Hardcoded column
+indexes broke almost immediately: different Legistar instances expose
+different columns, column counts vary city to city, optional
+accessibility columns shift every index after them, and some columns are
+icon-only with no header text at all. Pager rows compounded it — parsed
+as if they were data rows, they corrupted whatever column alignment the
+parser assumed.
 
-The San Jose Legistar page:
-
-https://sanjose.legistar.com/Calendar.aspx
-
-was analyzed.
-
-Findings:
-
-- The meeting calendar is dynamically searchable
-- Selenium is required for full archive traversal
-- requests-only scraping is insufficient for historical meeting extraction
-- The table contains 12 columns, including optional columns such as:
-  - Accessible Agenda
-  - Accessible Minutes
-  - Agenda Packet
-  - Video
-
-Example visible columns:
-
-1. Name
-2. Meeting Date
-3. iCal icon column
-4. Meeting Time
-5. Meeting Location
-6. Meeting Details
-7. Agenda
-8. Accessible Agenda
-9. Agenda Packet
-10. Minutes
-11. Accessible Minutes
-12. Video
-
----
-
-# Selenium-Based Legistar Connector
-
-## Purpose
-
-The connector:
-
-- Opens Calendar.aspx
-- Selects year/body filters
-- Executes search
-- Traverses paginated results
-- Parses meeting rows
-- Emits normalized Meeting objects
-
-## Key Technical Decisions
-
-### Selenium Required
-
-The previous city-agenda-scraper project was reviewed and used conceptually as inspiration.
-
-However:
-- The old scraper should NOT be copied directly
-- Selenium APIs were outdated
-- It was too tightly coupled
-- It was not designed around normalized data models
-
-Instead:
-- A cleaner LegistarConnector class was created
-- The architecture now anticipates multiple future connectors
-
----
-
-# Dynamic Column Mapping
-
-## Important Discovery
-
-Hardcoded column indexes were unreliable.
-
-Problem encountered:
-- Different Legistar instances may expose different columns
-- Column counts vary
-- Optional accessibility columns shift indexes
-- Icon columns exist without labels
-
-Initial parser bugs included:
-- Date values landing in body fields
-- Time values landing in location fields
-- Missing video links
-- Pagination rows being parsed as meetings
-
-Example bad output:
+The failure mode was concrete, not theoretical:
 
 ```json
 {
@@ -243,212 +84,44 @@ Example bad output:
 }
 ```
 
-## Corrected Approach
+Date landing in the body field, a cancellation note landing in time —
+this is what a parser keyed on column *position* does the moment a city
+enables or disables one optional column.
 
-The parser was redesigned to:
+The fix: parse by header, never by position. Read the table's actual
+header row, build a `{name: index}` map per parse call, and resolve
+every field by looking up its canonical column name — falling back to a
+small alias table for the few Legistar instances that label a column
+differently. Pager rows are filtered out before mapping, not after, so
+they never get a chance to misalign anything. This is now covered by
+`tests/connectors/test_legistar.py`, including a regression test built
+directly from the bad-output example above.
 
-- Extract table headers dynamically
-- Normalize header names
-- Preserve blank/icon columns for alignment
-- Map rows based on headers instead of hardcoded indexes
+## Lessons
 
-Core helper methods:
+**Legistar HTML is not a stable API.** Hidden columns, dynamic
+rendering, non-uniform per-city configuration, pager rows mixed into
+data rows — the connector layer has to be adaptive by default, not
+adaptive as an afterthought.
 
-```python
-_extract_headers()
-_map_row_by_headers()
-_normalize_header()
-```
+**Selenium is a real requirement, not a shortcut.** Historical archives,
+pagination, and dropdown filtering all depend on it; a requests-only
+connector cannot reach this data.
 
-This significantly improved resilience.
-
----
-
-# JSON Output
-
-Current output location:
-
-```text
-data/processed/san-jose/meetings_2024_city-council.json
-```
-
-Current behavior:
-- File is overwritten on each run
-- No append behavior
-
-Write mode:
-
-```python
-open(..., "w")
-```
-
----
-
-# Running the Scraper
-
-## Current Command
-
-From repo root:
-
-```bash
-PYTHONPATH=services/workers python services/workers/civic_scraper/run_legistar.py
-```
-
-Reason:
-- civic_scraper is nested under services/workers
-- PYTHONPATH temporarily adds that folder to module resolution
-
----
-
-# VS Code Debugger Setup
-
-A project-local debugger config was created.
-
-File:
+**Data normalization is the actual product.** The app should never
+expose a platform's raw schema to anything downstream:
 
 ```text
-.vscode/launch.json
+Platform HTML → Connector Parser → Normalized Meeting Model → downstream AI / search / alerts
 ```
 
-Purpose:
-- Allows debugging without manually setting PYTHONPATH
-- Supports breakpoints inside scraper code
-- Applies ONLY to this repo/workspace
+## Where this was heading, and where SPEC.md picks it up
 
----
-
-# Major Lessons / Discoveries
-
-## 1. Legistar HTML Is Messy
-
-Observed issues:
-- Hidden columns
-- Dynamic rendering
-- Non-uniform city configurations
-- Pager rows mixed with data rows
-- Accessibility variants shifting columns
-
-Conclusion:
-
-> The connector layer must be adaptive.
-
-## 2. Selenium Is Necessary
-
-For:
-- historical archives
-- pagination
-- dropdown filtering
-- future agenda extraction
-
-requests-only scraping is insufficient.
-
-## 3. Data Normalization Is Critical
-
-The app should NOT expose raw platform-specific schemas.
-
-Instead:
-
-```text
-Platform HTML
-    ↓
-Connector Parser
-    ↓
-Normalized Meeting Model
-    ↓
-Downstream AI / Search / Alerts
-```
-
----
-
-# Current State of the Project
-
-## Working
-
-- GitHub repo initialized
-- VS Code environment functional
-- Selenium installed
-- Legistar connector implemented
-- Selenium search flow working
-- Pagination traversal working
-- JSON export working
-- Dynamic header mapping partially implemented
-
-## Still In Progress
-
-- Final cleanup of Legistar column mapping
-- Robust handling of optional columns
-- Reliable extraction of video URLs
-- Filtering out non-meeting rows
-- Validation across multiple cities
-
----
-
-# Immediate Next Steps
-
-## 1. Finalize Robust Legistar Parsing
-
-Need:
-- stable header-to-cell alignment
-- support for variable Legistar schemas
-- stronger row validation
-
-## 2. Meeting Detail Extraction
-
-Next major milestone:
-
-Scrape individual Meeting Details pages to extract:
-
-- agenda items
-- item descriptions
-- attachments
-- vote results
-- transcripts (future)
-- video metadata
-
-This will likely become:
-
-```python
-fetch_meeting_detail(url)
-fetch_agenda_items(url)
-```
-
-## 3. Expand Data Model
-
-Future entities likely include:
-
-```python
-AgendaItem
-Vote
-Attachment
-SpeakerComment
-TranscriptChunk
-```
-
----
-
-# Long-Term Direction
-
-Potential future capabilities:
-
-- AI summaries of meetings
-- Civic issue tracking
-- Personalized alerts
-- Searchable transcript archive
-- Political trend analysis
-- Public-facing civic dashboard
-- RAG pipeline over municipal records
-- AI-generated meeting digests
-- Multi-city ingestion network
-
----
-
-# Key Conceptual Direction
-
-The project is no longer thought of as:
-
-> “a scraper script.”
-
-Instead, it is:
-
-> A civic data ingestion and normalization platform.
-
+The framing shift that mattered most during this phase: the project
+stopped being thought of as "a scraper script" and became "a civic data
+ingestion and normalization platform." [`SPEC.md`](../SPEC.md) carries
+that framing forward and sharpens it further — this is a
+quality-controlled content system, where extraction is graded against an
+eval suite and gated in CI, not just a normalization layer. The
+connector architecture and the header-mapping discipline described above
+are exactly what that next phase is built on top of.
