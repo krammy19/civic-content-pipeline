@@ -15,24 +15,27 @@ Adds to each CivicPlus city entry:
 
 Updates cities.yaml in place. Safe to re-run — already-discovered cities are skipped.
 """
-import sys
-import yaml
 
-# Windows console may not support all Unicode — sanitize output strings
-def _safe(s: str) -> str:
-    return s.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+import sys
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import yaml
 from bs4 import BeautifulSoup
 
 CITIES_YAML = Path(__file__).parent / "cities.yaml"
 MAX_WORKERS = 20
 TIMEOUT = 10
 _HEADERS = {"User-Agent": "Mozilla/5.0 (civic-engagement-app)"}
+
+
+def _safe(s: str) -> str:
+    """Windows console may not support all Unicode — sanitize output strings."""
+    encoding = sys.stdout.encoding or "utf-8"
+    return s.encode(encoding, errors="replace").decode(encoding)
 
 
 def _base_url(homepage: str) -> str:
@@ -111,13 +114,15 @@ def probe_city(entry: dict) -> dict:
 def _dump_yaml(data: dict, path: Path):
     class _Dumper(yaml.Dumper):
         pass
+
     _Dumper.add_representer(
         type(None),
         lambda d, _: d.represent_scalar("tag:yaml.org,2002:null", ""),
     )
     with path.open("w", encoding="utf-8") as f:
-        yaml.dump(data, f, Dumper=_Dumper, default_flow_style=False,
-                  allow_unicode=True, sort_keys=False)
+        yaml.dump(
+            data, f, Dumper=_Dumper, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
 
 
 def main():
@@ -128,7 +133,11 @@ def main():
     cp_cities = [c for c in cities if c.get("platform") == "civicplus"]
     pending = [c for c in cp_cities if "civicplus_status" not in c]
 
-    print(f"CivicPlus cities: {len(cp_cities)}  |  Already probed: {len(cp_cities) - len(pending)}  |  To probe: {len(pending)}")
+    already_probed = len(cp_cities) - len(pending)
+    print(
+        f"CivicPlus cities: {len(cp_cities)}  |  "
+        f"Already probed: {already_probed}  |  To probe: {len(pending)}"
+    )
     print(f"Workers: {MAX_WORKERS}\n")
 
     updated: dict[str, dict] = {}
@@ -151,7 +160,8 @@ def main():
             cat_id = result.get("civicplus_category_id", "")
 
             if status == "ok":
-                print(_safe(f"  [{done:3d}/{len(pending)}] {name:<25} OK      cat={cat_id:<4} '{cat_name}'"))
+                line = f"  [{done:3d}/{len(pending)}] {name:<25} OK  cat={cat_id:<4} '{cat_name}'"
+                print(_safe(line))
             else:
                 note = result.get("civicplus_note", "")[:60]
                 print(_safe(f"  [{done:3d}/{len(pending)}] {name:<25} {status:<22} {note}"))
@@ -165,7 +175,7 @@ def main():
     # Summary
     all_cp = [by_name[c["name"]] for c in cp_cities]
     counts = Counter(c.get("civicplus_status") for c in all_cp)
-    print(f"\n{'='*50}")
+    print(f"\n{'=' * 50}")
     print("Status breakdown:")
     for status, count in counts.most_common():
         print(f"  {status:<25} {count}")

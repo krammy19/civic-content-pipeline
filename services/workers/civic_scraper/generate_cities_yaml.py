@@ -1,7 +1,9 @@
 """One-time script to generate cities.yaml from CA_city_websites_final.csv."""
+
 import re
-import yaml
 from pathlib import Path
+
+import yaml
 
 CSV_PATH = Path(r"C:\Users\m_noa\Downloads\CA_city_websites_final.csv")
 OUT_PATH = Path(__file__).parent / "cities.yaml"
@@ -68,9 +70,11 @@ with CSV_PATH.open(encoding="utf-8") as f:
 
         cities.append(entry)
 
+
 # Emit clean YAML — use block style for readability
 class _Dumper(yaml.Dumper):
     pass
+
 
 _Dumper.add_representer(
     type(None),
@@ -78,8 +82,14 @@ _Dumper.add_representer(
 )
 
 with OUT_PATH.open("w", encoding="utf-8") as f:
-    yaml.dump({"cities": cities}, f, Dumper=_Dumper,
-              default_flow_style=False, allow_unicode=True, sort_keys=False)
+    yaml.dump(
+        {"cities": cities},
+        f,
+        Dumper=_Dumper,
+        default_flow_style=False,
+        allow_unicode=True,
+        sort_keys=False,
+    )
 
 print(f"Wrote {len(cities)} cities to {OUT_PATH}")
 legistar_count = sum(1 for c in cities if c.get("platform") == "legistar")

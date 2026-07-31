@@ -1,20 +1,18 @@
 import re
-from typing import List, Optional
-from urllib.parse import urljoin
 import time
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
 
 from civic_scraper.connectors.base import CivicConnector
-from civic_scraper.models import Attachment, LegislationDetails, Meeting, AgendaItem
-
+from civic_scraper.models import AgendaItem, Attachment, LegislationDetails, Meeting
 
 # Alternate lowercase header names some Legistar sites use for each canonical column
 _COLUMN_ALIASES: dict[str, list[str]] = {
@@ -43,10 +41,10 @@ class LegistarConnector(CivicConnector):
 
     def list_meetings(
         self,
-        period: Optional[str] = None,
-        body: Optional[str] = None,
-        limit: Optional[int] = None,
-    ) -> List[Meeting]:
+        period: str | None = None,
+        body: str | None = None,
+        limit: int | None = None,
+    ) -> list[Meeting]:
         driver = self._create_driver()
 
         try:
@@ -74,7 +72,7 @@ class LegistarConnector(CivicConnector):
 
             self._click_search(driver)
 
-            meetings: List[Meeting] = []
+            meetings: list[Meeting] = []
             remaining = limit
 
             while True:
@@ -105,17 +103,13 @@ class LegistarConnector(CivicConnector):
 
         for _ in range(3):
             try:
-                dropdown_input = wait.until(
-                    EC.element_to_be_clickable((By.ID, input_id))
-                )
+                dropdown_input = wait.until(EC.element_to_be_clickable((By.ID, input_id)))
                 dropdown_input.click()
 
                 # Use presence_of_element_located (not clickable) so that options
                 # deep in a long list are found even when outside the visible viewport.
                 option_xpath = f"//li[contains(normalize-space(), '{option_text}')]"
-                option = wait.until(
-                    EC.presence_of_element_located((By.XPATH, option_xpath))
-                )
+                option = wait.until(EC.presence_of_element_located((By.XPATH, option_xpath)))
                 driver.execute_script("arguments[0].scrollIntoView(true);", option)
                 time.sleep(0.2)
                 driver.execute_script("arguments[0].click();", option)
@@ -134,9 +128,7 @@ class LegistarConnector(CivicConnector):
         for _ in range(3):
             try:
                 search_button = search_wait.until(
-                    EC.element_to_be_clickable(
-                        (By.ID, "ctl00_ContentPlaceHolder1_btnSearch")
-                    )
+                    EC.element_to_be_clickable((By.ID, "ctl00_ContentPlaceHolder1_btnSearch"))
                 )
                 search_button.click()
                 return
@@ -155,6 +147,7 @@ class LegistarConnector(CivicConnector):
         pager rows, which also use <th> but appear before the column header row.
         Falls back to the first <tr> containing any <th> for non-standard layouts.
         """
+
         def _expand(ths):
             headers = []
             for th in ths:
@@ -174,7 +167,7 @@ class LegistarConnector(CivicConnector):
                 return _expand(ths)
         return []
 
-    def _resolve_col(self, col_index: dict, col_name: str) -> Optional[int]:
+    def _resolve_col(self, col_index: dict, col_name: str) -> int | None:
         """Look up a column index by canonical name, falling back to known aliases."""
         key = col_name.lower()
         if key in col_index:
@@ -184,19 +177,19 @@ class LegistarConnector(CivicConnector):
                 return col_index[alt]
         return None
 
-    def _get_cell_text(self, cols: list, col_index: dict, col_name: str) -> Optional[str]:
+    def _get_cell_text(self, cols: list, col_index: dict, col_name: str) -> str | None:
         idx = self._resolve_col(col_index, col_name)
         if idx is None or idx >= len(cols):
             return None
         return cols[idx].get_text(" ", strip=True)
 
-    def _get_cell_link(self, cols: list, col_index: dict, col_name: str) -> Optional[str]:
+    def _get_cell_link(self, cols: list, col_index: dict, col_name: str) -> str | None:
         idx = self._resolve_col(col_index, col_name)
         if idx is None or idx >= len(cols):
             return None
         return self._extract_link(cols[idx])
 
-    def _parse_meetings(self, html: str, body: str, limit: Optional[int] = None) -> List[Meeting]:
+    def _parse_meetings(self, html: str, body: str, limit: int | None = None) -> list[Meeting]:
         soup = BeautifulSoup(html, "html.parser")
         table = soup.find("table", {"id": "ctl00_ContentPlaceHolder1_gridCalendar_ctl00"})
 
@@ -245,7 +238,7 @@ class LegistarConnector(CivicConnector):
 
         return meetings
 
-    def _extract_link(self, cell) -> Optional[str]:
+    def _extract_link(self, cell) -> str | None:
         link = cell.find("a")
         if link and link.get("href"):
             return urljoin(self.base_url, link["href"])
@@ -266,7 +259,7 @@ class LegistarConnector(CivicConnector):
         except Exception:
             return False
 
-    def get_meeting_details(self, meeting_details_url: str) -> List[AgendaItem]:
+    def get_meeting_details(self, meeting_details_url: str) -> list[AgendaItem]:
         """Fetch and parse agenda items from a meeting details page.
 
         Args:
@@ -282,7 +275,7 @@ class LegistarConnector(CivicConnector):
         except Exception:
             return []
 
-    def _parse_agenda_items(self, html: str) -> List[AgendaItem]:
+    def _parse_agenda_items(self, html: str) -> list[AgendaItem]:
         soup = BeautifulSoup(html, "html.parser")
         table = soup.find("table", {"id": "ctl00_ContentPlaceHolder1_gridMain_ctl00"})
         if not table:
@@ -316,20 +309,22 @@ class LegistarConnector(CivicConnector):
                 if not legislation_url:
                     continue
 
-                items.append(AgendaItem(
-                    file_number=cell_text(cells, "file #"),
-                    version=cell_text(cells, "ver."),
-                    agenda_note=cell_text(cells, "agenda note"),
-                    type=cell_text(cells, "type"),
-                    title=cell_text(cells, "title"),
-                    action=cell_text(cells, "action"),
-                    result=cell_text(cells, "result"),
-                    legislation_url=legislation_url,
-                ))
+                items.append(
+                    AgendaItem(
+                        file_number=cell_text(cells, "file #"),
+                        version=cell_text(cells, "ver."),
+                        agenda_note=cell_text(cells, "agenda note"),
+                        type=cell_text(cells, "type"),
+                        title=cell_text(cells, "title"),
+                        action=cell_text(cells, "action"),
+                        result=cell_text(cells, "result"),
+                        legislation_url=legislation_url,
+                    )
+                )
 
         return items
 
-    def _extract_legislation_link(self, cell) -> Optional[str]:
+    def _extract_legislation_link(self, cell) -> str | None:
         link = cell.find("a")
         if link and link.get("href") and "LegislationDetail.aspx" in link["href"]:
             return urljoin(self.base_url, link["href"])
@@ -351,7 +346,7 @@ class LegistarConnector(CivicConnector):
 
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        def _span(id_suffix: str) -> Optional[str]:
+        def _span(id_suffix: str) -> str | None:
             el = soup.find("span", id=re.compile(id_suffix + r"$", re.IGNORECASE))
             if el:
                 return el.get_text(" ", strip=True).replace("\xa0", " ") or None

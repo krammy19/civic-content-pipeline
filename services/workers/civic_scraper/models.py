@@ -1,5 +1,4 @@
-from dataclasses import dataclass, asdict, field
-from typing import List, Optional
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass
@@ -8,12 +7,12 @@ class Meeting:
     jurisdiction: str
     body: str
     date: str
-    time: Optional[str]
-    location: Optional[str]
-    meeting_details_url: Optional[str]
-    agenda_url: Optional[str]
-    minutes_url: Optional[str]
-    video_url: Optional[str]
+    time: str | None
+    location: str | None
+    meeting_details_url: str | None
+    agenda_url: str | None
+    minutes_url: str | None
+    video_url: str | None
 
     def to_dict(self):
         return asdict(self)
@@ -31,10 +30,10 @@ class Attachment:
 @dataclass
 class LegislationDetails:
     legislation_url: str
-    status: Optional[str]
-    text: Optional[str]
-    recommendations: Optional[str]
-    attachments: List[Attachment] = field(default_factory=list)
+    status: str | None
+    text: str | None
+    recommendations: str | None
+    attachments: list[Attachment] = field(default_factory=list)
 
     def to_dict(self):
         d = asdict(self)
@@ -44,14 +43,14 @@ class LegislationDetails:
 
 @dataclass
 class AgendaItem:
-    file_number: Optional[str]
+    file_number: str | None
     title: str
-    type: Optional[str]
-    agenda_note: Optional[str]
-    legislation_url: Optional[str]
-    action: Optional[str]
-    result: Optional[str]
-    version: Optional[str]
+    type: str | None
+    agenda_note: str | None
+    legislation_url: str | None
+    action: str | None
+    result: str | None
+    version: str | None
 
     @property
     def is_consent(self) -> bool:

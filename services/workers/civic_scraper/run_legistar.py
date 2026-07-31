@@ -17,11 +17,13 @@ def _load_legistar_cities(config_path: Path = _CONFIG_PATH) -> list[dict]:
     for entry in data.get("cities", []):
         if entry.get("platform") != "legistar":
             continue
-        cities.append({
-            "jurisdiction": entry["name"],
-            "calendar_url": entry["legistar_url"],
-            "body": entry.get("body"),
-        })
+        cities.append(
+            {
+                "jurisdiction": entry["name"],
+                "calendar_url": entry["legistar_url"],
+                "body": entry.get("body"),
+            }
+        )
     return cities
 
 
@@ -34,6 +36,7 @@ OUTPUT_ROOT = Path("data/processed")
 
 
 # -- Phase 1: calendar scraping ------------------------------------------------
+
 
 def scrape_meetings(city: dict, period: str) -> list:
     connector = LegistarConnector(
@@ -57,6 +60,7 @@ def save_meetings(jurisdiction: str, meetings: list, period_label: str) -> Path:
 
 # -- Phase 2: agenda item extraction ------------------------------------------
 
+
 def extract_agenda(city: dict, meeting: dict) -> list:
     connector = LegistarConnector(
         jurisdiction=city["jurisdiction"],
@@ -79,13 +83,14 @@ def save_agenda(jurisdiction: str, meeting: dict, items: list) -> Path:
 
 # -- Main ----------------------------------------------------------------------
 
+
 def main():
     # -- Phase 1 ---------------------------------------------------------------
-    print(f"\n{'-'*70}")
+    print(f"\n{'-' * 70}")
     print(f"Phase 1 — Calendar  (period='{PERIOD}', limit={MEETING_LIMIT})")
-    print(f"{'-'*70}")
+    print(f"{'-' * 70}")
     print(f"{'City':<20} {'Status':<8} {'Rows':<6} {'Details URLs'}")
-    print(f"{'-'*70}")
+    print(f"{'-' * 70}")
 
     city_meetings = {}
 
@@ -104,7 +109,9 @@ def main():
             with_url = [m for m in meetings if m.meeting_details_url]
             city_meetings[name] = {"city": city, "meetings": meetings, "with_url": with_url}
 
-            label = f"'{PERIOD}'" if period_label == "this_month" else f"'{FALLBACK_PERIOD}' (fallback)"
+            label = (
+                f"'{PERIOD}'" if period_label == "this_month" else f"'{FALLBACK_PERIOD}' (fallback)"
+            )
             print(f"{name:<20} {'OK':<8} {len(meetings):<6} {len(with_url)} have URL  [{label}]")
             print(f"{'':20}          -> {out_path}")
         except Exception as e:
@@ -113,11 +120,11 @@ def main():
             traceback.print_exc()
 
     # -- Phase 2 ---------------------------------------------------------------
-    print(f"\n{'-'*70}")
-    print(f"Phase 2 — Agenda items  (first meeting with details URL per city)")
-    print(f"{'-'*70}")
+    print(f"\n{'-' * 70}")
+    print("Phase 2 — Agenda items  (first meeting with details URL per city)")
+    print(f"{'-' * 70}")
     print(f"{'City':<20} {'Status':<8} {'Items':<7} {'Sample title'}")
-    print(f"{'-'*70}")
+    print(f"{'-' * 70}")
 
     for city in CITIES:
         name = city["jurisdiction"]

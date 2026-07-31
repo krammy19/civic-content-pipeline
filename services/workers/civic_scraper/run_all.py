@@ -19,6 +19,7 @@ Usage:
   # Cap number of cities processed
   python run_all.py --connector civicplus --max-cities 10
 """
+
 import argparse
 import json
 import sys
@@ -27,8 +28,8 @@ from pathlib import Path
 
 import yaml
 
-from civic_scraper.connectors.legistar import LegistarConnector
 from civic_scraper.connectors.civicplus import CivicPlusConnector
+from civic_scraper.connectors.legistar import LegistarConnector
 
 _CONFIG_PATH = Path(__file__).parent / "cities.yaml"
 OUTPUT_ROOT = Path("data/processed")
@@ -37,9 +38,16 @@ FALLBACK_PERIOD = "Last Month"
 MEETING_LIMIT = 5
 
 
+def _safe(s: str) -> str:
+    """Windows console may not support all Unicode — sanitize output strings."""
+    encoding = sys.stdout.encoding or "utf-8"
+    return s.encode(encoding, errors="replace").decode(encoding)
+
+
 # ------------------------------------------------------------------
 # City loading
 # ------------------------------------------------------------------
+
 
 def load_cities(connector_filter: str | None, city_filter: str | None) -> list[dict]:
     with _CONFIG_PATH.open(encoding="utf-8") as f:
@@ -60,6 +68,7 @@ def load_cities(connector_filter: str | None, city_filter: str | None) -> list[d
 # ------------------------------------------------------------------
 # Connector factory
 # ------------------------------------------------------------------
+
 
 def make_connector(entry: dict):
     connector = entry["connector"]
@@ -87,6 +96,7 @@ def make_connector(entry: dict):
 # Phase 1 helpers
 # ------------------------------------------------------------------
 
+
 def scrape_meetings(entry: dict, period: str) -> list:
     conn = make_connector(entry)
     body = entry.get("body") or "City Council"
@@ -106,6 +116,7 @@ def save_meetings(name: str, meetings: list, period_label: str) -> Path:
 # ------------------------------------------------------------------
 # Phase 2 helpers  (Legistar only for now)
 # ------------------------------------------------------------------
+
 
 def extract_agenda(entry: dict, meeting: dict) -> list:
     conn = make_connector(entry)
@@ -127,21 +138,32 @@ def save_agenda(name: str, meeting: dict, items: list) -> Path:
 # Main
 # ------------------------------------------------------------------
 
+
 def main():
     parser = argparse.ArgumentParser(description="Ingest civic meeting data")
-    parser.add_argument("--connector", choices=["legistar", "civicplus"],
-                        help="Only run cities using this connector")
-    parser.add_argument("--city", metavar="NAME",
-                        help="Only run cities whose name contains this string")
-    parser.add_argument("--max-cities", type=int, metavar="N",
-                        help="Stop after processing N cities")
-    parser.add_argument("--phase", type=int, choices=[1, 2], default=None,
-                        help="Run only phase 1 (calendar) or phase 2 (agenda items)")
+    parser.add_argument(
+        "--connector",
+        choices=["legistar", "civicplus"],
+        help="Only run cities using this connector",
+    )
+    parser.add_argument(
+        "--city", metavar="NAME", help="Only run cities whose name contains this string"
+    )
+    parser.add_argument(
+        "--max-cities", type=int, metavar="N", help="Stop after processing N cities"
+    )
+    parser.add_argument(
+        "--phase",
+        type=int,
+        choices=[1, 2],
+        default=None,
+        help="Run only phase 1 (calendar) or phase 2 (agenda items)",
+    )
     args = parser.parse_args()
 
     cities = load_cities(args.connector, args.city)
     if args.max_cities:
-        cities = cities[:args.max_cities]
+        cities = cities[: args.max_cities]
 
     run_phase1 = args.phase in (None, 1)
     run_phase2 = args.phase in (None, 2)
@@ -182,13 +204,13 @@ def main():
                 note = f"{len(with_url)} have URL"
                 if period_label == "last_month":
                     note += f"  [fallback: '{FALLBACK_PERIOD}']"
-                safe_name = name.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+                safe_name = _safe(name)
                 print(f"{safe_name:<28} {connector:<10} {'OK':<6} {len(meetings):<5} {note}")
                 print(f"{'':28}            -> {out_path}")
 
             except Exception as exc:
                 city_results[name] = {"entry": entry, "meetings": [], "with_url": []}
-                safe_name = name.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+                safe_name = _safe(name)
                 print(f"{safe_name:<28} {connector:<10} {'FAIL':<6}       {exc}")
                 traceback.print_exc()
 
@@ -200,7 +222,7 @@ def main():
                 print("No Legistar cities selected — Phase 2 skipped.")
         else:
             print(f"\n{sep}")
-            print(f"Phase 2 - Agenda items  (first meeting with details URL, Legistar only)")
+            print("Phase 2 - Agenda items  (first meeting with details URL, Legistar only)")
             print(sep)
             print(f"{'City':<28} {'Status':<6} {'Items':<6} Sample title")
             print(sep)
@@ -210,7 +232,7 @@ def main():
                 data = city_results.get(name, {})
                 with_url = data.get("with_url", [])
 
-                safe_name = name.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+                safe_name = _safe(name)
 
                 if not with_url:
                     print(f"{safe_name:<28} {'SKIP':<6}        no meetings with details URL")
@@ -219,13 +241,15 @@ def main():
                 items, target = [], None
                 for candidate in with_url:
                     try:
-                        candidate_dict = candidate.to_dict() if hasattr(candidate, "to_dict") else candidate
+                        has_to_dict = hasattr(candidate, "to_dict")
+                        candidate_dict = candidate.to_dict() if has_to_dict else candidate
                         result = extract_agenda(entry, candidate_dict)
                         if result:
                             items, target = result, candidate_dict
                             break
                     except Exception as exc:
-                        print(f"{safe_name:<28} {'WARN':<6}        skipping {candidate.date}: {exc}")
+                        skip_msg = f"skipping {candidate.date}: {exc}"
+                        print(f"{safe_name:<28} {'WARN':<6}        {skip_msg}")
 
                 if target is None:
                     print(f"{safe_name:<28} {'SKIP':<6}        all detail pages returned 0 items")
@@ -233,7 +257,7 @@ def main():
                     try:
                         out_path = save_agenda(name, target, items)
                         sample = items[0].title[:50] if items[0].title else "(no title)"
-                        sample_safe = sample.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+                        sample_safe = _safe(sample)
                         print(f"{safe_name:<28} {'OK':<6} {len(items):<6} {sample_safe!r}")
                         print(f"{'':28}         {target['date']} -> {out_path}")
                     except Exception as exc:

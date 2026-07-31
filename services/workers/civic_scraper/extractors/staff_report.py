@@ -12,6 +12,7 @@ Staff report PDF extraction pipeline.
 3. fetch_and_extract(pdf_url, client) -> dict
    End-to-end helper: download PDF, extract sections, run Claude — no disk storage.
 """
+
 import io
 import re
 
@@ -71,7 +72,9 @@ _EXTRACT_TOOL = {
                     "properties": {
                         "amount": {
                             "type": "string",
-                            "description": "Dollar amount or range, e.g. '$6.0 million' or 'up to $500,000'",
+                            "description": (
+                                "Dollar amount or range, e.g. '$6.0 million' or 'up to $500,000'"
+                            ),
                         },
                         "description": {
                             "type": "string",
@@ -79,7 +82,9 @@ _EXTRACT_TOOL = {
                         },
                         "context": {
                             "type": "string",
-                            "description": "Verbatim quote from the report supporting this extraction",
+                            "description": (
+                                "Verbatim quote from the report supporting this extraction"
+                            ),
                         },
                     },
                     "required": ["amount", "description", "context"],
@@ -94,7 +99,9 @@ _EXTRACT_TOOL = {
                         "milestone": {"type": "string"},
                         "date": {
                             "type": "string",
-                            "description": "Date or relative time, e.g. 'Q3 2025' or 'upon Council approval'",
+                            "description": (
+                                "Date or relative time, e.g. 'Q3 2025' or 'upon Council approval'"
+                            ),
                         },
                         "context": {"type": "string", "description": "Verbatim quote"},
                     },
@@ -115,13 +122,17 @@ _EXTRACT_TOOL = {
             },
             "addresses": {
                 "type": "array",
-                "description": "Physical addresses, neighborhoods, districts, or geographic areas impacted.",
+                "description": (
+                    "Physical addresses, neighborhoods, districts, or geographic areas impacted."
+                ),
                 "items": {
                     "type": "object",
                     "properties": {
                         "address": {
                             "type": "string",
-                            "description": "Street address, neighborhood name, or district identifier",
+                            "description": (
+                                "Street address, neighborhood name, or district identifier"
+                            ),
                         },
                         "description": {
                             "type": "string",
@@ -134,7 +145,9 @@ _EXTRACT_TOOL = {
             },
             "stakeholders": {
                 "type": "array",
-                "description": "Named individuals, organizations, or businesses with a role in this item.",
+                "description": (
+                    "Named individuals, organizations, or businesses with a role in this item."
+                ),
                 "items": {
                     "type": "object",
                     "properties": {
@@ -150,7 +163,10 @@ _EXTRACT_TOOL = {
             },
             "lobbying": {
                 "type": "array",
-                "description": "Lobbying activity, advocacy groups, public comments, organized opposition or support.",
+                "description": (
+                    "Lobbying activity, advocacy groups, public comments, organized "
+                    "opposition or support."
+                ),
                 "items": {
                     "type": "object",
                     "properties": {
@@ -160,7 +176,9 @@ _EXTRACT_TOOL = {
                         },
                         "position": {
                             "type": "string",
-                            "description": "Their stated position and argument (support/oppose/neutral)",
+                            "description": (
+                                "Their stated position and argument (support/oppose/neutral)"
+                            ),
                         },
                         "context": {"type": "string", "description": "Verbatim quote"},
                     },
@@ -188,7 +206,9 @@ _EXTRACT_TOOL = {
             },
             "summary": {
                 "type": "string",
-                "description": "2-3 sentence plain-language summary of what is being proposed and why.",
+                "description": (
+                    "2-3 sentence plain-language summary of what is being proposed and why."
+                ),
             },
         },
         "required": [
@@ -217,9 +237,7 @@ def extract_sections(pdf_bytes: bytes) -> dict[str, str]:
 
     sections: dict[str, str] = {"_full_text": full_text}
 
-    splits = [
-        (m.start(), m.group(1).upper().strip()) for m in _SECTION_RE.finditer(full_text)
-    ]
+    splits = [(m.start(), m.group(1).upper().strip()) for m in _SECTION_RE.finditer(full_text)]
 
     for i, (pos, name) in enumerate(splits):
         end = splits[i + 1][0] if i + 1 < len(splits) else len(full_text)
@@ -241,11 +259,7 @@ def extract_with_claude(sections: dict[str, str], client) -> dict:
         Dict with keys: fiscal, timelines, history, addresses, stakeholders,
         lobbying, laws, summary. Each list entry includes a 'context' verbatim quote.
     """
-    chunks = [
-        f"=== {key} ===\n{sections[key]}"
-        for key in _PRIORITY_SECTIONS
-        if key in sections
-    ]
+    chunks = [f"=== {key} ===\n{sections[key]}" for key in _PRIORITY_SECTIONS if key in sections]
     if not chunks:
         chunks.append(sections.get("_full_text", "")[:8000])
 
@@ -261,10 +275,10 @@ def extract_with_claude(sections: dict[str, str], client) -> dict:
             {
                 "role": "user",
                 "content": (
-                    "Extract structured civic information from the following city staff report sections. "
-                    "For each item, include a verbatim context quote from the report. "
-                    "Only extract information explicitly stated in the text — do not infer or add details.\n\n"
-                    + report_text
+                    "Extract structured civic information from the following city staff "
+                    "report sections. For each item, include a verbatim context quote from "
+                    "the report. Only extract information explicitly stated in the text — "
+                    "do not infer or add details.\n\n" + report_text
                 ),
             }
         ],

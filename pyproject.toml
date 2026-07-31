@@ -1,0 +1,35 @@
+[project]
+name = "civic-engagement-app"
+version = "0.1.0"
+description = "Ingests municipal government meeting documents from heterogeneous city platforms, extracts structured facts with an LLM, validates the output, and publishes digests that pass automated quality gates."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.103.1",
+    "beautifulsoup4>=4.14.3",
+    "pdfplumber>=0.11.9",
+    "pyyaml>=6.0.3",
+    "requests>=2.33.1",
+    "selenium>=4.43.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.8",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["data", "venv", ".venv", "notebooks", "temp_files"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["services/workers", "."]

@@ -7,31 +7,32 @@ Strategy per unconfirmed city:
 
 Updates cities.yaml in place. Safe to re-run — already-confirmed cities are skipped.
 """
+
 import re
 import sys
-import yaml
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
+import yaml
 
 CITIES_YAML = Path(__file__).parent / "cities.yaml"
 
-REQUEST_TIMEOUT = 8       # seconds for agenda URL probe
-LEGISTAR_TIMEOUT = 5      # seconds for subdomain HEAD probe
+REQUEST_TIMEOUT = 8  # seconds for agenda URL probe
+LEGISTAR_TIMEOUT = 5  # seconds for subdomain HEAD probe
 MAX_WORKERS = 20
 HTML_SCAN_BYTES = 60_000
 
 PLATFORM_PATTERNS: dict[str, list[str]] = {
-    "legistar":    [r"legistar\.com"],
-    "granicus":    [r"granicus\.com"],
-    "civicplus":   [r"civicplus\.com", r"civicplusmedia\.com"],
-    "primegov":    [r"primegov\.com"],
-    "civicclerk":  [r"civicclerk\.com"],
-    "boarddocs":   [r"boarddocs\.com"],
+    "legistar": [r"legistar\.com"],
+    "granicus": [r"granicus\.com"],
+    "civicplus": [r"civicplus\.com", r"civicplusmedia\.com"],
+    "primegov": [r"primegov\.com"],
+    "civicclerk": [r"civicclerk\.com"],
+    "boarddocs": [r"boarddocs\.com"],
     "novusagenda": [r"novusagenda\.com"],
-    "iqm2":        [r"iqm2\.com"],
+    "iqm2": [r"iqm2\.com"],
 }
 
 _HEADERS = {"User-Agent": "Mozilla/5.0 (civic-engagement-app platform detector)"}
@@ -59,8 +60,7 @@ def _detect_platform(text: str) -> str | None:
 
 def _probe_agenda_url(url: str) -> tuple[str, str] | None:
     try:
-        resp = requests.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True,
-                            headers=_HEADERS)
+        resp = requests.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True, headers=_HEADERS)
         return resp.url, resp.text[:HTML_SCAN_BYTES]
     except Exception:
         return None
@@ -70,8 +70,9 @@ def _probe_legistar_subdomain(city_name: str) -> str | None:
     for slug in _legistar_slugs(city_name):
         url = f"https://{slug}.legistar.com/Calendar.aspx"
         try:
-            resp = requests.head(url, timeout=LEGISTAR_TIMEOUT, allow_redirects=True,
-                                 headers=_HEADERS)
+            resp = requests.head(
+                url, timeout=LEGISTAR_TIMEOUT, allow_redirects=True, headers=_HEADERS
+            )
             if resp.status_code == 200 and "legistar.com" in resp.url.lower():
                 m = re.match(r"https?://[^/]+\.legistar\.com", resp.url, re.IGNORECASE)
                 return (m.group(0) + "/Calendar.aspx") if m else url
@@ -98,7 +99,9 @@ def detect_city(entry: dict) -> dict:
             if platform:
                 result["platform"] = platform
                 if platform == "legistar":
-                    result["legistar_url"] = _extract_legistar_base(corpus) or _extract_legistar_base(final_url)
+                    result["legistar_url"] = _extract_legistar_base(
+                        corpus
+                    ) or _extract_legistar_base(final_url)
                     result.pop("agenda_url", None)
                 return result
 
@@ -115,13 +118,15 @@ def detect_city(entry: dict) -> dict:
 def _dump_yaml(data: dict, path: Path):
     class _Dumper(yaml.Dumper):
         pass
+
     _Dumper.add_representer(
         type(None),
         lambda d, _: d.represent_scalar("tag:yaml.org,2002:null", ""),
     )
     with path.open("w", encoding="utf-8") as f:
-        yaml.dump(data, f, Dumper=_Dumper, default_flow_style=False,
-                  allow_unicode=True, sort_keys=False)
+        yaml.dump(
+            data, f, Dumper=_Dumper, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
 
 
 def main():
@@ -168,7 +173,10 @@ def main():
     _dump_yaml(data, CITIES_YAML)
 
     total_confirmed = sum(1 for c in updated_cities if c.get("platform"))
-    print(f"\nDone. Newly detected: {newly_found}  |  Total confirmed: {total_confirmed}/{len(cities)}")
+    print(
+        f"\nDone. Newly detected: {newly_found}  |  "
+        f"Total confirmed: {total_confirmed}/{len(cities)}"
+    )
     counts = Counter(c.get("platform") for c in updated_cities if c.get("platform"))
     for platform, count in counts.most_common():
         print(f"  {platform:<15} {count}")

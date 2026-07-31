@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 from civic_scraper.models import Meeting
 
 
@@ -7,8 +7,8 @@ class CivicConnector(ABC):
     @abstractmethod
     def list_meetings(
         self,
-        period: Optional[str] = None,
-        body: Optional[str] = None,
-        limit: Optional[int] = None,
-    ) -> List[Meeting]:
+        period: str | None = None,
+        body: str | None = None,
+        limit: int | None = None,
+    ) -> list[Meeting]:
         pass

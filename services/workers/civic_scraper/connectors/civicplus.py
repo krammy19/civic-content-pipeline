@@ -1,7 +1,6 @@
 import calendar
 import re
 from datetime import date
-from typing import List, Optional
 from urllib.parse import urljoin
 
 import requests
@@ -35,7 +34,7 @@ class CivicPlusConnector(CivicConnector):
         jurisdiction: str,
         base_url: str,
         body: str = "City Council",
-        category_id: Optional[str] = None,
+        category_id: str | None = None,
     ):
         self.jurisdiction = jurisdiction
         self.base_url = base_url.rstrip("/")
@@ -48,9 +47,7 @@ class CivicPlusConnector(CivicConnector):
 
     def discover_categories(self) -> dict[str, str]:
         """Return {lowercase_body_name: category_id} from /AgendaCenter."""
-        r = requests.get(
-            f"{self.base_url}/AgendaCenter", headers=_HEADERS, timeout=10
-        )
+        r = requests.get(f"{self.base_url}/AgendaCenter", headers=_HEADERS, timeout=10)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
         cats: dict[str, str] = {}
@@ -100,7 +97,7 @@ class CivicPlusConnector(CivicConnector):
     # Search URL construction
     # ------------------------------------------------------------------
 
-    def _search_url(self, period: Optional[str], cid: str) -> str:
+    def _search_url(self, period: str | None, cid: str) -> str:
         base = f"{self.base_url}/AgendaCenter/Search/?term=&CIDs={cid}"
 
         if period is None:
@@ -124,14 +121,15 @@ class CivicPlusConnector(CivicConnector):
         """'Agenda for the May 6, 2025 City Council Meeting.' → 'City Council'"""
         m = re.search(
             r"(?:Agenda for(?: the)?\s+\w+\s+\d+,\s+\d+\s+)(.+?)(?:\s+Meeting\.?)?$",
-            title, re.IGNORECASE,
+            title,
+            re.IGNORECASE,
         )
         return m.group(1).strip() if m else fallback
 
-    def _parse_meetings(self, html: str, limit: Optional[int]) -> List[Meeting]:
+    def _parse_meetings(self, html: str, limit: int | None) -> list[Meeting]:
         soup = BeautifulSoup(html, "html.parser")
         rows = soup.find_all("tr", class_="catAgendaRow")
-        meetings: List[Meeting] = []
+        meetings: list[Meeting] = []
 
         for row in rows:
             strong = row.find("strong", attrs={"aria-label": True})
@@ -157,18 +155,20 @@ class CivicPlusConnector(CivicConnector):
             video_a = media_td.find("a", href=True) if media_td else None
             video_url = urljoin(self.base_url, video_a["href"]) if video_a else None
 
-            meetings.append(Meeting(
-                source="civicplus",
-                jurisdiction=self.jurisdiction,
-                body=body,
-                date=date_str,
-                time=None,
-                location=None,
-                meeting_details_url=agenda_url,
-                agenda_url=agenda_url,
-                minutes_url=minutes_url,
-                video_url=video_url,
-            ))
+            meetings.append(
+                Meeting(
+                    source="civicplus",
+                    jurisdiction=self.jurisdiction,
+                    body=body,
+                    date=date_str,
+                    time=None,
+                    location=None,
+                    meeting_details_url=agenda_url,
+                    agenda_url=agenda_url,
+                    minutes_url=minutes_url,
+                    video_url=video_url,
+                )
+            )
 
             if limit is not None and len(meetings) >= limit:
                 break
@@ -181,10 +181,10 @@ class CivicPlusConnector(CivicConnector):
 
     def list_meetings(
         self,
-        period: Optional[str] = None,
-        body: Optional[str] = None,
-        limit: Optional[int] = None,
-    ) -> List[Meeting]:
+        period: str | None = None,
+        body: str | None = None,
+        limit: int | None = None,
+    ) -> list[Meeting]:
         if body:
             self.body = body
             self._category_id = None

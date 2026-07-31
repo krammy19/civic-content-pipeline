@@ -1,6 +1,7 @@
+from urllib.parse import urljoin
+
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 
 BASE_URL = "https://sanjose.legistar.com/"
 CALENDAR_URL = urljoin(BASE_URL, "Calendar.aspx")
