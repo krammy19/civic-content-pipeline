@@ -8,6 +8,7 @@ dependencies = [
     "anthropic>=0.103.1",
     "beautifulsoup4>=4.14.3",
     "pdfplumber>=0.11.9",
+    "pydantic>=2.13.4",
     "pyyaml>=6.0.3",
     "requests>=2.33.1",
     "selenium>=4.43.0",
@@ -15,6 +16,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "fpdf2>=2.8.7",
     "pytest>=8.3",
     "ruff>=0.8",
 ]

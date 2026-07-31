@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from civic_scraper.connectors.base import CivicConnector
-from civic_scraper.models import AgendaItem, Attachment, LegislationDetails, Meeting
+from civic_scraper.models import Attachment, LegislationDetails, LegistarAgendaEntry, Meeting
 
 # Alternate lowercase header names some Legistar sites use for each canonical column
 _COLUMN_ALIASES: dict[str, list[str]] = {
@@ -22,6 +22,11 @@ _COLUMN_ALIASES: dict[str, list[str]] = {
     "meeting location": ["location"],
     "meeting details": ["details"],
 }
+
+# Video links (and occasionally others) render as href="#" with the real target
+# hidden in a JS popup handler, e.g. onclick="window.open('Video.aspx?...','video')" —
+# confirmed on Oakland's and San Francisco's live calendars.
+_ONCLICK_WINDOW_OPEN_RE = re.compile(r"window\.open\(\s*'([^']+)'")
 
 
 class LegistarConnector(CivicConnector):
@@ -240,8 +245,19 @@ class LegistarConnector(CivicConnector):
 
     def _extract_link(self, cell) -> str | None:
         link = cell.find("a")
-        if link and link.get("href"):
-            return urljoin(self.base_url, link["href"])
+        if not link:
+            return None
+
+        href = (link.get("href") or "").strip()
+        if href and href != "#":
+            return urljoin(self.base_url, href)
+
+        # Real href is a no-op placeholder; the actual target is in an onclick
+        # JS popup handler instead (Legistar's own Video column does this).
+        onclick_match = _ONCLICK_WINDOW_OPEN_RE.search(link.get("onclick") or "")
+        if onclick_match:
+            return urljoin(self.base_url, onclick_match.group(1))
+
         return None
 
     def _go_to_next_page(self, driver, wait) -> bool:
@@ -259,14 +275,14 @@ class LegistarConnector(CivicConnector):
         except Exception:
             return False
 
-    def get_meeting_details(self, meeting_details_url: str) -> list[AgendaItem]:
+    def get_meeting_details(self, meeting_details_url: str) -> list[LegistarAgendaEntry]:
         """Fetch and parse agenda items from a meeting details page.
 
         Args:
             meeting_details_url: URL to the meeting details page
 
         Returns:
-            List of AgendaItem objects for significant items (those with File # entries)
+            List of LegistarAgendaEntry objects for significant items (those with File # entries)
         """
         try:
             response = requests.get(meeting_details_url, timeout=30)
@@ -275,7 +291,7 @@ class LegistarConnector(CivicConnector):
         except Exception:
             return []
 
-    def _parse_agenda_items(self, html: str) -> list[AgendaItem]:
+    def _parse_agenda_items(self, html: str) -> list[LegistarAgendaEntry]:
         soup = BeautifulSoup(html, "html.parser")
         table = soup.find("table", {"id": "ctl00_ContentPlaceHolder1_gridMain_ctl00"})
         if not table:
@@ -309,13 +325,18 @@ class LegistarConnector(CivicConnector):
                 if not legislation_url:
                     continue
 
+                title = cell_text(cells, "title")
+                if title is None:
+                    # No title text to key off of - not a usable agenda entry.
+                    continue
+
                 items.append(
-                    AgendaItem(
+                    LegistarAgendaEntry(
                         file_number=cell_text(cells, "file #"),
                         version=cell_text(cells, "ver."),
                         agenda_note=cell_text(cells, "agenda note"),
                         type=cell_text(cells, "type"),
-                        title=cell_text(cells, "title"),
+                        title=title,
                         action=cell_text(cells, "action"),
                         result=cell_text(cells, "result"),
                         legislation_url=legislation_url,

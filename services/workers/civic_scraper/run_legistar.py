@@ -54,7 +54,7 @@ def save_meetings(jurisdiction: str, meetings: list, period_label: str) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"meetings_{period_label}_sample.json"
     with out_path.open("w", encoding="utf-8") as f:
-        json.dump([m.to_dict() for m in meetings], f, indent=2)
+        json.dump([m.model_dump(mode="json") for m in meetings], f, indent=2)
     return out_path
 
 
@@ -77,7 +77,7 @@ def save_agenda(jurisdiction: str, meeting: dict, items: list) -> Path:
     date_slug = meeting["date"].replace("/", "-")
     out_path = out_dir / f"agenda_{date_slug}.json"
     with out_path.open("w", encoding="utf-8") as f:
-        json.dump([i.to_dict() for i in items], f, indent=2)
+        json.dump([i.model_dump(mode="json") for i in items], f, indent=2)
     return out_path
 
 
@@ -138,7 +138,8 @@ def main():
         items, target = [], None
         for candidate in with_url:
             try:
-                candidate_dict = candidate.to_dict() if hasattr(candidate, "to_dict") else candidate
+                has_model_dump = hasattr(candidate, "model_dump")
+                candidate_dict = candidate.model_dump(mode="json") if has_model_dump else candidate
                 result = extract_agenda(city, candidate_dict)
                 if result:
                     items, target = result, candidate_dict

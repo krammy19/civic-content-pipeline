@@ -86,6 +86,30 @@ class TestGetCell:
         link = connector._get_cell_link(cols, col_index, "Agenda")
         assert link == "https://testville.legistar.com/View.ashx?ID=1"
 
+    def test_get_cell_link_falls_back_to_onclick_window_open(self, connector):
+        # Legistar's Video column: href="#" is a no-op, the real target is in onclick.
+        # Confirmed against oakland.legistar.com's live calendar.
+        html = (
+            '<table><tr><td><a href="#" onclick="window.open('
+            "'Video.aspx?Mode=Granicus&amp;ID1=7686&amp;Mode2=Video','video');"
+            'return false;">Video</a></td></tr></table>'
+        )
+        cols = _table(html).find("tr").find_all("td")
+        col_index = {"video": 0}
+        link = connector._get_cell_link(cols, col_index, "Video")
+        assert (
+            link == "https://testville.legistar.com/Video.aspx?Mode=Granicus&ID1=7686&Mode2=Video"
+        )
+
+    def test_get_cell_link_bare_hash_href_with_no_onclick_returns_none(self, connector):
+        cols = (
+            _table('<table><tr><td><a href="#">Video</a></td></tr></table>')
+            .find("tr")
+            .find_all("td")
+        )
+        col_index = {"video": 0}
+        assert connector._get_cell_link(cols, col_index, "Video") is None
+
 
 class TestParseMeetings:
     FULL_HEADERS = [
