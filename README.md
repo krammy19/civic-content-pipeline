@@ -19,8 +19,8 @@ before a reader ever sees it.
 platform's calendar page into a normalized `Meeting` object — works and
 is tested. The extraction, validation, and eval layers that make this a
 genuinely quality-controlled system are not built yet. See
-[Current limitations](#current-limitations) below and
-[`SPEC.md`](SPEC.md) for the build plan.
+[Current limitations](#current-limitations) and
+[Roadmap](#roadmap) below.
 
 ## Architecture
 
@@ -94,20 +94,19 @@ HTTP and needs nothing extra.
 
 ## Current limitations
 
-Stated plainly, per [`SPEC.md`](SPEC.md)'s priority on honesty over
-feature count:
+Stated plainly:
 
 - **No extraction, validation, eval, or digest layers yet.** Everything
   past "get a normalized `Meeting` object onto disk" — the actual
-  quality-controlled content system described above — is unbuilt. It's
-  the subject of [`SPEC.md`](SPEC.md)'s milestones M1 through M5.
+  quality-controlled content system described above — is unbuilt. See
+  [Roadmap](#roadmap).
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
-  [`SPEC.md`](SPEC.md#2-decisions-already-made) narrows scope
-  deliberately to San Jose plus exactly one second city on a different
-  platform, on the reasoning that two platforms proven well is worth
-  more than dozens proven shallowly. The registry is left as-is (useful
-  for future breadth) but isn't the near-term priority.
+  The near-term plan is to prove the pipeline well on a small, deliberate
+  set of cities across two different platforms rather than spread thin
+  across many — two platforms proven well is worth more than dozens
+  proven shallowly. The registry is left as-is (useful for future
+  breadth) but isn't the near-term priority.
 - **Header-mapping logic is unit-tested; the rest of the pipeline
   mostly isn't.** `tests/connectors/test_legistar.py` covers the
   resilient-parsing logic in detail. Document fetch, agenda/minutes PDF
@@ -119,10 +118,43 @@ feature count:
   [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md#output-layout).
 - **No database.** Output is JSON files on disk, overwritten on every
   run — no history, no query interface beyond reading files directly.
-- **Storage model still uses plain dataclasses, not the Pydantic schema
-  in [`SPEC.md`](SPEC.md#4-data-model).** Provenance and per-field
-  confidence — required for the eval harness this project is ultimately
-  meant to demonstrate — don't exist in the current model at all.
+- **Storage model still uses plain dataclasses, not a validated schema.**
+  Provenance (which source text a value was drawn from) and per-field
+  confidence — both required for a real eval harness — don't exist in
+  the current model at all. That's a prerequisite for the extraction
+  layer below, not an afterthought.
+
+## Roadmap
+
+Rough shape of what comes after the current ingestion layer, in the
+order it's planned:
+
+1. **Schema migration.** Move off plain dataclasses onto a validated
+   schema with mandatory provenance (source text + offset) and per-field
+   confidence on every extracted value, plus connector hardening
+   (optional-column handling, video URL reliability) and real document
+   fetch/caching for agenda and minutes PDFs.
+2. **Extraction layer.** LLM-based structured extraction of agenda items
+   — motions, votes, people, locations, dollar amounts — using tool use
+   so output conforms to the schema by construction, not free-text
+   parsing. Provenance gets verified deterministically (does the cited
+   span actually appear in the source document) as a hallucination
+   check.
+3. **Eval harness.** A hand-annotated gold set, scored for precision,
+   recall, hallucination rate, and confidence calibration per field
+   type, gating CI against regression.
+4. **Review queue.** Low-confidence extractions held back from
+   publication and routed to a human review step; accepted corrections
+   feed back into the gold set.
+5. **Digest generation and style enforcement.** Plain-language meeting
+   summaries generated from validated extractions, checked against a
+   written style guide by both deterministic rules and an LLM judge.
+6. **Metrics and drift detection.** Per-city health metrics over time,
+   flagging when a city's template changes enough to degrade extraction
+   quality (connector rot).
+7. **A second platform.** One more connector on a platform Legistar
+   doesn't share anything with, run through the same eval suite, with
+   results reported honestly — including where they're worse.
 
 ## Documentation
 
@@ -132,7 +164,6 @@ feature count:
 | [`docs/data-model.md`](docs/data-model.md) | Every field on `Meeting`, `AgendaItem`, `LegislationDetails`, `Attachment` |
 | [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
-| [`SPEC.md`](SPEC.md) | The build plan this project is currently being developed against |
 
 ## Project layout
 

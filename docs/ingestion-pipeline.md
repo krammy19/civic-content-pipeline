@@ -3,8 +3,8 @@
 How meeting data actually gets from a municipal website onto disk as
 normalized JSON today — the runners, their config, and the two phases
 each one executes. This describes the current connector-based pipeline
-only; the extraction/validation/digest stages in
-[`SPEC.md`](../SPEC.md#3-target-architecture) are not built yet.
+only; the extraction/validation/digest stages on the
+[README's roadmap](../README.md#roadmap) are not built yet.
 
 ## Two phases, same shape everywhere
 

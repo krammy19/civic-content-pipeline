@@ -5,3 +5,6 @@ venv/
 .claude/settings.local.json
 .ruff_cache/
 .pytest_cache/
+
+# Internal build spec — guides local development only, not for the public repo.
+SPEC.md

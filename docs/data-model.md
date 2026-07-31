@@ -6,12 +6,11 @@ dataclasses defined in
 This is the contract downstream code is written against — it never sees
 platform-specific shapes.
 
-> **Note:** this file is hand-maintained today. Per
-> [`SPEC.md`](../SPEC.md#3-target-architecture), once `models.py` is
-> migrated to Pydantic (M1) this file becomes generated output —
-> `checks/docs_drift.py` (M6) will fail CI if the committed file diverges
-> from the live models. Until then, keep it in sync by hand when a field
-> changes.
+> **Note:** this file is hand-maintained today. Once `models.py` migrates
+> to a validated schema (see the [README's roadmap](../README.md#roadmap)),
+> this file is intended to become generated output instead, with CI
+> failing if the committed file diverges from the live models. Until
+> then, keep it in sync by hand when a field changes.
 
 ## Meeting
 
@@ -84,8 +83,9 @@ values, and never add platform-specific fields to the shared model.
 
 ## Where this is going
 
-Section 4 of [`SPEC.md`](../SPEC.md#4-data-model) defines the target
-Pydantic schema this migrates to: `Provenance` and per-field `confidence`
-on every extracted value, plus new entities (`Motion`, `VoteRecord`,
-`Person`, `Location`, `MonetaryAmount`) that don't exist in the current
-dataclasses at all. That migration is M1 work, not reflected above.
+The planned schema migration (see the
+[README's roadmap](../README.md#roadmap)) adds `Provenance` and
+per-field `confidence` to every extracted value, plus new entities
+(motions, votes, people, locations, monetary amounts) that don't exist
+in the current dataclasses at all. That migration hasn't happened yet —
+none of it is reflected above.

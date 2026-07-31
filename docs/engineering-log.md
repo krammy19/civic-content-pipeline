@@ -4,10 +4,10 @@
 > then edited by hand into the document below — cut down to the
 > decisions and reasoning worth keeping, with environment-setup notes
 > and other session noise removed. It is not hidden that AI assistance
-> was part of building this project; the editing is the point. See
-> [SPEC.md](../SPEC.md) for how work on this repo is directed going
-> forward, and this log for why the parts that already exist look the
-> way they do.
+> was part of building this project; the editing is the point. See the
+> [README](../README.md) for the current state of the project and where
+> it's headed, and this log for why the parts that already exist look
+> the way they do.
 
 ## Project origin
 
@@ -115,13 +115,13 @@ expose a platform's raw schema to anything downstream:
 Platform HTML → Connector Parser → Normalized Meeting Model → downstream AI / search / alerts
 ```
 
-## Where this was heading, and where SPEC.md picks it up
+## Where this was heading, and where the roadmap picks it up
 
 The framing shift that mattered most during this phase: the project
 stopped being thought of as "a scraper script" and became "a civic data
-ingestion and normalization platform." [`SPEC.md`](../SPEC.md) carries
-that framing forward and sharpens it further — this is a
-quality-controlled content system, where extraction is graded against an
-eval suite and gated in CI, not just a normalization layer. The
-connector architecture and the header-mapping discipline described above
-are exactly what that next phase is built on top of.
+ingestion and normalization platform." The [README's roadmap](../README.md#roadmap)
+carries that framing forward and sharpens it further — this is meant to
+become a quality-controlled content system, where extraction is graded
+against an eval suite and gated in CI, not just a normalization layer.
+The connector architecture and the header-mapping discipline described
+above are exactly what that next phase is built on top of.

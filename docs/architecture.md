@@ -2,10 +2,9 @@
 
 This describes the system as it exists today: a connector-based
 ingestion layer that normalizes municipal meeting data into one schema.
-It does not describe the extraction/eval/digest layers in
-[`SPEC.md`](../SPEC.md) — those are the target architecture, not yet
-built. Where this doc and SPEC.md's target layout disagree, SPEC.md
-wins; this doc will be updated as each milestone lands.
+It does not describe the extraction, validation, eval, or digest layers
+planned on top of it (see the [README](../README.md#roadmap)) — those
+don't exist yet. This doc will be updated as each of those lands.
 
 ## Overview
 
@@ -123,8 +122,9 @@ resolved `legistar_url`, or a resolved `civicplus_base_url` +
 `civicplus_category_id`. Detected-but-unconnected platforms (Granicus,
 CivicClerk, PrimeGov, IQM2) are recorded so the next connector to be
 built has a ready-made target list, but they're inert until it exists.
-Per [`SPEC.md`](../SPEC.md#2-decisions-already-made), scope for now is
-Legistar plus exactly one second city on a different platform — building
+Near-term scope is deliberately Legistar plus exactly one second city on
+a different platform — see the README's
+[current limitations](../README.md#current-limitations) — so building
 out every detected platform is explicitly not the near-term goal.
 
 ## Directory layout (current)
@@ -154,6 +154,7 @@ civic-engagement-app/
 output path relative to the current working directory rather than the
 repo root — a known inconsistency, not yet fixed.
 
-See [`SPEC.md`](../SPEC.md#3-target-architecture) for the target layout
-this is migrating toward (Pydantic models, an extraction layer, an eval
-harness, digest generation) and the milestone order it's being built in.
+See the [README's roadmap](../README.md#roadmap) for the target
+architecture this is migrating toward (a validated schema, an extraction
+layer, an eval harness, digest generation) and the order it's being
+built in.
