@@ -1,0 +1,14 @@
+{
+  "id": "unknown-citation",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 1 item.\n\n## Consent Calendar\n\nThe Council approved a $250,000 increase to its contract with CSG Advisors (Item 9.9).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "2.8"
+  ],
+  "people": [],
+  "facts_block": "## Consent Calendar\n\nItem 2.8: Contract amendment with CSG Advisors\n  - Amount: $250,000 (contract)\n  - Motion: outcome: passed, seconded by Rosemary Kamei\n  - Person: Rosemary Kamei (councilmember)",
+  "expected_findings": [
+    "unknown_citation",
+    "unsupported_claim"
+  ],
+  "notes": "Citing a nonexistent item number is caught by the deterministic check, and the judge reasonably treats a citation to a nonexistent item as an unsupported claim too - the two tiers overlap here rather than partition cleanly, which is expected, not a bug."
+}

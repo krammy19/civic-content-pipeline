@@ -1,0 +1,13 @@
+{
+  "id": "reading-level-too-high",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council reviewed a report.\n\n## Reports\n\nThe municipality's appropriation ordinance amendments necessitate comprehensive reconciliation of budgetary classifications across departments (Item 3.1).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "3.1"
+  ],
+  "people": [],
+  "facts_block": "## Reports\n\nItem 3.1: Report on appropriation ordinance amendments requiring reconciliation of budgetary classifications across departments",
+  "expected_findings": [
+    "reading_level"
+  ],
+  "notes": "Deliberately dense, multisyllabic bureaucratic prose - no other rule violated."
+}

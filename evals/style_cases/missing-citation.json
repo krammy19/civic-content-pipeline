@@ -1,0 +1,13 @@
+{
+  "id": "missing-citation",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 1 item.\n\n## Consent Calendar\n\nThe Council approved a $250,000 increase to its contract with CSG Advisors.\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "2.8"
+  ],
+  "people": [],
+  "facts_block": "## Consent Calendar\n\nItem 2.8: Contract amendment with CSG Advisors\n  - Amount: $250,000 (contract)\n  - Motion: outcome: passed, seconded by Rosemary Kamei\n  - Person: Rosemary Kamei (councilmember)",
+  "expected_findings": [
+    "missing_citation"
+  ],
+  "notes": "A dollar claim with no '(Item X.X)' citation at all."
+}

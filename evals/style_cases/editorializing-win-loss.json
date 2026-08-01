@@ -1,0 +1,13 @@
+{
+  "id": "editorializing-win-loss",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 1 item.\n\n## Consent Calendar\n\nThe Council's 9-2 vote delivered a clear win for the majority, leaving the two dissenting councilmembers on the losing side of the debate (Item 2.8).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "2.8"
+  ],
+  "people": [],
+  "facts_block": "## Consent Calendar\n\nItem 2.8: Contract amendment\n  - Motion: outcome: passed, tally 9-2",
+  "expected_findings": [
+    "editorializing"
+  ],
+  "notes": "The 9-2 vote and its passage are real, cited facts - only the win/loss framing is added, isolating editorializing from unsupported_claim."
+}

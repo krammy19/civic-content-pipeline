@@ -1,0 +1,16 @@
+{
+  "id": "clean-ceremonial",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard one item today.\n\n## Ceremonial Items\n\nCouncilmember George Casey presented a proclamation for Independence Day (Item 1.1).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "1.1"
+  ],
+  "people": [
+    {
+      "raw_name": "George Casey",
+      "role": "councilmember"
+    }
+  ],
+  "facts_block": "## Ceremonial Items\n\nItem 1.1: Proclamation for Independence Day\n  - Person: George Casey (councilmember) - presented the proclamation",
+  "expected_findings": [],
+  "notes": "A clean, minimal ceremonial-only digest. No violations of any kind."
+}

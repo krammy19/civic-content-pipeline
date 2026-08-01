@@ -1,0 +1,13 @@
+{
+  "id": "sentence-too-long",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 1 item.\n\n## Other Actions\n\nThe Council took a long time this evening to talk about many small parts of the plan to change how cars can park downtown before it chose to wait and put off any real vote on the matter until a later meeting date (Item 4.2).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "4.2"
+  ],
+  "people": [],
+  "facts_block": "## Other Actions\n\nItem 4.2: Downtown parking regulations\n  - Motion: outcome: continued to a future meeting",
+  "expected_findings": [
+    "sentence_too_long"
+  ],
+  "notes": "One sentence well past the 40-word ceiling, written in plain short words specifically so it doesn't also trip the reading-level check - word count and grade level are correlated but not the same thing."
+}

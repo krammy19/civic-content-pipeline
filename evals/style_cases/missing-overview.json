@@ -1,0 +1,18 @@
+{
+  "id": "missing-overview",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Consent Calendar\n\nThe Council met today. The Council approved a $250,000 increase to its contract with CSG Advisors, seconded by Councilmember Rosemary Kamei (Item 2.8).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "2.8"
+  ],
+  "people": [
+    {
+      "raw_name": "Rosemary Kamei",
+      "role": "councilmember"
+    }
+  ],
+  "facts_block": "## Consent Calendar\n\nItem 2.8: Contract amendment with CSG Advisors\n  - Amount: $250,000 (contract)\n  - Motion: outcome: passed, seconded by Rosemary Kamei\n  - Person: Rosemary Kamei (councilmember)",
+  "expected_findings": [
+    "missing_overview"
+  ],
+  "notes": "No '## Overview' section at all."
+}

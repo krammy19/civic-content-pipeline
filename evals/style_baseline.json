@@ -1,0 +1,126 @@
+{
+  "model": "claude-sonnet-5",
+  "case_count": 20,
+  "overall": {
+    "precision": 0.4043,
+    "recall": 1.0,
+    "f1": 0.5758,
+    "true_positives": 19,
+    "false_positives": 28,
+    "false_negatives": 0
+  },
+  "rules": {
+    "banned_construction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "editorializing": {
+      "precision": 0.2,
+      "recall": 1.0,
+      "f1": 0.3333,
+      "true_positives": 1,
+      "false_positives": 4,
+      "false_negatives": 0
+    },
+    "missing_citation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "missing_first_reference_title": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "missing_header": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "missing_overview": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "paragraph_too_long": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "reading_level": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "section_order": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "sentence_too_long": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "unexpected_section": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "unknown_citation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "unsupported_claim": {
+      "precision": 0.1667,
+      "recall": 1.0,
+      "f1": 0.2857,
+      "true_positives": 3,
+      "false_positives": 15,
+      "false_negatives": 0
+    },
+    "voice_register": {
+      "precision": 0.1,
+      "recall": 1.0,
+      "f1": 0.1818,
+      "true_positives": 1,
+      "false_positives": 9,
+      "false_negatives": 0
+    }
+  }
+}

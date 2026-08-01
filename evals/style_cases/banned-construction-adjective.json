@@ -1,0 +1,13 @@
+{
+  "id": "banned-construction-adjective",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 1 item.\n\n## Consent Calendar\n\nThe Council approved a historic $250,000 increase to its CSG Advisors contract (Item 2.8).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "2.8"
+  ],
+  "people": [],
+  "facts_block": "## Consent Calendar\n\nItem 2.8: Contract amendment with CSG Advisors\n  - Amount: $250,000 (contract)\n  - Motion: outcome: passed, seconded by Rosemary Kamei\n  - Person: Rosemary Kamei (councilmember)",
+  "expected_findings": [
+    "banned_construction"
+  ],
+  "notes": "'historic' is a value-judgment adjective about the outcome."
+}

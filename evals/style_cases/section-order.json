@@ -1,0 +1,23 @@
+{
+  "id": "section-order",
+  "digest_markdown": "# San Jose City Council -- June 9, 2026\n\n## Overview\n\nThe Council heard 2 items.\n\n## Reports\n\nCity Manager Jennifer Maguire gave a verbal update (Item 3.1).\n\n## Ceremonial Items\n\nCouncilmember George Casey presented a proclamation for Independence Day (Item 1.1).\n\nFull agenda and minutes are available from the City Clerk.\n",
+  "known_item_numbers": [
+    "1.1",
+    "3.1"
+  ],
+  "people": [
+    {
+      "raw_name": "George Casey",
+      "role": "councilmember"
+    },
+    {
+      "raw_name": "Jennifer Maguire",
+      "role": "staff"
+    }
+  ],
+  "facts_block": "## Reports\n\nItem 3.1: Verbal report from City Manager Jennifer Maguire\n\n## Ceremonial Items\n\nItem 1.1: Proclamation for Independence Day\n  - Person: George Casey (councilmember) - presented the proclamation",
+  "expected_findings": [
+    "section_order"
+  ],
+  "notes": "'Reports' appears before 'Ceremonial Items', violating the required fixed order."
+}
