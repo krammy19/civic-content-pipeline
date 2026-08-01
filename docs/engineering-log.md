@@ -184,3 +184,48 @@ path is proven correct against synthetic fixtures
 (`tests/test_document_text.py`) but not yet against a real scanned
 municipal PDF. Neither module is called automatically by any connector
 or runner yet; that wiring is still ahead.
+
+## 2026-07-31 (continued) — Extraction layer, and an honest gap
+
+Second step of the roadmap: the LLM extraction layer itself.
+
+**One wrapper, one place that touches the Anthropic client.** `llm.py`'s
+`call_with_tool()` is now the only thing in the codebase that constructs
+`anthropic.Anthropic()`. Everything else — the new
+`extraction/agenda_item.py` and the older `extraction/staff_report.py`
+(moved and refactored to match, its previously-inline instructions
+pulled out to `prompts/extract_civic_data.v1.md` in the process) — calls
+through it. Caching is keyed on a hash of the full request
+(`prompt_version`, model, messages, tools, tool_choice), so a re-run
+against something already seen costs nothing and hits no network.
+
+**Used the Pydantic schema itself as the tool definition.**
+`extract_agenda_item()` builds its tool's `input_schema` from
+`AgendaItem.model_json_schema()` directly, rather than hand-writing a
+parallel JSON schema next to the model (the way the older
+`staff_report.py` extraction does, with its own hand-maintained
+`_EXTRACT_TOOL` dict). One schema, one source of truth — a field added
+to `AgendaItem` shows up in what Claude is asked to fill in
+automatically, with no second place to remember to update.
+
+**Provenance verification is a string search, not a model call.** The
+one requirement in the spec worth being stubborn about: an extraction
+whose `source_text` isn't actually in the document is a fabrication, and
+that has to be checkable without trusting another model's judgment.
+`verify_provenance()` is a plain substring test. Anything that fails it
+gets dropped before the `AgendaItem` is returned — `tests/extraction/test_agenda_item.py`
+has a fabricated-span case proving this, and a mixed-batch case proving
+a fabrication doesn't take a legitimate extraction down with it.
+
+**The honest gap: this hasn't run against a real model.** No
+`ANTHROPIC_API_KEY` was available in this environment, so
+"`extract_agenda_item()` works" currently means "works against a
+FakeClient that returns whatever a test tells it to." That's real
+coverage of the plumbing — caching, schema construction, provenance
+filtering, the source_document override — but it says nothing about
+whether Claude actually extracts good motions and votes from a real
+agenda PDF's text, which is the part that will need an eval harness
+(next) to even measure. Documented plainly rather than glossed over,
+here and in the README - the difference between "tested" and "validated
+against a real model" matters and this project's whole premise is not
+blurring that line.

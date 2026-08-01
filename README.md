@@ -2,9 +2,9 @@
 
 A content pipeline that ingests municipal government meeting documents —
 agendas, minutes, staff reports — from heterogeneous city platforms,
-will extract structured facts from them with an LLM, validate that
-output against a schema and an eval suite, and publish digests that pass
-automated quality checks.
+extracts structured facts from them with an LLM, will validate that
+output against an eval suite, and publish digests that pass automated
+quality checks.
 
 **The problem:** municipal governments publish meeting records in wildly
 inconsistent formats, across dozens of different platform vendors, with
@@ -17,11 +17,15 @@ before a reader ever sees it.
 
 **Current status: early.** The ingestion layer — connectors that turn a
 platform's calendar page into a normalized, schema-validated `Meeting`
-— works and is tested, and now includes a content-addressed document
-fetch/cache and PDF text extraction with scan detection. The LLM
-extraction, validation, and eval layers that make this a genuinely
-quality-controlled system are not built yet, and fetch isn't wired into
-the connectors/runners automatically. See
+— works and is tested, with a content-addressed document fetch/cache,
+PDF text extraction with scan detection, and an LLM extraction module
+that turns one agenda item's document text into a schema-validated,
+provenance-verified `AgendaItem`. None of that is wired into the
+connectors/runners automatically yet, and the extraction module hasn't
+been run against the live Anthropic API (no key was available while
+building it — see [Current limitations](#current-limitations)). The
+validation gate, eval harness, and digest layers that make this a
+genuinely quality-controlled system are not built at all. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -42,6 +46,10 @@ the connectors/runners automatically. See
             v
    Document fetch + text        <- data/raw/<city>/, content-addressed;
    extraction                       PDF text extraction with scan detection
+            |
+            v
+   LLM extraction (llm.py,      <- forced tool use -> AgendaItem, provenance-verified;
+   extraction/agenda_item.py)      not wired to a runner, not run against the live API yet
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -103,15 +111,24 @@ HTTP and needs nothing extra.
 
 Stated plainly:
 
-- **No extraction, validation, eval, or digest layers yet.** Everything
-  past "get a normalized `Meeting` object onto disk, and fetch/extract
-  text from its documents on request" — the actual quality-controlled
-  content system described above — is unbuilt. See [Roadmap](#roadmap).
-- **Document fetch isn't wired into the connectors or runners.**
-  `fetch_and_extract()` in `document_text.py` works standalone but
-  nothing calls it automatically on a scraped `Meeting`'s
-  `agenda_url`/`minutes_url` yet — that plumbing is the next step, not
-  done.
+- **No validation gate, eval, or digest layers yet.** Everything past
+  "get a schema-validated `Meeting`, fetch/extract its documents, and
+  extract one `AgendaItem` from a document on request" — the actual
+  quality-controlled content system described above — is unbuilt. See
+  [Roadmap](#roadmap).
+- **Nothing is wired together automatically.** `fetch_and_extract()` in
+  `document_text.py` and `extract_agenda_item()` in
+  `extraction/agenda_item.py` both work standalone, but nothing calls
+  them on a scraped `Meeting`'s `agenda_url`/`minutes_url` automatically
+  — that plumbing (and the review/eval layers that should sit between
+  fetch and extraction) is still ahead.
+- **The extraction module has not been run against the live Anthropic
+  API.** No `ANTHROPIC_API_KEY` was available in the environment it was
+  built in. It's tested against a mocked client (`tests/test_llm.py`,
+  `tests/extraction/`) covering caching, tool-use plumbing, and
+  provenance verification — including a fabricated-span test case — but
+  "passes against a mock" and "produces good extractions from a real
+  model" are different claims. The latter is unverified.
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
   The near-term plan is to prove the pipeline well on a small, deliberate
@@ -148,12 +165,16 @@ order it's planned:
    with PDF text extraction and scan detection
    (`document_fetch.py`, `document_text.py`). Not done: wiring fetch into
    the connectors/runners automatically.
-2. **Extraction layer.** LLM-based structured extraction of agenda items
-   — motions, votes, people, locations, dollar amounts — using tool use
-   so output conforms to the schema by construction, not free-text
-   parsing. Provenance gets verified deterministically (does the cited
-   span actually appear in the source document) as a hallucination
-   check.
+2. **Extraction layer — built, not live-validated.** `extraction/agenda_item.py`
+   extracts one agenda item's motions, people, locations, and dollar
+   amounts via forced Claude tool use against `AgendaItem`'s own JSON
+   schema — no free-text parsing. Provenance gets verified
+   deterministically (`verify_provenance()` checks the cited span
+   actually appears in the source document) as a hallucination check,
+   and every Claude call routes through the new `llm.py`, cached on
+   `(prompt_version, model, input)`. What's missing: a real run against
+   the live API (no key was available while building this), and any
+   wiring into a runner.
 3. **Eval harness.** A hand-annotated gold set, scored for precision,
    recall, hallucination rate, and confidence calibration per field
    type, gating CI against regression.
@@ -183,17 +204,20 @@ order it's planned:
 
 ```
 docs/                   architecture, data model, pipeline, engineering log
+prompts/                versioned LLM prompts (never inline in code)
 services/workers/civic_scraper/
     models.py             canonical Pydantic schema
     connectors/           one module per platform + shared interface
-    extractors/           early AI-powered document extraction (staff reports)
+    llm.py                 single cached Claude wrapper - every LLM call goes through this
+    extraction/            LLM-based structured extraction (agenda items, staff reports)
     document_fetch.py      content-addressed document download/cache
     document_text.py       PDF text extraction + scan detection
     cities.yaml            the city registry
     run_all.py             multi-connector ingestion runner
-tests/                  pytest coverage of parsing, models, fetch, and text extraction
+tests/                  pytest coverage of parsing, models, fetch, text extraction, and LLM extraction
 data/processed/         sample output (JSON, one file per city per period)
 data/raw/               fetched agenda/minutes documents, content-addressed
+.cache/llm/             Claude response cache, keyed on (prompt_version, model, input hash)
 ```
 
 Full breakdown in [`docs/architecture.md`](docs/architecture.md#directory-layout-current).

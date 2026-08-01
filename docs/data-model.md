@@ -88,12 +88,17 @@ is **not** the extraction-layer `AgendaItem` below — see
 real Pydantic computed field, so it appears in `model_dump()` output
 automatically rather than needing a custom serializer.
 
-## Extraction output (not populated yet)
+## Extraction output
 
-These models exist now, ahead of the extraction layer that will
-populate them, because the schema is the contract the eval harness gets
-built against — see the [README's roadmap](../README.md#roadmap).
-Nothing in this repo constructs a real (non-test) `AgendaItem` yet.
+`extraction/agenda_item.py` can now construct a real `AgendaItem` via
+Claude tool use — see
+[`architecture.md`](architecture.md#llm-extraction-layer) — but nothing
+calls it automatically from a connector or runner yet, and it hasn't
+been run against the live Anthropic API in the environment these models
+were developed in (no `ANTHROPIC_API_KEY` was available). Treat
+"exists and is tested against a mocked client" and "validated end to
+end against real Claude output" as two different claims until that
+changes.
 
 ### Provenance
 

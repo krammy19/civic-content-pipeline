@@ -2,10 +2,12 @@
 
 This describes the system as it exists today: a connector-based
 ingestion layer that normalizes municipal meeting data into a validated
-schema, plus a document-fetch/text-extraction stage on top of it. It
-does not describe the extraction, validation, eval, or digest layers
-still planned (see the [README](../README.md#roadmap)) — those don't
-exist yet. This doc will be updated as each of those lands.
+schema, a document-fetch/text-extraction stage on top of it, and an
+LLM-based extraction layer that can turn one agenda item's document text
+into a schema-validated `AgendaItem`. It does not describe the
+validation-gate, eval, or digest layers still planned (see the
+[README](../README.md#roadmap)) — those don't exist yet. This doc will
+be updated as each of those lands.
 
 ## Overview
 
@@ -25,6 +27,10 @@ exist yet. This doc will be updated as each of those lands.
    Document fetch + text        <- data/raw/<city>/, content-addressed;
    extraction (document_fetch.py,   PDF text extraction with scan detection
    document_text.py)
+            |
+            v
+   LLM extraction                <- extraction/agenda_item.py, via llm.py (cached)
+   (not wired to a runner yet)      forced tool use -> AgendaItem, provenance-verified
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
@@ -171,22 +177,75 @@ Two small, single-purpose modules sit downstream of the connector layer:
 
 Neither module is wired into the connectors or runners yet — nothing
 calls `fetch_and_extract()` on a `Meeting`'s `agenda_url`/`minutes_url`
-automatically. That wiring, plus the LLM extraction step that would
-consume the fetched text, is the next piece of the
-[roadmap](../README.md#roadmap).
+automatically. That wiring is still on the [roadmap](../README.md#roadmap).
+
+## LLM extraction layer
+
+`llm.py` is the only place in the codebase that touches
+`anthropic.Anthropic()`. Every Claude call — the new agenda-item
+extraction below and the older staff-report extraction — routes through
+its one function, `call_with_tool()`, which:
+
+1. Forces tool use (`tool_choice={"type": "tool", "name": ...}`), never
+   free-text parsing.
+2. Caches the response to `.cache/llm/` (gitignored), keyed on a hash of
+   `(prompt_version, model, messages, tools, tool_choice, max_tokens,
+   thinking)`. A cache hit returns before an Anthropic client is even
+   constructed — re-running extraction against inputs already seen costs
+   zero tokens.
+
+**`extraction/agenda_item.py`** builds its tool's `input_schema` directly
+from `AgendaItem.model_json_schema()` — the Pydantic schema itself is
+what Claude is asked to fill in, so a successful tool call produces
+something `AgendaItem.model_validate()` can construct without a
+hand-written parser in between. The prompt lives in
+[`prompts/extract_agenda_item.v1.md`](../prompts/extract_agenda_item.v1.md),
+not inline in code, so a prompt change is a diff an eval run can be
+attributed to later.
+
+**Provenance verification is the hallucination check, and it's
+deterministic.** Every `Extracted[T]` the model returns carries a
+`provenance.source_text` — the verbatim span it claims supports the
+extraction. `verify_provenance()` checks that span is actually a
+substring of the source document. Anything that fails is dropped before
+the `AgendaItem` is returned; nothing downstream ever sees an
+unverified extraction. This is a plain string containment check, not
+another LLM call, specifically so the check itself can't hallucinate.
+`provenance.source_document` is also overwritten with the real, known
+document identifier after the fact, rather than trusted from the
+model's own output — there's no reason to let it guess something the
+caller already knows.
+
+**`extraction/staff_report.py`** predates the schema-driven approach
+above and extracts free-form structured JSON from a whole staff report
+(fiscal impacts, timelines, stakeholders, cited laws) rather than a
+validated `AgendaItem` for one specific item — no provenance
+verification is applied to its output. Both modules route through the
+same `llm.py`, which is what actually matters for the caching guarantee
+and for having exactly one place that touches the Anthropic client.
+
+Nothing calls `extract_agenda_item()` automatically yet either — it's
+built, tested (with a mocked Anthropic client — no `ANTHROPIC_API_KEY`
+has been available in the environment these changes were developed in,
+so it hasn't been run against the live API), and ready to be wired into
+a runner once the review-queue and eval-harness layers around it exist.
 
 ## Directory layout (current)
 
 ```
 civic-engagement-app/
 ├── docs/                          architecture, data model, pipeline, engineering log
+├── prompts/                        versioned LLM prompts, never inline in code
+│   ├── extract_agenda_item.v1.md
+│   └── extract_civic_data.v1.md
 ├── scripts/
 │   └── scrape_meetings.py         early prototype, kept for reference
 ├── services/workers/
 │   ├── civic_scraper/
 │   │   ├── models.py              canonical Pydantic schema
 │   │   ├── connectors/            one module per platform + the shared ABC
-│   │   ├── extractors/            early AI-powered document extraction (staff reports)
+│   │   ├── llm.py                  single cached Claude wrapper
+│   │   ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
 │   │   ├── document_fetch.py      content-addressed document download/cache
 │   │   ├── document_text.py       PDF text extraction + scan detection
 │   │   ├── cities.yaml            city registry
@@ -198,7 +257,8 @@ civic-engagement-app/
 │   └── data/processed/            sample output when run from services/workers/
 ├── data/processed/                sample output when run from repo root
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
-└── tests/                         pytest coverage of parsing, models, fetch, and text extraction
+├── .cache/llm/                    Claude response cache, keyed on (prompt_version, model, input hash)
+└── tests/                         pytest coverage of parsing, models, fetch, text extraction, and LLM extraction
 ```
 
 `data/processed/` exists in two places because the runners resolve their
@@ -206,5 +266,5 @@ output path relative to the current working directory rather than the
 repo root — a known inconsistency, not yet fixed.
 
 See the [README's roadmap](../README.md#roadmap) for what's still ahead
-(wiring document fetch into the connectors, the LLM extraction layer, an
-eval harness, digest generation) and the order it's being built in.
+(wiring fetch and extraction into a runner, a validation gate, an eval
+harness, digest generation) and the order it's being built in.
