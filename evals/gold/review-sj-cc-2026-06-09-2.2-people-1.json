@@ -1,0 +1,27 @@
+{
+  "id": "review-sj-cc-2026-06-09-2.2-people-1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2026-06-09",
+  "source_document": "san-jose-city-council-2026-06-09-minutes",
+  "item_number": null,
+  "item_title": "Final adoption of Ordinance No. 31328 (East Village BID)",
+  "document_text": "Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The actions below were taken as indicated. (11-0-0)\n\n2.2 Final Adoption of Ordinances. (a) Ordinance No. 31328 - An Ordinance of the City of San José Establishing the East Village Business Improvement District Pursuant to the Parking And Business Improvement Area Law of 1989. [Passed for Publication on 6/2/2026 - Item 8.1 (26-662)]\n\nAction: Ordinance No. 31328 was adopted, establishing the East Village Business Improvement District Pursuant to the Parking And Business Improvement Area Law of 1989. (11-0-0)",
+  "expected": {
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "canonical_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "seconded by Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "annotated_fields": [
+    "people"
+  ],
+  "notes": "Promoted from the review queue (sj-cc-2026-06-09-2.2-people-1); a below-threshold peopl extraction (confidence 0.80) was human-accepted and fed back into the gold set. Only the people field is asserted here - see module docstring."
+}

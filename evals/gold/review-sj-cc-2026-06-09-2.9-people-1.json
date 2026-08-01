@@ -1,0 +1,27 @@
+{
+  "id": "review-sj-cc-2026-06-09-2.9-people-1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2026-06-09",
+  "source_document": "san-jose-city-council-2026-06-09-minutes",
+  "item_number": "2.9",
+  "item_title": "Approval of Free Use of the Rotunda, Wing Meeting Rooms, Council Chambers, East Plaza, West Plaza, and South Plaza, for the 4th Annual Neighborhoods Conference",
+  "document_text": "Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The actions below were taken as indicated. (11-0-0)\n\n2.9 Approval of Free Use of the Rotunda, Wing Meeting Rooms, Council Chambers, East Plaza, West Plaza, and South Plaza, for the 4th Annual Neighborhoods Conference. Adopt a resolution authorizing \"Free Use\" of the Janet Gray Hayes Rotunda, Wing Meeting Rooms, Council Chambers, East Plaza, West Plaza, and South Plaza for the 4th Annual Neighborhoods Conference on Saturday, October 3, 2026, hosted by the Department of Parks, Recreation and Neighborhood Services.\n\nAction: Resolution No. RES2026-176 was adopted, authorizing “Free Use\" of the Janet Gray Hayes Rotunda, Wing Meeting Rooms, Council Chambers, East Plaza, West Plaza, and South Plaza for the 4th Annual Neighborhoods Conference on Saturday, October 3, 2026, hosted by the Department of Parks, Recreation and Neighborhood Services. (11-0-0)",
+  "expected": {
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "canonical_name": null,
+        "role": "councilmember",
+        "source_text": "seconded by Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "annotated_fields": [
+    "people"
+  ],
+  "notes": "Promoted from the review queue (sj-cc-2026-06-09-2.9-people-1); a below-threshold peopl extraction (confidence 0.70) was human-accepted and fed back into the gold set. Only the people field is asserted here - see module docstring."
+}

@@ -1,0 +1,29 @@
+{
+  "id": "review-sj-cc-2026-06-09-6.1-locations-0",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2026-06-09",
+  "source_document": "san-jose-city-council-2026-06-09-minutes",
+  "item_number": "6.1",
+  "item_title": "Actions Related to the 9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award",
+  "document_text": "6.1 Actions Related to the 9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award. (a) Report on bids and award of a contract for the construction of the 9885 - Camera and Card Reader Upgrades Project to the lowest responsive, responsible bidder, Blocka Construction Inc., in the amount of $11,678,000. (b) Approve a 10% contingency in the amount of $1,167,800. (c) Adopt the following 2025-2026 Appropriation Ordinance amendments in the San José-Santa Clara Treatment Plant Capital Fund: (1) Decrease the Preliminary Engineering - Water Pollution Control appropriation to the Environmental Services Department by $1,000,000; (2) Decrease the Plant Infrastructure Improvements appropriation to the Environmental Services Department by $1,000,000; and (3) Increase the Plantwide Security Systems Upgrade to the Environmental Services Department by $2,000,000.\n\nAction: Upon motion by Councilmember Domingo Candelas, seconded by Councilmember Anthony Tordillos, and carried unanimously, (a) the report on bids and award of a contract for the construction of the 9885 - Camera and Card Reader Upgrades Project to the lowest responsive, responsible bidder, Blocka Construction Inc., in the amount of $11,678,000 was accepted; (b) the 10% contingency in the amount of $1,167,800 was approved; and (c) 2025-2026 Appropriation Ordinance No. 31331 was adopted, regarding the amendments in the San José-Santa Clara Treatment Plant Capital Fund. (11-0-0)",
+  "expected": {
+    "motions": [],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "9885 Regional Wastewater Facility",
+        "normalized_address": null,
+        "parcel_id": null,
+        "lat": null,
+        "lon": null,
+        "source_text": "9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award"
+      }
+    ],
+    "amounts": []
+  },
+  "annotated_fields": [
+    "locations"
+  ],
+  "notes": "Promoted from the review queue (sj-cc-2026-06-09-6.1-locations-0); a below-threshold location extraction (confidence 0.60) was human-accepted and fed back into the gold set. Only the locations field is asserted here - see module docstring."
+}

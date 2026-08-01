@@ -1,0 +1,27 @@
+{
+  "id": "review-sj-cc-2026-06-09-2.13-people-1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2026-06-09",
+  "source_document": "san-jose-city-council-2026-06-09-minutes",
+  "item_number": "2.13",
+  "item_title": "Retroactive Approval of \"Free Use\" of the Janet Gray Hayes Rotunda for the African American Community Service Agency's Juneteenth Power 50 Freedom Ball Sponsored by the Office of Mayor Matt Mahan as a City Council Sponsored Special Event to Expend City Funds and Accept Donations of Materials and Services for the Event",
+  "document_text": "Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The actions below were taken as indicated. (11-0-0)\n\n2.13 Retroactive Approval of \"Free Use\" of the Janet Gray Hayes Rotunda for the African American Community Service Agency's Juneteenth Power 50 Freedom Ball Sponsored by the Office of Mayor Matt Mahan as a City Council Sponsored Special Event to Expend City Funds and Accept Donations of Materials and Services for the Event. As recommended by the Rules and Open Government Committee on June 3, 2026: (a) Adopt a resolution retroactively authorizing “Free Use\" of the Janet Gray Hayes Rotunda for the private, invitation-only Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026. (b) Retroactively approve the Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026 as a City Council sponsored Special Event and approve the expenditure of funds. (c) Retroactively approve and accept donations from various individuals, businesses or community groups to support the event.\n\nAction: (a) Resolution No. RES2026-178 was adopted, retroactively approving the authorization of “Free Use” of the Janet Gray Hayes Rotunda for the private, invitation-only Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026, sponsored by the Office of Mayor Mahan. (11-0-0)",
+  "expected": {
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "canonical_name": null,
+        "role": "councilmember",
+        "source_text": "seconded by Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "annotated_fields": [
+    "people"
+  ],
+  "notes": "Promoted from the review queue (sj-cc-2026-06-09-2.13-people-1); a below-threshold peopl extraction (confidence 0.85) was human-accepted and fed back into the gold set. Only the people field is asserted here - see module docstring."
+}

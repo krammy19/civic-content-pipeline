@@ -1,29 +1,29 @@
 {
   "model": "claude-sonnet-5",
-  "gold_set_size": 38,
+  "gold_set_size": 44,
   "fields": {
     "motions": {
-      "precision": 0.825,
-      "recall": 0.9429,
-      "f1": 0.88,
-      "true_positives": 33,
-      "false_positives": 7,
+      "precision": 0.8095,
+      "recall": 0.9444,
+      "f1": 0.8718,
+      "true_positives": 34,
+      "false_positives": 8,
       "false_negatives": 2
     },
     "people": {
-      "precision": 0.7059,
+      "precision": 0.6847,
       "recall": 1.0,
-      "f1": 0.8276,
-      "true_positives": 72,
-      "false_positives": 30,
+      "f1": 0.8128,
+      "true_positives": 76,
+      "false_positives": 35,
       "false_negatives": 0
     },
     "locations": {
-      "precision": 0.4516,
-      "recall": 0.875,
-      "f1": 0.5957,
-      "true_positives": 14,
-      "false_positives": 17,
+      "precision": 0.4545,
+      "recall": 0.8824,
+      "f1": 0.6,
+      "true_positives": 15,
+      "false_positives": 18,
       "false_negatives": 2
     },
     "amounts": {
@@ -37,9 +37,9 @@
   },
   "hallucination_rate": 0.0,
   "schema_validity_rate": 1.0,
-  "mean_confidence": 0.8734,
+  "mean_confidence": 0.8697,
   "calibration": {
-    "expected_calibration_error": 0.1345,
+    "expected_calibration_error": 0.1428,
     "buckets": [
       {
         "range": "[0.00, 0.50)",
@@ -49,27 +49,27 @@
       },
       {
         "range": "[0.50, 0.70)",
-        "count": 14,
-        "mean_confidence": 0.5929,
-        "accuracy": 0.0714
+        "count": 16,
+        "mean_confidence": 0.5938,
+        "accuracy": 0.125
       },
       {
         "range": "[0.70, 0.85)",
-        "count": 24,
-        "mean_confidence": 0.75,
-        "accuracy": 0.2083
+        "count": 27,
+        "mean_confidence": 0.7481,
+        "accuracy": 0.2963
       },
       {
         "range": "[0.85, 0.95)",
-        "count": 90,
-        "mean_confidence": 0.8872,
-        "accuracy": 0.8333
+        "count": 97,
+        "mean_confidence": 0.8871,
+        "accuracy": 0.8041
       },
       {
         "range": "[0.95, 1.01)",
-        "count": 74,
-        "mean_confidence": 0.9561,
-        "accuracy": 0.9324
+        "count": 75,
+        "mean_confidence": 0.956,
+        "accuracy": 0.92
       }
     ]
   }

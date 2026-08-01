@@ -1,0 +1,27 @@
+{
+  "id": "review-sj-cc-2026-06-09-2.8-people-1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2026-06-09",
+  "source_document": "san-jose-city-council-2026-06-09-minutes",
+  "item_number": "2.8",
+  "item_title": "Third Amendment to CSG Advisors consulting agreement",
+  "document_text": "Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The actions below were taken as indicated. (11-0-0)\n\n2.8 Third Amendment to the Standard Consultant Agreement with CSG Advisors Incorporated for Consulting Services. Adopt a resolution authorizing the Housing Director, or his designee, to negotiate and execute the Third Amendment to the Standard Consultant Agreement with CSG Advisors Incorporated, to increase compensation by $250,000, for a total maximum compensation not to exceed $1,000,000, for housing finance and development advisory and housing policy consulting services, for the term ending June 30, 2027.\n\nAction: Resolution No. RES2026-175 was adopted, authorizing the Housing Director or his designee to negotiate and execute the Third Amendment to the Standard Consultant Agreement with CSG Advisors Incorporated for consulting services. (11-0-0)",
+  "expected": {
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "canonical_name": null,
+        "role": "councilmember",
+        "source_text": "seconded by Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "annotated_fields": [
+    "people"
+  ],
+  "notes": "Promoted from the review queue (sj-cc-2026-06-09-2.8-people-1); a below-threshold peopl extraction (confidence 0.80) was human-accepted and fed back into the gold set. Only the people field is asserted here - see module docstring."
+}

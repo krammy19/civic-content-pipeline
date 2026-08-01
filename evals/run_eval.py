@@ -52,6 +52,9 @@ def run_case(case: dict, model: str) -> tuple[metrics.CaseEvaluation, bool]:
     tool-use output didn't validate against AgendaItem at all - a
     real API/schema failure, not something metrics.py's matching logic
     can score."""
+    annotated_fields = case.get("annotated_fields")
+    annotated_fields = tuple(annotated_fields) if annotated_fields is not None else None
+
     try:
         raw_item = extract_agenda_item_raw(
             item_title=case["item_title"],
@@ -63,7 +66,7 @@ def run_case(case: dict, model: str) -> tuple[metrics.CaseEvaluation, bool]:
         print(f"  [SCHEMA FAIL] {case['id']}: {exc}")
         empty = {"motions": [], "people": [], "locations": [], "amounts": []}
         ev = metrics.evaluate_case(
-            case["id"], case["expected"], empty, empty, case["document_text"]
+            case["id"], case["expected"], empty, empty, case["document_text"], annotated_fields
         )
         return ev, False
 
@@ -73,7 +76,12 @@ def run_case(case: dict, model: str) -> tuple[metrics.CaseEvaluation, bool]:
     filtered_dump = filtered_item.model_dump(mode="json")
 
     ev = metrics.evaluate_case(
-        case["id"], case["expected"], raw_dump, filtered_dump, case["document_text"]
+        case["id"],
+        case["expected"],
+        raw_dump,
+        filtered_dump,
+        case["document_text"],
+        annotated_fields,
     )
     return ev, True
 

@@ -204,6 +204,7 @@ def evaluate_case(
     raw_predictions: dict[str, list[dict]],
     filtered_predictions: dict[str, list[dict]],
     document_text: str,
+    annotated_fields: tuple[str, ...] | None = None,
 ) -> CaseEvaluation:
     """Score one case against both its raw and filtered predictions.
 
@@ -212,13 +213,24 @@ def evaluate_case(
     filtered_predictions[field] entries are Extracted[T]-shaped dicts
     ({"value": {...}, "confidence": float, "provenance": {...}}), i.e.
     AgendaItem.model_dump() output.
+
+    annotated_fields restricts scoring to a subset of FIELD_TYPES. A gold
+    case promoted from a single review-queue item (see
+    civic_scraper.review.gold_export) only has real ground truth for one
+    field type - the others are unannotated, not "confirmed empty." Scoring
+    an unannotated field against an empty gold list would count the
+    model's other, unrelated, possibly-correct extractions on that same
+    document as false positives - a case shouldn't be able to penalize
+    fields it never actually judged. Defaults to every field type, which
+    is exactly what every hand-annotated case in the original gold set is.
     """
+    fields_to_score = annotated_fields if annotated_fields is not None else FIELD_TYPES
     field_scores: dict[str, FieldScore] = {}
     hallucinated = 0
     total_raw = 0
     calibration_points: list[tuple[float, bool]] = []
 
-    for field in FIELD_TYPES:
+    for field in fields_to_score:
         gold_facts = gold.get(field, [])
         raw_facts = raw_predictions.get(field, [])
         filtered_facts = filtered_predictions.get(field, [])

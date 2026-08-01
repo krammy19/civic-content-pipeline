@@ -189,6 +189,44 @@ class TestEvaluateCase:
 
         assert ev.calibration_points == [(0.95, False)]
 
+    def test_annotated_fields_excludes_other_fields_from_scoring_entirely(self):
+        # A review-derived case only has ground truth for "people" - it must
+        # not penalize the model for amounts it correctly found on the same
+        # document but that this case never annotated.
+        document_text = "Councilmember Kamei moved. The contract is for $500."
+        gold = {"people": [{"raw_name": "Kamei", "source_text": "Councilmember Kamei"}]}
+        raw = {
+            "people": [_extracted({"raw_name": "Kamei"}, 0.9, "Councilmember Kamei")],
+            "amounts": [_extracted({"raw_text": "$500", "amount_usd": "500"}, 0.9, "$500")],
+        }
+        filtered = raw
+
+        ev = metrics.evaluate_case(
+            "case-4", gold, raw, filtered, document_text, annotated_fields=("people",)
+        )
+
+        assert "amounts" not in ev.field_scores
+        assert ev.field_scores["people"].true_positives == 1
+        # Only the annotated field's extraction contributes a calibration point.
+        assert ev.calibration_points == [(0.9, True)]
+        assert ev.total_raw_extractions == 1
+
+    def test_no_annotated_fields_argument_scores_every_field_as_before(self):
+        document_text = "Councilmember Kamei moved. The contract is for $500."
+        gold = {"people": [{"raw_name": "Kamei", "source_text": "Councilmember Kamei"}]}
+        raw = {
+            "people": [_extracted({"raw_name": "Kamei"}, 0.9, "Councilmember Kamei")],
+            "amounts": [_extracted({"raw_text": "$500", "amount_usd": "500"}, 0.9, "$500")],
+        }
+        filtered = raw
+
+        ev = metrics.evaluate_case("case-5", gold, raw, filtered, document_text)
+
+        # No ground truth for amounts on this fully-annotated case means the
+        # $500 extraction is a real false positive, same as before this feature.
+        assert ev.field_scores["amounts"].false_positives == 1
+        assert ev.total_raw_extractions == 2
+
 
 class TestAggregation:
     def test_aggregate_field_scores_pools_counts_not_averages(self):
