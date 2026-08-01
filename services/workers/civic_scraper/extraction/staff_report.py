@@ -5,21 +5,35 @@ Staff report PDF extraction pipeline.
    Uses pdfplumber to extract full text, then splits on recognized section headers.
    Returns section name -> body text. '_full_text' key holds the complete text.
 
-2. extract_with_claude(sections, client) -> dict
-   Sends priority sections to Claude API for AI-powered structured extraction.
+2. extract_with_claude(sections) -> dict
+   Sends priority sections to Claude (via llm.call_with_tool, cached) for
+   AI-powered structured extraction.
    Returns {fiscal, timelines, history, addresses, stakeholders, lobbying, laws, summary}.
 
-3. fetch_and_extract(pdf_url, client) -> dict
+3. fetch_and_extract(pdf_url) -> dict
    End-to-end helper: download PDF, extract sections, run Claude — no disk storage.
+
+Predates agenda_item.py and doesn't use the Pydantic schema there - this
+extracts free-form structured JSON from a whole staff report rather than
+a schema-validated AgendaItem for one specific item. Both route through
+the same llm.py wrapper, which is what actually matters for caching and
+having exactly one place that touches the Anthropic client.
 """
 
 import io
 import re
+from pathlib import Path
 
 import pdfplumber
 import requests
 
+from civic_scraper.llm import call_with_tool
+
 _HEADERS = {"User-Agent": "Mozilla/5.0 (civic-engagement-app)"}
+
+PROMPT_VERSION = "extract_civic_data.v1"
+PROMPT_PATH = Path(__file__).resolve().parents[4] / "prompts" / f"{PROMPT_VERSION}.md"
+DEFAULT_MODEL = "claude-opus-4-7"
 
 _SECTION_NAMES = [
     "BACKGROUND",
@@ -248,12 +262,15 @@ def extract_sections(pdf_bytes: bytes) -> dict[str, str]:
     return sections
 
 
-def extract_with_claude(sections: dict[str, str], client) -> dict:
+def extract_with_claude(sections: dict[str, str], model: str = DEFAULT_MODEL, client=None) -> dict:
     """Run Claude structured extraction on the given report sections.
 
     Args:
         sections: Output of extract_sections().
-        client: anthropic.Anthropic() instance (caller creates once and reuses).
+        model: Claude model id.
+        client: anthropic.Anthropic-compatible override, mainly for tests.
+            Routes through llm.call_with_tool(), which creates and caches
+            its own client when this is left as None.
 
     Returns:
         Dict with keys: fiscal, timelines, history, addresses, stakeholders,
@@ -264,35 +281,22 @@ def extract_with_claude(sections: dict[str, str], client) -> dict:
         chunks.append(sections.get("_full_text", "")[:8000])
 
     report_text = "\n\n".join(chunks)
+    prompt = PROMPT_PATH.read_text(encoding="utf-8").format(report_text=report_text)
 
-    with client.messages.stream(
-        model="claude-opus-4-7",
-        max_tokens=4096,
-        thinking={"type": "adaptive"},
+    return call_with_tool(
+        prompt_version=PROMPT_VERSION,
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
         tools=[_EXTRACT_TOOL],
         tool_choice={"type": "tool", "name": "extract_civic_data"},
-        messages=[
-            {
-                "role": "user",
-                "content": (
-                    "Extract structured civic information from the following city staff "
-                    "report sections. For each item, include a verbatim context quote from "
-                    "the report. Only extract information explicitly stated in the text — "
-                    "do not infer or add details.\n\n" + report_text
-                ),
-            }
-        ],
-    ) as stream:
-        message = stream.get_final_message()
-
-    for block in message.content:
-        if block.type == "tool_use" and block.name == "extract_civic_data":
-            return block.input
-
-    return {}
+        thinking={"type": "adaptive"},
+        client=client,
+    )
 
 
-def fetch_and_extract(pdf_url: str, client, timeout: int = 30) -> dict:
+def fetch_and_extract(
+    pdf_url: str, model: str = DEFAULT_MODEL, client=None, timeout: int = 30
+) -> dict:
     """Download a staff report PDF and return structured extraction.
 
     PDF bytes are not stored — only the extraction result is returned.
@@ -301,4 +305,4 @@ def fetch_and_extract(pdf_url: str, client, timeout: int = 30) -> dict:
     resp = requests.get(pdf_url, headers=_HEADERS, timeout=timeout)
     resp.raise_for_status()
     sections = extract_sections(resp.content)
-    return extract_with_claude(sections, client)
+    return extract_with_claude(sections, model=model, client=client)
