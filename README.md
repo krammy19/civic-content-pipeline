@@ -20,12 +20,15 @@ platform's calendar page into a normalized, schema-validated `Meeting`
 — works and is tested, with a content-addressed document fetch/cache,
 PDF text extraction with scan detection, and an LLM extraction module
 that turns one agenda item's document text into a schema-validated,
-provenance-verified `AgendaItem`. None of that is wired into the
-connectors/runners automatically yet, and the extraction module hasn't
-been run against the live Anthropic API (no key was available while
-building it — see [Current limitations](#current-limitations)). The
-validation gate, eval harness, and digest layers that make this a
-genuinely quality-controlled system are not built at all. See
+provenance-verified `AgendaItem`. That extraction module has now been
+run against the live Anthropic API and scored by a real eval harness —
+a 38-case hand-annotated gold set, precision/recall/F1 per field,
+zero measured hallucinations, and confidence calibration — with the
+honest result that the model is overconfident (see
+[`docs/evals.md`](docs/evals.md) for the full numbers and how they were
+produced). None of the pipeline is wired into the connectors/runners
+automatically yet, and the review-queue and digest layers that make
+this a genuinely quality-controlled system are not built at all. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -49,7 +52,11 @@ genuinely quality-controlled system are not built at all. See
             |
             v
    LLM extraction (llm.py,      <- forced tool use -> AgendaItem, provenance-verified;
-   extraction/agenda_item.py)      not wired to a runner, not run against the live API yet
+   extraction/agenda_item.py)      run against the live API, scored by evals/ (not wired to a runner yet)
+            |
+            v
+   Eval harness (evals/)         <- 38-case gold set; precision/recall/F1, hallucination rate,
+                                     and confidence calibration per field; CI regression gate
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -122,13 +129,22 @@ Stated plainly:
   them on a scraped `Meeting`'s `agenda_url`/`minutes_url` automatically
   — that plumbing (and the review/eval layers that should sit between
   fetch and extraction) is still ahead.
-- **The extraction module has not been run against the live Anthropic
-  API.** No `ANTHROPIC_API_KEY` was available in the environment it was
-  built in. It's tested against a mocked client (`tests/test_llm.py`,
-  `tests/extraction/`) covering caching, tool-use plumbing, and
-  provenance verification — including a fabricated-span test case — but
-  "passes against a mock" and "produces good extractions from a real
-  model" are different claims. The latter is unverified.
+- **Extraction quality is uneven across fields, and the model is
+  overconfident.** Against the 38-case gold set: motions F1 0.88,
+  amounts F1 0.87, people F1 0.83, but locations F1 only 0.60 (a
+  matching-granularity problem more than an extraction problem — see
+  [`docs/evals.md`](docs/evals.md)). Hallucination rate is 0% and schema
+  validity is 100%, but confidence calibration is not trustworthy as-is
+  (ECE 0.13; the model is right about 83% of the time when it states
+  0.85–0.95 confidence, not what that number implies) — a downstream
+  review-queue threshold would need to sit closer to "anything under
+  0.9," not a naive 0.8 cutoff.
+- **The eval harness doesn't check everything that matters.** Motion
+  matching doesn't verify *who* moved or seconded, only that the outcome
+  and text/tally match; location matching is text-similarity only, with
+  no address-normalization, so distinct-but-related places can
+  under/over-match. Documented in full in
+  [`docs/evals.md`](docs/evals.md#known-limitations-and-what-a-v2-harness-should-fix).
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
   The near-term plan is to prove the pipeline well on a small, deliberate
@@ -165,19 +181,24 @@ order it's planned:
    with PDF text extraction and scan detection
    (`document_fetch.py`, `document_text.py`). Not done: wiring fetch into
    the connectors/runners automatically.
-2. **Extraction layer — built, not live-validated.** `extraction/agenda_item.py`
-   extracts one agenda item's motions, people, locations, and dollar
-   amounts via forced Claude tool use against `AgendaItem`'s own JSON
-   schema — no free-text parsing. Provenance gets verified
-   deterministically (`verify_provenance()` checks the cited span
-   actually appears in the source document) as a hallucination check,
-   and every Claude call routes through the new `llm.py`, cached on
-   `(prompt_version, model, input)`. What's missing: a real run against
-   the live API (no key was available while building this), and any
-   wiring into a runner.
-3. **Eval harness.** A hand-annotated gold set, scored for precision,
-   recall, hallucination rate, and confidence calibration per field
-   type, gating CI against regression.
+2. **Extraction layer — built and validated against the live API.**
+   `extraction/agenda_item.py` extracts one agenda item's motions,
+   people, locations, and dollar amounts via forced Claude tool use
+   against `AgendaItem`'s own JSON schema — no free-text parsing.
+   Provenance gets verified deterministically (`verify_provenance()`
+   checks the cited span actually appears in the source document) as a
+   hallucination check, and every Claude call routes through `llm.py`,
+   cached on `(prompt_version, model, input)`. What's missing: wiring
+   into a runner, and the review-queue layer below.
+3. **Eval harness — done.** A 38-case hand-annotated gold set, scored
+   for precision/recall/F1, hallucination rate, schema validity, and
+   confidence calibration per field type, with a CI regression gate
+   (`.github/workflows/eval.yml`, no-ops without an `ANTHROPIC_API_KEY`
+   secret so it never forces spend). First real run found and fixed two
+   genuine bugs — one in gold-set completeness, one in the person-name
+   matcher — and surfaced honest weaknesses (weak location matching,
+   overconfident calibration) that are documented, not hidden. Full
+   methodology and results: [`docs/evals.md`](docs/evals.md).
 4. **Review queue.** Low-confidence extractions held back from
    publication and routed to a human review step; accepted corrections
    feed back into the gold set.
@@ -198,12 +219,13 @@ order it's planned:
 | [`docs/architecture.md`](docs/architecture.md) | Connector framework, header-driven parsing, document fetch, the city registry, directory layout |
 | [`docs/data-model.md`](docs/data-model.md) | Every field on every model — scrape output, extraction output, and document fetch output |
 | [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
+| [`docs/evals.md`](docs/evals.md) | Eval harness methodology, the gold set, matching rules, and the first real run's results (bugs found, calibration read) |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## Project layout
 
 ```
-docs/                   architecture, data model, pipeline, engineering log
+docs/                   architecture, data model, pipeline, eval methodology, engineering log
 prompts/                versioned LLM prompts (never inline in code)
 services/workers/civic_scraper/
     models.py             canonical Pydantic schema
@@ -214,7 +236,8 @@ services/workers/civic_scraper/
     document_text.py       PDF text extraction + scan detection
     cities.yaml            the city registry
     run_all.py             multi-connector ingestion runner
-tests/                  pytest coverage of parsing, models, fetch, text extraction, and LLM extraction
+evals/                  eval harness: gold set, scoring metrics, orchestration, baseline
+tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, and evals
 data/processed/         sample output (JSON, one file per city per period)
 data/raw/               fetched agenda/minutes documents, content-addressed
 .cache/llm/             Claude response cache, keyed on (prompt_version, model, input hash)

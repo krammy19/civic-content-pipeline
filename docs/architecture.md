@@ -2,10 +2,11 @@
 
 This describes the system as it exists today: a connector-based
 ingestion layer that normalizes municipal meeting data into a validated
-schema, a document-fetch/text-extraction stage on top of it, and an
+schema, a document-fetch/text-extraction stage on top of it, an
 LLM-based extraction layer that can turn one agenda item's document text
-into a schema-validated `AgendaItem`. It does not describe the
-validation-gate, eval, or digest layers still planned (see the
+into a schema-validated `AgendaItem`, and an eval harness that scores
+that extraction layer against a hand-annotated gold set. It does not
+describe the review-queue or digest layers still planned (see the
 [README](../README.md#roadmap)) — those don't exist yet. This doc will
 be updated as each of those lands.
 
@@ -31,6 +32,10 @@ be updated as each of those lands.
             v
    LLM extraction                <- extraction/agenda_item.py, via llm.py (cached)
    (not wired to a runner yet)      forced tool use -> AgendaItem, provenance-verified
+            |
+            v
+   Eval harness (evals/)          <- 38-case gold set; precision/recall/F1, hallucination
+                                      rate, calibration per field; gates CI on regression
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
@@ -224,11 +229,46 @@ verification is applied to its output. Both modules route through the
 same `llm.py`, which is what actually matters for the caching guarantee
 and for having exactly one place that touches the Anthropic client.
 
-Nothing calls `extract_agenda_item()` automatically yet either — it's
-built, tested (with a mocked Anthropic client — no `ANTHROPIC_API_KEY`
-has been available in the environment these changes were developed in,
-so it hasn't been run against the live API), and ready to be wired into
-a runner once the review-queue and eval-harness layers around it exist.
+Nothing calls `extract_agenda_item()` automatically yet — it's built,
+tested against a mocked Anthropic client for the plumbing (caching,
+schema construction, provenance filtering), and separately scored
+against the live API by the eval harness below. It's ready to be wired
+into a runner once the review-queue layer around it exists.
+
+## Eval harness
+
+[`evals/`](../evals/) measures what `extraction/agenda_item.py` actually
+produces from a real model, not just what it's plumbed to do. Full
+methodology, matching rules, and the first real run's results (including
+two real bugs the harness caught) are in
+[`docs/evals.md`](evals.md) — this section covers only how the pieces
+fit together architecturally:
+
+- **`evals/gold/*.json`** — 38 hand-annotated cases, each pairing real
+  verbatim government-document text with hand-determined expected
+  motions/people/locations/amounts. Built by
+  [`scripts/build_gold_set.py`](../scripts/build_gold_set.py), a
+  one-time generator (not re-run automatically — editing gold means
+  editing the JSON or the generator directly).
+- **`evals/metrics.py`** — pure scoring functions with no network or
+  Pydantic dependency: per-field-type matchers, greedy one-to-one
+  matching, precision/recall/F1, hallucination-rate and calibration
+  (Expected Calibration Error) computation. Fully unit-tested against
+  synthetic inputs (`tests/evals/test_metrics.py`), independent of
+  whether a real API call ever runs.
+- **`evals/run_eval.py`** — orchestration: loads gold cases, calls
+  `extract_agenda_item_raw()` (the unfiltered, pre-provenance-check
+  output — scoring the filtered output alone would show 0%
+  hallucinations by construction and hide what the model actually
+  attempts), scores both raw and filtered output, and checks the result
+  against `evals/baseline.json` with a regression gate (fails if any
+  field's F1 drops more than 0.03 below baseline).
+- **Cost safety** — because every extraction call routes through
+  `llm.py`'s cache, running the eval twice against the same gold set and
+  model costs nothing the second time. `.github/workflows/eval.yml`
+  additionally no-ops (exit 0) when no `ANTHROPIC_API_KEY` secret is
+  configured, so the CI job never forces spend on a fork or an
+  unconfigured environment.
 
 ## Directory layout (current)
 
@@ -255,10 +295,11 @@ civic-engagement-app/
 │   │   ├── run_legistar.py        Legistar-only runner (superseded by run_all.py)
 │   │   └── run_all.py             multi-connector ingestion runner
 │   └── data/processed/            sample output when run from services/workers/
+├── evals/                         gold set, scoring metrics, orchestration, committed baseline
 ├── data/processed/                sample output when run from repo root
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
 ├── .cache/llm/                    Claude response cache, keyed on (prompt_version, model, input hash)
-└── tests/                         pytest coverage of parsing, models, fetch, text extraction, and LLM extraction
+└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, and evals
 ```
 
 `data/processed/` exists in two places because the runners resolve their

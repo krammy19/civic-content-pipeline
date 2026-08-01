@@ -229,3 +229,78 @@ agenda PDF's text, which is the part that will need an eval harness
 here and in the README - the difference between "tested" and "validated
 against a real model" matters and this project's whole premise is not
 blurring that line.
+
+## 2026-07-31 (continued) — The eval harness, a real API key, and two real bugs
+
+Third step of the roadmap: close the gap the last entry ended on. An
+`ANTHROPIC_API_KEY` became available, switching everything from "tested
+against a mock" to "measured against a live model" — the model default
+also moved off the placeholder `claude-opus-4-7` to `claude-sonnet-5`
+for cost, since a $5 budget and 38 gold cases don't leave room for a
+frontier-tier model on a first pass.
+
+**The harness was built before it was allowed to spend anything.**
+`evals/metrics.py` — every matcher, the greedy matching algorithm,
+precision/recall/F1, calibration — is pure functions with no network or
+Pydantic dependency, and got 33 unit tests against hand-computed
+synthetic cases before a single real API call was made. The point: if
+the scoring logic itself were wrong, a good-looking number from a real
+run would be meaningless, and there'd be no way to tell the difference
+between "the model did well" and "the scorer is broken" after the fact.
+
+**One call per gold case, ever, by construction.** `llm.py`'s cache
+means the eval is only ever expensive once — re-running after a gold
+fix or a matcher fix hits the cache, not the API. The 38 files in
+`.cache/llm/` after the entire session, matching the gold set size
+exactly, is the actual proof this held.
+
+**The harness caught its own bugs, which is the point of writing one.**
+The first real run scored badly enough (people F1 0.635, locations
+weak, calibration error 0.228) to be worth hand-auditing rather than
+accepting. That audit found two distinct root causes, fixed differently
+on purpose:
+
+1. Item `sj-cc-2025-12-09-8.1`'s gold annotation only captured 1 of 5
+   people named in a joint memo — Claude had correctly extracted the
+   other 4 (Mahan, Tordillos, Ortiz, Casey) and they were scoring as
+   false positives for being *right*. Fixed by completing the gold
+   annotation, not by touching the model or the matcher.
+2. Separately, `match_person()` was failing on names Claude extracted
+   with a fused title ("Mayor Mahan") against gold's bare surname
+   ("Mahan") — a real matcher gap, not a gold gap. Fixed by adding
+   `_strip_title()` before comparing, with regression tests
+   (`test_match_person_ignores_a_title_fused_into_one_side`) proving
+   the fix without loosening the matcher into falsely joining different
+   people. A third case (`sj-cc-2025-12-09-3.6`, a missing "Madison,
+   AL" location) was the same category-1 gap. After both fixes: people
+   F1 0.828, calibration error 0.1345.
+
+**A real bug found by a unit test, not the live API.** Writing
+`test_match_amount_false_for_different_numbers` surfaced that the
+text-similarity fallback in `match_amount()` would call `"$1,000,000"`
+and `"$2,000,000"` a match — they differ by one character. Fixed by
+making the numeric `amount_usd` comparison authoritative whenever both
+sides have one, falling back to text similarity only when neither does.
+This one cost nothing to find because it never needed a real API call
+to expose — exactly the value of testing scoring logic in isolation.
+
+**Final numbers, and what they actually mean.** Against the 38-case
+gold set: motions F1 0.88, amounts F1 0.87, people F1 0.83, locations F1
+0.60 (weakest field — a matching-granularity issue, not necessarily a
+worse extraction; see `docs/evals.md`). Zero measured hallucinations,
+100% schema validity. Calibration is the one number worth stating
+plainly rather than softening: Expected Calibration Error 0.13, and the
+0.85–0.95 confidence bucket is only right 83% of the time — the model
+states confidence higher than it's earned. A downstream review-queue
+threshold built on this would need to sit closer to "hold back anything
+under 0.9," not the naive 0.8 line that would look reasonable without
+this data. Full writeup, matching-rule caveats, and known limitations
+for a v2 harness: [`docs/evals.md`](evals.md).
+
+**CI is wired to gate on this without forcing spend.**
+`.github/workflows/eval.yml` runs the same harness on any PR touching
+`evals/`, `prompts/`, or the extraction/model code, but no-ops (exit 0,
+not a failure) when no `ANTHROPIC_API_KEY` secret is configured — a fork
+or an environment without the secret gets a skipped check, not a broken
+one, and a merge that genuinely regresses a field's F1 by more than 0.03
+against `evals/baseline.json` is what actually fails the gate.
