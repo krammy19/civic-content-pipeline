@@ -10,5 +10,8 @@ venv/
 # not meant to be versioned (grows unbounded, binary PDFs).
 data/raw/
 
+# Claude response cache, keyed on (prompt_version, model, input hash) — see llm.py.
+.cache/
+
 # Internal build spec — guides local development only, not for the public repo.
 SPEC.md
