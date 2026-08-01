@@ -33,7 +33,7 @@ _HEADERS = {"User-Agent": "Mozilla/5.0 (civic-engagement-app)"}
 
 PROMPT_VERSION = "extract_civic_data.v1"
 PROMPT_PATH = Path(__file__).resolve().parents[4] / "prompts" / f"{PROMPT_VERSION}.md"
-DEFAULT_MODEL = "claude-opus-4-7"
+DEFAULT_MODEL = "claude-sonnet-5"
 
 _SECTION_NAMES = [
     "BACKGROUND",

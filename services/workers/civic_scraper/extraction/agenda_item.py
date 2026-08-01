@@ -22,7 +22,7 @@ from civic_scraper.models import AgendaItem, Extracted
 
 PROMPT_VERSION = "extract_agenda_item.v1"
 PROMPT_PATH = Path(__file__).resolve().parents[4] / "prompts" / f"{PROMPT_VERSION}.md"
-DEFAULT_MODEL = "claude-opus-4-7"
+DEFAULT_MODEL = "claude-sonnet-5"
 
 _TOOL_NAME = "extract_agenda_item"
 
@@ -48,10 +48,17 @@ def _tool_schema() -> dict:
     }
 
 
-def _drop_unverified(item: AgendaItem, document_text: str, source_document: str) -> AgendaItem:
+def drop_unverified(item: AgendaItem, document_text: str, source_document: str) -> AgendaItem:
     """Filter every Extracted[T] list down to entries with verified provenance,
     and overwrite provenance.source_document with the real, known document
-    identifier rather than trusting whatever the model put there."""
+    identifier rather than trusting whatever the model put there.
+
+    Public (not just an internal helper of extract_agenda_item()) because
+    the eval harness needs both the raw and the filtered result from the
+    same extraction call: raw to measure hallucination rate and
+    calibration, filtered to measure the precision/recall a caller would
+    actually see in production.
+    """
 
     def _clean(extracted_list):
         kept = []
@@ -79,21 +86,21 @@ def _drop_unverified(item: AgendaItem, document_text: str, source_document: str)
     )
 
 
-def extract_agenda_item(
+def extract_agenda_item_raw(
     *,
     item_title: str,
     item_number: str | None,
-    source_document: str,
     document_text: str,
     model: str = DEFAULT_MODEL,
     client=None,
 ) -> AgendaItem:
-    """Extract one AgendaItem from `document_text`.
+    """Call Claude and return the AgendaItem exactly as it constructed it -
+    no provenance filtering, no source_document override.
 
-    `source_document` identifies where document_text came from (a path or
-    URL, typically a FetchedDocument.source_url) - it's what every
-    verified extraction's provenance ends up citing, regardless of what
-    the model itself produced for that field.
+    This is what `extract_agenda_item()` calls before cleaning up the
+    result. The eval harness calls this directly instead, because
+    measuring hallucination rate requires seeing what the model actually
+    produced before the filtering step quietly removes the fabrications.
     """
     template = PROMPT_PATH.read_text(encoding="utf-8")
     prompt = template.format(
@@ -112,5 +119,31 @@ def extract_agenda_item(
         client=client,
     )
 
-    item = AgendaItem.model_validate(raw)
-    return _drop_unverified(item, document_text, source_document)
+    return AgendaItem.model_validate(raw)
+
+
+def extract_agenda_item(
+    *,
+    item_title: str,
+    item_number: str | None,
+    source_document: str,
+    document_text: str,
+    model: str = DEFAULT_MODEL,
+    client=None,
+) -> AgendaItem:
+    """Extract one AgendaItem from `document_text`, with unverified
+    extractions dropped and provenance.source_document normalized.
+
+    `source_document` identifies where document_text came from (a path or
+    URL, typically a FetchedDocument.source_url) - it's what every
+    verified extraction's provenance ends up citing, regardless of what
+    the model itself produced for that field.
+    """
+    item = extract_agenda_item_raw(
+        item_title=item_title,
+        item_number=item_number,
+        document_text=document_text,
+        model=model,
+        client=client,
+    )
+    return drop_unverified(item, document_text, source_document)
