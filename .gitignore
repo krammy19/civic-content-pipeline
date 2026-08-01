@@ -17,5 +17,9 @@ data/raw/
 # invocation. evals/baseline.json (the committed snapshot) is not ignored.
 evals/results/
 
+# Extractions awaiting human review — runtime state, not source. Accepted/edited
+# decisions get exported into evals/gold/ (committed); the queue itself isn't.
+data/review_queue/
+
 # Internal build spec — guides local development only, not for the public repo.
 SPEC.md

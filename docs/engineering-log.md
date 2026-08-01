@@ -304,3 +304,89 @@ not a failure) when no `ANTHROPIC_API_KEY` secret is configured — a fork
 or an environment without the secret gets a skipped check, not a broken
 one, and a merge that genuinely regresses a field's F1 by more than 0.03
 against `evals/baseline.json` is what actually fails the gate.
+
+## 2026-07-31 (continued) — Confidence routing, the review CLI, and a real scoring bug
+
+Fourth step of the roadmap: M3 established that the model is
+overconfident (ECE 0.13, and only 83% accurate in its own 0.85-0.95
+bucket). M4 is what that finding is actually *for* - a mechanism to hold
+back exactly the extractions that overconfidence finding says can't be
+trusted, and a way to turn a human's resolution of that uncertainty back
+into more gold data rather than a one-off correction that's forgotten
+the moment it's made.
+
+**Confidence routing is per-field-type, and deliberately uniform for
+now.** `review/routing.py`'s `route_agenda_item()` splits an
+already-verified `AgendaItem`'s fields at a threshold (0.9 for every
+field type today) - not because every field type deserves the same
+threshold, but because M3's calibration data was measured in aggregate,
+not broken out per field. Four independently-set thresholds would look
+more sophisticated than the data backing them actually is. `thresholds`
+is a plain dict parameter specifically so this can change once
+per-field calibration exists to justify it.
+
+**The review CLI is intentionally thin.** `python -m civic_scraper.review`
+does exactly four things to a queued item: accept, edit one text field,
+reject, or skip - each persisted immediately to the item's own JSON file
+so a session can be interrupted without losing decisions. The interesting
+part was never the CLI; it's what an accept or edit decision triggers
+next.
+
+**The flywheel: `gold_export.py`.** An accepted or edited review item
+becomes a new `evals/gold/*.json` case, in the same shape as every other
+gold case. Rejections are never exported - a rejection is a confirmed
+non-fact, not ambiguous data worth keeping.
+
+**A real, live test of the whole loop.** Eight real agenda items from
+San José's June 9, 2026 City Council meeting - fetched with the
+project's own `document_fetch`/`document_text` pipeline, a meeting date
+the gold set had never seen - were extracted against the live API and
+routed through confidence thresholds (`scripts/run_review_demo_batch.py`,
+kept in the repo the same way `scripts/build_gold_set.py` records how
+the original gold set was built). Ten field values landed in the review
+queue. A real review session resolved all ten: six accepted (Kamei
+correctly identified as the consent-calendar seconder across four
+separate items, a correctly-attributed motion outcome, a specific
+facility name), four rejected - and the rejections turned out to be the
+more interesting result. Three of them were the model extracting a
+document's own city name ("San José" / "City of San José") as a
+"location," and one was a capital *fund* name misclassified as a
+location. Real, previously-undocumented failure modes, caught by a
+human applying actual judgment rather than a review session that rubber-
+stamps everything - see `docs/review.md` for the full breakdown.
+
+**The harness caught its own bug again - this time in the flywheel
+itself.** The six accepted items were exported and the eval suite
+re-run to confirm it picked them up (`Gold cases: 44`). It did - and
+then reported a regression on *every field*, including fields none of
+the six new cases even asserted anything about. The cause: each
+review-derived case only has real ground truth for the one field type it
+was queued for, but `evaluate_case()` was scoring every field against
+whatever gold provided - and an empty list read as "confirmed: nothing
+here," not "not checked." The source documents behind those six cases
+also contain real, correct amounts and people the model correctly
+extracted, and with no ground truth on file for those fields, every one
+of those correct extractions scored as a false positive. Fixed by adding
+an `annotated_fields` concept to `evaluate_case()`: a case can now
+restrict scoring to a subset of field types, and gold cases from the
+original hand-annotated 38 (which have no `annotated_fields` key at all)
+are scored on every field exactly as before - backward compatible by
+construction, not a version flag anyone has to remember to set. After
+the fix: no regression, and `evals/baseline.json` was updated to the new
+44-case scores as its own explicit, reviewable commit. This is the same
+category of finding as M3's two bugs: the harness catching an honest
+mistake in its own scoring logic before that mistake could quietly
+become "the model got worse" in someone's mind. That's the entire
+reason to build one this carefully, twice now.
+
+**Cost note.** The whole M4 live test - eight new extractions plus
+several eval re-runs over the growing gold set - added twelve entries to
+`.cache/llm/` (fifty total, up from thirty-eight after M3). A few of
+those came from a small, harmless side effect worth naming honestly: a
+gold case's `item_title`/`item_number` are taken from the *model's own*
+extracted `AgendaItem` fields (so the case reads naturally on its own),
+not the exact string originally passed into the extraction call - and
+since both are part of the prompt, a mismatch between the two produces a
+new cache key the first time an eval run touches that case. Harmless and
+cheap, and documented in `docs/review.md` rather than treated as a
+mystery.

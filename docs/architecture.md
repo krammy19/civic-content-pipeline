@@ -4,11 +4,12 @@ This describes the system as it exists today: a connector-based
 ingestion layer that normalizes municipal meeting data into a validated
 schema, a document-fetch/text-extraction stage on top of it, an
 LLM-based extraction layer that can turn one agenda item's document text
-into a schema-validated `AgendaItem`, and an eval harness that scores
-that extraction layer against a hand-annotated gold set. It does not
-describe the review-queue or digest layers still planned (see the
-[README](../README.md#roadmap)) — those don't exist yet. This doc will
-be updated as each of those lands.
+into a schema-validated `AgendaItem`, an eval harness that scores that
+extraction layer against a hand-annotated gold set, and a confidence-based
+review queue that holds back uncertain extractions for a human decision
+and feeds that decision back into the gold set. It does not describe the
+digest layer still planned (see the [README](../README.md#roadmap)) —
+that doesn't exist yet. This doc will be updated as it lands.
 
 ## Overview
 
@@ -34,8 +35,13 @@ be updated as each of those lands.
    (not wired to a runner yet)      forced tool use -> AgendaItem, provenance-verified
             |
             v
-   Eval harness (evals/)          <- 38-case gold set; precision/recall/F1, hallucination
+   Eval harness (evals/)          <- 44-case gold set; precision/recall/F1, hallucination
                                       rate, calibration per field; gates CI on regression
+            |
+            v
+   Review queue (review/)         <- below-threshold extractions held back; a person
+                                      accepts/edits/rejects via the review CLI; accepted
+                                      decisions feed back into the gold set above
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
@@ -270,6 +276,38 @@ fit together architecturally:
   configured, so the CI job never forces spend on a fork or an
   unconfigured environment.
 
+## Confidence routing and the review queue
+
+[`review/`](../services/workers/civic_scraper/review/) sits downstream of
+extraction and answers a question the eval harness surfaced but doesn't
+itself resolve: what should happen to an extraction the model wasn't
+confident about? Full methodology, the review CLI's usage, and the first
+real review session's results are in [`docs/review.md`](review.md); this
+section covers how the pieces fit together:
+
+- **`routing.py`** — `route_agenda_item()` takes an already-verified
+  `AgendaItem` and, per field type, either keeps a value (confidence at
+  or above that field type's threshold) or moves it into a
+  `ReviewQueueItem` (below threshold). Thresholds are a plain dict
+  (`DEFAULT_THRESHOLDS`), not a single global constant, specifically so a
+  field type with its own measured calibration profile can move
+  independently once that data exists.
+- **`models.py` (review-scoped) / `queue.py`** — `ReviewQueueItem` is the
+  file format for `data/review_queue/*.json`: the proposed value, its
+  provenance, and full item/meeting context, plus a `status` a reviewer
+  moves from `pending` to `accepted`/`edited`/`rejected`. `queue.py`
+  reads and writes these files and reports queue volume by status.
+- **`cli.py`** (`python -m civic_scraper.review`) — the interactive
+  decision loop: one item at a time, its provenance span and surrounding
+  source context, accept/edit/reject/skip.
+- **`gold_export.py`** — turns an accepted or edited item into a new
+  `evals/gold/*.json` case, closing the loop between human review and
+  the eval harness. Because a review item only has ground truth for the
+  one field type it covers, the exported case carries an explicit
+  `annotated_fields` list restricting scoring to that field - see
+  `docs/review.md` for the real regression this fixed the first time it
+  came up.
+
 ## Directory layout (current)
 
 ```
@@ -286,6 +324,7 @@ civic-engagement-app/
 │   │   ├── connectors/            one module per platform + the shared ABC
 │   │   ├── llm.py                  single cached Claude wrapper
 │   │   ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
+│   │   ├── review/                 confidence routing, review queue, gold-set flywheel
 │   │   ├── document_fetch.py      content-addressed document download/cache
 │   │   ├── document_text.py       PDF text extraction + scan detection
 │   │   ├── cities.yaml            city registry
@@ -298,8 +337,9 @@ civic-engagement-app/
 ├── evals/                         gold set, scoring metrics, orchestration, committed baseline
 ├── data/processed/                sample output when run from repo root
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
+├── data/review_queue/             below-threshold extractions awaiting human review
 ├── .cache/llm/                    Claude response cache, keyed on (prompt_version, model, input hash)
-└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, and evals
+└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, and review
 ```
 
 `data/processed/` exists in two places because the runners resolve their

@@ -20,15 +20,18 @@ platform's calendar page into a normalized, schema-validated `Meeting`
 — works and is tested, with a content-addressed document fetch/cache,
 PDF text extraction with scan detection, and an LLM extraction module
 that turns one agenda item's document text into a schema-validated,
-provenance-verified `AgendaItem`. That extraction module has now been
-run against the live Anthropic API and scored by a real eval harness —
-a 38-case hand-annotated gold set, precision/recall/F1 per field,
-zero measured hallucinations, and confidence calibration — with the
-honest result that the model is overconfident (see
-[`docs/evals.md`](docs/evals.md) for the full numbers and how they were
-produced). None of the pipeline is wired into the connectors/runners
-automatically yet, and the review-queue and digest layers that make
-this a genuinely quality-controlled system are not built at all. See
+provenance-verified `AgendaItem`. That extraction module has been run
+against the live Anthropic API and scored by a real eval harness — a
+44-case hand-annotated gold set, precision/recall/F1 per field, zero
+measured hallucinations, and confidence calibration — with the honest
+result that the model is overconfident (see [`docs/evals.md`](docs/evals.md)
+for the full numbers). Extractions below a per-field confidence
+threshold are held back from publication and routed to a human review
+queue (`python -m civic_scraper.review`), and accepted review decisions
+feed back into the gold set — see [`docs/review.md`](docs/review.md).
+None of the pipeline is wired into the connectors/runners automatically
+yet, and the digest layer that makes this a genuinely quality-controlled
+system end to end is not built at all. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -55,8 +58,13 @@ this a genuinely quality-controlled system are not built at all. See
    extraction/agenda_item.py)      run against the live API, scored by evals/ (not wired to a runner yet)
             |
             v
-   Eval harness (evals/)         <- 38-case gold set; precision/recall/F1, hallucination rate,
+   Eval harness (evals/)         <- 44-case gold set; precision/recall/F1, hallucination rate,
                                      and confidence calibration per field; CI regression gate
+            |
+            v
+   Review queue (review/)         <- extractions below a per-field confidence threshold are
+                                      held back; python -m civic_scraper.review resolves them;
+                                      accepted decisions feed back into the gold set above
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -125,20 +133,22 @@ Stated plainly:
   [Roadmap](#roadmap).
 - **Nothing is wired together automatically.** `fetch_and_extract()` in
   `document_text.py` and `extract_agenda_item()` in
-  `extraction/agenda_item.py` both work standalone, but nothing calls
-  them on a scraped `Meeting`'s `agenda_url`/`minutes_url` automatically
-  — that plumbing (and the review/eval layers that should sit between
-  fetch and extraction) is still ahead.
+  `extraction/agenda_item.py` both work standalone, and confidence
+  routing/review (`review/routing.py`, `python -m civic_scraper.review`)
+  exists as a standalone step too, but nothing calls any of this on a
+  scraped `Meeting`'s `agenda_url`/`minutes_url` automatically — that
+  plumbing is still ahead.
 - **Extraction quality is uneven across fields, and the model is
-  overconfident.** Against the 38-case gold set: motions F1 0.88,
-  amounts F1 0.87, people F1 0.83, but locations F1 only 0.60 (a
-  matching-granularity problem more than an extraction problem — see
-  [`docs/evals.md`](docs/evals.md)). Hallucination rate is 0% and schema
-  validity is 100%, but confidence calibration is not trustworthy as-is
-  (ECE 0.13; the model is right about 83% of the time when it states
-  0.85–0.95 confidence, not what that number implies) — a downstream
-  review-queue threshold would need to sit closer to "anything under
-  0.9," not a naive 0.8 cutoff.
+  overconfident.** Against the 44-case gold set: motions F1 0.87,
+  amounts F1 0.87, people F1 0.81, but locations F1 only 0.60 (a
+  matching-granularity problem more than an extraction problem, and
+  locations also over-trigger on a document's own self-referential city
+  name — see [`docs/evals.md`](docs/evals.md) and
+  [`docs/review.md`](docs/review.md)). Hallucination rate is 0% and
+  schema validity is 100%, but confidence calibration is not
+  trustworthy as-is (ECE 0.14) — this is exactly why extraction now
+  routes below-threshold values to human review rather than publishing
+  or dropping them outright.
 - **The eval harness doesn't check everything that matters.** Motion
   matching doesn't verify *who* moved or seconded, only that the outcome
   and text/tally match; location matching is text-similarity only, with
@@ -190,18 +200,27 @@ order it's planned:
    hallucination check, and every Claude call routes through `llm.py`,
    cached on `(prompt_version, model, input)`. What's missing: wiring
    into a runner, and the review-queue layer below.
-3. **Eval harness — done.** A 38-case hand-annotated gold set, scored
-   for precision/recall/F1, hallucination rate, schema validity, and
-   confidence calibration per field type, with a CI regression gate
-   (`.github/workflows/eval.yml`, no-ops without an `ANTHROPIC_API_KEY`
-   secret so it never forces spend). First real run found and fixed two
-   genuine bugs — one in gold-set completeness, one in the person-name
-   matcher — and surfaced honest weaknesses (weak location matching,
-   overconfident calibration) that are documented, not hidden. Full
-   methodology and results: [`docs/evals.md`](docs/evals.md).
-4. **Review queue.** Low-confidence extractions held back from
-   publication and routed to a human review step; accepted corrections
-   feed back into the gold set.
+3. **Eval harness — done.** A hand-annotated gold set (44 cases and
+   growing via the review flywheel below), scored for precision/recall/F1,
+   hallucination rate, schema validity, and confidence calibration per
+   field type, with a CI regression gate (`.github/workflows/eval.yml`,
+   no-ops without an `ANTHROPIC_API_KEY` secret so it never forces
+   spend). The first real run found and fixed two genuine bugs — one in
+   gold-set completeness, one in the person-name matcher — and surfaced
+   honest weaknesses (weak location matching, overconfident calibration)
+   that are documented, not hidden. Full methodology and results:
+   [`docs/evals.md`](docs/evals.md).
+4. **Confidence routing and review queue — done.** Extractions below a
+   per-field-type confidence threshold don't publish — they're written
+   to `data/review_queue/` and resolved one at a time by a person via
+   `python -m civic_scraper.review` (accept, edit, or reject). Accepted
+   or edited decisions are exported into new gold cases, closing the
+   loop: human review makes the eval suite stronger over time. The first
+   real review session resolved 10 real queued values from a fresh
+   meeting the gold set had never seen — 6 accepted, 4 correctly
+   rejected — growing the gold set from 38 to 44 cases and surfacing a
+   real gold-set-partial-annotation scoring bug in the process. Full
+   writeup: [`docs/review.md`](docs/review.md).
 5. **Digest generation and style enforcement.** Plain-language meeting
    summaries generated from validated extractions, checked against a
    written style guide by both deterministic rules and an LLM judge.
@@ -220,6 +239,7 @@ order it's planned:
 | [`docs/data-model.md`](docs/data-model.md) | Every field on every model — scrape output, extraction output, and document fetch output |
 | [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
 | [`docs/evals.md`](docs/evals.md) | Eval harness methodology, the gold set, matching rules, and the first real run's results (bugs found, calibration read) |
+| [`docs/review.md`](docs/review.md) | Confidence routing, the review CLI, the gold-set flywheel, and the first real review session's results |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## Project layout
@@ -236,10 +256,12 @@ services/workers/civic_scraper/
     document_text.py       PDF text extraction + scan detection
     cities.yaml            the city registry
     run_all.py             multi-connector ingestion runner
+    review/                confidence routing, review queue, gold-set flywheel
 evals/                  eval harness: gold set, scoring metrics, orchestration, baseline
-tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, and evals
+tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, and review
 data/processed/         sample output (JSON, one file per city per period)
 data/raw/               fetched agenda/minutes documents, content-addressed
+data/review_queue/      below-threshold extractions awaiting human review
 .cache/llm/             Claude response cache, keyed on (prompt_version, model, input hash)
 ```
 
