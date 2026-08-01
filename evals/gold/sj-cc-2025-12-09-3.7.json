@@ -1,0 +1,62 @@
+{
+  "id": "sj-cc-2025-12-09-3.7",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.7",
+  "item_title": "Actions Related to the 9153 - Tenant Improvement 911 Call Center Upgrade Project",
+  "document_text": "3.7 Actions Related to the 9153 - Tenant Improvement 911 Call Center Upgrade (2018 Measure T) Project.\n(a) Award of a contract for the construction of the 9153 - Tenant Improvement 911 Call Center Upgrade (2018 Measure T) Project to Rodan Builders, Inc. for the Base Bid and Bid Alternate No. 1 and Bid Alternate No. 2 in the amount of $6,091,858.\n(b) Approve a 20% contingency in the amount of $1,218,372.\n(c) Adopt the following 2025-2026 Appropriation Ordinance amendments in the Public Safety and Infrastructure Bond:\n(1) Increase the Measure T - Police 911 Call Center Upgrades appropriation to the Public Works Department by $4,873,000; and\n(2) Decrease the Measure T - Program Reserve (Public Safety) appropriation by $4,873,000. Council District 3.\n\nPublic Comment: None provided.\n\nAction: Upon motion by Councilmember Bien Doan, seconded by Councilmember Rosemary Kamei, and carried unanimously, (a) the contract for the construction of the 9153 - Tenant Improvement 911 Call Center Upgrade (2018 Measure T) Project to Rodan Builders, Inc. for the Base Bid and Bid Alternate No. 1 and Bid Alternate No. 2 in the amount of $6,091,858 was awarded; (b) a 20% contingency in the amount of $1,218,372 was approved; (c) Ordinance No. 31283 was adopted, regarding amendments in the Public Safety and Infrastructure Bond to: (1) Increase the Measure T - Police 911 Call Center Upgrades appropriation to the Public Works Department by $4,873,000; and (2) Decrease the Measure T - Program Reserve (Public Safety) appropriation by $4,873,000. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the contract was awarded, the contingency was approved, and Ordinance No. 31283 was adopted",
+        "moved_by": "Bien Doan",
+        "seconded_by": "Rosemary Kamei",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Bien Doan, seconded by Councilmember Rosemary Kamei, and carried unanimously, (a) the contract for the construction"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Bien Doan",
+        "role": "councilmember",
+        "source_text": "Councilmember Bien Doan"
+      },
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Council District 3",
+        "source_text": "Council District 3"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$6,091,858",
+        "amount_usd": "6091858",
+        "kind": "contract",
+        "source_text": "in the amount of $6,091,858 was awarded"
+      },
+      {
+        "raw_text": "$1,218,372",
+        "amount_usd": "1218372",
+        "kind": "contract",
+        "source_text": "a 20% contingency in the amount of $1,218,372 was approved"
+      },
+      {
+        "raw_text": "$4,873,000",
+        "amount_usd": "4873000",
+        "kind": "budget",
+        "source_text": "Increase the Measure T - Police 911 Call Center Upgrades appropriation to the Public Works Department by $4,873,000"
+      }
+    ]
+  },
+  "notes": "SPEC-style hard case: single item with four distinct dollar figures of different kinds (a contract award, a contingency, and a budget appropriation increase/decrease pair) under one motion."
+}

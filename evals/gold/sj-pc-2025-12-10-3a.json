@@ -1,0 +1,43 @@
+{
+  "id": "sj-pc-2025-12-10-3a",
+  "jurisdiction": "San Jose",
+  "body": "Planning Commission",
+  "meeting_date": "2025-12-10",
+  "source_document": "san-jose-planning-commission-2025-12-10-action-minutes",
+  "item_number": "3.a",
+  "item_title": "CP25-001 & ER25-007 utility facility Conditional Use Permit - deferral",
+  "document_text": "3. DEFERRALS AND REMOVALS FROM CALENDAR\n\na. CP25-001 & ER25-007 (Administrative Hearing): Conditional Use Permit to allow the construction of a utility facility, including two above-ground pressure regulators, a control unit cabinet, approximately 160 linear feet of perimeter fencing, and a driveway on an approximately 1,600-square-foot portion of an approximately 40.0-gross-acre site located at 0 Suncrest Avenue (James E. and Jane N. Duarte Trustee, Owner). Council District: 4.\nSTAFF RECOMMENDS:\n1. DEFERRED TO THE JANUARY 14, 2026, PLANNING COMMISSION MEETING PER STAFF REQUEST.\n\nACTION: COMMISSIONER BHANDAL MADE A MOTION TO DEFER TO THE JANUARY 28, 2026, PLANNING COMMISSION MEETING. COMMISSIONER CASEY SECONDED THE MOTION (9-0-2; OLIVERIO & YOUNG ABSENT)",
+  "expected": {
+    "item_type": "action",
+    "motions": [
+      {
+        "text": "a motion to defer to the January 28, 2026, Planning Commission meeting",
+        "moved_by": "Bhandal",
+        "seconded_by": "Casey",
+        "outcome": "continued",
+        "tally": "9-0-2; Oliverio & Young absent",
+        "source_text": "COMMISSIONER BHANDAL MADE A MOTION TO DEFER TO THE JANUARY 28, 2026, PLANNING COMMISSION MEETING"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Bhandal",
+        "role": "unknown",
+        "source_text": "COMMISSIONER BHANDAL MADE A MOTION"
+      },
+      {
+        "raw_name": "Casey",
+        "role": "unknown",
+        "source_text": "COMMISSIONER CASEY SECONDED THE MOTION"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "0 Suncrest Avenue, Council District 4",
+        "source_text": "located at 0 Suncrest Avenue"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Planning Commissioners have no matching Person.role value in the current schema (not mayor, councilmember, staff, applicant, or public) - annotated 'unknown' deliberately. This is a real gap surfaced by hand-annotation, discussed in docs/evals.md. Deferral here is a real voted motion, unlike the two administrative deferrals above, and the staff-recommended date (January 14) differs from what the Commission actually voted for (January 28) - a subtle trap for an extraction that reads only the recommendation instead of the actual vote."
+}

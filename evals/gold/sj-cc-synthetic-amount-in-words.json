@@ -1,0 +1,45 @@
+{
+  "id": "sj-cc-synthetic-amount-in-words",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "synthetic-not-a-real-document",
+  "item_number": "X.1",
+  "item_title": "Synthetic: grant amount written in words rather than digits",
+  "document_text": "X.1 Actions Related to a Regional Broadband Access Grant.\nAdopt a resolution authorizing the City Manager, or her designee, to accept a grant of approximately two million five hundred thousand dollars from the State Broadband Council to expand public wifi access in underserved neighborhoods.\n\nAction: Upon motion by Councilmember Rosemary Kamei, seconded by Councilmember David Cohen, and carried unanimously, Resolution No. RES2025-999 was adopted, authorizing the City Manager, or her designee, to accept a grant of approximately two million five hundred thousand dollars from the State Broadband Council. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-999 was adopted",
+        "moved_by": "Rosemary Kamei",
+        "seconded_by": "David Cohen",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Rosemary Kamei, seconded by Councilmember David Cohen, and carried unanimously, Resolution No. RES2025-999 was adopted"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      },
+      {
+        "raw_name": "David Cohen",
+        "role": "councilmember",
+        "source_text": "Councilmember David Cohen"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "two million five hundred thousand dollars",
+        "amount_usd": "2500000",
+        "kind": "grant",
+        "source_text": "a grant of approximately two million five hundred thousand dollars"
+      }
+    ]
+  },
+  "notes": "SYNTHETIC, not a real document. Every real San Jose staff report/minutes checked in this corpus writes dollar amounts numerically ($X,XXX,XXX) - none spell an amount out in words, so this SPEC hard case ('a dollar amount written in words') doesn't occur naturally in the available sample. Constructed to the same structural pattern as the real consent-calendar items above (named mover/seconder, resolution number, unanimous vote) so it tests the same extraction path, just with the one deliberately different amount format. Disclosed here and in docs/evals.md rather than passed off as scraped."
+}

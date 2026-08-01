@@ -1,0 +1,38 @@
+{
+  "id": "sj-cc-2025-12-09-2.10",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.10",
+  "item_title": "Adoption of an Official Park Name for a New Public Park at Senter Road and Serenade Way",
+  "document_text": "2.10 Adoption of an Official Park Name for a New Public Park at Senter Road and Serenade Way.\nAdopt “Tsugio Fujimoto Park” as the official name for the park located along Senter Road between Serenade Way and Diamond Heights Drive, as recommended by staff and the Parks and Recreation Commission. Council District 2.\n\nCouncilmember Pamela Campos offered comment on Item 2.10 regarding the accomplishments of Tsugio Fujimoto.\n\nAction: “Tsugio Fujimoto Park” was adopted as the official name for the park located along Senter Road between Serenade Way and Diamond Heights Drive. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "“Tsugio Fujimoto Park” was adopted as the official name for the park",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "“Tsugio Fujimoto Park” was adopted as the official name for the park located along Senter"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Pamela Campos",
+        "role": "councilmember",
+        "source_text": "Councilmember Pamela Campos offered comment"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Senter Road between Serenade Way and Diamond Heights Drive",
+        "source_text": "the park located along Senter Road between Serenade Way and Diamond Heights Drive"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Real street-intersection location with no dollar amount at all - checks the model returns an empty amounts list rather than inventing one."
+}

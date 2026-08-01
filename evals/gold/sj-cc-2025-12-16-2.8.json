@@ -1,0 +1,27 @@
+{
+  "id": "sj-cc-2025-12-16-2.8",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.8",
+  "item_title": "Amendment to City Council Policy 9-5, Travel by Elected and Appointed City Officials",
+  "document_text": "2.8 25-1305 Amendment to City Council Policy 9-5, Travel by Elected and Appointed City Officials.\nAdopt a resolution amending the City Council Policy 9-5 for Travel by Elected and Appointed City Officials to revise and conform the travel guidelines portion to the Employee Travel Policy, 1.8.2.\n\nAction: Resolution No. RES2025-419 was adopted, amending City Council Policy 9-5 for Travel by Elected and Appointed City Officials to revise and conform the travel guidelines portion to the Employee Travel Policy, 1.8.2. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-419 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-419 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "A policy-amendment item with no dollar amount, no named person, and no location - a second, independent sparse-item example from a different meeting than 2.1."
+}

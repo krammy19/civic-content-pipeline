@@ -1,0 +1,46 @@
+{
+  "id": "sj-cc-2025-12-09-2.7",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.7",
+  "item_title": "First Amendments to the Agreements with HNTB Corporation and Landrum & Brown, Inc.",
+  "document_text": "2.7 First Amendments to the Agreements with HNTB Corporation and Landrum & Brown, Inc. for On-Call Planning and Environmental Professional Consulting Services at the San Jose Mineta International Airport.\nAdopt a resolution authorizing the City Manager or her designee to negotiate and execute the First Amendments to the Master Consultant Services Agreements with HNTB Corporation and Landrum & Brown, Inc. for on-call planning and environmental professional consulting services, increasing the combined maximum compensation by $1,000,000, from $3,500,000 to $4,500,000, with no change to the term of the agreements.\n\nAction: Resolution No. RES2025-411 was adopted, authorizing the City Manager or her designee to negotiate and execute the First Amendments to the Master Consultant Services Agreements with HNTB Corporation and Landrum & Brown, Inc. for on-call planning and environmental professional consulting services, increasing the combined maximum compensation by $1,000,000, from $3,500,000 to $4,500,000, with no change to the term of the agreements. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-411 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-411 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$1,000,000",
+        "amount_usd": "1000000",
+        "kind": "contract",
+        "source_text": "increasing the combined maximum compensation by $1,000,000"
+      },
+      {
+        "raw_text": "$3,500,000",
+        "amount_usd": "3500000",
+        "kind": "contract",
+        "source_text": "from $3,500,000 to $4,500,000"
+      },
+      {
+        "raw_text": "$4,500,000",
+        "amount_usd": "4500000",
+        "kind": "contract",
+        "source_text": "from $3,500,000 to $4,500,000"
+      }
+    ]
+  },
+  "notes": "Contract amendment with three related dollar figures (increase, old cap, new cap) and no named individual mover/seconder - it's a consent item resolved by resolution number, not a personally-attributed motion."
+}

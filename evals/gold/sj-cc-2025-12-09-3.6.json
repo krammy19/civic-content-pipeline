@@ -1,0 +1,56 @@
+{
+  "id": "sj-cc-2025-12-09-3.6",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.6",
+  "item_title": "First Amendment to the Master Service Agreement with Intergraph Corporation",
+  "document_text": "3.6 First Amendment to the Master Service Agreement with Intergraph Corporation for the Computer Aided Dispatch System.\nAdopt a resolution authorizing the City Manager or her designee to negotiate and execute the First Amendment to the Master Service Agreement with Intergraph Corporation (Madison, AL) for the Computer Aided Dispatch System to:\n(a) Extend the term of the agreement for up to four additional one-year option terms, through December 31, 2029, subject to the appropriation of funds.\n(b) Increase the compensation by $8,030,000, for a total not-to-exceed amount of $19,909,000, subject to the appropriation of funds.\n\nPublic Comment: None provided.\n\nAction: Upon motion by Councilmember Bien Doan, seconded by Councilmember Pamela Campos, and carried unanimously, Resolution No. RES2025-416 was adopted, authorizing the City Manager or her designee to negotiate and execute the First Amendment to the Master Service Agreement with Intergraph Corporation (Madison, AL) for the Computer Aided Dispatch System to:\n(a) Extend the term of the agreement for up to four additional one-year option terms, through December 31, 2029, subject to the appropriation of funds; and (b) Increase the compensation by $8,030,000, for a total not-to-exceed amount of $19,909,000, subject to the appropriation of funds. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-416 was adopted",
+        "moved_by": "Bien Doan",
+        "seconded_by": "Pamela Campos",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Bien Doan, seconded by Councilmember Pamela Campos, and carried unanimously, Resolution No. RES2025-416 was adopted"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Bien Doan",
+        "role": "councilmember",
+        "source_text": "Councilmember Bien Doan"
+      },
+      {
+        "raw_name": "Pamela Campos",
+        "role": "councilmember",
+        "source_text": "Councilmember Pamela Campos"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Madison, AL",
+        "source_text": "Intergraph Corporation (Madison, AL)"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$8,030,000",
+        "amount_usd": "8030000",
+        "kind": "contract",
+        "source_text": "Increase the compensation by $8,030,000"
+      },
+      {
+        "raw_text": "$19,909,000",
+        "amount_usd": "19909000",
+        "kind": "contract",
+        "source_text": "for a total not-to-exceed amount of $19,909,000"
+      }
+    ]
+  },
+  "notes": "Named mover/seconder plus two related dollar amounts (increase and resulting total) in a single multi-year contract amendment. Locations corrected after the first eval run: the vendor's own city (Madison, AL) was a real, verified extraction the model produced that the initial gold annotation had missed - a second instance of the same gold-completeness gap found in sj-cc-2025-12-09-8.1."
+}

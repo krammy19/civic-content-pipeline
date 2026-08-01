@@ -1,0 +1,58 @@
+{
+  "id": "sj-cc-2025-12-09-3.3",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.3",
+  "item_title": "Annual Comprehensive Financial Report for Fiscal Year Ended June 30, 2025",
+  "document_text": "3.3 Annual Comprehensive Financial Report for Fiscal Year Ended June 30, 2025.\nAccept the Fiscal Year 2024-2025 Annual Comprehensive Financial Report for the City of San Jose.\n\nMaria Oberg, Director, Finance Department; Victor Lo, Deputy Director, Finance Department; and Ben Lau, CPA, Partner: Macias, Gina & O'Connell, offered the presentation and responded to questions from Council.\n\nPublic Comment: Brian Darby offered public comment.\n\nAction: Upon motion by Councilmember Michael Mulcahy, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Fiscal Year 2024-2025 Annual Comprehensive Financial Report for the City of San Jose was accepted. (11-0-0)",
+  "expected": {
+    "item_type": "report",
+    "motions": [
+      {
+        "text": "the Fiscal Year 2024-2025 Annual Comprehensive Financial Report was accepted",
+        "moved_by": "Michael Mulcahy",
+        "seconded_by": "Rosemary Kamei",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Michael Mulcahy, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Fiscal Year 2024-2025 Annual Comprehensive Financial Report for the City of San Jose was accepted"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Maria Oberg",
+        "role": "staff",
+        "source_text": "Maria Oberg, Director, Finance Department"
+      },
+      {
+        "raw_name": "Victor Lo",
+        "role": "staff",
+        "source_text": "Victor Lo, Deputy Director, Finance Department"
+      },
+      {
+        "raw_name": "Ben Lau",
+        "role": "public",
+        "source_text": "Ben Lau, CPA, Partner: Macias, Gina & O'Connell"
+      },
+      {
+        "raw_name": "Brian Darby",
+        "role": "public",
+        "source_text": "Brian Darby offered public comment"
+      },
+      {
+        "raw_name": "Michael Mulcahy",
+        "role": "councilmember",
+        "source_text": "Councilmember Michael Mulcahy"
+      },
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Six distinct people across four roles (two staff, an outside auditor, a public commenter, two councilmembers) with no dollar amount despite being a financial report - tests role classification more than the other cases do. Ben Lau (an external auditing partner, not a city employee) is annotated 'public' since 'staff' should mean city staff specifically."
+}

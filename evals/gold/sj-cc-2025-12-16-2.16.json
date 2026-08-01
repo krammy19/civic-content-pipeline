@@ -1,0 +1,39 @@
+{
+  "id": "sj-cc-2025-12-16-2.16",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.16",
+  "item_title": "Actions Related to the Reallocation of Acquisition Funding for the Gateway Tower Affordable Housing Development",
+  "document_text": "2.16 25-1314 Actions Related to the Reallocation of Acquisition Funding to the Construction-Permanent Loan for the Gateway Tower Affordable Housing Development.\n(a) Accept the staff recommendation on reallocation of the Gateway Tower loan commitment.\n(b) Adopt a resolution authorizing the reallocation of acquisition funding to increase the construction-permanent loan to $38,440,000. Council District 3.\n\nAction: (a) The staff recommendation on reallocation of the Gateway Tower loan commitment was accepted; and (b) Resolution No. RES2025-425 was adopted, authorizing the reallocation of acquisition funding to increase the construction-permanent loan to $38,440,000. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the staff recommendation was accepted and Resolution No. RES2025-425 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Resolution No. RES2025-425 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "Council District 3",
+        "source_text": "Council District 3"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$38,440,000",
+        "amount_usd": "38440000",
+        "kind": "budget",
+        "source_text": "increase the construction-permanent loan to $38,440,000"
+      }
+    ]
+  },
+  "notes": "Large single loan figure for a named affordable-housing project, located only by Council District rather than a street address."
+}

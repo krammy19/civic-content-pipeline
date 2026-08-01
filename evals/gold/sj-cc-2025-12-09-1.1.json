@@ -1,0 +1,24 @@
+{
+  "id": "sj-cc-2025-12-09-1.1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "1.1",
+  "item_title": "Holiday Children Book Drive Week proclamation",
+  "document_text": "1.1 Councilmember Rosemary Kamei presented a proclamation recognizing December 8-14, 2025, as Holiday Children Book Drive Week, celebrating the holidays with the purpose of collecting books for children and promoting literacy in San Jose.",
+  "expected": {
+    "item_type": "ceremonial",
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei presented a proclamation"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Ceremonial item: no motion, no vote, exactly one named councilmember."
+}

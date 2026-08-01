@@ -1,0 +1,43 @@
+{
+  "id": "sj-pc-2025-12-10-5a-apple",
+  "jurisdiction": "San Jose",
+  "body": "Planning Commission",
+  "meeting_date": "2025-12-10",
+  "source_document": "san-jose-planning-commission-2025-12-10-action-minutes",
+  "item_number": "5.a (DA15-002)",
+  "item_title": "Annual Compliance Review - Apple, Inc. Development Agreement",
+  "document_text": "DA15-002. This is an annual compliance review hearing for the Apple, Inc. Development Agreement. The City Council adopted this Development Agreement in March 2016, which allows the development of up to 4,151,530 square feet of office/R&D and manufacturing development on the 86-acre site. (Apple Inc., Owner). Council District 4.\n\n3. ADOPT A RESOLUTION ... CERTIFYING THE DEVELOPER IS IN COMPLIANCE WITH THE TERMS AND CONDITIONS OF THE DEVELOPMENT AGREEMENT BETWEEN THE CITY OF SAN JOSE AND APPLE, INC. (“APPLE”) DATED MARCH 4, 2016 (FILE NO. DA15-002) FOR THE ANNUAL COMPLIANCE REVIEW PERIOD OF JULY 1, 2024 THROUGH JUNE 30, 2025, FOR A 4,151,530-SQUARE FOOT RESEARCH AND DEVELOPMENT OFFICE AND MANUFACTURING PROJECT ON THE 86-GROSS ACRE SITE LOCATED ON THE EAST AND WEST SIDES OF ORCHARD PARKWAY, APPROXIMATELY ONE-QUARTER MILE SOUTH OF TRIMBLE ROAD.\n\nCOMMISSIONERS BAROCIO & ESCOBAR STATED THEIR CONFLICT OF INTEREST IN PARTICIPATING IN THE DECISION-MAKING ON ITEM DA15-002 (APPLE).\n\nACTION: COMMISSIONER OLIVERIO MADE A MOTION TO APPROVE STAFF RECOMMENDATION FOR DA15-002.\n\nCOMMISSIONER BHANDAL SECONDED THE MOTION (9-0-0-2; BAROICIO & ESCOBAR RECUSED)",
+  "expected": {
+    "item_type": "public_hearing",
+    "motions": [
+      {
+        "text": "a motion to approve staff recommendation for DA15-002",
+        "moved_by": "Oliverio",
+        "seconded_by": "Bhandal",
+        "outcome": "passed",
+        "tally": "9-0-0-2; Barocio & Escobar recused",
+        "source_text": "COMMISSIONER OLIVERIO MADE A MOTION TO APPROVE STAFF RECOMMENDATION FOR DA15-002"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Oliverio",
+        "role": "unknown",
+        "source_text": "COMMISSIONER OLIVERIO MADE A MOTION"
+      },
+      {
+        "raw_name": "Bhandal",
+        "role": "unknown",
+        "source_text": "COMMISSIONER BHANDAL SECONDED THE MOTION"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "86-acre site on the east and west sides of Orchard Parkway, south of Trimble Road, Council District 4",
+        "source_text": "LOCATED ON THE EAST AND WEST SIDES OF ORCHARD PARKWAY, APPROXIMATELY ONE-QUARTER MILE SOUTH OF TRIMBLE ROAD"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Second of the three related DA-compliance sub-motions - see sj-pc-2025-12-10-5a-cisco."
+}

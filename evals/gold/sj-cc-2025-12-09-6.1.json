@@ -1,0 +1,38 @@
+{
+  "id": "sj-cc-2025-12-09-6.1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "6.1",
+  "item_title": "Actions Related to the Issuance of Non-Exclusive Franchise Agreements for Residential Clean-out Material",
+  "document_text": "6.1 Actions Related to the Issuance of Non-Exclusive Franchise Agreements for the Collection, Transport, and Delivery of Residential Clean-out Material and Construction and Demolition Debris.\n(a) Conduct a public hearing on the applications of the five companies listed below for non-exclusive franchises:\n(1) Compactor Management Company, LLC;\n(2) MTB Demolition;\n(3) Bayview Industrial Services, Inc.;\n(4) Dumpster Pro, Inc.; and\n(5) TDB Incorporated.\n(b) Approve ordinances granting the non-exclusive franchises to the five companies listed above.\n\nPublic Comment: None provided.\n\nAction: Upon motion by Councilmember Domingo Candelas, seconded by Councilmember Bien Doan, and carried unanimously, (a) a public hearing was conducted on the applications of the five companies listed for non-exclusive franchises; (b) Ordinance No. 31284, Ordinance No. 31285, Ordinance No. 31286, Ordinance No. 31287, and Ordinance No. 31288 were passed for publication. (10-0-1; Absent: Ortiz)",
+  "expected": {
+    "item_type": "public_hearing",
+    "motions": [
+      {
+        "text": "a public hearing was conducted and five ordinances were passed for publication",
+        "moved_by": "Domingo Candelas",
+        "seconded_by": "Bien Doan",
+        "outcome": "passed",
+        "tally": "10-0-1; Absent: Ortiz",
+        "source_text": "Upon motion by Councilmember Domingo Candelas, seconded by Councilmember Bien Doan, and carried unanimously"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Domingo Candelas",
+        "role": "councilmember",
+        "source_text": "Councilmember Domingo Candelas"
+      },
+      {
+        "raw_name": "Bien Doan",
+        "role": "councilmember",
+        "source_text": "Councilmember Bien Doan"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Non-unanimous vote (one councilmember absent) and five named companies that must NOT be extracted as people - they're franchise applicants, i.e. organizations, not individuals. This is a public hearing item, not a plain consent item."
+}

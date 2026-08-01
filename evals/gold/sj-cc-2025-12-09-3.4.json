@@ -1,0 +1,58 @@
+{
+  "id": "sj-cc-2025-12-09-3.4",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.4",
+  "item_title": "External Auditor's Report: Report to Those Charged with Governance",
+  "document_text": "3.4 External Auditor's Report: Report to Those Charged with Governance for the Year Ended June 30, 2025.\nAccept the Report to Those Charged with Governance for the year ended June 30, 2025, as issued by Macias Gini & O'Connell LLP, the City's external auditor.\n\nMaria Oberg, Director, Finance; Victor Lo, Deputy Director, Finance Department; and Ben Lau, CPA, Partner: Macias, Gina & O'Connell, offered the presentation and responded to questions from Council.\n\nPublic Comment: Brian Darby offered public comment.\n\nAction: Upon motion by Councilmember David Cohen, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Report to Those Charged with Governance for the year ended June 30, 2025, as issued by Macias Gini & O'Connell LLP, the City's external auditor, was accepted. (11-0-0)",
+  "expected": {
+    "item_type": "report",
+    "motions": [
+      {
+        "text": "the Report to Those Charged with Governance was accepted",
+        "moved_by": "David Cohen",
+        "seconded_by": "Rosemary Kamei",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember David Cohen, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Report to Those Charged with Governance"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Maria Oberg",
+        "role": "staff",
+        "source_text": "Maria Oberg, Director, Finance"
+      },
+      {
+        "raw_name": "Victor Lo",
+        "role": "staff",
+        "source_text": "Victor Lo, Deputy Director, Finance Department"
+      },
+      {
+        "raw_name": "Ben Lau",
+        "role": "public",
+        "source_text": "Ben Lau, CPA, Partner: Macias, Gina & O'Connell"
+      },
+      {
+        "raw_name": "Brian Darby",
+        "role": "public",
+        "source_text": "Brian Darby offered public comment"
+      },
+      {
+        "raw_name": "David Cohen",
+        "role": "councilmember",
+        "source_text": "Councilmember David Cohen"
+      },
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Same presenter lineup as item 3.3 (heard concurrently, same meeting) but a different mover/seconder pair - checks the model doesn't just copy the previous item's motion attribution."
+}

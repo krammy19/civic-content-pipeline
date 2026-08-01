@@ -1,0 +1,27 @@
+{
+  "id": "sj-cc-2025-12-16-2.1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.1",
+  "item_title": "Approval of City Council Minutes",
+  "document_text": "2.1 25-1357 Approval of City Council Minutes.\n(a) Regular City Council Meeting Minutes of November 18, 2025.\n\nAction: The City Council Minutes were approved. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "The City Council Minutes were approved",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: The City Council Minutes were approved. (11-0-0)"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Minimal item: no people, no amounts, no location - one of the sparsest real items in the corpus, useful for checking the model doesn't over-extract to fill categories."
+}

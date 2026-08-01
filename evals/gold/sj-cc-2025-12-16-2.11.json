@@ -1,0 +1,51 @@
+{
+  "id": "sj-cc-2025-12-16-2.11",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.11",
+  "item_title": "Actions Related to the Purchase Order with Gillig LLC for Electric Buses",
+  "document_text": "2.11 25-1309 Actions Related to the Purchase Order with Gillig LLC for Electric Buses.\n(a) Adopt a resolution authorizing the City Manager or her designee to:\n(1) Execute a purchase order with Gillig LLC (Livermore, CA) for two new 40' low floor plus electric buses for a not-to-exceed amount of $2,569,301;\n(2) Approve a contingency of $280,000 for unanticipated modifications to the electric buses order.\n(b) Adopt the following 2025-2026 Appropriation Ordinance amendments in the Airport Renewal and Replacement Fund:\n(1) Increase the Zero Emissions Buses Appropriation to the Airport Department by $333,000; and\n(2) Decrease the Ending Fund Balance by $333,000.\n\nAction: Resolution No. RES2025-421 was adopted, authorizing the purchase order with Gillig LLC (Livermore, CA) for two new 40' low floor plus electric buses for a not-to-exceed amount of $2,569,301, a contingency of $280,000, and the appropriation amendments increasing the Zero Emissions Buses Appropriation to the Airport Department by $333,000 and decreasing the Ending Fund Balance by $333,000. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-421 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-421 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "Livermore, CA",
+        "source_text": "Gillig LLC (Livermore, CA)"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$2,569,301",
+        "amount_usd": "2569301",
+        "kind": "contract",
+        "source_text": "for a not-to-exceed amount of $2,569,301"
+      },
+      {
+        "raw_text": "$280,000",
+        "amount_usd": "280000",
+        "kind": "contract",
+        "source_text": "a contingency of $280,000"
+      },
+      {
+        "raw_text": "$333,000",
+        "amount_usd": "333000",
+        "kind": "budget",
+        "source_text": "Increase the Zero Emissions Buses Appropriation to the Airport Department by $333,000"
+      }
+    ]
+  },
+  "notes": "Vendor's own city (Livermore, CA) is a location distinct from San Jose - another case of a non-San-Jose location tied to a contract rather than a project site."
+}

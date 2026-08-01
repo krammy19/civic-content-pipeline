@@ -1,0 +1,58 @@
+{
+  "id": "sj-cc-2025-12-09-9.1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "9.1",
+  "item_title": "Successor Agency Audited Financial Statements for Fiscal Year Ended June 30, 2025",
+  "document_text": "9.1 Successor Agency to the Redevelopment Agency of the City of San Jose - Audited Financial Statements for Fiscal Year ended June 30, 2025.\nAccept the Fiscal Year 2024-2025 Independent Auditor's Reports and Basic Financial Statements for the Successor Agency to the Redevelopment Agency of the City of San Jose.\n\nMaria Oberg, Director, Finance Department; Victor Lo, Deputy Director, Finance Department; and Ben Lau, CPA, Partner: Macias, Gina & O'Connell, offered the presentation and responded to questions from Council.\n\nPublic Comment: Brian Darby offered public comment.\n\nAction: Upon motion by Councilmember Anthony Tordillos, seconded by Councilmember Bien Doan, and carried unanimously, the Fiscal Year 2024-2025 Independent Auditor's Reports and Basic Financial Statements for the Successor Agency to the Redevelopment Agency of the City of San Jose were accepted. (11-0-0)",
+  "expected": {
+    "item_type": "report",
+    "motions": [
+      {
+        "text": "the Independent Auditor's Reports and Basic Financial Statements were accepted",
+        "moved_by": "Anthony Tordillos",
+        "seconded_by": "Bien Doan",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Anthony Tordillos, seconded by Councilmember Bien Doan, and carried unanimously, the Fiscal Year 2024-2025 Independent Auditor's Reports"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Maria Oberg",
+        "role": "staff",
+        "source_text": "Maria Oberg, Director, Finance Department"
+      },
+      {
+        "raw_name": "Victor Lo",
+        "role": "staff",
+        "source_text": "Victor Lo, Deputy Director, Finance Department"
+      },
+      {
+        "raw_name": "Ben Lau",
+        "role": "public",
+        "source_text": "Ben Lau, CPA, Partner: Macias, Gina & O'Connell"
+      },
+      {
+        "raw_name": "Brian Darby",
+        "role": "public",
+        "source_text": "Brian Darby offered public comment"
+      },
+      {
+        "raw_name": "Anthony Tordillos",
+        "role": "councilmember",
+        "source_text": "Councilmember Anthony Tordillos"
+      },
+      {
+        "raw_name": "Bien Doan",
+        "role": "councilmember",
+        "source_text": "Councilmember Bien Doan"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Item heard under the Successor Agency (a legally distinct body the City Council convenes as), not the City Council itself, despite identical presenters to 3.3/3.4 - a subtle body-identity distinction."
+}

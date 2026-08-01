@@ -1,0 +1,57 @@
+{
+  "id": "sj-cc-2025-12-16-2.17",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.17",
+  "item_title": "Fourth Amendment to the Consultant Agreement with The Pun Group, LLP",
+  "document_text": "2.17 25-1315 Fourth Amendment to the Consultant Agreement with The Pun Group, LLP for Grant Monitoring Services.\nAdopt a resolution authorizing the Housing Director, or his designee, to negotiate and execute a Fourth Amendment to the Consultant Agreement with The Pun Group LLP, for grant monitoring services, to increase the maximum total compensation by $135,000, from $731,500 to $866,500 for the period of January 1, 2026, to June 30, 2026.\n\nMayor Matt Mahan pulled Item 2.17 for questions regarding the range of the audit and compliance activities.\n\nErik Solivan, Director, Housing Department, responded to questions.\n\nAction: Resolution No. RES2025-426 was adopted, authorizing the Housing Director, or his designee, to negotiate and execute a Fourth Amendment to the Consultant Agreement with The Pun Group LLP, for grant monitoring services, to increase the maximum total compensation by $135,000, from $731,500 to $866,500 for the period of January 1, 2026, to June 30, 2026. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-426 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-426 was adopted"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Matt Mahan",
+        "role": "mayor",
+        "source_text": "Mayor Matt Mahan pulled Item 2.17"
+      },
+      {
+        "raw_name": "Erik Solivan",
+        "role": "staff",
+        "source_text": "Erik Solivan, Director, Housing Department"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$135,000",
+        "amount_usd": "135000",
+        "kind": "contract",
+        "source_text": "increase the maximum total compensation by $135,000"
+      },
+      {
+        "raw_text": "$731,500",
+        "amount_usd": "731500",
+        "kind": "contract",
+        "source_text": "from $731,500 to $866,500"
+      },
+      {
+        "raw_text": "$866,500",
+        "amount_usd": "866500",
+        "kind": "contract",
+        "source_text": "from $731,500 to $866,500"
+      }
+    ]
+  },
+  "notes": "A consent item that was 'pulled for questions' but still resolved without a separate roll-call motion - the Mayor and a department director both appear only in discussion, not as movers."
+}

@@ -1,0 +1,38 @@
+{
+  "id": "sj-cc-2025-12-16-2.9",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.9",
+  "item_title": "City Manager's Travel to Chula Vista, California",
+  "document_text": "2.9 25-1307 City Manager's Travel to Chula Vista, California.\nAuthorize travel for City Manager, Jennifer A. Maguire, to Chula Vista, California, on January 8-10, 2026 to participate in the Large Cities Executive Forum.\n\nAction: City Manager, Jennifer A. Maguire's travel to Chula Vista, California, from January 8-10, 2026, to participate in the Large Cities Executive Forum was authorized. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Manager Jennifer A. Maguire's travel to Chula Vista was authorized",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "travel to Chula Vista, California, from January 8-10, 2026, to participate in the Large Cities Executive Forum was authorized"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Jennifer A. Maguire",
+        "role": "staff",
+        "source_text": "City Manager, Jennifer A. Maguire"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Chula Vista, California",
+        "source_text": "Chula Vista, California"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Location here is a travel destination, not a San Jose address - checks the model extracts locations generically rather than assuming they're always in-city."
+}

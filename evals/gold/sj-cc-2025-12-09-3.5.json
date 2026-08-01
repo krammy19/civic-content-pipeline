@@ -1,0 +1,48 @@
+{
+  "id": "sj-cc-2025-12-09-3.5",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.5",
+  "item_title": "Comprehensive Annual Debt Report for Fiscal Year Ended June 30, 2025",
+  "document_text": "3.5 Comprehensive Annual Debt Report for Fiscal Year Ended June 30, 2025.\nAccept the Comprehensive Annual Debt Report for the City of San Jose for Fiscal Year 2024-2025.\n\nMaria Oberg, Director, Finance Department; and Qianyu Sun, Deputy Director, Finance Department, offered the presentation and responded to questions from Council.\n\nPublic Comment: None provided.\n\nAction: Upon motion by Councilmember Bien Doan, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Comprehensive Annual Debt Report for the City of San Jose for Fiscal Year 2024-2025 was accepted. (11-0-0)",
+  "expected": {
+    "item_type": "report",
+    "motions": [
+      {
+        "text": "the Comprehensive Annual Debt Report was accepted",
+        "moved_by": "Bien Doan",
+        "seconded_by": "Rosemary Kamei",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Bien Doan, seconded by Councilmember Rosemary Kamei, and carried unanimously, the Comprehensive Annual Debt Report"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Maria Oberg",
+        "role": "staff",
+        "source_text": "Maria Oberg, Director, Finance Department"
+      },
+      {
+        "raw_name": "Qianyu Sun",
+        "role": "staff",
+        "source_text": "Qianyu Sun, Deputy Director, Finance Department"
+      },
+      {
+        "raw_name": "Bien Doan",
+        "role": "councilmember",
+        "source_text": "Councilmember Bien Doan"
+      },
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "No public comment this time (vs. items 3.3/3.4 which had one) - checks the model correctly reports zero public speakers rather than reusing the previous items' commenter."
+}

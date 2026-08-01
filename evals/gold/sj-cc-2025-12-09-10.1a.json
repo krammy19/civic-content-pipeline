@@ -1,0 +1,38 @@
+{
+  "id": "sj-cc-2025-12-09-10.1a",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "10.1(a)",
+  "item_title": "Land use item deferred at the City Attorney's request",
+  "document_text": "Action: Upon motion by Vice Mayor Pam Foley, seconded by Councilmember Domingo Candelas, and carried unanimously, Item 10.1(a) was deferred, per the City Attorney's Office request. (11-0-0)",
+  "expected": {
+    "item_type": "action",
+    "motions": [
+      {
+        "text": "Item 10.1(a) was deferred, per the City Attorney's Office request",
+        "moved_by": "Pam Foley",
+        "seconded_by": "Domingo Candelas",
+        "outcome": "continued",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Vice Mayor Pam Foley, seconded by Councilmember Domingo Candelas, and carried unanimously, Item 10.1(a) was deferred"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Pam Foley",
+        "role": "councilmember",
+        "source_text": "Vice Mayor Pam Foley"
+      },
+      {
+        "raw_name": "Domingo Candelas",
+        "role": "councilmember",
+        "source_text": "Councilmember Domingo Candelas"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Contrast case for 2.15: here the deferral IS a real, voted motion (outcome 'continued' with a real tally), unlike 2.15's administrative deferral with no motion at all. Tests that the model doesn't treat every deferral identically."
+}

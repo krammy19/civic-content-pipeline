@@ -1,0 +1,27 @@
+{
+  "id": "sj-cc-2025-12-09-2.11",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.11",
+  "item_title": "2026 Weed Abatement Program Commencement Report",
+  "document_text": "2.11 2026 Weed Abatement Program Commencement Report.\nAdopt a resolution:\n(a) Accepting the 2026 Weed Abatement Commencement Report compiled by the County of Santa Clara's Consumer and Environmental Protection Agency - Weed Abatement Program;\n(b) Declaring that those certain noxious or dangerous seasonal and recurrent weeds are a public nuisance; and\n(c) Directing the County of Santa Clara's Consumer and Environmental Protection Agency - Weed Abatement Program to mail a Notice of Public Hearing to occur on February 10, 2026, at 1:30 p.m. before the City Council.\n\nAction: Resolution No. RES2025-413 was adopted, regarding 2026 Weed Abatement Program Commencement Report. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-413 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-413 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "No dollar amount, no named individual, and no specific street address - a genuinely sparse item, useful for confirming the model returns empty lists rather than reaching for something to extract."
+}

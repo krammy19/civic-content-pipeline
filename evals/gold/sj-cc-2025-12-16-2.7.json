@@ -1,0 +1,32 @@
+{
+  "id": "sj-cc-2025-12-16-2.7",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.7",
+  "item_title": "Actions Related to the Request for Proposals Rebid for Automated Teller Machine Concessions",
+  "document_text": "2.7 25-1304 Actions Related to the Request for Proposals Rebid for Automated Teller Machine Concessions at the San Jose Mineta International Airport.\n(a) Approve the selection of the top-ranking proposer for the request for proposals rebid for automated teller machine concessions at the San Jose Mineta International Airport.\n(b) Adopt a resolution authorizing the City Manager, or her designee, to negotiate and execute an agreement with Bank of America, National Association for automated teller machine services.\n\nAction: (a) The selection of the top-ranking proposer was approved; and (b) Resolution No. RES2025-418 was adopted, authorizing the City Manager, or her designee, to negotiate and execute an agreement with Bank of America, National Association for automated teller machine services at the San Jose Mineta International Airport. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the selection was approved and Resolution No. RES2025-418 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Resolution No. RES2025-"
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "San Jose Mineta International Airport",
+        "source_text": "San Jose Mineta International Airport"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "No dollar figure is stated anywhere in this item despite being a commercial concession agreement - checks the model reports empty amounts rather than guessing a plausible-sounding number. Bank of America is a named contracting party, not a person."
+}

@@ -1,0 +1,45 @@
+{
+  "id": "sj-cc-2025-12-09-2.13",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.13",
+  "item_title": "Third Amendment to the Agreement with Cal Engineering & Geology, Inc.",
+  "document_text": "2.13 Third Amendment to the Agreement with Cal Engineering & Geology, Inc. for Consultant and Professional Engineering Services for FEMA Kelley Park Storm Outfall and FEMA Alum Rock Park Mineral Spring Embankment Projects.\nApprove the Third Amendment to the Standard Agreement with Cal Engineering & Geology, Inc., to extend the term retroactively from October 31, 2024, to October 31, 2029, and decrease the maximum compensation from $754,540 to $642,801 for the sole purpose of completing the Federal Emergency Management Agency Kelley Park Storm Outfall and Federal Emergency Management Agency Alum Rock Park Mineral Spring Embankment projects. Council District 4.\n\nAction: The third amendment to the Standard Agreement with Cal Engineering & Geology, Inc., to extend the term retroactively from October 31, 2024, to October 31, 2029, and decrease the maximum compensation from $754,540 to $642,801 for the sole purpose of completing the Federal Emergency Management Agency Kelley Park Storm Outfall and Federal Emergency Management Agency Alum Rock Park Mineral Spring Embankment projects was approved. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the third amendment to the Standard Agreement with Cal Engineering & Geology, Inc. was approved",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: The third amendment to the Standard Agreement with Cal Engineering & Geology, Inc."
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "Kelley Park Storm Outfall and Alum Rock Park Mineral Spring Embankment, Council District 4",
+        "source_text": "Federal Emergency Management Agency Kelley Park Storm Outfall"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$754,540",
+        "amount_usd": "754540",
+        "kind": "contract",
+        "source_text": "decrease the maximum compensation from $754,540 to $642,801"
+      },
+      {
+        "raw_text": "$642,801",
+        "amount_usd": "642801",
+        "kind": "contract",
+        "source_text": "decrease the maximum compensation from $754,540 to $642,801"
+      }
+    ]
+  },
+  "notes": "A compensation DECREASE rather than increase - checks the model doesn't assume amendments always add money."
+}

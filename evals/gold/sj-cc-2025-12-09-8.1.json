@@ -1,0 +1,81 @@
+{
+  "id": "sj-cc-2025-12-09-8.1",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "8.1",
+  "item_title": "Actions Related to the Agreement with the County of Santa Clara's Office of Supportive Housing",
+  "document_text": "8.1 Actions Related to the Agreement with the County of Santa Clara's Office of Supportive Housing for the Homelessness Prevention System Funding.\n(a) Adopt a resolution authorizing the Housing Director, or his designee, to negotiate and execute a grant agreement amendment with the County of Santa Clara's Office of Supportive Housing, in an amount not to exceed $5,500,000, with an additional $2,579,023 in unspent funds from the April 2025 authorization.\n\nErik Solivan, Director, Housing Department, responded to questions from the Council.\n\nPublic Comment: None provided.\n\nMotion: Vice Mayor Pam Foley motioned to accept the actions related to the agreement with the County of Santa Clara's Office of Supportive Housing for the Homelessness Prevention System funding. The motion was seconded by Councilmember Rosemary Kamei.\n\nFriendly Amendment: Councilmember Pamela Campos proposed a friendly amendment to include acceptance of the joint memorandum co-authored by Mayor Mahan, Councilmember Campos, Councilmember Tordillos, Councilmember Ortiz, and Councilmember Casey, dated December 5, 2025. The motion was accepted by the maker of the motion and the seconder.\n\nAction: Upon motion by Vice Mayor Pam Foley, seconded by Councilmember Rosemary Kamei, and carried unanimously, (a) Resolution No. RES2025-417 was adopted, authorizing the Housing Director, or his designee, to negotiate and execute a grant agreement amendment with the County of Santa Clara's Office of Supportive Housing, in an amount not to exceed $5,500,000, with an additional $2,579,023 in unspent funds from the April 2025 authorization. (11-0-0)",
+  "expected": {
+    "item_type": "action",
+    "motions": [
+      {
+        "text": "accept the actions related to the agreement with the County of Santa Clara's Office of Supportive Housing",
+        "moved_by": "Pam Foley",
+        "seconded_by": "Rosemary Kamei",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Vice Mayor Pam Foley, seconded by Councilmember Rosemary Kamei, and carried unanimously, (a) Resolution No. RES2025-417 was adopted"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Erik Solivan",
+        "role": "staff",
+        "source_text": "Erik Solivan, Director, Housing Department"
+      },
+      {
+        "raw_name": "Pam Foley",
+        "role": "councilmember",
+        "source_text": "Vice Mayor Pam Foley motioned"
+      },
+      {
+        "raw_name": "Rosemary Kamei",
+        "role": "councilmember",
+        "source_text": "Councilmember Rosemary Kamei"
+      },
+      {
+        "raw_name": "Pamela Campos",
+        "role": "councilmember",
+        "source_text": "Councilmember Pamela Campos proposed a friendly amendment"
+      },
+      {
+        "raw_name": "Mahan",
+        "role": "mayor",
+        "source_text": "co-authored by Mayor Mahan"
+      },
+      {
+        "raw_name": "Tordillos",
+        "role": "councilmember",
+        "source_text": "Councilmember Tordillos"
+      },
+      {
+        "raw_name": "Ortiz",
+        "role": "councilmember",
+        "source_text": "Councilmember Ortiz"
+      },
+      {
+        "raw_name": "Casey",
+        "role": "councilmember",
+        "source_text": "Councilmember Casey"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$5,500,000",
+        "amount_usd": "5500000",
+        "kind": "grant",
+        "source_text": "in an amount not to exceed $5,500,000"
+      },
+      {
+        "raw_text": "$2,579,023",
+        "amount_usd": "2579023",
+        "kind": "grant",
+        "source_text": "with an additional $2,579,023 in unspent funds"
+      }
+    ]
+  },
+  "notes": "Motion plus a named friendly amendment - the Vice Mayor's title should resolve to role 'councilmember' (the schema has no separate vice-mayor role), and this checks whether the model treats an amendment as part of the same motion rather than fabricating a second one. Corrected after the first real eval run: the initial gold annotation for this case listed only 4 of the 5 people the joint memorandum names - the model's extraction of Mahan, Tordillos, Ortiz, and Casey (memo co-authors) was correct and verified, but scored as four false positives because gold was incomplete, not because the model was wrong. Left as an example in docs/evals.md of a real precision number partly reflecting gold-set gaps rather than model error."
+}

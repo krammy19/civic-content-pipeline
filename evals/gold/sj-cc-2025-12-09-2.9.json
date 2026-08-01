@@ -1,0 +1,51 @@
+{
+  "id": "sj-cc-2025-12-09-2.9",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.9",
+  "item_title": "Business Tax and Business Improvement Districts Assessment Amnesty Programs",
+  "document_text": "2.9 Business Tax and Business Improvement Districts Assessment Amnesty Programs.\n(a) Approve an ordinance authorizing the Director of Finance or her designee to administer a Business Tax Amnesty Program which forgives taxpayers who pay certain past due business taxes from liability for the remaining past due business taxes, interest, and penalties.\n(b) Approve an ordinance authorizing a Business Improvement District Assessment Amnesty Program for the Downtown, Japantown, Tully Road, and Monterey Corridor Business Improvement Districts.\n\nCouncilmember Michael Mulcahy offered comment on Item 2.9 regarding business tax and business improvement district fees.\n\nMaria Oberg, Director, Finance, responded to questions from the Council.\n\nAction: (a) Ordinance No. 31281 was passed for publication, authorizing the Director of Finance or her designee to administer a Business Tax Amnesty Program which forgives taxpayers who pay certain past due business taxes from liability for the remaining past due business taxes, interest, and penalties; and (b) Ordinance No. 31282 was passed for publication, authorizing a Business Improvement District Assessment Amnesty Program for the Downtown, Japantown, Tully Road, and Monterey Corridor Business Improvement Districts. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Ordinance No. 31281 was passed for publication",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Ordinance No. 31281 was passed for publication"
+      },
+      {
+        "text": "Ordinance No. 31282 was passed for publication",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Ordinance No. 31282 was passed for publication"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Michael Mulcahy",
+        "role": "councilmember",
+        "source_text": "Councilmember Michael Mulcahy offered comment"
+      },
+      {
+        "raw_name": "Maria Oberg",
+        "role": "staff",
+        "source_text": "Maria Oberg, Director, Finance, responded to questions"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Downtown, Japantown, Tully Road, and Monterey Corridor Business Improvement Districts",
+        "source_text": "the Downtown, Japantown, Tully Road, and Monterey Corridor Business Improvement Districts"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Two-part ordinance item with a named department director (staff, not councilmember) and named business districts as locations rather than street addresses."
+}

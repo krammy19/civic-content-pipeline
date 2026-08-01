@@ -1,0 +1,32 @@
+{
+  "id": "sj-cc-2025-12-09-2.14",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.14",
+  "item_title": "Actions Related to the 9365 - Happy Hollow Park and Zoo Fossa Night House Project",
+  "document_text": "2.14 Actions Related to the 9365 - Happy Hollow Park and Zoo Fossa Night House Project.\n(a) Accept the report on the status of the 9365 - Happy Hollow Park and Zoo Fossa Night House Project, acknowledging contractor performance issues and failure to complete the project per contract requirements.\n(b) Terminate the existing 9365 - Happy Hollow Park and Zoo Fossa Night House Project contract with VNH Builders.\n(c) Adopt a resolution authorizing the City Manager, or her designee, to negotiate and execute agreements and any ancillary documents with the surety, American Contractors Indemnity Company, and any construction contractor to complete the project. Council District 7.\n\nAction: (a) The report on the status of the 9365 - Happy Hollow Park and Zoo Fossa Night House Project was accepted; (b) the existing 9365 - Happy Hollow Park and Zoo Fossa Night House Project contract with VNH Builders was terminated; and (c) Resolution No. RES2025-415 was adopted, authorizing the City Manager, or her designee, to negotiate and execute agreements and any ancillary documents with the surety, American Contractors Indemnity Company, and any construction contractor to complete the project. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the existing contract with VNH Builders was terminated and Resolution No. RES2025-415 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "the existing 9365 - Happy Hollow Park and Zoo Fossa Night House"
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "Happy Hollow Park and Zoo, Council District 7",
+        "source_text": "9365 - Happy Hollow Park and Zoo Fossa Night House"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Contract termination (not award) with two named organizations (VNH Builders, American Contractors Indemnity Company) that must NOT be extracted as people - they're companies, not individuals."
+}

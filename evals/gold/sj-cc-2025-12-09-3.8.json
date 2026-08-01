@@ -1,0 +1,63 @@
+{
+  "id": "sj-cc-2025-12-09-3.8",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "3.8",
+  "item_title": "Appeals Hearing Board Interview",
+  "document_text": "3.8 Appeals Hearing Board Interview.\n(a) Interview applicants and consider appointment to fill three (3) Member-at-Large seats for terms beginning January 1, 2026 and ending December 31, 2029 on the Appeals Hearing Board.\n\nToni Taber, City Clerk, announced the Council's opportunity to fill up to three (3) Member-at-Large seats. Two applicants were present - Genevieve Altwer and Martin Nguyen; Ronald Cabanayan submitted a letter requesting reappointment to the Appeals Hearing Board.\n\nMayor Matt Mahan requested that the two present applicants provide opening statements. Genevieve Altwer and Martin Nguyen provided opening statements for the Council's consideration of their appointment to the Appeals Hearing Board.\n\nPublic Comment: None provided.\n\nAction: Upon motion by Councilmember Peter Ortiz, seconded by Councilmember David Cohen, and carried unanimously, Genevieve Altwer, Martin Nguyen, and Ronald Cabanayan were appointed to fill the three Member-at-Large seats for terms beginning January 1, 2026 and ending December 31, 2029 on the Appeals Hearing Board. (11-0-0)",
+  "expected": {
+    "item_type": "action",
+    "motions": [
+      {
+        "text": "Genevieve Altwer, Martin Nguyen, and Ronald Cabanayan were appointed",
+        "moved_by": "Peter Ortiz",
+        "seconded_by": "David Cohen",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Peter Ortiz, seconded by Councilmember David Cohen, and carried unanimously, Genevieve Altwer, Martin Nguyen, and Ronald Cabanayan were appointed"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Toni Taber",
+        "role": "staff",
+        "source_text": "Toni Taber, City Clerk"
+      },
+      {
+        "raw_name": "Genevieve Altwer",
+        "role": "applicant",
+        "source_text": "Genevieve Altwer and Martin Nguyen"
+      },
+      {
+        "raw_name": "Martin Nguyen",
+        "role": "applicant",
+        "source_text": "Genevieve Altwer and Martin Nguyen"
+      },
+      {
+        "raw_name": "Ronald Cabanayan",
+        "role": "applicant",
+        "source_text": "Ronald Cabanayan submitted a letter requesting reappointment"
+      },
+      {
+        "raw_name": "Matt Mahan",
+        "role": "mayor",
+        "source_text": "Mayor Matt Mahan requested"
+      },
+      {
+        "raw_name": "Peter Ortiz",
+        "role": "councilmember",
+        "source_text": "Councilmember Peter Ortiz"
+      },
+      {
+        "raw_name": "David Cohen",
+        "role": "councilmember",
+        "source_text": "Councilmember David Cohen"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Six named people across four roles including the Mayor specifically and three board applicants - a genuinely people-dense item with no dollar amount at all."
+}

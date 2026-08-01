@@ -1,0 +1,27 @@
+{
+  "id": "sj-cc-2025-12-16-2.10",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.10",
+  "item_title": "Fourth Amendment to the CALeVIP Services Agreement with the Center for Sustainable Energy",
+  "document_text": "2.10 25-1308 Fourth Amendment to the CALeVIP Services Agreement with the Center for Sustainable Energy.\nAdopt a resolution authorizing the Director of Energy or her designee to execute a Fourth Amendment to the Services Agreement by and between the City of San Jose and the Center for Sustainable Energy, extending the term dated July 8, 2020, through July 1, 2026, with no additional funds.\n\nAction: Resolution No. RES2025-420 was adopted, authorizing the Director of Energy or her designee to execute a Fourth Amendment to the Services Agreement by and between the City of San Jose and the Center for Sustainable Energy, extending the term dated July 8, 2020, through July 1, 2026, with no additional funds. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Resolution No. RES2025-420 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Resolution No. RES2025-420 was adopted"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Explicit 'with no additional funds' contract amendment - checks the model doesn't invent a dollar amount for an agreement that explicitly states none is involved."
+}

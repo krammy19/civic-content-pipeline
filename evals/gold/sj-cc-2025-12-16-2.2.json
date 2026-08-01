@@ -1,0 +1,32 @@
+{
+  "id": "sj-cc-2025-12-16-2.2",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.2",
+  "item_title": "Final Adoption of Ordinances",
+  "document_text": "2.2 25-1345 Final Adoption of Ordinances.\n(a) Ordinance No. 31279 - An Ordinance of the City of San Jose Rezoning Certain Real Property of Approximately 1.88 Gross Acres, Situated South of the Eastern Terminus of Bern Court (908 Bern Court) (APN: 241-15-009) from the LI(PD) Planned Development Zoning District to the CIC Combined Industrial/Commercial Zoning District.\n[Passed for Publication on 12/2/2025 - Item 10.1(a) (25-1265)]\n\nAction: Ordinance No. 31279 ... was adopted. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "Ordinance No. 31279 was adopted",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: Ordinance No. 31279 ... was adopted. (11-0-0)"
+      }
+    ],
+    "people": [],
+    "locations": [
+      {
+        "raw_text": "908 Bern Court (APN: 241-15-009)",
+        "source_text": "South of the Eastern Terminus of Bern Court (908 Bern Court) (APN: 241-15-009)"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Rezoning ordinance with a real street address AND an Assessor's Parcel Number in the same location reference - checks whether the model captures both, not just the address."
+}

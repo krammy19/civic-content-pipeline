@@ -1,0 +1,48 @@
+{
+  "id": "sj-pc-2025-12-10-4",
+  "jurisdiction": "San Jose",
+  "body": "Planning Commission",
+  "meeting_date": "2025-12-10",
+  "source_document": "san-jose-planning-commission-2025-12-10-action-minutes",
+  "item_number": "4",
+  "item_title": "Consent Calendar items 4.a and 4.b",
+  "document_text": "4. CONSENT CALENDAR\n\nACTION: COMMISSIONER BHANDAL MADE A MOTION TO APPROVE CONSENT CALENDAR ITEMS 4.A. AND 4.B. COMMISSIONER CANTRELL SECONDED THE MOTION (8-0-2-1; OLIVERIO & YOUNG ABSENT; ESCOBAR ABSTAINED)\n\na. Review and Approve Action Minutes from November 19, 2025.\n\nb. CP25-020 & ER25-184 (Administrative Hearing): Conditional Use Permit to allow the continued use of an existing wireless facility, consisting of an approximately 77-foot-high monopole and associated ground equipment on an approximately 0.25-gross-acre site located at 419 Lano Street (Froom Judith R Trustee & Et Al, Owner). Council District: 7.",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "a motion to approve Consent Calendar items 4.a. and 4.b.",
+        "moved_by": "Bhandal",
+        "seconded_by": "Cantrell",
+        "outcome": "passed",
+        "tally": "8-0-2-1; Oliverio & Young absent; Escobar abstained",
+        "source_text": "COMMISSIONER BHANDAL MADE A MOTION TO APPROVE CONSENT CALENDAR ITEMS 4.A. AND 4.B."
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Bhandal",
+        "role": "unknown",
+        "source_text": "COMMISSIONER BHANDAL MADE A MOTION"
+      },
+      {
+        "raw_name": "Cantrell",
+        "role": "unknown",
+        "source_text": "COMMISSIONER CANTRELL SECONDED THE MOTION"
+      },
+      {
+        "raw_name": "Froom Judith R Trustee",
+        "role": "applicant",
+        "source_text": "(Froom Judith R Trustee & Et Al, Owner)"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "419 Lano Street, Council District 7",
+        "source_text": "located at 419 Lano Street"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "SPEC-style hard case: a bulk consent calendar covering two sub-items under one motion, with an unusual four-part vote tally including both an absence and an abstention. A property owner/trustee is named as the permit applicant."
+}

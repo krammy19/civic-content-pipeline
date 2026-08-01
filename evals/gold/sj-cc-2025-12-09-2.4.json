@@ -1,0 +1,43 @@
+{
+  "id": "sj-cc-2025-12-09-2.4",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "2.4",
+  "item_title": "Mayor and Council Excused Absence Requests",
+  "document_text": "Action: Upon motion by Councilmember Michael Mulcahy, seconded by Councilmember Pamela Campos, and carried unanimously, the Consent Calendar was approved as a whole, and the following actions were taken as indicated. (11-0-0)\n\n2.4 Mayor and Council Excused Absence Requests.\nRequest for an excused absence for Councilmember Kamei from the regular meeting of Rules and Open Government Committee and Committee of the Whole on December 3, 2025, due to authorized City business to attend the Local Agency Formation Commission of Santa Clara County (Santa Clara LAFCO) meeting.\n\nAction: The request for an excused absence for Councilmember Kamei from the regular meeting of Rules and Open Government Committee and Committee of the Whole on December 3, 2025 was approved. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the Consent Calendar was approved as a whole",
+        "moved_by": "Michael Mulcahy",
+        "seconded_by": "Pamela Campos",
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Upon motion by Councilmember Michael Mulcahy, seconded by Councilmember Pamela Campos, and carried unanimously, the Consent Calendar was approved as a whole"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Michael Mulcahy",
+        "role": "councilmember",
+        "source_text": "Councilmember Michael Mulcahy"
+      },
+      {
+        "raw_name": "Pamela Campos",
+        "role": "councilmember",
+        "source_text": "Councilmember Pamela Campos"
+      },
+      {
+        "raw_name": "Kamei",
+        "role": "councilmember",
+        "source_text": "excused absence for Councilmember Kamei"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Hard case: consent-calendar item with NO item-specific motion line of its own - the only real motion in the text is the collective one covering the whole calendar. Tests whether the model correctly attributes the bulk motion rather than inventing a per-item one or omitting it entirely."
+}

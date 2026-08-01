@@ -1,0 +1,40 @@
+{
+  "id": "sj-cc-2025-12-16-ada-curb-ramps",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.27",
+  "item_title": "Report on Bids and Award of Contract for the 2026 Local Streets ADA Curb Ramps #2 Project",
+  "document_text": "Action: (a) The report on bids and award a contract for the construction of 10594 - 2026 Local Streets ADA Curb Ramps #2 Project to the lowest responsive, responsible bidder, Spencon Construction, Inc., in the amount of $1,224,200 was accepted; and (b) the 10% contingency in the amount of $122,420 was approved. (11-0-0)",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "the report was accepted, the contract was awarded, and the contingency was approved",
+        "moved_by": null,
+        "seconded_by": null,
+        "outcome": "passed",
+        "tally": "11-0-0",
+        "source_text": "Action: (a) The report on bids and award a contract"
+      }
+    ],
+    "people": [],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$1,224,200",
+        "amount_usd": "1224200",
+        "kind": "contract",
+        "source_text": "in the amount of $1,224,200 was accepted"
+      },
+      {
+        "raw_text": "$122,420",
+        "amount_usd": "122420",
+        "kind": "contract",
+        "source_text": "the 10% contingency in the amount of $122,420 was approved"
+      }
+    ]
+  },
+  "notes": "Same contract-plus-10%-contingency pattern as item 3.7, with different real figures - checks the model doesn't just pattern-match the earlier example's numbers."
+}

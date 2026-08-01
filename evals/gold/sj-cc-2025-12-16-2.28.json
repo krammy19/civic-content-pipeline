@@ -1,0 +1,18 @@
+{
+  "id": "sj-cc-2025-12-16-2.28",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-16",
+  "source_document": "san-jose-city-council-2025-12-16-minutes",
+  "item_number": "2.28",
+  "item_title": "Shared Micro-Mobility Device Fee Adjustment (re-deferred)",
+  "document_text": "2.28 25-1341 Shared Micro-Mobility Device Fee Adjustment. - DEFERRED\nAdopt a resolution amending the 2025-2026 Schedule of Fees and Charges (Resolution No. 72737, as amended) to decrease the Shared Micro-Mobility Annual Permit and Program Monitoring Operating Fee from $139 per device to $100 per device, effective January 1, 2026.\n[Deferred from 12/9/2025 Item 2.15 (25-1286)]\n\nDEFERRED TO 1/13/2026 PER ADMINISTRATION",
+  "expected": {
+    "item_type": "action",
+    "motions": [],
+    "people": [],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Same fee-adjustment item as sj-cc-2025-12-09-2.15, deferred a second time. Confirms the model treats a repeat administrative deferral the same way (empty motions) rather than inventing a motion because the item has now appeared twice."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "sj-cc-2025-12-09-1.3",
+  "jurisdiction": "San Jose",
+  "body": "City Council",
+  "meeting_date": "2025-12-09",
+  "source_document": "san-jose-city-council-2025-12-09-minutes",
+  "item_number": "1.3",
+  "item_title": "Dia de la Virgen de Guadalupe proclamation",
+  "document_text": "1.3 Councilmember Peter Ortiz presented a proclamation declaring December 12, 2025, as Dia de la Virgen de Guadalupe, honoring the cultural, spiritual, and historical significance of this day and recognizing its role in fostering faith, unity, and community tradition in the City of San Jose.",
+  "expected": {
+    "item_type": "ceremonial",
+    "motions": [],
+    "people": [
+      {
+        "raw_name": "Peter Ortiz",
+        "role": "councilmember",
+        "source_text": "Councilmember Peter Ortiz presented a proclamation"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "Second ceremonial item, same shape as 1.1 - checks the model isn't thrown by a different holiday/name."
+}
