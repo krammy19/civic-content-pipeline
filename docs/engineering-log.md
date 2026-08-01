@@ -390,3 +390,90 @@ since both are part of the prompt, a mismatch between the two produces a
 new cache key the first time an eval run touches that case. Harmless and
 cheap, and documented in `docs/review.md` rather than treated as a
 mystery.
+
+## 2026-08-01 — Digest generation, a style guide, and a style checker that scores itself
+
+Fifth step of the roadmap, and per SPEC "the layer that most resembles
+the target job." Three things had to exist together for this to be
+real rather than decorative: a style guide worth calling a writing
+sample, a digest generator that can't drift from it because it's never
+even shown raw source text, and a checker that measures itself instead
+of asserting its own correctness.
+
+**The style guide came first, on purpose.** `docs/style-guide.md` is
+hand-written, not generated - voice and register, the exact required
+section order, the citation rule ("every claim carries an item number"),
+how to express uncertainty when an extraction was withheld, a banned-
+construction list, name/title conventions, and an explicit,
+example-driven prohibition on editorializing about political outcomes.
+Writing the rules before the code that enforces them meant the
+deterministic checker's thresholds (40-word sentence ceiling, grade-12
+reading level, the exact section-heading strings) could cite back to a
+document that already existed, not the other way around.
+
+**Digest generation never sees the source document.** `generate_digest()`
+takes a `Meeting`'s already-published (confidence-routed, provenance-
+verified) `AgendaItem`s, renders them into a plain fact block via
+`render_facts()`, and hands *only that* to Claude - no raw minutes text,
+no outside knowledge. This is what makes the style guide's citation rule
+enforceable in the first place: the model has nothing to draw a claim
+from except facts already labeled with their item number, so a stray
+claim is either traceable or it's fabricated, with no third option.
+Forced tool use against a one-field schema (`MeetingDigest`) keeps this
+consistent with every other LLM call in the codebase, even though the
+output is prose, not structured data - it was worth it specifically to
+avoid a markdown-fence-stripping step a plain completion would need.
+
+**The style checker has two tiers because pattern matching has a real
+ceiling.** `check_deterministic()` catches everything with a fixed
+shape - missing sections, missing citations, banned phrases, sentence
+length, reading level, first-reference titles. `judge_style()` exists
+for the three things it structurally cannot: does this *read* right,
+is this claim actually supported, does this framing take a side. The
+hard case that justifies building a second tier at all lives in
+`evals/style_cases/wrong-item-citation.json`: a citation to `Item 2.9`,
+a real, valid item number - just not the item that actually has the
+dollar amount attached to it. No pattern match catches a citation
+pointing at the wrong real thing; only a judge with the per-item facts
+in view can.
+
+**The eval set caught two bugs in itself before it caught anything real.**
+The first live run against the 20 hand-built `style_cases` came back at
+36% precision - not because the checker was broken, but because several
+"clean" fixtures never actually stated everything their own digest text
+claimed (a vendor name, a motion's outcome) and one sentence read, on a
+careful parse, as attributing an action to the wrong actor. The judge
+was right both times. Fixed by making every fixture's `facts_block`
+literally ground everything its digest states - the same category of
+lesson as the M3 gold-set gaps and the M4 partial-annotation bug: an
+eval is only as honest as its labels, and the model doing the labeling
+work is not automatically the model whose output it's compared against.
+After both fixes: the deterministic tier is perfect on its own set
+(expected, and not very informative on its own), and the judge tier
+lands at recall 1.0 / precision ~0.10-0.20 per rule - it never missed a
+planted violation, but routinely flags more than the one problem a
+fixture was built to isolate. Documented as what it is: a quality gate
+tuned toward not missing things, not a broken classifier. Full numbers
+and the reasoning for reading them that way are in
+`docs/style-checking.md`.
+
+**The hand-built cases still weren't the whole test.** Twenty carefully
+isolated sentences don't contain real digest content's actual texture -
+abbreviations. The first real end-to-end run (`scripts/check_sample_digest.py`,
+using the actual M4 review-queue items as real, previously-validated
+input) came back with eight high-severity false positives, all from the
+same cause: `"Ordinance No. 31328"` and `"Blocka Construction Inc."` were
+misread as sentence boundaries, severing real citations from the claims
+they supported. Fixed with abbreviation-aware sentence splitting. After
+the fix, the same real digest scored zero high-severity findings - and
+splicing one deliberately editorializing, uncited sentence into that
+same clean digest produced four new high-severity findings across three
+different rules on the very next run. That's the acceptance criterion
+in concrete form: a planted violation caught, not eventually, but on the
+sentence that carries it.
+
+**CI gates on all of it without forcing spend**, the same pattern as
+every other eval in this project: `.github/workflows/style.yml` runs the
+style-eval suite and the real-digest smoke test on any PR touching the
+style guide, prompts, digest generation, or the checker itself, no-oping
+when no `ANTHROPIC_API_KEY` secret is configured.

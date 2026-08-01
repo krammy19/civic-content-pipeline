@@ -2,9 +2,9 @@
 
 A content pipeline that ingests municipal government meeting documents —
 agendas, minutes, staff reports — from heterogeneous city platforms,
-extracts structured facts from them with an LLM, will validate that
-output against an eval suite, and publish digests that pass automated
-quality checks.
+extracts structured facts from them with an LLM, validates that output
+against an eval suite, and generates plain-language digests that pass
+automated, two-tier style checks.
 
 **The problem:** municipal governments publish meeting records in wildly
 inconsistent formats, across dozens of different platform vendors, with
@@ -29,9 +29,16 @@ for the full numbers). Extractions below a per-field confidence
 threshold are held back from publication and routed to a human review
 queue (`python -m civic_scraper.review`), and accepted review decisions
 feed back into the gold set — see [`docs/review.md`](docs/review.md).
-None of the pipeline is wired into the connectors/runners automatically
-yet, and the digest layer that makes this a genuinely quality-controlled
-system end to end is not built at all. See
+Validated extractions can be turned into a plain-language, cited
+Markdown digest (`digest/generate_digest.py`), checked against a
+hand-written style guide by a two-tier checker — deterministic pattern
+matching plus an LLM judge — that is itself scored for precision and
+recall the same way extraction is, and that check runs in CI against a
+real generated digest on every relevant pull request; see
+[`docs/style-checking.md`](docs/style-checking.md). None of the pipeline
+is wired into the connectors/runners automatically yet — every stage
+above works standalone and has been run against real data, but nothing
+calls the next stage on the previous one's output automatically. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -65,6 +72,13 @@ system end to end is not built at all. See
    Review queue (review/)         <- extractions below a per-field confidence threshold are
                                       held back; python -m civic_scraper.review resolves them;
                                       accepted decisions feed back into the gold set above
+            |
+            v
+   Digest generation (digest/)     <- plain-language, cited Markdown from validated facts only
+            |
+            v
+   Style check (checks/)           <- deterministic rules + LLM judge, scored against
+                                      evals/style_cases/; CI fails on any high-severity finding
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -126,18 +140,19 @@ HTTP and needs nothing extra.
 
 Stated plainly:
 
-- **No validation gate, eval, or digest layers yet.** Everything past
-  "get a schema-validated `Meeting`, fetch/extract its documents, and
-  extract one `AgendaItem` from a document on request" — the actual
-  quality-controlled content system described above — is unbuilt. See
-  [Roadmap](#roadmap).
-- **Nothing is wired together automatically.** `fetch_and_extract()` in
-  `document_text.py` and `extract_agenda_item()` in
-  `extraction/agenda_item.py` both work standalone, and confidence
-  routing/review (`review/routing.py`, `python -m civic_scraper.review`)
-  exists as a standalone step too, but nothing calls any of this on a
-  scraped `Meeting`'s `agenda_url`/`minutes_url` automatically — that
-  plumbing is still ahead.
+- **Every pipeline stage exists and has been run against real data, but
+  none of them call each other automatically.** `fetch_and_extract()`,
+  `extract_agenda_item()`, `route_agenda_item()`, `generate_digest()`,
+  and `check_deterministic()`/`judge_style()` each work standalone and
+  have all been exercised against real San Jose meeting data, but
+  nothing calls the next stage on the previous one's output — a scraped
+  `Meeting`'s `agenda_url` doesn't automatically flow through fetch,
+  extraction, review, digest generation, and style checking end to end.
+  That runner is still ahead. See [Roadmap](#roadmap).
+- **Digest generation has only been run against one meeting's worth of
+  real data.** `docs/style-checking.md` documents that single real run
+  in detail (including a real sentence-tokenization bug it found and
+  fixed), but one meeting is a smoke test, not a validated sample size.
 - **Extraction quality is uneven across fields, and the model is
   overconfident.** Against the 44-case gold set: motions F1 0.87,
   amounts F1 0.87, people F1 0.81, but locations F1 only 0.60 (a
@@ -155,6 +170,13 @@ Stated plainly:
   no address-normalization, so distinct-but-related places can
   under/over-match. Documented in full in
   [`docs/evals.md`](docs/evals.md#known-limitations-and-what-a-v2-harness-should-fix).
+- **The style checker's LLM-judge tier has strong recall and weak
+  measured precision on its own eval set** — it never missed a planted
+  violation (recall 1.0 on every judge rule) but frequently flags more
+  than the one problem a hand-built test case was built to isolate.
+  Reported honestly, with the reasoning for why that's an acceptable
+  failure mode for a quality gate, in
+  [`docs/style-checking.md`](docs/style-checking.md).
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
   The near-term plan is to prove the pipeline well on a small, deliberate
@@ -221,9 +243,25 @@ order it's planned:
    rejected — growing the gold set from 38 to 44 cases and surfacing a
    real gold-set-partial-annotation scoring bug in the process. Full
    writeup: [`docs/review.md`](docs/review.md).
-5. **Digest generation and style enforcement.** Plain-language meeting
-   summaries generated from validated extractions, checked against a
-   written style guide by both deterministic rules and an LLM judge.
+5. **Digest generation and style enforcement — done.**
+   `digest/generate_digest.py` turns a meeting's validated, published
+   `AgendaItem`s (never raw document text) into a plain-language,
+   fully-cited Markdown digest, using forced tool use so the output is
+   never free-text-parsed. `checks/style_check.py` scores it against
+   [`docs/style-guide.md`](docs/style-guide.md) — a hand-written style
+   guide covering voice, structure, citation rules, and an explicit
+   prohibition on editorializing — with a deterministic tier (structure,
+   citations, banned constructions, length, reading level, first-
+   reference titles) and an LLM-judge tier (voice/register, unsupported
+   claims, editorializing). The checker is scored against its own
+   20-case labeled eval set the same way extraction is scored against
+   its gold set, and CI generates a real digest from real M4 data on
+   every relevant PR, failing on any high-severity finding. The first
+   real run found and fixed two genuine bugs (ungrounded eval fixtures,
+   a sentence-tokenizer bug that severed citations from real
+   abbreviation-heavy prose) and produced an honest, reported precision/
+   recall split between the two tiers. Full methodology and results:
+   [`docs/style-checking.md`](docs/style-checking.md).
 6. **Metrics and drift detection.** Per-city health metrics over time,
    flagging when a city's template changes enough to degrade extraction
    quality (connector rot).
@@ -240,6 +278,8 @@ order it's planned:
 | [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
 | [`docs/evals.md`](docs/evals.md) | Eval harness methodology, the gold set, matching rules, and the first real run's results (bugs found, calibration read) |
 | [`docs/review.md`](docs/review.md) | Confidence routing, the review CLI, the gold-set flywheel, and the first real review session's results |
+| [`docs/style-guide.md`](docs/style-guide.md) | The hand-written editorial standard every digest is written and checked against |
+| [`docs/style-checking.md`](docs/style-checking.md) | Style-checker methodology, its own measured precision/recall, and the real bugs the first live run found |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## Project layout
@@ -257,8 +297,10 @@ services/workers/civic_scraper/
     cities.yaml            the city registry
     run_all.py             multi-connector ingestion runner
     review/                confidence routing, review queue, gold-set flywheel
-evals/                  eval harness: gold set, scoring metrics, orchestration, baseline
-tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, and review
+    digest/                digest generation from validated extractions
+checks/                 style_check.py: deterministic rules + LLM judge
+evals/                  eval harness: gold set + style cases, scoring metrics, orchestration, baselines
+tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, and checks
 data/processed/         sample output (JSON, one file per city per period)
 data/raw/               fetched agenda/minutes documents, content-addressed
 data/review_queue/      below-threshold extractions awaiting human review

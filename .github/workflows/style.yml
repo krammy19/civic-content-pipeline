@@ -1,0 +1,73 @@
+name: Style
+
+on:
+  pull_request:
+    paths:
+      - "evals/style_cases/**"
+      - "prompts/generate_digest.v1.md"
+      - "prompts/judge_digest_style.v1.md"
+      - "docs/style-guide.md"
+      - "checks/**"
+      - "services/workers/civic_scraper/digest/**"
+      - "services/workers/civic_scraper/review/**"
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    name: Run style-checker eval and digest smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - run: uv sync --locked
+
+      # Keyed on style-case, prompt, and style-guide content, not just
+      # branch/commit, so a cache hit means "this exact input was already
+      # scored" regardless of what else changed. A hit makes the run free
+      # (llm.py checks the cache before ever constructing an Anthropic
+      # client) - this exists specifically so routine CI runs don't
+      # silently re-bill on every push.
+      - name: Cache LLM responses
+        uses: actions/cache@v4
+        with:
+          path: .cache/llm
+          key: >-
+            llm-cache-${{ hashFiles('evals/style_cases/**',
+            'prompts/generate_digest.v1.md', 'prompts/judge_digest_style.v1.md',
+            'docs/style-guide.md') }}
+
+      - name: Run style-checker eval suite
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret not set - skipping the style eval run."
+            echo "This is a no-op, not a failure: nothing here should force"
+            echo "API spend on every push without an explicit opt-in secret."
+            exit 0
+          fi
+          uv run python evals/run_style_eval.py
+
+      - name: Generate a real digest and check it for high-severity findings
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret not set - skipping the digest smoke test."
+            exit 0
+          fi
+          uv run python scripts/check_sample_digest.py
+
+      - name: Upload style-eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: style-eval-results
+          path: evals/results/style_latest.json
+          if-no-files-found: ignore

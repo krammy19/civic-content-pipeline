@@ -5,11 +5,15 @@ ingestion layer that normalizes municipal meeting data into a validated
 schema, a document-fetch/text-extraction stage on top of it, an
 LLM-based extraction layer that can turn one agenda item's document text
 into a schema-validated `AgendaItem`, an eval harness that scores that
-extraction layer against a hand-annotated gold set, and a confidence-based
+extraction layer against a hand-annotated gold set, a confidence-based
 review queue that holds back uncertain extractions for a human decision
-and feeds that decision back into the gold set. It does not describe the
-digest layer still planned (see the [README](../README.md#roadmap)) —
-that doesn't exist yet. This doc will be updated as it lands.
+and feeds that decision back into the gold set, and a digest-generation
+plus two-tier style-checking layer that turns validated extractions into
+a plain-language digest and scores that digest against a hand-written
+style guide. Every stage above has been run against real data and has
+its own eval or test coverage; what's still missing is a single runner
+that chains them together automatically (see the
+[README](../README.md#roadmap)). This doc will be updated as that lands.
 
 ## Overview
 
@@ -42,6 +46,14 @@ that doesn't exist yet. This doc will be updated as it lands.
    Review queue (review/)         <- below-threshold extractions held back; a person
                                       accepts/edits/rejects via the review CLI; accepted
                                       decisions feed back into the gold set above
+            |
+            v
+   Digest generation (digest/)     <- generate_digest.py; forced tool use against validated
+                                      facts only -> plain-language, fully-cited Markdown
+            |
+            v
+   Style check (checks/)           <- check_deterministic() + judge_style(); scored against
+                                      evals/style_cases/; CI fails on any high-severity finding
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
@@ -308,6 +320,53 @@ section covers how the pieces fit together:
   `docs/review.md` for the real regression this fixed the first time it
   came up.
 
+## Digest generation and style checking
+
+[`digest/`](../services/workers/civic_scraper/digest/) and
+[`checks/`](../checks/) turn validated extractions into a plain-language
+digest and enforce that the digest actually reads the way
+[`docs/style-guide.md`](style-guide.md) requires. Full methodology, the
+style checker's own measured precision/recall, and the real bugs the
+first live run found are in [`docs/style-checking.md`](style-checking.md);
+this section covers how the pieces fit together:
+
+- **`digest/generate_digest.py`** — `generate_digest()` renders a
+  `Meeting`'s `AgendaItem`s into a plain-text fact block
+  (`render_facts()`) grouped into the style guide's fixed section order,
+  then calls Claude with forced tool use against `MeetingDigest`'s
+  one-field schema (a single Markdown string) — the same "structured
+  output, never free-text parsing" discipline as extraction, applied to
+  prose. The model is given *only* the rendered facts, never raw
+  document text, so every claim it can make is already traceable to a
+  specific item number.
+- **`checks/style_check.py`** — two tiers, returning the same
+  `Finding(rule, severity, message, excerpt)` shape:
+  - `check_deterministic()` is pure pattern matching (structure,
+    citation presence/validity, banned constructions, sentence/paragraph
+    length, Flesch-Kincaid reading level, first-reference titles) — no
+    network call, no `civic_scraper` import, fully unit-testable against
+    synthetic text.
+  - `judge_style()` is a second forced-tool-use call, scoped to the
+    three things pattern matching can't reliably judge: voice/register
+    conformance, unsupported claims, and political-outcome
+    editorializing.
+- **`evals/style_cases/*.json`** — 20 hand-built digests, each isolating
+  one rule (or, for `wrong-item-citation`, demonstrating why the judge
+  tier exists at all: a citation to a real item number whose actual
+  facts don't support the claim attached to it). Built by
+  [`scripts/build_style_cases.py`](../scripts/build_style_cases.py).
+  `evals/run_style_eval.py` scores the checker's actual output against
+  these labels by rule-name set membership (not exact finding count —
+  see `docs/style-checking.md`) and gates CI against
+  `evals/style_baseline.json`.
+- **`scripts/check_sample_digest.py`** — the CI smoke test: extracts and
+  routes the same real M4 agenda items, generates a real digest, and
+  fails if any `high`-severity finding survives. This is what caught a
+  real sentence-tokenizer bug (`checks/style_check.py`'s abbreviation
+  handling) that the hand-written `style_cases` never could, because
+  hand-written test prose doesn't naturally contain "Ordinance No. 31328"
+  or "Blocka Construction Inc."
+
 ## Directory layout (current)
 
 ```
@@ -315,9 +374,17 @@ civic-engagement-app/
 ├── docs/                          architecture, data model, pipeline, engineering log
 ├── prompts/                        versioned LLM prompts, never inline in code
 │   ├── extract_agenda_item.v1.md
-│   └── extract_civic_data.v1.md
+│   ├── extract_civic_data.v1.md
+│   ├── generate_digest.v1.md
+│   └── judge_digest_style.v1.md
 ├── scripts/
-│   └── scrape_meetings.py         early prototype, kept for reference
+│   ├── scrape_meetings.py         early prototype, kept for reference
+│   ├── build_gold_set.py          one-time generator for evals/gold/
+│   ├── build_style_cases.py       one-time generator for evals/style_cases/
+│   ├── run_review_demo_batch.py   record of the M4 live review-queue batch
+│   └── check_sample_digest.py     CI smoke test: real digest, fails on high-severity findings
+├── checks/
+│   └── style_check.py             deterministic rules + LLM judge for generated digests
 ├── services/workers/
 │   ├── civic_scraper/
 │   │   ├── models.py              canonical Pydantic schema
@@ -325,6 +392,7 @@ civic-engagement-app/
 │   │   ├── llm.py                  single cached Claude wrapper
 │   │   ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
 │   │   ├── review/                 confidence routing, review queue, gold-set flywheel
+│   │   ├── digest/                 digest generation from validated extractions
 │   │   ├── document_fetch.py      content-addressed document download/cache
 │   │   ├── document_text.py       PDF text extraction + scan detection
 │   │   ├── cities.yaml            city registry
@@ -334,12 +402,12 @@ civic-engagement-app/
 │   │   ├── run_legistar.py        Legistar-only runner (superseded by run_all.py)
 │   │   └── run_all.py             multi-connector ingestion runner
 │   └── data/processed/            sample output when run from services/workers/
-├── evals/                         gold set, scoring metrics, orchestration, committed baseline
+├── evals/                         gold set + style cases, scoring metrics, orchestration, baselines
 ├── data/processed/                sample output when run from repo root
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
 ├── data/review_queue/             below-threshold extractions awaiting human review
 ├── .cache/llm/                    Claude response cache, keyed on (prompt_version, model, input hash)
-└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, and review
+└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, and checks
 ```
 
 `data/processed/` exists in two places because the runners resolve their
@@ -347,5 +415,6 @@ output path relative to the current working directory rather than the
 repo root — a known inconsistency, not yet fixed.
 
 See the [README's roadmap](../README.md#roadmap) for what's still ahead
-(wiring fetch and extraction into a runner, a validation gate, an eval
-harness, digest generation) and the order it's being built in.
+(wiring every stage above into a single automatic runner, per-city
+metrics and drift detection, a second platform) and the order it's being
+built in.
