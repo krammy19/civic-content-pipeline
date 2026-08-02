@@ -1,0 +1,56 @@
+name: Metrics
+
+on:
+  pull_request:
+    paths:
+      - "services/workers/civic_scraper/metrics/**"
+      - "services/workers/civic_scraper/extraction/**"
+      - "scripts/run_review_demo_batch.py"
+      - "scripts/check_metrics_drift.py"
+
+permissions:
+  contents: read
+
+jobs:
+  metrics:
+    name: Metrics/drift smoke test and health report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - run: uv sync --locked
+
+      # Keyed on the extraction inputs this smoke test actually uses, so a
+      # cache hit means "these exact extractions were already scored" - a
+      # hit makes the run free (llm.py checks the cache before ever
+      # constructing an Anthropic client), the same cost-safety pattern as
+      # eval.yml and style.yml.
+      - name: Cache LLM responses
+        uses: actions/cache@v4
+        with:
+          path: .cache/llm
+          key: llm-cache-${{ hashFiles('scripts/run_review_demo_batch.py') }}
+
+      - name: Run metrics/drift smoke test
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret not set - skipping the metrics smoke test."
+            echo "This is a no-op, not a failure: nothing here should force"
+            echo "API spend on every push without an explicit opt-in secret."
+            exit 0
+          fi
+          uv run python scripts/check_metrics_drift.py | tee health-report.md
+
+      - name: Upload health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: health-report
+          path: health-report.md
+          if-no-files-found: ignore
