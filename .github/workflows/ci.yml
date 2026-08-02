@@ -28,3 +28,16 @@ jobs:
           version: "latest"
       - run: uv sync --locked
       - run: uv run pytest -v
+
+  docs-drift:
+    name: docs/data-model.md matches the Pydantic models
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+      - run: uv sync --locked
+      # No network, no API key needed - this is pure introspection of
+      # civic_scraper.models, so it runs unconditionally on every push.
+      - run: uv run python checks/docs_drift.py
