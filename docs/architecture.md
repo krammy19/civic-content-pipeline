@@ -7,13 +7,15 @@ LLM-based extraction layer that can turn one agenda item's document text
 into a schema-validated `AgendaItem`, an eval harness that scores that
 extraction layer against a hand-annotated gold set, a confidence-based
 review queue that holds back uncertain extractions for a human decision
-and feeds that decision back into the gold set, and a digest-generation
+and feeds that decision back into the gold set, a digest-generation
 plus two-tier style-checking layer that turns validated extractions into
 a plain-language digest and scores that digest against a hand-written
-style guide. Every stage above has been run against real data and has
-its own eval or test coverage; what's still missing is a single runner
-that chains them together automatically (see the
-[README](../README.md#roadmap)). This doc will be updated as that lands.
+style guide, and a metrics/drift-detection layer that watches each run's
+own health against that city's trailing history. Every stage above has
+been run against real data and has its own eval or test coverage;
+what's still missing is a single runner that chains them together
+automatically (see the [README](../README.md#roadmap)). This doc will
+be updated as that lands.
 
 ## Overview
 
@@ -54,6 +56,10 @@ that chains them together automatically (see the
             v
    Style check (checks/)           <- check_deterministic() + judge_style(); scored against
                                       evals/style_cases/; CI fails on any high-severity finding
+            |
+            v
+   Metrics + drift (metrics/)      <- compute_run_metrics() vs. trailing_baseline() of the
+                                      city's own prior runs; data/metrics/{city}/{run_id}.json
 ```
 
 See [`data-model.md`](data-model.md) for the full field reference on
@@ -367,6 +373,53 @@ this section covers how the pieces fit together:
   hand-written test prose doesn't naturally contain "Ordinance No. 31328"
   or "Blocka Construction Inc."
 
+## Metrics and drift detection
+
+[`metrics/`](../services/workers/civic_scraper/metrics/) is not an eval
+harness - there's no gold set, no hand labels. It watches one
+jurisdiction's own extraction runs for signs that a run went badly
+compared to that same jurisdiction's recent history, which is what
+actually catches a platform template changing underneath a connector.
+Full methodology, thresholds, and the live connector-rot demonstration
+are in [`docs/metrics.md`](metrics.md):
+
+- **`collect.py`** — `compute_run_metrics()` builds a `RunMetrics` for
+  one run: rows parsed, schema failure rate, per-field-type population
+  rates, mean confidence and hallucination rate (from *raw*, pre-filter
+  extractions - reusing `extraction.agenda_item.verify_provenance()`
+  directly rather than reimplementing the same check for monitoring
+  purposes), and review-queue volume.
+- **`store.py`** — one JSON file per run,
+  `data/metrics/{jurisdiction-slug}/{run_id}.json` (gitignored - runtime
+  observability data, not source).
+- **`drift.py`** — `trailing_baseline()` averages a jurisdiction's prior
+  runs; `detect_drift()` flags a metric that moved past a fixed absolute
+  threshold from that baseline. Thresholds are deliberately loose
+  (a field population rate has to move more than 30 points to flag) so
+  ordinary meeting-to-meeting variety in what's on an agenda doesn't
+  read as a broken connector.
+- **`report.py`** — renders `RunMetrics` + baseline + flags into
+  Markdown, one jurisdiction or several concatenated - what
+  `.github/workflows/metrics.yml` uploads as a CI artifact.
+
+## Documentation that cannot go stale
+
+`checks/docs_drift.py` regenerates
+[`docs/data-model.md`](data-model.md) directly from
+`civic_scraper.models`' own field introspection -
+`model_fields`/`model_computed_fields`, each field's
+`Field(description=...)`, rendered through a small type-name renderer
+that produces the same `str | None` / `list[Extracted[Motion]]` style
+the doc has always used rather than Python's fully-qualified typing
+repr. Only the section grouping and per-model framing sentences are
+hand-authored, in the generator script itself - the same "generated"
+contract `scripts/build_gold_set.py` and `scripts/build_style_cases.py`
+already use for their own artifacts. `.github/workflows/ci.yml` runs
+`checks/docs_drift.py` unconditionally (pure introspection, no network,
+no API key) and fails if the committed file doesn't match what the
+script produces right now - editing a model without regenerating the
+doc is a CI failure, not a silently stale file.
+
 ## Directory layout (current)
 
 ```
@@ -382,9 +435,11 @@ civic-engagement-app/
 │   ├── build_gold_set.py          one-time generator for evals/gold/
 │   ├── build_style_cases.py       one-time generator for evals/style_cases/
 │   ├── run_review_demo_batch.py   record of the M4 live review-queue batch
-│   └── check_sample_digest.py     CI smoke test: real digest, fails on high-severity findings
+│   ├── check_sample_digest.py     CI smoke test: real digest, fails on high-severity findings
+│   └── check_metrics_drift.py     CI smoke test: real run + simulated connector rot
 ├── checks/
-│   └── style_check.py             deterministic rules + LLM judge for generated digests
+│   ├── style_check.py             deterministic rules + LLM judge for generated digests
+│   └── docs_drift.py              regenerates docs/data-model.md from the Pydantic models
 ├── services/workers/
 │   ├── civic_scraper/
 │   │   ├── models.py              canonical Pydantic schema
@@ -393,6 +448,7 @@ civic-engagement-app/
 │   │   ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
 │   │   ├── review/                 confidence routing, review queue, gold-set flywheel
 │   │   ├── digest/                 digest generation from validated extractions
+│   │   ├── metrics/                per-run health metrics + trailing-baseline drift detection
 │   │   ├── document_fetch.py      content-addressed document download/cache
 │   │   ├── document_text.py       PDF text extraction + scan detection
 │   │   ├── cities.yaml            city registry
@@ -406,8 +462,9 @@ civic-engagement-app/
 ├── data/processed/                sample output when run from repo root
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
 ├── data/review_queue/             below-threshold extractions awaiting human review
+├── data/metrics/                  per-run, per-city health metrics
 ├── .cache/llm/                    Claude response cache, keyed on (prompt_version, model, input hash)
-└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, and checks
+└── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, checks, and metrics
 ```
 
 `data/processed/` exists in two places because the runners resolve their
@@ -415,6 +472,5 @@ output path relative to the current working directory rather than the
 repo root — a known inconsistency, not yet fixed.
 
 See the [README's roadmap](../README.md#roadmap) for what's still ahead
-(wiring every stage above into a single automatic runner, per-city
-metrics and drift detection, a second platform) and the order it's being
-built in.
+(wiring every stage above into a single automatic runner, a second
+platform) and the order it's being built in.

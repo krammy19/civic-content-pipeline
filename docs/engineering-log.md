@@ -477,3 +477,68 @@ every other eval in this project: `.github/workflows/style.yml` runs the
 style-eval suite and the real-digest smoke test on any PR touching the
 style guide, prompts, digest generation, or the checker itself, no-oping
 when no `ANTHROPIC_API_KEY` secret is configured.
+
+## 2026-08-02 — Metrics, drift detection, and documentation that can't go stale
+
+Sixth step of the roadmap. Two genuinely different things live under
+this one milestone, and it was worth being careful not to blur them:
+watching production output for drift, and making one specific doc file
+physically incapable of lying about the schema.
+
+**Metrics/drift is deliberately not another eval harness.** Every prior
+eval in this project (`evals/`, `evals/style_cases/`) exists because
+there's a hand-labeled right answer to score against. `metrics/` has no
+gold set at all - `detect_drift()` only ever compares a jurisdiction's
+current run against the mean of that same jurisdiction's own prior runs.
+That's a much cheaper claim to support (it needs no labels, ever) and a
+narrower one: it can tell you "San Jose's numbers just moved a lot,"
+never "San Jose's numbers are wrong." Conflating the two would have
+meant either building a gold set for every city ever added - defeating
+the entire point of a monitoring signal - or quietly asserting
+correctness a trailing-average comparison was never positioned to prove.
+
+**Hallucination rate and mean confidence reuse M2's own check, not a
+copy of it.** `metrics/collect.py`'s `compute_run_metrics()` calls
+`extraction.agenda_item.verify_provenance()` directly against a run's
+raw (pre-filter) output - the identical deterministic substring check
+production filtering already uses, not a second implementation that
+could quietly drift from the first one's behavior over time.
+
+**Thresholds are absolute and loose on purpose, and the live
+demonstration caught a real gap in that choice rather than hiding it.**
+`scripts/check_metrics_drift.py` extracted the same eight real M4 items,
+recorded that as a trailing baseline, then built a genuinely simulated
+broken-connector run - the same published items with `people` and
+`amounts` silently stripped, no schema failures, exactly the signature
+of a connector reading the wrong column after a platform redesign. The
+result: `people` collapsed 100 points and was correctly flagged.
+`amounts` dropped 25 points, from an already-low 25% baseline to zero,
+and was **not** flagged - the field-population threshold is 30 points,
+flat, regardless of a field's own baseline rate. That's not a bug found
+and quietly fixed; it's a real, honest limit of a single flat threshold,
+written into `docs/metrics.md` as exactly that rather than adjusted
+after the fact to make the demo look cleaner. Whether a field's own
+baseline rate should scale its threshold is a real open question with no
+real drift history yet to answer it from.
+
+**`docs/data-model.md` stopped being hand-maintained prose.**
+SPEC's target layout marked it "GENERATED — do not hand-edit" from the
+start; M1's version never actually was. `checks/docs_drift.py` now
+regenerates it directly from `civic_scraper.models`' own
+`model_fields`/`model_computed_fields` introspection, which required
+first converting every field's trailing `# comment` into a real
+`Field(description=...)` - a change with a second, unplanned benefit:
+those same descriptions now also appear in `model_json_schema()`, the
+exact tool schema Claude fills in during extraction, so writing one
+clear field description now does double duty instead of living only in
+a doc a model never sees. The generator's own type-name renderer
+(`render_type()`) reproduces the doc's established style -
+`str | None`, `list[Extracted[Motion]]`, `Literal["a", "b"]` - rather
+than Python's fully-qualified typing repr, verified against real model
+fields, not just synthetic ones, since the synthetic-only version would
+have missed a real doc regressing in a way nobody was actually looking
+at. `.github/workflows/ci.yml` runs the generator unconditionally
+(pure introspection, no network) and fails if the committed file
+doesn't match - confirmed working both directions: a hand-edit to the
+committed file fails the check, and running `--write` after a real
+model edit clears it again.

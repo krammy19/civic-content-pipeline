@@ -35,10 +35,16 @@ hand-written style guide by a two-tier checker — deterministic pattern
 matching plus an LLM judge — that is itself scored for precision and
 recall the same way extraction is, and that check runs in CI against a
 real generated digest on every relevant pull request; see
-[`docs/style-checking.md`](docs/style-checking.md). None of the pipeline
-is wired into the connectors/runners automatically yet — every stage
-above works standalone and has been run against real data, but nothing
-calls the next stage on the previous one's output automatically. See
+[`docs/style-checking.md`](docs/style-checking.md). Every extraction run
+can also be summarized into per-city health metrics and compared
+against that city's own trailing history to flag "connector rot" —
+a platform template change degrading extraction quality — with no gold
+set required (see [`docs/metrics.md`](docs/metrics.md)), and
+`docs/data-model.md` is generated directly from the Pydantic models so
+it cannot go stale without failing CI. None of the pipeline is wired
+into the connectors/runners automatically yet — every stage above works
+standalone and has been run against real data, but nothing calls the
+next stage on the previous one's output automatically. See
 [Current limitations](#current-limitations) and
 [Roadmap](#roadmap) below.
 
@@ -79,6 +85,10 @@ calls the next stage on the previous one's output automatically. See
             v
    Style check (checks/)           <- deterministic rules + LLM judge, scored against
                                       evals/style_cases/; CI fails on any high-severity finding
+            |
+            v
+   Metrics + drift (metrics/)      <- per-run RunMetrics vs. trailing per-city baseline;
+                                      flags connector rot; data/metrics/{city}/{run_id}.json
 ```
 
 Full writeup, including why parsing is header-driven rather than
@@ -143,12 +153,13 @@ Stated plainly:
 - **Every pipeline stage exists and has been run against real data, but
   none of them call each other automatically.** `fetch_and_extract()`,
   `extract_agenda_item()`, `route_agenda_item()`, `generate_digest()`,
-  and `check_deterministic()`/`judge_style()` each work standalone and
-  have all been exercised against real San Jose meeting data, but
-  nothing calls the next stage on the previous one's output — a scraped
-  `Meeting`'s `agenda_url` doesn't automatically flow through fetch,
-  extraction, review, digest generation, and style checking end to end.
-  That runner is still ahead. See [Roadmap](#roadmap).
+  `check_deterministic()`/`judge_style()`, and `compute_run_metrics()`
+  each work standalone and have all been exercised against real San Jose
+  meeting data, but nothing calls the next stage on the previous one's
+  output — a scraped `Meeting`'s `agenda_url` doesn't automatically flow
+  through fetch, extraction, review, digest generation, style checking,
+  and metrics recording end to end. That runner is still ahead. See
+  [Roadmap](#roadmap).
 - **Digest generation has only been run against one meeting's worth of
   real data.** `docs/style-checking.md` documents that single real run
   in detail (including a real sentence-tokenization bug it found and
@@ -177,6 +188,14 @@ Stated plainly:
   Reported honestly, with the reasoning for why that's an acceptable
   failure mode for a quality gate, in
   [`docs/style-checking.md`](docs/style-checking.md).
+- **Drift-detection thresholds are a starting guess, not derived from
+  real drift data.** There isn't enough real per-city run history yet
+  to know what normal metric variance actually looks like, and the
+  thresholds are flat/absolute rather than scaled to each field's own
+  baseline rate — the live demo in
+  [`docs/metrics.md`](docs/metrics.md) shows a real case (a 25-point
+  population-rate collapse on an already-low-baseline field) that the
+  current thresholds don't flag, stated plainly rather than tuned away.
 - **`cities.yaml` has 481 cities registered, most of them scraped at
   least once — this overshoots the project's actual near-term scope.**
   The near-term plan is to prove the pipeline well on a small, deliberate
@@ -262,9 +281,24 @@ order it's planned:
    abbreviation-heavy prose) and produced an honest, reported precision/
    recall split between the two tiers. Full methodology and results:
    [`docs/style-checking.md`](docs/style-checking.md).
-6. **Metrics and drift detection.** Per-city health metrics over time,
-   flagging when a city's template changes enough to degrade extraction
-   quality (connector rot).
+6. **Metrics and drift detection — done.** `metrics/collect.py` computes
+   per-run `RunMetrics` (rows parsed, schema failure rate, per-field
+   population rates, mean confidence, hallucination rate, review-queue
+   volume) for one jurisdiction; `metrics/drift.py` compares a run
+   against the mean of that jurisdiction's own prior runs and flags
+   deviations past a threshold — the actual "connector rot" signal, with
+   no gold set or hand labels required, only a city's own history.
+   `metrics/report.py` renders a Markdown health report as a CI
+   artifact. Separately, `checks/docs_drift.py` regenerates
+   `docs/data-model.md` directly from the Pydantic models' own
+   `Field(description=...)` metadata and fails CI if the committed file
+   doesn't match — editing a model without regenerating the doc is now a
+   CI failure, not a silently stale file. The live validation extracted
+   real M4 data as a baseline, then simulated a deliberately broken
+   connector (a field silently going empty, no schema failures) and
+   confirmed `detect_drift()` catches it — while also surfacing, and
+   reporting honestly, a real case the current thresholds don't catch.
+   Full methodology: [`docs/metrics.md`](docs/metrics.md).
 7. **A second platform.** One more connector on a platform Legistar
    doesn't share anything with, run through the same eval suite, with
    results reported honestly — including where they're worse.
@@ -280,6 +314,7 @@ order it's planned:
 | [`docs/review.md`](docs/review.md) | Confidence routing, the review CLI, the gold-set flywheel, and the first real review session's results |
 | [`docs/style-guide.md`](docs/style-guide.md) | The hand-written editorial standard every digest is written and checked against |
 | [`docs/style-checking.md`](docs/style-checking.md) | Style-checker methodology, its own measured precision/recall, and the real bugs the first live run found |
+| [`docs/metrics.md`](docs/metrics.md) | Per-run health metrics, trailing-baseline drift detection, thresholds, and the live connector-rot demonstration |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## Project layout
@@ -298,12 +333,14 @@ services/workers/civic_scraper/
     run_all.py             multi-connector ingestion runner
     review/                confidence routing, review queue, gold-set flywheel
     digest/                digest generation from validated extractions
-checks/                 style_check.py: deterministic rules + LLM judge
+    metrics/               per-run health metrics + trailing-baseline drift detection
+checks/                 style_check.py (deterministic rules + LLM judge), docs_drift.py
 evals/                  eval harness: gold set + style cases, scoring metrics, orchestration, baselines
-tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, and checks
+tests/                  pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, checks, and metrics
 data/processed/         sample output (JSON, one file per city per period)
 data/raw/               fetched agenda/minutes documents, content-addressed
 data/review_queue/      below-threshold extractions awaiting human review
+data/metrics/           per-run, per-city health metrics
 .cache/llm/             Claude response cache, keyed on (prompt_version, model, input hash)
 ```
 
