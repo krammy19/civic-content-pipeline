@@ -1,52 +1,43 @@
 # Civic Engagement App
 
-A content pipeline that ingests municipal government meeting documents —
-agendas, minutes, staff reports — from heterogeneous city platforms,
-extracts structured facts from them with an LLM, validates that output
-against an eval suite, and generates plain-language digests that pass
-automated, two-tier style checks.
+Turns municipal meeting records into structured, verifiable data, and
+into plain-language digests that can't publish until they pass an
+automated quality gate.
 
-**The problem:** municipal governments publish meeting records in wildly
-inconsistent formats, across dozens of different platform vendors, with
-no shared schema. A resident trying to track a specific issue — a zoning
-change, a budget line, a vote — has to manually dig through PDFs and
-platform-specific web UIs, city by city. This project's job is to
-normalize that into one structured, queryable form, and to catch bad
-output (hallucinated facts, miscategorized items, sloppy summaries)
-before a reader ever sees it.
+**Why it exists.** Cities publish meeting records in dozens of
+incompatible formats with no shared schema. Tracking a zoning change or
+a budget line means digging through PDFs one city at a time. This
+project normalizes that into one structured, queryable form, and holds
+back bad output — hallucinated facts, miscategorized items, sloppy
+summaries — before a reader ever sees it.
 
-**Current status: early.** The ingestion layer — connectors that turn a
-platform's calendar page into a normalized, schema-validated `Meeting`
-— works and is tested, with a content-addressed document fetch/cache,
-PDF text extraction with scan detection, and an LLM extraction module
-that turns one agenda item's document text into a schema-validated,
-provenance-verified `AgendaItem`. That extraction module has been run
-against the live Anthropic API and scored by a real eval harness — a
-44-case hand-annotated gold set, precision/recall/F1 per field, zero
-measured hallucinations, and confidence calibration — with the honest
-result that the model is overconfident (see [`docs/evals.md`](docs/evals.md)
-for the full numbers). Extractions below a per-field confidence
-threshold are held back from publication and routed to a human review
-queue (`python -m civic_scraper.review`), and accepted review decisions
-feed back into the gold set — see [`docs/review.md`](docs/review.md).
-Validated extractions can be turned into a plain-language, cited
-Markdown digest (`digest/generate_digest.py`), checked against a
-hand-written style guide by a two-tier checker — deterministic pattern
-matching plus an LLM judge — that is itself scored for precision and
-recall the same way extraction is, and that check runs in CI against a
-real generated digest on every relevant pull request; see
-[`docs/style-checking.md`](docs/style-checking.md). Every extraction run
-can also be summarized into per-city health metrics and compared
-against that city's own trailing history to flag "connector rot" —
-a platform template change degrading extraction quality — with no gold
-set required (see [`docs/metrics.md`](docs/metrics.md)), and
-`docs/data-model.md` is generated directly from the Pydantic models so
-it cannot go stale without failing CI. None of the pipeline is wired
-into the connectors/runners automatically yet — every stage above works
-standalone and has been run against real data, but nothing calls the
-next stage on the previous one's output automatically. See
-[Current limitations](#current-limitations) and
-[Roadmap](#roadmap) below.
+**What's proven.** Extraction scores against a 44-case hand-annotated
+gold set: 0% hallucination, 100% schema validity, F1 0.60–0.87
+depending on field. The model is measurably overconfident (ECE 0.14),
+which is why below-threshold values route to human review rather than
+publishing. → [`docs/evals.md`](docs/evals.md)
+
+**What isn't.** Pipeline stages run standalone but aren't wired end to
+end. One platform validated, not two. →
+[Current limitations](#current-limitations)
+
+## Results at a glance
+
+Against the 44-case gold set ([`evals/baseline.json`](evals/baseline.json)):
+
+| Field | Precision | Recall | F1 |
+|---|---|---|---|
+| Motions | 0.81 | 0.94 | 0.87 |
+| People | 0.68 | 1.00 | 0.81 |
+| Locations | 0.45 | 0.88 | 0.60 |
+| Amounts | 0.77 | 1.00 | 0.87 |
+
+- Schema validity: 100% · Hallucination rate: 0% · Gold set size: 44 cases
+- Expected calibration error: 0.14 — the model states confidence higher
+  than it earns
+
+Locations underperform for a documented matching-granularity reason, not
+worse extraction — see [`docs/evals.md`](docs/evals.md#known-limitations-and-what-a-v2-harness-should-fix).
 
 ## Architecture
 
@@ -76,7 +67,7 @@ next stage on the previous one's output automatically. See
             |
             v
    Review queue (review/)         <- extractions below a per-field confidence threshold are
-                                      held back; python -m civic_scraper.review resolves them;
+                                      held back; civic review resolves them;
                                       accepted decisions feed back into the gold set above
             |
             v
@@ -106,10 +97,10 @@ cd civic-engagement-app
 uv sync
 
 # Scrape this month's meetings for every connectorized city
-PYTHONPATH=services/workers uv run python services/workers/civic_scraper/run_all.py
+uv run civic ingest
 
 # Or just one city
-PYTHONPATH=services/workers uv run python services/workers/civic_scraper/run_all.py --city Oakland
+uv run civic ingest --city Oakland
 
 # Run the test suite
 uv run pytest
@@ -121,7 +112,34 @@ uv run ruff check .
 Output lands in `data/processed/<city-slug>/`. Legistar's calendar
 search is JS-driven, so that connector drives a headless Chrome via
 Selenium — a Chrome/Chromium install is required. CivicPlus is plain
-HTTP and needs nothing extra.
+HTTP and needs nothing extra. Every `civic` subcommand is documented in
+[`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md); run
+`uv run civic --help` for the full list.
+
+## Examples
+
+Real output from real runs, committed so you can see what this
+produces without cloning the repo or supplying an API key:
+[`examples/`](examples/). Start with a real generated digest
+([`examples/digest-san-jose-2026-06-09.md`](examples/digest-san-jose-2026-06-09.md))
+and the eval scorecard
+([`examples/eval-scorecard.txt`](examples/eval-scorecard.txt)); a real
+drift report and a review-session transcript are there too. See
+[`examples/README.md`](examples/README.md) for what produced each one.
+
+## Documentation
+
+| Doc | Covers |
+|---|---|
+| [`docs/architecture.md`](docs/architecture.md) | Connector framework, header-driven parsing, document fetch, the city registry, directory layout |
+| [`docs/data-model.md`](docs/data-model.md) | Every field on every model — scrape output, extraction output, and document fetch output |
+| [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
+| [`docs/evals.md`](docs/evals.md) | Eval harness methodology, the gold set, matching rules, and the first real run's results (bugs found, calibration read) |
+| [`docs/review.md`](docs/review.md) | Confidence routing, the review CLI, the gold-set flywheel, and the first real review session's results |
+| [`docs/style-guide.md`](docs/style-guide.md) | The hand-written editorial standard every digest is written and checked against |
+| [`docs/style-checking.md`](docs/style-checking.md) | Style-checker methodology, its own measured precision/recall, and the real bugs the first live run found |
+| [`docs/metrics.md`](docs/metrics.md) | Per-run health metrics, trailing-baseline drift detection, thresholds, and the live connector-rot demonstration |
+| [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## How to add a connector
 
@@ -211,10 +229,6 @@ Stated plainly:
   its page count (`document_text.MIN_CHARS_PER_PAGE`) — good enough to
   catch genuinely text-free scans, not rigorously validated against a
   labeled set of real scanned municipal PDFs.
-- **Two `data/processed/` directories exist** because the runners
-  resolve output paths relative to the current working directory, not
-  the repo root. Known, not yet fixed — see
-  [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md#output-layout).
 - **No database.** Output is JSON files on disk, overwritten on every
   run — no history, no query interface beyond reading files directly.
 
@@ -254,7 +268,7 @@ order it's planned:
 4. **Confidence routing and review queue — done.** Extractions below a
    per-field-type confidence threshold don't publish — they're written
    to `data/review_queue/` and resolved one at a time by a person via
-   `python -m civic_scraper.review` (accept, edit, or reject). Accepted
+   `civic review` (accept, edit, or reject). Accepted
    or edited decisions are exported into new gold cases, closing the
    loop: human review makes the eval suite stronger over time. The first
    real review session resolved 10 real queued values from a fresh
@@ -303,27 +317,16 @@ order it's planned:
    doesn't share anything with, run through the same eval suite, with
    results reported honestly — including where they're worse.
 
-## Documentation
-
-| Doc | Covers |
-|---|---|
-| [`docs/architecture.md`](docs/architecture.md) | Connector framework, header-driven parsing, document fetch, the city registry, directory layout |
-| [`docs/data-model.md`](docs/data-model.md) | Every field on every model — scrape output, extraction output, and document fetch output |
-| [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md) | Runners, phases, `cities.yaml` format, output layout |
-| [`docs/evals.md`](docs/evals.md) | Eval harness methodology, the gold set, matching rules, and the first real run's results (bugs found, calibration read) |
-| [`docs/review.md`](docs/review.md) | Confidence routing, the review CLI, the gold-set flywheel, and the first real review session's results |
-| [`docs/style-guide.md`](docs/style-guide.md) | The hand-written editorial standard every digest is written and checked against |
-| [`docs/style-checking.md`](docs/style-checking.md) | Style-checker methodology, its own measured precision/recall, and the real bugs the first live run found |
-| [`docs/metrics.md`](docs/metrics.md) | Per-run health metrics, trailing-baseline drift detection, thresholds, and the live connector-rot demonstration |
-| [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
-
 ## Project layout
 
 ```
 docs/                   architecture, data model, pipeline, eval methodology, engineering log
+examples/               real committed output: a generated digest, an eval scorecard, a drift report, a review session
 prompts/                versioned LLM prompts (never inline in code)
 services/workers/civic_scraper/
     models.py             canonical Pydantic schema
+    paths.py              every data directory, anchored to the repo root
+    cli.py                 the `civic` console command - thin argument parsing over everything below
     connectors/           one module per platform + shared interface
     llm.py                 single cached Claude wrapper - every LLM call goes through this
     extraction/            LLM-based structured extraction (agenda items, staff reports)
