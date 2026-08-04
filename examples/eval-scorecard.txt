@@ -1,0 +1,74 @@
+$ uv run civic eval
+
+Loaded 44 gold cases from C:\Users\m_noa\Github\civic-engagement-app\evals\gold
+Running extraction with model=claude-sonnet-5 (cached - repeat runs cost nothing)
+
+  [ok  ] review-sj-cc-2026-06-09-2.13-motions-1
+  [ok  ] review-sj-cc-2026-06-09-2.13-people-1
+  [ok  ] review-sj-cc-2026-06-09-2.2-people-1
+  [ok  ] review-sj-cc-2026-06-09-2.8-people-1
+  [ok  ] review-sj-cc-2026-06-09-2.9-people-1
+  [ok  ] review-sj-cc-2026-06-09-6.1-locations-0
+  [ok  ] sj-cc-2025-12-09-1.1
+  [ok  ] sj-cc-2025-12-09-1.3
+  [ok  ] sj-cc-2025-12-09-10.1a
+  [ok  ] sj-cc-2025-12-09-2.10
+  [ok  ] sj-cc-2025-12-09-2.11
+  [ok  ] sj-cc-2025-12-09-2.12
+  [ok  ] sj-cc-2025-12-09-2.13
+  [ok  ] sj-cc-2025-12-09-2.14
+  [ok  ] sj-cc-2025-12-09-2.15
+  [ok  ] sj-cc-2025-12-09-2.4
+  [ok  ] sj-cc-2025-12-09-2.7
+  [ok  ] sj-cc-2025-12-09-2.9
+  [ok  ] sj-cc-2025-12-09-3.3
+  [ok  ] sj-cc-2025-12-09-3.4
+  [ok  ] sj-cc-2025-12-09-3.5
+  [ok  ] sj-cc-2025-12-09-3.6
+  [ok  ] sj-cc-2025-12-09-3.7
+  [ok  ] sj-cc-2025-12-09-3.8
+  [ok  ] sj-cc-2025-12-09-6.1
+  [ok  ] sj-cc-2025-12-09-8.1
+  [ok  ] sj-cc-2025-12-09-9.1
+  [ok  ] sj-cc-2025-12-16-2.1
+  [ok  ] sj-cc-2025-12-16-2.10
+  [ok  ] sj-cc-2025-12-16-2.11
+  [ok  ] sj-cc-2025-12-16-2.16
+  [ok  ] sj-cc-2025-12-16-2.17
+  [ok  ] sj-cc-2025-12-16-2.2
+  [ok  ] sj-cc-2025-12-16-2.28
+  [ok  ] sj-cc-2025-12-16-2.7
+  [ok  ] sj-cc-2025-12-16-2.8
+  [ok  ] sj-cc-2025-12-16-2.9
+  [ok  ] sj-cc-2025-12-16-ada-curb-ramps
+  [ok  ] sj-cc-synthetic-amount-in-words
+  [ok  ] sj-pc-2025-12-10-3a
+  [ok  ] sj-pc-2025-12-10-4
+  [ok  ] sj-pc-2025-12-10-5a-apple
+  [ok  ] sj-pc-2025-12-10-5a-cisco
+  [ok  ] sj-pc-2025-12-10-5a-google
+
+Model: claude-sonnet-5
+Gold cases: 44
+Schema validity rate: 100.0%
+Hallucination rate (raw output): 0.0%
+Mean confidence (raw output): 0.865
+
+Field        Precision   Recall    F1       TP    FP    FN
+------------------------------------------------------------
+motions      0.825       0.917     0.868    33    7     3
+people       0.694       0.987     0.815    75    33    1
+locations    0.552       0.941     0.696    16    13    1
+amounts      0.767       1.000     0.868    23    7     0
+
+Calibration (ECE = 0.1262):
+Confidence range     n      Mean confidence   Actual accuracy
+--------------------------------------------------------------
+[0.00, 0.50)         1      0.400             0.000
+[0.50, 0.70)         17     0.588             0.118
+[0.70, 0.85)         27     0.743             0.481
+[0.85, 0.95)         90     0.889             0.811
+[0.95, 1.01)         72     0.953             0.903
+
+Wrote machine-readable results to C:\Users\m_noa\Github\civic-engagement-app\evals\results\latest.json
+No regression vs. baseline.

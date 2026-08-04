@@ -1,0 +1,235 @@
+$ uv run civic review
+
+# This is a real terminal session of `civic review` resolving the
+# actual 10 items queued by the June 9, 2026 M4 live review run
+# (scripts/run_review_demo_batch.py; see docs/review.md). Captured
+# after the fact from the real recorded decisions rather than at the
+# original session time, so the responses below replay the exact real
+# accept/reject calls and reasons already committed under
+# data/review_queue/ - the CLI output, proposed values, confidences,
+# and provenance spans below are the genuine article.
+
+10 item(s) pending review.
+
+
+========================================================================
+250th anniversary of the Declaration of Independence proclamation (item 1.1) - San Jose City Council, 2026-06-09
+Field: locations  |  Confidence: 0.60  |  ID: sj-cc-2026-06-09-1.1-locations-0
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_text": "City of San Jos\u00e9",
+  "normalized_address": null,
+  "parcel_id": null,
+  "lat": null,
+  "lon": null
+}
+------------------------------------------------------------------------
+Provenance span:
+  "City of San José's integral role in our nation's history, culture, and achievements"
+
+Surrounding context:
+  ...e Declaration of Independence of the United States of America, to celebrate the City of San José's integral role in our nation's history, culture, and achievements.
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > r
+Reason for rejecting (optional): boilerplate self-reference to the city, not a specific place
+
+========================================================================
+Philippines Independence Day proclamation (item 1.2) - San Jose City Council, 2026-06-09
+Field: locations  |  Confidence: 0.70  |  ID: sj-cc-2026-06-09-1.2-locations-0
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_text": "San Jos\u00e9",
+  "normalized_address": null,
+  "parcel_id": null,
+  "lat": null,
+  "lon": null
+}
+------------------------------------------------------------------------
+Provenance span:
+  "San José"
+
+Surrounding context:
+  ...h cultural heritage, resilience, and contributions of the Filipino community in San José.
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > r
+Reason for rejecting (optional): boilerplate self-reference to the city, not a specific place
+
+========================================================================
+Portuguese Heritage Month proclamation (item 1.3) - San Jose City Council, 2026-06-09
+Field: locations  |  Confidence: 0.80  |  ID: sj-cc-2026-06-09-1.3-locations-0
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_text": "City of San Jos\u00e9",
+  "normalized_address": null,
+  "parcel_id": null,
+  "lat": null,
+  "lon": null
+}
+------------------------------------------------------------------------
+Provenance span:
+  "City of San José"
+
+Surrounding context:
+  ...he Portuguese Organization for Social Services and Opportunities (POSSO) to the City of San José.
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > r
+Reason for rejecting (optional): boilerplate self-reference to the city, not a specific place
+
+========================================================================
+Retroactive Approval of "Free Use" of the Janet Gray Hayes Rotunda for the African American Community Service Agency's Juneteenth Power 50 Freedom Ball Sponsored by the Office of Mayor Matt Mahan as a City Council Sponsored Special Event to Expend City Funds and Accept Donations of Materials and Services for the Event (item 2.13) - San Jose City Council, 2026-06-09
+Field: motions  |  Confidence: 0.85  |  ID: sj-cc-2026-06-09-2.13-motions-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "text": "(a) Resolution No. RES2026-178 was adopted, retroactively approving the authorization of \u201cFree Use\u201d of the Janet Gray Hayes Rotunda for the private, invitation-only Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026, sponsored by the Office of Mayor Mahan.",
+  "moved_by": null,
+  "seconded_by": null,
+  "outcome": "passed",
+  "votes": [],
+  "tally": "11-0-0"
+}
+------------------------------------------------------------------------
+Provenance span:
+  "(a) Resolution No. RES2026-178 was adopted, retroactively approving the authorization of “Free Use” of the Janet Gray Hayes Rotunda for the private, invitation-only Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026, sponsored by the Office of Mayor Mahan. (11-0-0)"
+
+Surrounding context:
+  ...ious individuals, businesses or community groups to support the event.
+
+Action: (a) Resolution No. RES2026-178 was adopted, retroactively approving the authorization of “Free Use” of the Janet Gray Hayes Rotunda for the private, invitation-only Power 50: Juneteenth Mayors Freedom Ball scheduled on June 7, 2026, sponsored by the Office of Mayor Mahan. (11-0-0)
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Retroactive Approval of "Free Use" of the Janet Gray Hayes Rotunda for the African American Community Service Agency's Juneteenth Power 50 Freedom Ball Sponsored by the Office of Mayor Matt Mahan as a City Council Sponsored Special Event to Expend City Funds and Accept Donations of Materials and Services for the Event (item 2.13) - San Jose City Council, 2026-06-09
+Field: people  |  Confidence: 0.85  |  ID: sj-cc-2026-06-09-2.13-people-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_name": "Rosemary Kamei",
+  "canonical_name": null,
+  "role": "councilmember"
+}
+------------------------------------------------------------------------
+Provenance span:
+  "seconded by Rosemary Kamei"
+
+Surrounding context:
+  Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The act...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Final adoption of Ordinance No. 31328 (East Village BID) (item n/a) - San Jose City Council, 2026-06-09
+Field: people  |  Confidence: 0.80  |  ID: sj-cc-2026-06-09-2.2-people-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_name": "Rosemary Kamei",
+  "canonical_name": "Rosemary Kamei",
+  "role": "councilmember"
+}
+------------------------------------------------------------------------
+Provenance span:
+  "seconded by Rosemary Kamei"
+
+Surrounding context:
+  Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The act...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Third Amendment to CSG Advisors consulting agreement (item 2.8) - San Jose City Council, 2026-06-09
+Field: people  |  Confidence: 0.80  |  ID: sj-cc-2026-06-09-2.8-people-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_name": "Rosemary Kamei",
+  "canonical_name": null,
+  "role": "councilmember"
+}
+------------------------------------------------------------------------
+Provenance span:
+  "seconded by Rosemary Kamei"
+
+Surrounding context:
+  Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The act...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Approval of Free Use of the Rotunda, Wing Meeting Rooms, Council Chambers, East Plaza, West Plaza, and South Plaza, for the 4th Annual Neighborhoods Conference (item 2.9) - San Jose City Council, 2026-06-09
+Field: people  |  Confidence: 0.70  |  ID: sj-cc-2026-06-09-2.9-people-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_name": "Rosemary Kamei",
+  "canonical_name": null,
+  "role": "councilmember"
+}
+------------------------------------------------------------------------
+Provenance span:
+  "seconded by Rosemary Kamei"
+
+Surrounding context:
+  Action: Upon motion by Councilmember Bien Doan, seconded by Rosemary Kamei, and carried unanimously, the Consent Calendar was approved as a whole. The act...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Actions Related to the 9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award (item 6.1) - San Jose City Council, 2026-06-09
+Field: locations  |  Confidence: 0.60  |  ID: sj-cc-2026-06-09-6.1-locations-0
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_text": "9885 Regional Wastewater Facility",
+  "normalized_address": null,
+  "parcel_id": null,
+  "lat": null,
+  "lon": null
+}
+------------------------------------------------------------------------
+Provenance span:
+  "9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award"
+
+Surrounding context:
+  6.1 Actions Related to the 9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award. (a) Report on bids and award of a contract for the construction of the 9885 - ...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > a
+
+========================================================================
+Actions Related to the 9885 Regional Wastewater Facility Security and Access Control Camera and Card Reader Construction Award (item 6.1) - San Jose City Council, 2026-06-09
+Field: locations  |  Confidence: 0.60  |  ID: sj-cc-2026-06-09-6.1-locations-1
+------------------------------------------------------------------------
+Proposed value:
+{
+  "raw_text": "San Jos\u00e9-Santa Clara Treatment Plant Capital Fund",
+  "normalized_address": null,
+  "parcel_id": null,
+  "lat": null,
+  "lon": null
+}
+------------------------------------------------------------------------
+Provenance span:
+  "San José-Santa Clara Treatment Plant Capital Fund"
+
+Surrounding context:
+  ...00. (c) Adopt the following 2025-2026 Appropriation Ordinance amendments in the San José-Santa Clara Treatment Plant Capital Fund: (1) Decrease the Preliminary Engineering - Water Pollution Control appropriati...
+========================================================================
+[a]ccept / [e]dit / [r]eject / [s]kip / [q]uit > r
+Reason for rejecting (optional): this is a capital fund name, not a physical location
+
+Review session complete.
+  accepted: 6
+  edited: 0
+  rejected: 4
+  skipped: 0
+
+Queue status:
+  pending: 0
+  accepted: 6
+  edited: 0
+  rejected: 4
+  total: 10
