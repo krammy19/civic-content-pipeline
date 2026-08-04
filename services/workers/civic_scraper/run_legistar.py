@@ -5,6 +5,7 @@ from pathlib import Path
 import yaml
 
 from civic_scraper.connectors.legistar import LegistarConnector
+from civic_scraper.paths import DATA_PROCESSED
 
 _CONFIG_PATH = Path(__file__).parent / "cities.yaml"
 
@@ -32,7 +33,7 @@ CITIES = _load_legistar_cities()
 PERIOD = "This Month"
 FALLBACK_PERIOD = "Last Month"
 MEETING_LIMIT = 5
-OUTPUT_ROOT = Path("data/processed")
+OUTPUT_ROOT = DATA_PROCESSED
 
 
 # -- Phase 1: calendar scraping ------------------------------------------------

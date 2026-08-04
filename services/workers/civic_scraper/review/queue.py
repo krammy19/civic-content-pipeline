@@ -6,9 +6,8 @@ reviewer's decision.
 
 from pathlib import Path
 
+from ..paths import DATA_REVIEW_QUEUE as DEFAULT_QUEUE_DIR
 from .models import ReviewQueueItem
-
-DEFAULT_QUEUE_DIR = Path("data/review_queue")
 
 
 def save_item(item: ReviewQueueItem, queue_dir: Path = DEFAULT_QUEUE_DIR) -> Path:

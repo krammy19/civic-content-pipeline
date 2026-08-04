@@ -36,35 +36,39 @@ line per city per phase so a run's outcome is scannable at a glance.
 
 ```bash
 # Every connectorized city (Legistar + CivicPlus)
-uv run python run_all.py
+uv run civic ingest
 
 # Filter to one connector
-uv run python run_all.py --connector civicplus
-uv run python run_all.py --connector legistar
+uv run civic ingest --connector civicplus
+uv run civic ingest --connector legistar
 
 # Filter to one city (substring match on name)
-uv run python run_all.py --city Artesia
+uv run civic ingest --city Artesia
 
 # Cap how many cities get processed, e.g. for a quick smoke test
-uv run python run_all.py --connector civicplus --max-cities 10
+uv run civic ingest --connector civicplus --max-cities 10
 
 # Run only one phase
-uv run python run_all.py --phase 1
-uv run python run_all.py --phase 2
+uv run civic ingest --phase 1
+uv run civic ingest --phase 2
 ```
 
-It reads every entry in `cities.yaml` that has a `connector:` field set,
-constructs the matching connector class (`make_connector()` is the only
-place that switches on connector type), and runs Phase 1 / Phase 2 as
-described above.
+`civic ingest` (see [`cli.py`](../services/workers/civic_scraper/cli.py))
+is a thin argument-parsing wrapper around `run_all.main()` — every flag
+above is `run_all.py`'s own, just reachable through the installed
+console command instead of a direct script invocation. It reads every
+entry in `cities.yaml` that has a `connector:` field set, constructs the
+matching connector class (`make_connector()` is the only place that
+switches on connector type), and runs Phase 1 / Phase 2 as described
+above.
 
 ## `run_legistar.py` — the original Legistar-only runner
 
 Predates `run_all.py` and only drives `LegistarConnector`, but reads its
 city list from the same `cities.yaml` (every entry with
 `platform: legistar`, regardless of whether a full `connector:` block is
-set). Kept because it's what the `.vscode/launch.json` debug
-configuration points at.
+set). Kept for reference; `civic ingest` (backed by `run_all.py`) is the
+current entry point.
 
 ## The city registry (`cities.yaml`)
 
@@ -103,27 +107,15 @@ data/processed/<slug>/
 filename rather than appending or timestamping — there is no history of
 past runs on disk, only the latest sample.
 
-Watch the working directory when running either script: `OUTPUT_ROOT`
-is the relative path `Path("data/processed")`, resolved against the
-process's current working directory, not the repo root. Run from the
-repo root and output lands in `data/processed/`; run from
-`services/workers/` and it lands in `services/workers/data/processed/`
-instead. Both locations currently exist in the repo for exactly this
-reason — this is a known inconsistency, not a deliberate split.
-
-## Running without installing the package
-
-`civic_scraper` isn't installed as a package
-([`pyproject.toml`](../pyproject.toml) sets `package = false`), so it
-needs to be on `PYTHONPATH` explicitly:
-
-```bash
-PYTHONPATH=services/workers uv run python services/workers/civic_scraper/run_all.py
-```
-
-The checked-in `.vscode/launch.json` sets this automatically for the
-"Run Legistar scraper" debug configuration, so breakpoints work without
-exporting it by hand first.
+`OUTPUT_ROOT` (and every other data path in this project — `data/raw/`,
+`data/review_queue/`, `data/metrics/`, `.cache/llm/`) comes from
+[`paths.py`](../services/workers/civic_scraper/paths.py), anchored to
+this package's own file location rather than the process's current
+working directory. Output always lands in the repo root's `data/processed/`
+regardless of which directory a script is invoked from — this used to
+resolve against `os.getcwd()` instead, which produced two divergent
+`data/processed/` trees depending on where a command ran; see
+`docs/engineering-log.md` for that fix.
 
 ## Example: why header-driven parsing matters
 

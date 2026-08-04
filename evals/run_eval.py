@@ -169,14 +169,17 @@ def check_regression(current: dict, baseline: dict) -> list[str]:
     return failures
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    """`argv` defaults to `sys.argv[1:]` via argparse when None - lets
+    `civic_scraper.cli`'s `civic eval` subcommand pass through its own
+    remaining arguments directly."""
     parser = argparse.ArgumentParser(description="Run the agenda-item extraction eval suite")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Claude model id to evaluate")
     parser.add_argument(
         "--update-baseline", action="store_true", help="Write current scores as the new baseline"
     )
     parser.add_argument("--gold-dir", type=Path, default=GOLD_DIR)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     cases = load_gold_cases(args.gold_dir)
     print(f"Loaded {len(cases)} gold cases from {args.gold_dir}")

@@ -20,7 +20,7 @@ type's threshold publishes; anything below is written to
 shipped.
 
 A held-back value isn't a dead end. A person resolves it - accept,
-correct, or reject - through `python -m civic_scraper.review`, and an
+correct, or reject - through `civic review`, and an
 accepted or edited decision is exported into a brand new gold case
 (`civic_scraper/review/gold_export.py`). That's the flywheel: the same
 uncertainty that kept a value out of production becomes, once resolved by
@@ -58,7 +58,7 @@ go find the source document).
 ## The review CLI
 
 ```bash
-PYTHONPATH=services/workers uv run python -m civic_scraper.review
+uv run civic review
 ```
 
 Presents one pending queue item at a time: the item it came from, the

@@ -14,8 +14,9 @@ from pathlib import Path
 
 import requests
 
+from .paths import DATA_RAW as RAW_ROOT
+
 _HEADERS = {"User-Agent": "Mozilla/5.0 (civic-engagement-app)"}
-RAW_ROOT = Path("data/raw")
 
 _CONTENT_TYPE_EXTENSIONS: dict[str, str] = {
     "application/pdf": ".pdf",

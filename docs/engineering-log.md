@@ -542,3 +542,48 @@ at. `.github/workflows/ci.yml` runs the generator unconditionally
 doesn't match - confirmed working both directions: a hand-edit to the
 committed file fails the check, and running `--write` after a real
 model edit clears it again.
+
+## 2026-08-04 — One data root, one entry point
+
+A polish pass, not a new milestone: the pipeline's behavior didn't
+change, but two long-standing rough edges in how it's invoked did.
+
+**The two `data/processed/` trees were a path-resolution bug, not a
+layout choice.** Every data directory in the project - `data/raw/`,
+`data/processed/`, `data/review_queue/`, `data/metrics/`, `.cache/llm/`
+- was a bare relative `Path("data/processed")` (or equivalent) defined
+wherever a module happened to need it. A relative path resolves against
+the process's current working directory, not the repo root, so running
+the same command from the repo root versus from `services/workers/`
+silently wrote to two different absolute locations. `paths.py` fixes
+this at the root by anchoring every one of those constants to
+`Path(__file__).resolve().parents[3]` - the package's own location on
+disk, which doesn't change no matter where a command is invoked from -
+and every consumer (`run_all.py`, `run_legistar.py`, `llm.py`,
+`document_fetch.py`, `review/queue.py`, `metrics/store.py`) now imports
+its path from there instead of constructing its own. The stray tree
+under `services/workers/data/processed/` was merged into the real one
+with `git mv`, preserving file history rather than a delete-and-recreate.
+
+**The package wasn't actually installable, so nothing could depend on
+it being on `PATH`.** `pyproject.toml` had `[tool.uv] package = false`
+from early in the project, back when `civic_scraper` was just a
+directory of scripts run with a `PYTHONPATH=services/workers` prefix.
+Making `uv run civic ingest` work meant reversing that: adding a real
+`[build-system]` (hatchling) and telling it where the importable package
+actually lives (`packages = ["services/workers/civic_scraper"]`, since
+`civic_scraper` sits three directories deep rather than at the repo
+root), then adding `[project.scripts] civic = "civic_scraper.cli:main"`.
+`cli.py` itself is deliberately inert - every subcommand parses its own
+arguments and calls straight into the function that already did the
+work (`run_all.main()`, `review.cli.main()`, `evals.run_eval.main()`,
+and so on); the only change needed in those existing modules was giving
+`run_all.main()` and `run_eval.main()` an optional `argv` parameter so
+the CLI could pass arguments through without touching `sys.argv`
+directly. Every `PYTHONPATH=` invocation in the docs became a `civic`
+subcommand; `.vscode/launch.json`, whose only job was setting that same
+environment variable for a debugger, was deleted as no longer needed.
+
+Both fixes were verified the same way: run from the repo root, then run
+again from a subdirectory, and confirm the output lands in the same
+place either way.

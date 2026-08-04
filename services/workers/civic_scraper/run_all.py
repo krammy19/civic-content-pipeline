@@ -30,9 +30,10 @@ import yaml
 
 from civic_scraper.connectors.civicplus import CivicPlusConnector
 from civic_scraper.connectors.legistar import LegistarConnector
+from civic_scraper.paths import DATA_PROCESSED
 
 _CONFIG_PATH = Path(__file__).parent / "cities.yaml"
-OUTPUT_ROOT = Path("data/processed")
+OUTPUT_ROOT = DATA_PROCESSED
 PERIOD = "This Month"
 FALLBACK_PERIOD = "Last Month"
 MEETING_LIMIT = 5
@@ -139,7 +140,11 @@ def save_agenda(name: str, meeting: dict, items: list) -> Path:
 # ------------------------------------------------------------------
 
 
-def main():
+def main(argv: list[str] | None = None):
+    """`argv` defaults to `sys.argv[1:]` via argparse when None - the
+    parameter exists so `civic_scraper.cli`'s `civic ingest` subcommand
+    can pass through its own remaining arguments without needing to
+    reach into `sys.argv` itself."""
     parser = argparse.ArgumentParser(description="Ingest civic meeting data")
     parser.add_argument(
         "--connector",
@@ -159,7 +164,7 @@ def main():
         default=None,
         help="Run only phase 1 (calendar) or phase 2 (agenda items)",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     cities = load_cities(args.connector, args.city)
     if args.max_cities:

@@ -315,7 +315,7 @@ section covers how the pieces fit together:
   provenance, and full item/meeting context, plus a `status` a reviewer
   moves from `pending` to `accepted`/`edited`/`rejected`. `queue.py`
   reads and writes these files and reports queue volume by status.
-- **`cli.py`** (`python -m civic_scraper.review`) — the interactive
+- **`cli.py`** (`civic review`, or `python -m civic_scraper.review` directly) — the interactive
   decision loop: one item at a time, its provenance span and surrounding
   source context, accept/edit/reject/skip.
 - **`gold_export.py`** — turns an accepted or edited item into a new

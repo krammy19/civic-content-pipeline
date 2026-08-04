@@ -9,9 +9,8 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
+from ..paths import DATA_METRICS as METRICS_ROOT
 from .collect import RunMetrics
-
-METRICS_ROOT = Path("data/metrics")
 
 
 def _slugify(jurisdiction: str) -> str:

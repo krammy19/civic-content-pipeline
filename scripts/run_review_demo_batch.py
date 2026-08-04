@@ -16,7 +16,7 @@ re-running this script after the first time costs nothing.
 This script's job stops at populating data/review_queue/ - the actual
 review decisions are made by a human (or, for this milestone's
 acceptance test, by a scripted session - see docs/review.md) running
-`python -m civic_scraper.review` afterward.
+`civic review` afterward.
 """
 
 import sys

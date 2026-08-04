@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-CACHE_ROOT = Path(".cache/llm")
+from .paths import LLM_CACHE as CACHE_ROOT
 
 
 def _cache_key(prompt_version: str, model: str, payload: dict[str, Any]) -> str:
