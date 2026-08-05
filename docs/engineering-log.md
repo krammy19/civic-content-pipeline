@@ -648,3 +648,47 @@ of this - a small script that reads `evals/baseline.json`'s
 `calibration_by_field` and prints exactly what changed and why, so the
 next time the gold set or the prompt changes materially, re-deriving is
 a command to run, not a table to reconstruct by hand.
+
+## 2026-08-04 (continued) — An end-to-end runner, and a genuinely bad live result
+
+Every stage through M6 worked standalone and had been run against real
+data individually - nothing called the next stage on the previous one's
+output. `runner.py`'s `civic run` is that wiring: calendar → agenda
+items → document fetch → extraction → confidence routing → digest →
+style check → metrics, for one real meeting.
+
+**The interesting design decision was where to let a failure stop the
+run, and where not to.** A stage the run cannot recover from at all -
+the calendar won't load, the meeting isn't in it, there's no document to
+fetch - raises `StageError` and halts everything, with the stage name
+and cause printed plainly. A single agenda item failing extraction does
+not halt the run; it's counted as a schema failure (`RunMetrics`
+already tracks exactly this) and the run continues with the rest -
+mirroring how `evals/run_eval.py` has always treated one gold case's
+schema failure as a scored outcome, not a crash. Halting a whole
+30-item meeting over one item's transient extraction hiccup would throw
+away 29 good results to protect against one bad one.
+
+**The live validation found a real, unflattering gap, and it's
+documented as one rather than avoided.** Run against San Jose's real
+live calendar, resolving a real upcoming meeting (three of its 30 real
+agenda items, to keep the live-validation cost small) - every stage
+wired correctly against real data: a real 111,598-character source
+document fetched live, real extraction calls, a real digest, real style
+findings, a real `RunMetrics` record on disk. The raw hallucination rate
+on that run was **1.0** - not a bug in this runner or in extraction, but
+a document-type mismatch nothing before this had to confront. Every
+prior gold case, prompt iteration, and live validation in this project
+was built against **minutes** - the resolved, post-meeting record
+("Action: ... was adopted ... (11-0-0)"). This meeting hadn't happened
+yet, so no minutes existed; the runner correctly fell back to the
+**agenda**, which states what's being proposed, not what happened. The
+extraction prompt looks for resolved-action language an agenda simply
+doesn't contain, so nothing it extracted could be verified, and the
+digest generated from zero published facts correctly tripped a real
+high-severity style finding (an uncited claim) on the next stage down.
+The whole pipeline behaved exactly as designed given an input it was
+never built for - which is a more honest outcome than the run happening
+to look clean by accident. Full writeup, including what "not built for
+this yet" specifically means going forward:
+`docs/end-to-end-runner.md`.

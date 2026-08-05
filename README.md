@@ -17,9 +17,9 @@ depending on field. The model is measurably overconfident (ECE 0.13),
 which is why below-threshold values route to human review rather than
 publishing. → [`docs/evals.md`](docs/evals.md)
 
-**What isn't.** Pipeline stages run standalone but aren't wired end to
-end. One platform validated, not two. →
-[Current limitations](#current-limitations)
+**What isn't.** `civic run` wires every stage end to end, but only for
+Legistar cities with already-published minutes. One platform validated,
+not two. → [Current limitations](#current-limitations)
 
 ## Results at a glance
 
@@ -46,10 +46,10 @@ worse extraction — see [`docs/evals.md`](docs/evals.md#known-limitations-and-w
             |
             v
    Platform Connector          <- only place that knows platform-specific HTML/DOM
-            |
-            v
-   Pydantic models              <- Meeting, LegistarAgendaEntry, LegislationDetails, Attachment
-            |
+            |                                    `civic run` (services/workers/civic_scraper/runner.py)
+            v                                     walks every stage below for one real meeting,
+   Pydantic models              <- Meeting, ...   Legistar cities with published minutes only -
+            |                                     see docs/end-to-end-runner.md
             v
    data/processed/<city>/*.json <- current persistence layer (flat JSON, no DB)
             |
@@ -59,7 +59,7 @@ worse extraction — see [`docs/evals.md`](docs/evals.md#known-limitations-and-w
             |
             v
    LLM extraction (llm.py,      <- forced tool use -> AgendaItem, provenance-verified;
-   extraction/agenda_item.py)      run against the live API, scored by evals/ (not wired to a runner yet)
+   extraction/agenda_item.py)      run against the live API, scored by evals/
             |
             v
    Eval harness (evals/)         <- 44-case gold set; precision/recall/F1, hallucination rate,
@@ -139,6 +139,7 @@ drift report and a review-session transcript are there too. See
 | [`docs/style-guide.md`](docs/style-guide.md) | The hand-written editorial standard every digest is written and checked against |
 | [`docs/style-checking.md`](docs/style-checking.md) | Style-checker methodology, its own measured precision/recall, and the real bugs the first live run found |
 | [`docs/metrics.md`](docs/metrics.md) | Per-run health metrics, trailing-baseline drift detection, thresholds, and the live connector-rot demonstration |
+| [`docs/end-to-end-runner.md`](docs/end-to-end-runner.md) | `civic run`'s stage wiring, its two failure-handling rules, and what the first live run found |
 | [`docs/engineering-log.md`](docs/engineering-log.md) | How the connector architecture and header-mapping approach were actually arrived at |
 
 ## How to add a connector
@@ -168,16 +169,18 @@ drift report and a review-session transcript are there too. See
 
 Stated plainly:
 
-- **Every pipeline stage exists and has been run against real data, but
-  none of them call each other automatically.** `fetch_and_extract()`,
-  `extract_agenda_item()`, `route_agenda_item()`, `generate_digest()`,
-  `check_deterministic()`/`judge_style()`, and `compute_run_metrics()`
-  each work standalone and have all been exercised against real San Jose
-  meeting data, but nothing calls the next stage on the previous one's
-  output — a scraped `Meeting`'s `agenda_url` doesn't automatically flow
-  through fetch, extraction, review, digest generation, style checking,
-  and metrics recording end to end. That runner is still ahead. See
-  [Roadmap](#roadmap).
+- **The end-to-end runner (`civic run`) is real, live-validated, and
+  narrower than "wired everything."** It walks calendar → agenda items →
+  document fetch → extraction → confidence routing → digest → style
+  check → metrics for one real meeting, and a live run against San
+  José's real calendar exercised every stage with real data. What it
+  isn't: CivicPlus-capable (Phase 2 is Legistar-only), cheap at scale
+  (it re-sends the full meeting document once per agenda item), or
+  reliable against a not-yet-held meeting (extraction was built and
+  measured against *minutes*, not the *agenda* text available before a
+  meeting happens — the live run's own hallucination rate on an
+  agenda-only document was a genuine 100%, reported as such rather than
+  hidden). Full writeup: [`docs/end-to-end-runner.md`](docs/end-to-end-runner.md).
 - **Digest generation has only been run against one meeting's worth of
   real data.** `docs/style-checking.md` documents that single real run
   in detail (including a real sentence-tokenization bug it found and
@@ -313,7 +316,18 @@ order it's planned:
    confirmed `detect_drift()` catches it — while also surfacing, and
    reporting honestly, a real case the current thresholds don't catch.
    Full methodology: [`docs/metrics.md`](docs/metrics.md).
-7. **A second platform.** One more connector on a platform Legistar
+7. **End-to-end wiring — done, with real scope limits.** `civic run`
+   (`runner.py`) walks calendar → agenda items → document fetch →
+   extraction → confidence routing → digest → style check → metrics for
+   one real meeting, live-validated against San José's real calendar.
+   It's Legistar-only (CivicPlus has no Phase 2 yet) and, more
+   interestingly, only reliable against meetings with published
+   minutes — the live run against a not-yet-held meeting (agenda text
+   only) produced a genuine 100% raw hallucination rate, reported
+   plainly rather than smoothed over, since the extraction prompt was
+   built and measured entirely against minutes. Full writeup:
+   [`docs/end-to-end-runner.md`](docs/end-to-end-runner.md).
+8. **A second platform.** One more connector on a platform Legistar
    doesn't share anything with, run through the same eval suite, with
    results reported honestly — including where they're worse.
 
@@ -327,6 +341,7 @@ services/workers/civic_scraper/
     models.py             canonical Pydantic schema
     paths.py              every data directory, anchored to the repo root
     cli.py                 the `civic` console command - thin argument parsing over everything below
+    runner.py              `civic run` - wires every stage below for one real meeting end to end
     connectors/           one module per platform + shared interface
     llm.py                 single cached Claude wrapper - every LLM call goes through this
     extraction/            LLM-based structured extraction (agenda items, staff reports)

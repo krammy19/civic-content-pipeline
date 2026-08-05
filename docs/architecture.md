@@ -38,7 +38,10 @@ be updated as that lands.
             |
             v
    LLM extraction                <- extraction/agenda_item.py, via llm.py (cached)
-   (not wired to a runner yet)      forced tool use -> AgendaItem, provenance-verified
+   (wired end to end by             forced tool use -> AgendaItem, provenance-verified;
+   runner.py's `civic run`,         see docs/end-to-end-runner.md for what it does and
+   Legistar + published-            doesn't cover
+   minutes meetings only)
             |
             v
    Eval harness (evals/)          <- 44-case gold set; precision/recall/F1, hallucination
@@ -441,25 +444,27 @@ civic-engagement-app/
 │   ├── style_check.py             deterministic rules + LLM judge for generated digests
 │   └── docs_drift.py              regenerates docs/data-model.md from the Pydantic models
 ├── services/workers/
-│   ├── civic_scraper/
-│   │   ├── models.py              canonical Pydantic schema
-│   │   ├── connectors/            one module per platform + the shared ABC
-│   │   ├── llm.py                  single cached Claude wrapper
-│   │   ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
-│   │   ├── review/                 confidence routing, review queue, gold-set flywheel
-│   │   ├── digest/                 digest generation from validated extractions
-│   │   ├── metrics/                per-run health metrics + trailing-baseline drift detection
-│   │   ├── document_fetch.py      content-addressed document download/cache
-│   │   ├── document_text.py       PDF text extraction + scan detection
-│   │   ├── cities.yaml            city registry
-│   │   ├── generate_cities_yaml.py
-│   │   ├── detect_platforms.py
-│   │   ├── discover_civicplus.py
-│   │   ├── run_legistar.py        Legistar-only runner (superseded by run_all.py)
-│   │   └── run_all.py             multi-connector ingestion runner
-│   └── data/processed/            sample output when run from services/workers/
+│   └── civic_scraper/
+│       ├── models.py              canonical Pydantic schema
+│       ├── paths.py               every data directory, anchored to the repo root
+│       ├── cli.py                  the `civic` console command - argument parsing only
+│       ├── runner.py              `civic run` - wires every stage below for one real meeting
+│       ├── connectors/            one module per platform + the shared ABC
+│       ├── llm.py                  single cached Claude wrapper
+│       ├── extraction/             LLM-based structured extraction (agenda items, staff reports)
+│       ├── review/                 confidence routing, review queue, gold-set flywheel
+│       ├── digest/                 digest generation from validated extractions
+│       ├── metrics/                per-run health metrics + trailing-baseline drift detection
+│       ├── document_fetch.py      content-addressed document download/cache
+│       ├── document_text.py       PDF text extraction + scan detection
+│       ├── cities.yaml            city registry
+│       ├── generate_cities_yaml.py
+│       ├── detect_platforms.py
+│       ├── discover_civicplus.py
+│       ├── run_legistar.py        Legistar-only runner (superseded by run_all.py)
+│       └── run_all.py             multi-connector ingestion runner
 ├── evals/                         gold set + style cases, scoring metrics, orchestration, baselines
-├── data/processed/                sample output when run from repo root
+├── data/processed/                sample output (one tree, resolved via paths.py regardless of cwd)
 ├── data/raw/                      fetched agenda/minutes documents, content-addressed
 ├── data/review_queue/             below-threshold extractions awaiting human review
 ├── data/metrics/                  per-run, per-city health metrics
@@ -467,10 +472,7 @@ civic-engagement-app/
 └── tests/                         pytest coverage of parsing, models, fetch, text extraction, LLM extraction, evals, review, digest, checks, and metrics
 ```
 
-`data/processed/` exists in two places because the runners resolve their
-output path relative to the current working directory rather than the
-repo root — a known inconsistency, not yet fixed.
-
-See the [README's roadmap](../README.md#roadmap) for what's still ahead
-(wiring every stage above into a single automatic runner, a second
-platform) and the order it's being built in.
+See [`docs/end-to-end-runner.md`](end-to-end-runner.md) for what `civic
+run` does and doesn't cover yet, and the
+[README's roadmap](../README.md#roadmap) for what's still ahead (a
+second platform) and the order it's being built in.

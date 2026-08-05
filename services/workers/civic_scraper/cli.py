@@ -142,6 +142,56 @@ def _cmd_eval(argv: list[str]) -> int:
     return run_eval.main(argv)
 
 
+def _cmd_run(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(prog="civic run")
+    parser.add_argument(
+        "--city",
+        required=True,
+        help="City name substring from cities.yaml - must use the legistar connector",
+    )
+    parser.add_argument(
+        "--meeting",
+        required=True,
+        help="Substring to match against a meeting's date, e.g. '12/09/2025'",
+    )
+    parser.add_argument("--model", default=None, help="Override the default extraction model")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Resolve the meeting and print the plan without calling the extraction API",
+    )
+    args = parser.parse_args(argv)
+
+    sys.path.insert(0, str(REPO_ROOT))
+    sys.path.insert(0, str(REPO_ROOT / "services" / "workers"))
+    from .extraction.agenda_item import DEFAULT_MODEL
+    from .runner import RunOutcome, StageError
+    from .runner import run as run_pipeline
+
+    try:
+        outcome = run_pipeline(
+            city=args.city,
+            meeting_selector=args.meeting,
+            model=args.model or DEFAULT_MODEL,
+            dry_run=args.dry_run,
+        )
+    except StageError as exc:
+        print(f"\nRUN FAILED at stage '{exc.stage}': {exc.cause}")
+        return 1
+
+    if not isinstance(outcome, RunOutcome):
+        print("\nDry run - nothing was published or spent:")
+        print(json.dumps(outcome, indent=2))
+        return 0
+
+    print("\n--- Digest ---")
+    print(outcome.digest)
+    high = [f for f in outcome.style_findings if f.severity == "high"]
+    print(f"\nStyle findings: {len(outcome.style_findings)} ({len(high)} high-severity)")
+    print(f"Metrics written to {outcome.metrics_path}")
+    return 1 if high else 0
+
+
 def _cmd_metrics(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(prog="civic metrics")
     parser.add_argument("--city", required=True, help="Jurisdiction name, e.g. 'San Jose'")
@@ -171,6 +221,7 @@ _COMMANDS = {
     "check": _cmd_check,
     "eval": _cmd_eval,
     "metrics": _cmd_metrics,
+    "run": _cmd_run,
 }
 
 
