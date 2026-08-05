@@ -20,18 +20,23 @@ from .models import FieldType, ReviewQueueItem
 
 FIELD_TYPES: tuple[FieldType, ...] = ("motions", "people", "locations", "amounts")
 
-# A single starting threshold for every field type, not four independently
-# tuned ones: the M3 eval baseline (docs/evals.md) measured calibration in
-# aggregate, not broken out per field, and found the model overconfident
-# even in its 0.85-0.95 bucket (83% actual accuracy there). Until
-# per-field calibration exists to justify moving individual thresholds,
-# one conservative number applied uniformly is more honest than four
-# thresholds that look tuned but aren't backed by field-level data.
+# Derived from evals/baseline.json's per-field calibration curve by
+# evals/derive_review_thresholds.py, not hand-picked: for each field,
+# the lower edge of the lowest-confidence bucket (with at least 10
+# points) whose measured accuracy clears 90%. Locations has no bucket
+# that clears that bar with enough data yet, so it keeps the original
+# uniform 0.9 - a real, stated gap, not an oversight. See
+# docs/review.md's "From one uniform threshold to four derived ones"
+# for the full table and the two honest caveats (locations' missing
+# data, amounts' non-monotonic top bucket). Re-run
+# derive_review_thresholds.py and compare against that table whenever
+# the gold set or the extraction prompt changes materially - a
+# calibration curve is a snapshot, not a constant.
 DEFAULT_THRESHOLDS: dict[FieldType, float] = {
-    "motions": 0.9,
-    "people": 0.9,
+    "motions": 0.85,
+    "people": 0.95,
     "locations": 0.9,
-    "amounts": 0.9,
+    "amounts": 0.85,
 }
 
 

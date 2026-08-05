@@ -195,7 +195,7 @@ class CaseEvaluation:
     field_scores: dict[str, FieldScore]
     hallucinated: int
     total_raw_extractions: int
-    calibration_points: list[tuple[float, bool]]  # (confidence, was_correct)
+    calibration_points: list[tuple[str, float, bool]]  # (field, confidence, was_correct)
 
 
 def evaluate_case(
@@ -245,7 +245,7 @@ def evaluate_case(
             if not verified:
                 hallucinated += 1
             matched = any(match_fn(g, raw_fact["value"]) for g in gold_facts)
-            calibration_points.append((raw_fact["confidence"], verified and matched))
+            calibration_points.append((field, raw_fact["confidence"], verified and matched))
 
     return CaseEvaluation(case_id, field_scores, hallucinated, total_raw, calibration_points)
 
@@ -340,3 +340,53 @@ def compute_calibration(
 
 def mean_confidence(points: list[tuple[float, bool]]) -> float:
     return 0.0 if not points else sum(c for c, _ in points) / len(points)
+
+
+def derive_threshold_from_calibration(
+    buckets: list[CalibrationBucket],
+    *,
+    target_accuracy: float,
+    min_bucket_size: int,
+    fallback: float,
+) -> tuple[float, str]:
+    """Picks a publish-confidence threshold for one field type from its
+    measured calibration curve: the lower edge of the lowest-confidence
+    bucket whose accuracy clears `target_accuracy`, scanning from the
+    least confident bucket upward. Buckets with fewer than
+    `min_bucket_size` points are skipped as too small to trust - a
+    single lucky or unlucky point should not set a threshold.
+
+    Returns (threshold, reason) so a caller can record why a particular
+    value was chosen, including the fallback case where no bucket has
+    enough data to clear the target at all - which is itself a real,
+    reportable finding (see docs/review.md), not an error.
+    """
+    for low, high in CALIBRATION_BUCKETS:
+        label = f"[{low:.2f}, {high:.2f})"
+        bucket = next((b for b in buckets if b.range_label == label), None)
+        if bucket is None or bucket.count < min_bucket_size:
+            continue
+        if bucket.accuracy >= target_accuracy:
+            reason = f"bucket {label} (n={bucket.count}) measured {bucket.accuracy:.1%} accuracy"
+            return low, reason
+    reason = (
+        f"no bucket cleared {target_accuracy:.0%} accuracy with n>={min_bucket_size} - "
+        f"kept prior default {fallback}"
+    )
+    return fallback, reason
+
+
+def calibration_points_by_field(
+    points: list[tuple[str, float, bool]],
+) -> dict[str, list[tuple[float, bool]]]:
+    """Splits (field, confidence, was_correct) triples into one
+    (confidence, was_correct) list per field type, so compute_calibration
+    can be reused unchanged to produce a calibration curve per field
+    instead of only in aggregate - the aggregate curve (M3's original
+    finding) can mask a field that's well-calibrated and another that
+    isn't, since one bucket's overconfidence and another's
+    underconfidence can cancel out in the pooled mean."""
+    grouped: dict[str, list[tuple[float, bool]]] = {f: [] for f in FIELD_TYPES}
+    for field, confidence, correct in points:
+        grouped[field].append((confidence, correct))
+    return grouped

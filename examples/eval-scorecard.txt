@@ -70,5 +70,23 @@ Confidence range     n      Mean confidence   Actual accuracy
 [0.85, 0.95)         90     0.889             0.811
 [0.95, 1.01)         72     0.953             0.903
 
+Calibration by field:
+Field        n     ECE      Confidence range     accuracy
+--------------------------------------------------------------
+motions      1     0.0778   [0.70, 0.85)         1.000
+motions      21    0.0778   [0.85, 0.95)         0.952
+motions      18    0.0778   [0.95, 1.01)         0.889
+people       1     0.1820   [0.00, 0.50)         0.000
+people       8     0.1820   [0.50, 0.70)         0.000
+people       22    0.1820   [0.70, 0.85)         0.455
+people       33    0.1820   [0.85, 0.95)         0.667
+people       44    0.1820   [0.95, 1.01)         0.977
+locations    8     0.2466   [0.50, 0.70)         0.250
+locations    4     0.2466   [0.70, 0.85)         0.500
+locations    17    0.2466   [0.85, 0.95)         0.706
+amounts      1     0.2010   [0.50, 0.70)         0.000
+amounts      19    0.2010   [0.85, 0.95)         1.000
+amounts      10    0.2010   [0.95, 1.01)         0.600
+
 Wrote machine-readable results to C:\Users\m_noa\Github\civic-engagement-app\evals\results\latest.json
 No regression vs. baseline.

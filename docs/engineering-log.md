@@ -587,3 +587,64 @@ environment variable for a debugger, was deleted as no longer needed.
 Both fixes were verified the same way: run from the repo root, then run
 again from a subdirectory, and confirm the output lands in the same
 place either way.
+
+## 2026-08-04 (continued) — Per-field calibration, and four derived thresholds instead of one guessed one
+
+M4's confidence-routing thresholds were `0.9` for every field type from
+day one, and the comment next to them said why: M3's calibration
+baseline only measured accuracy in aggregate, and moving individual
+field thresholds without field-level data to justify it would have
+looked more precise than it actually was. That was a real gap, not a
+placeholder - closing it meant the eval harness had to measure something
+it never had before, not just relabeling an existing number.
+
+**The gap was in `calibration_points` itself, not in `compute_calibration`.**
+Each raw extraction already carried a confidence and a correctness
+verdict by the time it reached calibration scoring, but the tuple
+recording it, `(confidence, was_correct)`, threw away which field type
+it came from before `compute_calibration()` ever saw it - so an
+aggregate curve was the only curve that could exist, structurally.
+Adding the field to the tuple (`evals.metrics.CaseEvaluation.calibration_points`
+is now `(field, confidence, was_correct)`) and a small grouping helper
+(`calibration_points_by_field`) was enough to let the same
+`compute_calibration()` function - unit-tested since M3, unchanged here -
+produce one curve per field type instead of one curve total.
+
+**Deriving a threshold from a curve needed a rule, and the rule needed
+a floor.** `derive_threshold_from_calibration()` scans a field's buckets
+from least confident upward and returns the lower edge of the first one
+whose measured accuracy clears a stated target (90%, matching what
+`docs/evals.md`'s first run had already suggested informally). The floor
+- skipping any bucket with fewer than 10 points - exists because the
+naive version of this function picked motions' `[0.70, 0.85)` bucket as
+its answer: 100% accuracy, on a sample size of exactly one. A threshold
+that trusts a coin flip because it happened to land on the right side
+once is worse than the uniform guess it's replacing.
+
+**Real per-field numbers, run against the current 44-case gold set:**
+motions and amounts can safely drop to 0.85 (95.2% and 100% measured
+accuracy respectively at that confidence and above, with real sample
+sizes of 21 and 19); people actually needs to move *up* to 0.95, since
+its 0.85-0.95 bucket is only 66.7% accurate on 33 points - the uniform
+0.9 default had been quietly under-protecting people this whole time.
+Locations kept its 0.9 default not because 0.9 is right for it, but
+because no bucket with enough data clears 90% accuracy at all - the
+most honest thing to do with a field that has no data-backed answer yet
+is say so, not invent one. Full table and reasoning:
+`docs/review.md`.
+
+**The bucket-based method has a real blind spot, surfaced by its own
+output.** Amounts' derived threshold (0.85) publishes its own
+`[0.95, 1.01)` bucket too, since that's above the cutoff - but that
+bucket measures only 60% accuracy, *worse* than the 0.85-0.95 bucket the
+threshold was chosen from. Five coarse buckets can recommend a cutoff
+using only the bucket that clears the bar; they can't see a dip sitting
+right above it. Documented plainly in `docs/review.md` rather than
+patched by adding more buckets that the current gold set doesn't have
+enough points to fill honestly.
+
+`evals/derive_review_thresholds.py` is the reproducible version of all
+of this - a small script that reads `evals/baseline.json`'s
+`calibration_by_field` and prints exactly what changed and why, so the
+next time the gold set or the prompt changes materially, re-deriving is
+a command to run, not a table to reconstruct by hand.

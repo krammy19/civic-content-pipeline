@@ -89,7 +89,7 @@ class TestBuildScorecard:
             {"motions": score, "people": score, "locations": score, "amounts": score},
             hallucinated=0,
             total_raw_extractions=1,
-            calibration_points=[(0.9, True)],
+            calibration_points=[("motions", 0.9, True)],
         )
 
         scorecard = run_eval.build_scorecard([ev], schema_valid_count=1)
@@ -102,6 +102,10 @@ class TestBuildScorecard:
         # (0.1) is real, not a rounding artifact, since one data point can
         # never actually land exactly on its own confidence value.
         assert scorecard["calibration"]["expected_calibration_error"] == 0.1
+        # The same point also shows up in its own field's calibration curve.
+        assert scorecard["calibration_by_field"]["motions"]["n"] == 1
+        assert scorecard["calibration_by_field"]["motions"]["expected_calibration_error"] == 0.1
+        assert scorecard["calibration_by_field"]["people"]["n"] == 0
 
 
 class TestRunCase:

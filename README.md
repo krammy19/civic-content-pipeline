@@ -12,8 +12,8 @@ back bad output — hallucinated facts, miscategorized items, sloppy
 summaries — before a reader ever sees it.
 
 **What's proven.** Extraction scores against a 44-case hand-annotated
-gold set: 0% hallucination, 100% schema validity, F1 0.60–0.87
-depending on field. The model is measurably overconfident (ECE 0.14),
+gold set: 0% hallucination, 100% schema validity, F1 0.70–0.87
+depending on field. The model is measurably overconfident (ECE 0.13),
 which is why below-threshold values route to human review rather than
 publishing. → [`docs/evals.md`](docs/evals.md)
 
@@ -27,13 +27,13 @@ Against the 44-case gold set ([`evals/baseline.json`](evals/baseline.json)):
 
 | Field | Precision | Recall | F1 |
 |---|---|---|---|
-| Motions | 0.81 | 0.94 | 0.87 |
-| People | 0.68 | 1.00 | 0.81 |
-| Locations | 0.45 | 0.88 | 0.60 |
+| Motions | 0.83 | 0.92 | 0.87 |
+| People | 0.69 | 0.99 | 0.82 |
+| Locations | 0.55 | 0.94 | 0.70 |
 | Amounts | 0.77 | 1.00 | 0.87 |
 
 - Schema validity: 100% · Hallucination rate: 0% · Gold set size: 44 cases
-- Expected calibration error: 0.14 — the model states confidence higher
+- Expected calibration error: 0.13 — the model states confidence higher
   than it earns
 
 Locations underperform for a documented matching-granularity reason, not
@@ -184,13 +184,13 @@ Stated plainly:
   fixed), but one meeting is a smoke test, not a validated sample size.
 - **Extraction quality is uneven across fields, and the model is
   overconfident.** Against the 44-case gold set: motions F1 0.87,
-  amounts F1 0.87, people F1 0.81, but locations F1 only 0.60 (a
+  amounts F1 0.87, people F1 0.82, but locations F1 only 0.70 (a
   matching-granularity problem more than an extraction problem, and
   locations also over-trigger on a document's own self-referential city
   name — see [`docs/evals.md`](docs/evals.md) and
   [`docs/review.md`](docs/review.md)). Hallucination rate is 0% and
   schema validity is 100%, but confidence calibration is not
-  trustworthy as-is (ECE 0.14) — this is exactly why extraction now
+  trustworthy as-is (ECE 0.13) — this is exactly why extraction now
   routes below-threshold values to human review rather than publishing
   or dropping them outright.
 - **The eval harness doesn't check everything that matters.** Motion

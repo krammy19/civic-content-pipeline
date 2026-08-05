@@ -19,15 +19,14 @@ that produced it.
 
 - **[`eval-scorecard.txt`](eval-scorecard.txt)** — actual stdout from
   `uv run civic eval` against the real 44-case gold set, generated
-  2026-08-04. Numbers differ slightly from the committed
-  [`evals/baseline.json`](../evals/baseline.json) (e.g. locations F1
-  0.696 here vs. 0.60 in the baseline) because a live model call isn't
-  perfectly deterministic case to case — the harness's own regression
-  check confirms this run is within tolerance of the baseline ("No
-  regression vs. baseline"). The README's
+  2026-08-04, including the per-field calibration breakdown
+  ([`docs/review.md`](../docs/review.md) explains what that's for). This
+  run's numbers match the committed
+  [`evals/baseline.json`](../evals/baseline.json) exactly — the same
+  run was used to update the baseline, since adding calibration-by-field
+  data to the scorecard required regenerating it. The README's
   [Results at a glance](../README.md#results-at-a-glance) table cites
-  the committed baseline, not this run, since the baseline is the
-  reviewed, pinned number.
+  that same baseline.
 
 - **[`drift-report.md`](drift-report.md)** — the real health report
   `metrics/report.py` renders for the simulated connector-rot case

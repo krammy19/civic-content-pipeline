@@ -32,21 +32,66 @@ the point of building this queue, not the CLI itself.
 
 `route_agenda_item()` takes an already-verified `AgendaItem` (the output
 of `extraction.agenda_item.extract_agenda_item()` - hallucinations are
-already filtered out by that point) and a threshold per field type. The
-starting thresholds are uniform - `0.9` for every field:
+already filtered out by that point) and a threshold per field type.
+
+### From one uniform threshold to four derived ones
+
+The original thresholds were uniform - `0.9` for every field type -
+because the M3 calibration baseline only measured confidence accuracy in
+aggregate, not broken out per field, and moving individual thresholds
+without field-level data to justify it would have looked more precise
+than it actually was.
+
+That data exists now. `evals/run_eval.py` computes a calibration curve
+per field type (`evals.metrics.calibration_points_by_field`), and
+`evals/derive_review_thresholds.py` turns each field's curve into a
+threshold: scanning from the least confident bucket upward, the lower
+edge of the first bucket whose measured accuracy clears a stated target -
+skipping any bucket with fewer than a minimum number of points, since a
+single lucky or unlucky point shouldn't set a threshold for a whole field.
+
+**Target: 90% measured accuracy. Minimum bucket size: 10 points.**
+Against the current 44-case gold set (`evals/baseline.json`'s
+`calibration_by_field`):
+
+| Field | Derived threshold | Why |
+|---|---|---|
+| Motions | 0.85 | `[0.85, 0.95)` bucket, n=21, measured 95.2% accuracy |
+| People | 0.95 | `[0.85, 0.95)` (n=33) is only 66.7% accurate; `[0.95, 1.01)` (n=44) clears the target at 97.7% |
+| Locations | 0.9 *(unchanged)* | No bucket with n≥10 clears 90% accuracy - the best-populated bucket, `[0.85, 0.95)` (n=17), measures only 70.6% |
+| Amounts | 0.85 | `[0.85, 0.95)` bucket, n=19, measured 100% accuracy |
 
 ```python
-DEFAULT_THRESHOLDS = {"motions": 0.9, "people": 0.9, "locations": 0.9, "amounts": 0.9}
+DEFAULT_THRESHOLDS = {"motions": 0.85, "people": 0.95, "locations": 0.9, "amounts": 0.85}
 ```
 
-One number for every field type, not four independently tuned ones, is a
-deliberate choice: the M3 calibration baseline measured confidence
-accuracy in aggregate, not broken out per field type, and found the model
-overconfident even in its 0.85-0.95 bucket (about 83% actual accuracy
-there - see `docs/evals.md`). Moving individual field thresholds without
-per-field calibration data to justify it would look more precise than it
-actually is. `thresholds` is a plain dict parameter specifically so this
-can change once that data exists.
+Two things worth stating plainly rather than smoothing over:
+
+- **Locations has no data-backed threshold yet.** Every observed
+  confidence bucket with enough points to trust falls short of 90%
+  accuracy, and there's no data at all above 0.95 confidence for this
+  field - zero raw extractions landed there in this gold set. The prior
+  uniform 0.9 is kept only because nothing better is justified by data,
+  not because it's known to be right. More gold cases with high-
+  confidence location extractions are the actual fix, not a differently
+  guessed number.
+- **A qualifying bucket isn't the same as a monotonic accuracy curve.**
+  Amounts' own `[0.95, 1.01)` bucket (n=10) measures only 60% accuracy -
+  *lower* than the `[0.85, 0.95)` bucket the threshold is actually set
+  at. Publishing everything at or above 0.85 confidence still includes
+  those ten weaker points; the honest combined accuracy of everything
+  that would publish under this threshold is closer to 86% than the
+  100% the qualifying bucket alone suggests. Five coarse buckets are
+  cheap to compute and easy to read, but they can't express a dip like
+  this one - a real limitation of this method, not a bug in it.
+
+**These thresholds must be re-derived, not assumed to hold, whenever the
+gold set or the extraction prompt changes materially.** Re-run
+`uv run python evals/derive_review_thresholds.py` after any
+`--update-baseline` and compare its output against the table above
+before deciding whether `DEFAULT_THRESHOLDS` needs to change too.
+`thresholds` stays a plain dict parameter specifically so this can
+happen without touching `route_agenda_item()` itself.
 
 Routing produces a `RoutingResult`: `published` (an `AgendaItem` with
 only the fields that cleared their threshold) and `queued` (a

@@ -157,7 +157,7 @@ class TestEvaluateCase:
 
         assert ev.hallucinated == 0
         assert ev.total_raw_extractions == 1
-        assert ev.calibration_points == [(0.9, True)]
+        assert ev.calibration_points == [("people", 0.9, True)]
         assert ev.field_scores["people"].true_positives == 1
 
     def test_fabricated_extraction_counts_as_hallucinated_and_dropped_from_filtered(self):
@@ -172,7 +172,7 @@ class TestEvaluateCase:
 
         assert ev.hallucinated == 1
         assert ev.total_raw_extractions == 1
-        assert ev.calibration_points == [(0.8, False)]
+        assert ev.calibration_points == [("people", 0.8, False)]
         # Precision/recall computed against FILTERED output: gold has one
         # person, filtered has none -> a false negative, not a false positive.
         assert ev.field_scores["people"].false_negatives == 1
@@ -187,7 +187,7 @@ class TestEvaluateCase:
 
         ev = metrics.evaluate_case("case-3", gold, raw, filtered, document_text)
 
-        assert ev.calibration_points == [(0.95, False)]
+        assert ev.calibration_points == [("people", 0.95, False)]
 
     def test_annotated_fields_excludes_other_fields_from_scoring_entirely(self):
         # A review-derived case only has ground truth for "people" - it must
@@ -208,7 +208,7 @@ class TestEvaluateCase:
         assert "amounts" not in ev.field_scores
         assert ev.field_scores["people"].true_positives == 1
         # Only the annotated field's extraction contributes a calibration point.
-        assert ev.calibration_points == [(0.9, True)]
+        assert ev.calibration_points == [("people", 0.9, True)]
         assert ev.total_raw_extractions == 1
 
     def test_no_annotated_fields_argument_scores_every_field_as_before(self):
@@ -310,6 +310,80 @@ class TestCalibration:
         buckets, ece = metrics.compute_calibration([])
         assert ece == 0.0
         assert all(b.count == 0 for b in buckets)
+
+
+def _bucket(range_label: str, count: int, accuracy: float) -> metrics.CalibrationBucket:
+    return metrics.CalibrationBucket(range_label, count, mean_confidence=0.0, accuracy=accuracy)
+
+
+class TestDeriveThresholdFromCalibration:
+    def test_picks_lowest_qualifying_bucket(self):
+        buckets = [
+            _bucket("[0.70, 0.85)", 20, 0.60),
+            _bucket("[0.85, 0.95)", 21, 0.95),
+            _bucket("[0.95, 1.01)", 18, 0.89),
+        ]
+        threshold, reason = metrics.derive_threshold_from_calibration(
+            buckets, target_accuracy=0.9, min_bucket_size=10, fallback=0.9
+        )
+        assert threshold == 0.85
+        assert "0.85, 0.95" in reason
+
+    def test_skips_bucket_below_minimum_sample_size(self):
+        # This bucket "clears" the target but on a single data point -
+        # too noisy to trust, so the next qualifying bucket wins instead.
+        buckets = [
+            _bucket("[0.70, 0.85)", 1, 1.00),
+            _bucket("[0.95, 1.01)", 44, 0.977),
+        ]
+        threshold, reason = metrics.derive_threshold_from_calibration(
+            buckets, target_accuracy=0.9, min_bucket_size=10, fallback=0.9
+        )
+        assert threshold == 0.95
+        assert "n=44" in reason
+
+    def test_falls_back_when_no_bucket_clears_target(self):
+        buckets = [
+            _bucket("[0.50, 0.70)", 8, 0.25),
+            _bucket("[0.85, 0.95)", 17, 0.706),
+        ]
+        threshold, reason = metrics.derive_threshold_from_calibration(
+            buckets, target_accuracy=0.9, min_bucket_size=10, fallback=0.9
+        )
+        assert threshold == 0.9
+        assert "no bucket cleared" in reason
+
+    def test_missing_bucket_in_input_is_treated_like_no_data(self):
+        # A field with zero raw extractions in the top bucket simply has
+        # no entry there (compute_calibration only ever returns count=0
+        # placeholders, but a hand-built list here can omit it entirely) -
+        # must not crash, must fall through to the fallback.
+        buckets = [_bucket("[0.50, 0.70)", 5, 1.0)]
+        threshold, reason = metrics.derive_threshold_from_calibration(
+            buckets, target_accuracy=0.9, min_bucket_size=10, fallback=0.9
+        )
+        assert threshold == 0.9
+        assert "no bucket cleared" in reason
+
+
+class TestCalibrationPointsByField:
+    def test_splits_triples_into_one_list_per_field(self):
+        points = [
+            ("people", 0.9, True),
+            ("amounts", 0.7, False),
+            ("people", 0.6, False),
+        ]
+        grouped = metrics.calibration_points_by_field(points)
+
+        assert grouped["people"] == [(0.9, True), (0.6, False)]
+        assert grouped["amounts"] == [(0.7, False)]
+        assert grouped["motions"] == []
+        assert grouped["locations"] == []
+
+    def test_every_field_type_present_even_with_no_points(self):
+        grouped = metrics.calibration_points_by_field([])
+        assert set(grouped) == set(metrics.FIELD_TYPES)
+        assert all(points == [] for points in grouped.values())
 
 
 class TestMeanConfidence:

@@ -163,6 +163,15 @@ well-calibrated 0.6 should be right about 60% of the time. The
 gap between confidence and accuracy across all five buckets — 0.0 is
 perfect, higher means confidence and correctness have drifted apart.
 
+The scorecard below reports this in aggregate, across every field type
+pooled together — that was the only view available when M4's review
+queue needed a threshold and no per-field breakdown existed yet.
+`evals.metrics.calibration_points_by_field` now computes the same curve
+broken out by field type, and `evals/derive_review_thresholds.py` turns
+that into an actual per-field publish threshold; see
+[`docs/review.md`](review.md#from-one-uniform-threshold-to-four-derived-ones)
+for the current numbers and two honest limitations of the method.
+
 ## First real run: results and an honest read
 
 Run against `claude-sonnet-5`, 38 gold cases, zero mocking — every

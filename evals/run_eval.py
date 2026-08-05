@@ -86,10 +86,33 @@ def run_case(case: dict, model: str) -> tuple[metrics.CaseEvaluation, bool]:
     return ev, True
 
 
+def _buckets_json(buckets: list[metrics.CalibrationBucket]) -> list[dict]:
+    return [
+        {
+            "range": b.range_label,
+            "count": b.count,
+            "mean_confidence": round(b.mean_confidence, 4),
+            "accuracy": round(b.accuracy, 4),
+        }
+        for b in buckets
+    ]
+
+
 def build_scorecard(evaluations: list[metrics.CaseEvaluation], schema_valid_count: int) -> dict:
     field_scores = metrics.aggregate_field_scores(evaluations)
     all_calibration_points = [p for ev in evaluations for p in ev.calibration_points]
-    buckets, ece = metrics.compute_calibration(all_calibration_points)
+    agg_points = [(c, ok) for _, c, ok in all_calibration_points]
+    buckets, ece = metrics.compute_calibration(agg_points)
+
+    by_field_points = metrics.calibration_points_by_field(all_calibration_points)
+    calibration_by_field = {}
+    for field, points in by_field_points.items():
+        field_buckets, field_ece = metrics.compute_calibration(points)
+        calibration_by_field[field] = {
+            "expected_calibration_error": round(field_ece, 4),
+            "n": len(points),
+            "buckets": _buckets_json(field_buckets),
+        }
 
     return {
         "model": None,  # filled in by caller
@@ -109,19 +132,12 @@ def build_scorecard(evaluations: list[metrics.CaseEvaluation], schema_valid_coun
         "schema_validity_rate": round(
             metrics.schema_validity_rate(schema_valid_count, len(evaluations)), 4
         ),
-        "mean_confidence": round(metrics.mean_confidence(all_calibration_points), 4),
+        "mean_confidence": round(metrics.mean_confidence(agg_points), 4),
         "calibration": {
             "expected_calibration_error": round(ece, 4),
-            "buckets": [
-                {
-                    "range": b.range_label,
-                    "count": b.count,
-                    "mean_confidence": round(b.mean_confidence, 4),
-                    "accuracy": round(b.accuracy, 4),
-                }
-                for b in buckets
-            ],
+            "buckets": _buckets_json(buckets),
         },
+        "calibration_by_field": calibration_by_field,
     }
 
 
@@ -151,6 +167,18 @@ def print_scorecard(scorecard: dict) -> None:
         print(
             f"{b['range']:<20} {b['count']:<6} {b['mean_confidence']:<17.3f} {b['accuracy']:<17.3f}"
         )
+
+    print("\nCalibration by field:")
+    print(f"{'Field':<12} {'n':<5} {'ECE':<8} {'Confidence range':<20} {'accuracy'}")
+    print("-" * 62)
+    for field, cal in scorecard["calibration_by_field"].items():
+        for b in cal["buckets"]:
+            if b["count"] == 0:
+                continue
+            print(
+                f"{field:<12} {b['count']:<5} {cal['expected_calibration_error']:<8.4f} "
+                f"{b['range']:<20} {b['accuracy']:.3f}"
+            )
     print()
 
 

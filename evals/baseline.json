@@ -3,28 +3,28 @@
   "gold_set_size": 44,
   "fields": {
     "motions": {
-      "precision": 0.8095,
-      "recall": 0.9444,
-      "f1": 0.8718,
-      "true_positives": 34,
-      "false_positives": 8,
-      "false_negatives": 2
+      "precision": 0.825,
+      "recall": 0.9167,
+      "f1": 0.8684,
+      "true_positives": 33,
+      "false_positives": 7,
+      "false_negatives": 3
     },
     "people": {
-      "precision": 0.6847,
-      "recall": 1.0,
-      "f1": 0.8128,
-      "true_positives": 76,
-      "false_positives": 35,
-      "false_negatives": 0
+      "precision": 0.6944,
+      "recall": 0.9868,
+      "f1": 0.8152,
+      "true_positives": 75,
+      "false_positives": 33,
+      "false_negatives": 1
     },
     "locations": {
-      "precision": 0.4545,
-      "recall": 0.8824,
-      "f1": 0.6,
-      "true_positives": 15,
-      "false_positives": 18,
-      "false_negatives": 2
+      "precision": 0.5517,
+      "recall": 0.9412,
+      "f1": 0.6957,
+      "true_positives": 16,
+      "false_positives": 13,
+      "false_negatives": 1
     },
     "amounts": {
       "precision": 0.7667,
@@ -37,9 +37,9 @@
   },
   "hallucination_rate": 0.0,
   "schema_validity_rate": 1.0,
-  "mean_confidence": 0.8697,
+  "mean_confidence": 0.8654,
   "calibration": {
-    "expected_calibration_error": 0.1428,
+    "expected_calibration_error": 0.1262,
     "buckets": [
       {
         "range": "[0.00, 0.50)",
@@ -49,28 +49,174 @@
       },
       {
         "range": "[0.50, 0.70)",
-        "count": 16,
-        "mean_confidence": 0.5938,
-        "accuracy": 0.125
+        "count": 17,
+        "mean_confidence": 0.5882,
+        "accuracy": 0.1176
       },
       {
         "range": "[0.70, 0.85)",
         "count": 27,
-        "mean_confidence": 0.7481,
-        "accuracy": 0.2963
+        "mean_confidence": 0.7426,
+        "accuracy": 0.4815
       },
       {
         "range": "[0.85, 0.95)",
-        "count": 97,
-        "mean_confidence": 0.8871,
-        "accuracy": 0.8041
+        "count": 90,
+        "mean_confidence": 0.8894,
+        "accuracy": 0.8111
       },
       {
         "range": "[0.95, 1.01)",
-        "count": 75,
-        "mean_confidence": 0.956,
-        "accuracy": 0.92
+        "count": 72,
+        "mean_confidence": 0.9532,
+        "accuracy": 0.9028
       }
     ]
+  },
+  "calibration_by_field": {
+    "motions": {
+      "expected_calibration_error": 0.0778,
+      "n": 40,
+      "buckets": [
+        {
+          "range": "[0.00, 0.50)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.50, 0.70)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.70, 0.85)",
+          "count": 1,
+          "mean_confidence": 0.75,
+          "accuracy": 1.0
+        },
+        {
+          "range": "[0.85, 0.95)",
+          "count": 21,
+          "mean_confidence": 0.8762,
+          "accuracy": 0.9524
+        },
+        {
+          "range": "[0.95, 1.01)",
+          "count": 18,
+          "mean_confidence": 0.9589,
+          "accuracy": 0.8889
+        }
+      ]
+    },
+    "people": {
+      "expected_calibration_error": 0.182,
+      "n": 108,
+      "buckets": [
+        {
+          "range": "[0.00, 0.50)",
+          "count": 1,
+          "mean_confidence": 0.4,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.50, 0.70)",
+          "count": 8,
+          "mean_confidence": 0.575,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.70, 0.85)",
+          "count": 22,
+          "mean_confidence": 0.7364,
+          "accuracy": 0.4545
+        },
+        {
+          "range": "[0.85, 0.95)",
+          "count": 33,
+          "mean_confidence": 0.8879,
+          "accuracy": 0.6667
+        },
+        {
+          "range": "[0.95, 1.01)",
+          "count": 44,
+          "mean_confidence": 0.9509,
+          "accuracy": 0.9773
+        }
+      ]
+    },
+    "locations": {
+      "expected_calibration_error": 0.2466,
+      "n": 29,
+      "buckets": [
+        {
+          "range": "[0.00, 0.50)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.50, 0.70)",
+          "count": 8,
+          "mean_confidence": 0.6,
+          "accuracy": 0.25
+        },
+        {
+          "range": "[0.70, 0.85)",
+          "count": 4,
+          "mean_confidence": 0.775,
+          "accuracy": 0.5
+        },
+        {
+          "range": "[0.85, 0.95)",
+          "count": 17,
+          "mean_confidence": 0.8971,
+          "accuracy": 0.7059
+        },
+        {
+          "range": "[0.95, 1.01)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        }
+      ]
+    },
+    "amounts": {
+      "expected_calibration_error": 0.201,
+      "n": 30,
+      "buckets": [
+        {
+          "range": "[0.00, 0.50)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.50, 0.70)",
+          "count": 1,
+          "mean_confidence": 0.6,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.70, 0.85)",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0
+        },
+        {
+          "range": "[0.85, 0.95)",
+          "count": 19,
+          "mean_confidence": 0.9,
+          "accuracy": 1.0
+        },
+        {
+          "range": "[0.95, 1.01)",
+          "count": 10,
+          "mean_confidence": 0.953,
+          "accuracy": 0.6
+        }
+      ]
+    }
   }
 }
