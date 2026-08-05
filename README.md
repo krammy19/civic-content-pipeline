@@ -18,8 +18,9 @@ which is why below-threshold values route to human review rather than
 publishing. → [`docs/evals.md`](docs/evals.md)
 
 **What isn't.** `civic run` wires every stage end to end, but only for
-Legistar cities with already-published minutes. One platform validated,
-not two. → [Current limitations](#current-limitations)
+Legistar cities with already-published minutes. A second platform is
+scored, not equally good — two fields measurably worse, for verified
+reasons. → [Current limitations](#current-limitations)
 
 ## Results at a glance
 
@@ -224,9 +225,14 @@ Stated plainly:
   across many — two platforms proven well is worth more than dozens
   proven shallowly. The registry is left as-is (useful for future
   breadth) but isn't the near-term priority.
-- **The CivicPlus connector has no test coverage.** Header-mapping,
-  Pydantic model validation, document fetch/caching, and PDF text
-  extraction all do (`tests/`); `CivicPlusConnector` itself doesn't yet.
+- **On the second platform (Alhambra, CivicPlus), people and amounts
+  extraction is measurably worse, for two verified reasons, not a
+  hallucination.** The model extracts every named vote-caster in
+  Alhambra's per-item roll call, not just the mover/seconder gold
+  credits (48 of 77 raw `people` extractions), and extracts background
+  bid figures alongside the amount actually awarded. Motions and
+  locations held up fine on the same 15-case set. Full breakdown:
+  [`docs/evals.md`](docs/evals.md#a-second-platform-alhambra-ca-civicplus).
 - **Scan detection is a heuristic, not a real classifier.** A PDF page is
   flagged `ocr_required` when extracted text is implausibly sparse for
   its page count (`document_text.MIN_CHARS_PER_PAGE`) — good enough to
@@ -327,9 +333,15 @@ order it's planned:
    plainly rather than smoothed over, since the extraction prompt was
    built and measured entirely against minutes. Full writeup:
    [`docs/end-to-end-runner.md`](docs/end-to-end-runner.md).
-8. **A second platform.** One more connector on a platform Legistar
-   doesn't share anything with, run through the same eval suite, with
-   results reported honestly — including where they're worse.
+8. **A second platform — done.** `CivicPlusConnector` (Alhambra, CA) got
+   its own test suite (`tests/connectors/test_civicplus.py`) and its own
+   15-case gold set (`evals/gold_civicplus/`), scored separately from
+   San José's and never pooled with it. Motions and locations held up;
+   people and amounts got measurably worse, and both regressions were
+   traced to a real, verified cause by pulling raw model output, not
+   left as a guess — the prompt was not tuned to close the gap, since
+   doing so would defeat the point of testing generalization at all.
+   Full writeup: [`docs/evals.md`](docs/evals.md#a-second-platform-alhambra-ca-civicplus).
 
 ## Project layout
 

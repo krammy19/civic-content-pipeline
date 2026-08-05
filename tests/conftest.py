@@ -1,5 +1,6 @@
 import pytest
 from civic_scraper import llm
+from civic_scraper.connectors.civicplus import CivicPlusConnector
 from civic_scraper.connectors.legistar import LegistarConnector
 
 
@@ -16,4 +17,13 @@ def connector() -> LegistarConnector:
     return LegistarConnector(
         jurisdiction="Testville",
         calendar_url="https://testville.legistar.com/Calendar.aspx",
+    )
+
+
+@pytest.fixture
+def civicplus_connector() -> CivicPlusConnector:
+    return CivicPlusConnector(
+        jurisdiction="Testville",
+        base_url="https://testville.civicplus.com",
+        body="City Council",
     )

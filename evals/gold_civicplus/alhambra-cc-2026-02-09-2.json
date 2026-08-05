@@ -1,0 +1,51 @@
+{
+  "id": "alhambra-cc-2026-02-09-2",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "2",
+  "item_title": "Acceptance of grant funds from LACMTA for the 710 Stub arterial conversion",
+  "document_text": "2. ACCEPTANCE OF GRANT FUNDS FROM THE LOS ANGELES METROPOLITAN TRANSPORTATION AUTHORITY UNDER MEASURE R FOR THE 710 STUB IMPROVEMENTS INTO A FOUR-LANE ARTERIAL – F2M19-32, M2M26-28\n\nOn April 24, 2023, the City entered into a Cooperative Agreement with the California Department of Transportation (Caltrans) for the Project Initiation Document (PID) for the 710 Stub Improvements at Valley from a six-lane freeway corridor to a four-lane local arterial. On October 10, 2025, the City received the Funding Agreement in the amount of $62,400,000 for the City's Arterial Conversion Project.\n\nDiscussion: None.\n\nAction Taken: City Council accepted grant funds in the amount of $62,400,000 from the Los Angeles Metropolitan Transportation Authority under the I-10/SR-710 Interchange Reconfiguration (Arterial Conversion), LACMTA Project ID #MR1.1.1.01 and FTIP #LAMIPMR123; appropriated $9,000,000 in revenues and expenditures under Measure R for the 2024-25, 2025-26 and 2026-27 Fiscal Years, as allocated under the grant; authorized the City Manager or designee to execute all documents related to grant implementation; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M26-28)\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council accepted grant funds in the amount of $62,400,000 from the Los Angeles Metropolitan Transportation Authority",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$62,400,000",
+        "amount_usd": "62400000",
+        "kind": "grant",
+        "source_text": "the Funding Agreement in the amount of $62,400,000"
+      },
+      {
+        "raw_text": "$9,000,000",
+        "amount_usd": "9000000",
+        "kind": "grant",
+        "source_text": "appropriated $9,000,000 in revenues and expenditures under Measure R"
+      }
+    ]
+  },
+  "notes": "Two distinct dollar figures in one item (the grant total and the appropriated portion) - checks the model doesn't collapse them into one."
+}

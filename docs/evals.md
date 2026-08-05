@@ -283,6 +283,97 @@ Stated plainly, matching the project's own standard for itself:
   for every remaining false positive is the most valuable next unit of
   work on this harness, ahead of adding more gold cases.
 
+## A second platform: Alhambra, CA (CivicPlus)
+
+Every result above is San José, one city on one platform. SPEC's M7 and
+the generalization question it's meant to answer — does this pipeline
+work anywhere, or does it only work on the one city it was tuned
+against — needed a second, structurally different source. Alhambra runs
+CivicPlus's AgendaCenter, not Legistar: different HTML entirely
+(`connectors/civicplus.py`, tested in
+`tests/connectors/test_civicplus.py`), different PDF minutes layout,
+different city, different council.
+
+**15 real gold cases** (`evals/gold_civicplus/`, built by
+`scripts/build_gold_set_civicplus.py`), hand-annotated from two real
+regular City Council meetings fetched live via `CivicPlusConnector` +
+`document_text.fetch_and_extract()` during this session — February 9
+and February 23, 2026. Scored **separately** from San José's gold set,
+never pooled: `uv run python evals/run_eval.py --gold-dir
+evals/gold_civicplus` writes its own `evals/baseline_civicplus.json`,
+compared only against itself on later runs (`baseline_path_for()` maps
+each `gold_<name>/` directory to its own baseline file specifically so
+this never gets silently diffed against San José's numbers as if it
+were the same suite regressing).
+
+**The prompt was not touched to close any gap found here.** That's not
+an oversight; it's the actual point of building a second gold set — a
+prompt tuned until it also scores well on Alhambra would no longer be
+testing whether the original approach generalizes, only whether it can
+be made to pass a second exam it's seen the answers to.
+
+| Field | Precision | Recall | F1 | vs. San José F1 |
+|---|---|---|---|---|
+| Motions | 0.929 | 0.867 | **0.897** | 0.868 (+0.029) |
+| People | 0.377 | 0.935 | **0.537** | 0.815 (−0.278) |
+| Locations | 0.583 | 1.000 | **0.737** | 0.696 (+0.041) |
+| Amounts | 0.455 | 0.909 | **0.606** | 0.868 (−0.262) |
+
+Schema validity: **93.3%** (14/15 — one real schema failure, below).
+Hallucination rate: **0%**. Calibration: **ECE 0.323**, roughly 2.5x
+worse than San José's 0.126 — Alhambra's confidence numbers track
+correctness far less reliably.
+
+**Two fields got worse, two got (slightly) better — the honest read is
+narrower than "CivicPlus is worse."** Motions and locations held up or
+improved. People and amounts collapsed, and both collapses were traced
+to a real, verified cause, not left as a guess:
+
+1. **People: the model extracts every named vote-caster, not just the
+   mover and seconder.** Alhambra's minutes name the full five-member
+   roll call on *every single item* (`Ayes: MAZA, ANDRADE-STADLER, LEE,
+   WANG, MALONEY`), not just a tally like San José's `(11-0-0)`. Pulling
+   raw extraction for one real case confirmed it directly: the model
+   returned `ANDRADE-STADLER` and `MAZA` (correctly, as mover/seconder)
+   *and* `LEE`, `WANG`, `MALONEY` (from the Ayes list) as four
+   additional `people` facts — all five real, all verified, none
+   hallucinated. Gold only credits mover/seconder as meaningful
+   `people` facts, mirroring the convention San José's gold set already
+   uses. That convention was never tested against a document that names
+   every voter every time; Alhambra is the first one that does, and 48
+   of the field's 77 raw extractions are exactly this pattern. This is
+   an annotation-convention question the eval never had to answer
+   before ("does every named roll-call vote count as a person fact?"),
+   not a hallucination and not a prompt bug.
+2. **Amounts: the model extracts background dollar figures, not just
+   the one actually acted on.** Alhambra's minutes narrate the bidding
+   process before stating the award (`bids ranged from $444,760.00 to
+   ... $726,250`), and pulling raw extraction for a real contract-award
+   case confirmed the model extracts the losing high bid
+   (`$726,250`, confidence 0.85) as its own `amounts` fact alongside the
+   actually-awarded `$444,760.00`. San José's minutes rarely narrate a
+   multi-bid process inline this way, so this over-extraction mode had
+   little material to trigger on there. Predicted in this gold set's
+   own annotation notes (items `alhambra-cc-2026-02-23-6` and `-7`)
+   before the eval was ever run, then confirmed by real model output —
+   not a post-hoc excuse.
+
+**The one schema failure is itself informative.** `alhambra-cc-2026-02-23-13`'s
+raw tool call came back missing the required `title` and `item_type`
+fields entirely — a real API/schema miss, not a provenance failure (it
+never got that far). This case has a genuine, minor document defect of
+its own (`$200,00.00`, a source PDF typo missing a digit, corrected to
+`$200,000.00` in the same item's own Action Taken clause) — whether
+that's related is unconfirmed, but it's exactly the kind of messier,
+real-world input a second, independently-sourced platform was expected
+to surface that a single well-worn gold set wouldn't.
+
+**Locations and motions holding up is itself worth stating, not just
+the fields that got worse.** Generalizing well on some fields and
+poorly on others is a more credible result than either "it works
+everywhere" or "it falls apart on a new platform" — the failure modes
+found are specific and explained, not a uniform collapse.
+
 ## How to add a gold case
 
 1. Find a real item in a fetched document (`data/raw/<jurisdiction>/`,

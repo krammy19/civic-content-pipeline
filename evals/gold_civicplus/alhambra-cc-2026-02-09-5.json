@@ -1,0 +1,50 @@
+{
+  "id": "alhambra-cc-2026-02-09-5",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "5",
+  "item_title": "Renewal of Edison easement license agreement on Raymond Avenue",
+  "document_text": "5. RENEWAL OF EDISON EASEMENT LICENSE AGREEMENT – F2M21-30, F2M1-44, C2M26-11, M2M26-26\n\nIn 1986, the City of Alhambra entered into a license agreement with SCE to lease the easement on Raymond Avenue between Alhambra Road and Cedar Avenue. In March 2021, the license agreement was renewed for a five-year period, and would expire on March 31, 2026. SCE has offered a five-year renewal of the license agreement from April 1, 2026, through March 31, 2031. The license agreement would include an annual fee of $581.37 that would increase annually by no more than 5%.\n\nDiscussion: None.\n\nAction Taken: City Council approved the renewal of the license agreement with Southern California Edison Company, subject to final language approval by the City Manager and City Attorney, for the use of the easement on Raymond Avenue adjacent to Alhambra Park for the purpose of park use, for a period of five (5) years, commencing on April 1, 2026 through March 31, 2031, with an annual fee of $581.37 plus annual increases not to exceed 5% payable to Southern California Edison; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M26-26)\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council approved the renewal of the license agreement with Southern California Edison Company",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Raymond Avenue easement adjacent to Alhambra Park",
+        "source_text": "the easement on Raymond Avenue adjacent to Alhambra Park"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$581.37",
+        "amount_usd": "581.37",
+        "kind": "fee",
+        "source_text": "with an annual fee of $581.37 plus annual increases"
+      }
+    ]
+  },
+  "notes": "A sub-$1,000 recurring fee (not a one-time contract) - checks the model picks 'fee' as the kind, and extracts a real street-level location."
+}

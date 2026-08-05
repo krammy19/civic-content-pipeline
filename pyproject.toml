@@ -49,6 +49,7 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 # wrapping every string to 100 chars would fragment the quoted source
 # rather than improve readability.
 "scripts/build_gold_set.py" = ["E501"]
+"scripts/build_gold_set_civicplus.py" = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

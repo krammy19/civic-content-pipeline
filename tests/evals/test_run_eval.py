@@ -40,6 +40,16 @@ def _gold_case(**overrides) -> dict:
     return base
 
 
+class TestBaselinePathFor:
+    def test_default_gold_dir_maps_to_the_original_baseline(self):
+        gold_dir = Path("/repo/evals/gold")
+        assert run_eval.baseline_path_for(gold_dir) == Path("/repo/evals/baseline.json")
+
+    def test_a_second_citys_gold_dir_gets_its_own_baseline_file(self):
+        gold_dir = Path("/repo/evals/gold_civicplus")
+        assert run_eval.baseline_path_for(gold_dir) == Path("/repo/evals/baseline_civicplus.json")
+
+
 class TestCheckRegression:
     def test_no_regression_when_scores_match(self):
         current = {"fields": {"motions": {"f1": 0.88}}}

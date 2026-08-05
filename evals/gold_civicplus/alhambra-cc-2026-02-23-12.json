@@ -1,0 +1,43 @@
+{
+  "id": "alhambra-cc-2026-02-23-12",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "12",
+  "item_title": "Notice inviting bids for City Hall south structure roof replacement",
+  "document_text": "12. NOTICE INVITING BIDS: ROOF REPLACEMENT AT CITY HALL (SOUTH STRUCTURE) – F2M26-26, N2M26-21\n\nThe roof at the south side of City Hall was over 20-plus years old, and it was in need of replacement. Water damage in the Parks and Recreation Department was observed. The recommendation was to remove the existing roof and underlayment, and repair any damaged decking.\n\nDiscussion: None.\n\nAction Taken: City Council authorized staff to issue a notice inviting bids to prospective contractors for Roof Replacement at Alhambra City Hall, with bids due no later than 10:30 a.m. on April 2, 2026 and opened on 11:00 a.m. that same day; and, directed staff to undertake the steps necessary to finalize the Council's action.\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council authorized staff to issue a notice inviting bids to prospective contractors for Roof Replacement at Alhambra City Hall",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "City Hall (south structure)",
+        "source_text": "ROOF REPLACEMENT AT CITY HALL (SOUTH STRUCTURE)"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "Same bid-solicitation-with-no-amount-yet shape as item 11, and the same 'City Hall' location string as item 11 but a different building side - checks the model treats these as two distinct items rather than merging them."
+}

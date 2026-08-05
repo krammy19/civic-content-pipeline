@@ -1,0 +1,45 @@
+{
+  "id": "alhambra-cc-2026-02-23-9",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "9",
+  "item_title": "Notice of completion for the 2024 CDBG ADA ramp project",
+  "document_text": "9. NOTICE OF COMPLETION: 2024 CDBG ADA RAMP PROJECT – F2M25-26, C2M25-17, M2M26-34\n\nOn April 28, 2025, the City Council awarded a contract to CJ Concrete, Inc. for the 2024 CDBG ADA Ramp Project in the amount of $638,125.00. One change order was issued resulting in an increase of $21,193.50 for an additional ramp, making the final cost $659,318.50.\n\nDiscussion: None.\n\nAction Taken: City Council accepted the work of CJ Concrete Construction, Inc. for the 2024 CDBG ADA Ramp Project as complete in the amount of $659,318.50; directed the City Clerk to file a Notice of Completion with the County of Los Angeles for recordation; instructed the Finance Director to release the 5% retention 35 days from the date of recordation if no liens are filed; and, directed staff to undertake the steps necessary to finalize the Council's action. (M2M26-34)\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council accepted the work of CJ Concrete Construction, Inc. for the 2024 CDBG ADA Ramp Project as complete in the amount of $659,318.50",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$659,318.50",
+        "amount_usd": "659318.50",
+        "kind": "contract",
+        "source_text": "as complete in the amount of $659,318.50"
+      }
+    ]
+  },
+  "notes": "Same original-plus-change-order pattern as item 8 ($638,125.00 + $21,193.50 = $659,318.50) - a second real instance to check this isn't a one-off. No specific street address given for this item, unlike most others."
+}

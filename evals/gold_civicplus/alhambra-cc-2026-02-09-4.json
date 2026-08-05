@@ -1,0 +1,45 @@
+{
+  "id": "alhambra-cc-2026-02-09-4",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "4",
+  "item_title": "Award contract for the Solid Waste Management Services Agreement audit",
+  "document_text": "4. AWARD CONTRACT: ALHAMBRA SOLID WASTE MANAGEMENT SERVICES AGREEMENT AUDIT – F2M25-66, RFP2M25-28, C2M26-10, M2M26-25\n\nOn December 8, 2025, the City Council approved staff's recommendation to solicit proposals for professional services to audit the Solid Waste Management Services Agreement with Republic Services. Five proposals were received. HF&H Consultants ranked highest.\n\nDiscussion: None.\n\nAction Taken: City Council approved a contract, subject to final approval by the City Manager and the City Attorney, by and between the City of Alhambra and HF&H Consultants, LLC, for professional services in the amount of $70,000 for a Waste Audit for Rate Year 2023-24 under the Solid Waste Management Services Agreement with Republic Services; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M26-25)\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council approved a contract ... with HF&H Consultants, LLC, for professional services in the amount of $70,000",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$70,000",
+        "amount_usd": "70000",
+        "kind": "contract",
+        "source_text": "for professional services in the amount of $70,000"
+      }
+    ]
+  },
+  "notes": "Contractor name (HF&H Consultants, LLC) is a business, not a person - checks the model doesn't extract it as a person."
+}

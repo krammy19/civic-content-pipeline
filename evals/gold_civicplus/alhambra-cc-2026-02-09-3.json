@@ -1,0 +1,45 @@
+{
+  "id": "alhambra-cc-2026-02-09-3",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "3",
+  "item_title": "Accept Summer Lunch Program grant from the California State Library",
+  "document_text": "3. ACCEPT SUMMER LUNCH PROGRAM GRANT FROM THE CALIFORNIA STATE LIBRARY AND APPROPRIATE FUNDS – F2M26-18, M2M26-24\n\nThe California State Library offers grants in support of library programs and pop-up visits at summer lunch sites to enhance access to books and library services by the community. In November, 2025, staff applied for this funding opportunity and was awarded $5,104 to support library programming at the City's park sites participating under the free Summer Lunch Program.\n\nDiscussion: None.\n\nAction Taken: City Council accepted $5,104 in grant funds from the California State Library to support the Library's mobile summer programs and services; appropriated revenue and expenditure funds in the amount of $5,104; authorized the City Manager or designee to sign the grant agreement with the California State Library, subject to final language approval by the City Manager and City Attorney; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M26-24)\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council accepted $5,104 in grant funds from the California State Library",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [],
+    "amounts": [
+      {
+        "raw_text": "$5,104",
+        "amount_usd": "5104",
+        "kind": "grant",
+        "source_text": "was awarded $5,104 to support library programming"
+      }
+    ]
+  },
+  "notes": "Small dollar amount ($5,104) - checks the model doesn't only pick up large, round figures. Maloney is the Mayor, not a bare councilmember."
+}

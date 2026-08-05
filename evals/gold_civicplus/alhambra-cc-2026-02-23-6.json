@@ -1,0 +1,50 @@
+{
+  "id": "alhambra-cc-2026-02-23-6",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "6",
+  "item_title": "Award contract for the Seventh Street water main replacement project",
+  "document_text": "6. AWARD CONTRACT: WATER MAIN REPLACEMENT PROJECT ON SEVENTH STREET BETWEEN VALLEY BOULEVARD AND SHORB STREET – F2M25-63, N2M25-174, C2M26-12, M2M26-30\n\nOn December 8, 2025, the City Council approved the distribution of Notice Inviting Bids for the Water Main Replacement Seventh Street from Valley Boulevard to Shorb Street. On February 5, 2026, bids were opened by the City Clerk. Five bids were received, which ranged from amount of $444,760.00 to the high bid of $726,250. Ramona Inc. submitted the lowest qualified bid at $444,760.00.\n\nDiscussion: None.\n\nAction Taken: City Council awarded a contract, subject to final language approval by the City Manager and City Attorney, by and between the City of Alhambra and Ramona Inc. for the Water Main Replacement on Seventh Street from Valley Boulevard to Shorb Street in an amount not to exceed $444,760.00; determined that the Water Main Replacement Seventh Street from Valley Boulevard to Shorb Street Project is categorically exempt from the California Environmental Quality Act (CEQA) pursuant to CEQA Guidelines Section 15301 (b); and, directed staff to undertake the steps necessary to finalize the Council's action. (M2M26-30)\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council awarded a contract ... to Ramona Inc. for the Water Main Replacement on Seventh Street ... in an amount not to exceed $444,760.00",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Seventh Street between Valley Boulevard and Shorb Street",
+        "source_text": "WATER MAIN REPLACEMENT PROJECT ON SEVENTH STREET BETWEEN VALLEY BOULEVARD AND SHORB STREET"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$444,760.00",
+        "amount_usd": "444760.00",
+        "kind": "contract",
+        "source_text": "in an amount not to exceed $444,760.00"
+      }
+    ]
+  },
+  "notes": "Two other bid amounts ($726,250 high bid, and the range) appear in the background paragraph but were NOT awarded - only the actual contract amount counts as the item's amount. Tests whether the model over-extracts every dollar figure mentioned versus only the one actually acted on."
+}

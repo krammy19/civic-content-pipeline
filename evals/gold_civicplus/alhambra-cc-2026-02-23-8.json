@@ -1,0 +1,50 @@
+{
+  "id": "alhambra-cc-2026-02-23-8",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "8",
+  "item_title": "Notice of completion for the golf course parking area landscape project",
+  "document_text": "8. NOTICE OF COMPLETION: GOLF COURSE PARKING AREA LANDSCAPE ENHANCEMENT PROJECT – F2M25-46, C2M25-43, M2M26-32\n\nOn October 13, 2025, the City Council awarded a contract to Four Seasons Landscaping Inc. in the amount of $109,000 for the Golf Course Parking Area Landscape Enhancement project. The City requested a change order to remove the old dying trees in the landscaping area which totaled $16,000, which brings the contract total to $125,000.\n\nDiscussion: None.\n\nAction Taken: City Council accepted the work of SGD Enterprises DBA Four Seasons Landscaping, Inc. for the Alhambra Golf Course Parking Area Landscape Enhancement Project as complete in the amount of $125,000.00; directed the City Clerk to file a Notice of Completion with the County of Los Angeles for recordation; instructed the Finance Director to release the 5% retention 35 days from the date of recordation if no liens and filed; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M25-32)\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council accepted the work of SGD Enterprises DBA Four Seasons Landscaping, Inc. ... as complete in the amount of $125,000.00",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Alhambra Golf Course Parking Area",
+        "source_text": "GOLF COURSE PARKING AREA LANDSCAPE ENHANCEMENT PROJECT"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$125,000.00",
+        "amount_usd": "125000.00",
+        "kind": "contract",
+        "source_text": "as complete in the amount of $125,000.00"
+      }
+    ]
+  },
+  "notes": "The final accepted amount ($125,000) is the ORIGINAL contract ($109,000) plus a change order ($16,000) - a genuine test of whether the model reports the final total actually acted on versus one of the two contributing figures."
+}

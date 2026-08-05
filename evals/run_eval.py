@@ -4,16 +4,22 @@ Eval harness entry point.
     uv run python evals/run_eval.py                  # score against evals/baseline.json
     uv run python evals/run_eval.py --update-baseline # write current scores as the new baseline
     uv run python evals/run_eval.py --model claude-sonnet-5
+    uv run python evals/run_eval.py --gold-dir evals/gold_civicplus  # a second city's own gold set
 
-Loads every case in evals/gold/, runs the real extraction pipeline
-(extraction.agenda_item.extract_agenda_item_raw() + drop_unverified(),
-routed through the same cached llm.py every other extraction call uses -
-a re-run against inputs already seen costs nothing), scores the result
-with evals/metrics.py, and prints a scorecard.
+Loads every case in --gold-dir (default evals/gold/), runs the real
+extraction pipeline (extraction.agenda_item.extract_agenda_item_raw() +
+drop_unverified(), routed through the same cached llm.py every other
+extraction call uses - a re-run against inputs already seen costs
+nothing), scores the result with evals/metrics.py, and prints a
+scorecard.
 
 Exits non-zero if any field's F1 has regressed more than 3 points (0.03)
-below evals/baseline.json - the CI regression gate. See docs/evals.md for
-the full methodology.
+below that gold set's OWN baseline - baseline_path_for() maps evals/gold/
+to evals/baseline.json and evals/gold_<name>/ to
+evals/baseline_<name>.json, so scoring a second city's gold set is never
+compared against the first city's numbers as if it were a regression on
+the same suite. See docs/evals.md for the full methodology, including
+why a second city's scores are reported separately rather than pooled.
 """
 
 import argparse
@@ -34,7 +40,6 @@ from civic_scraper.extraction.agenda_item import (  # noqa: E402
 from evals import metrics  # noqa: E402
 
 GOLD_DIR = Path(__file__).resolve().parent / "gold"
-BASELINE_PATH = Path(__file__).resolve().parent / "baseline.json"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 
 REGRESSION_THRESHOLD = 0.03
@@ -182,6 +187,19 @@ def print_scorecard(scorecard: dict) -> None:
     print()
 
 
+def baseline_path_for(gold_dir: Path) -> Path:
+    """Each gold set gets its own baseline file. The default gold_dir
+    ("gold") keeps the original evals/baseline.json; any other gold_dir
+    (e.g. gold_civicplus, for a second platform's gold set - see
+    docs/evals.md) gets its own evals/baseline_<name>.json, so scoring a
+    second city is never silently compared against the first city's
+    numbers as if a regression against the same baseline."""
+    if gold_dir.name == "gold":
+        return gold_dir.parent / "baseline.json"
+    suffix = gold_dir.name.removeprefix("gold_")
+    return gold_dir.parent / f"baseline_{suffix}.json"
+
+
 def check_regression(current: dict, baseline: dict) -> list[str]:
     failures = []
     for field, current_score in current["fields"].items():
@@ -230,18 +248,21 @@ def main(argv: list[str] | None = None) -> int:
     results_path.write_text(json.dumps(scorecard, indent=2), encoding="utf-8")
     print(f"Wrote machine-readable results to {results_path}")
 
+    baseline_path = baseline_path_for(args.gold_dir)
+
     if args.update_baseline:
-        BASELINE_PATH.write_text(json.dumps(scorecard, indent=2), encoding="utf-8")
-        print(f"Updated baseline at {BASELINE_PATH}")
+        baseline_path.write_text(json.dumps(scorecard, indent=2), encoding="utf-8")
+        print(f"Updated baseline at {baseline_path}")
         return 0
 
-    if not BASELINE_PATH.exists():
+    if not baseline_path.exists():
         print(
-            "No baseline.json yet - nothing to compare against. Run with --update-baseline first."
+            f"No {baseline_path.name} yet - nothing to compare against. "
+            "Run with --update-baseline first."
         )
         return 0
 
-    baseline = json.loads(BASELINE_PATH.read_text(encoding="utf-8"))
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
     failures = check_regression(scorecard, baseline)
     if failures:
         print("REGRESSION DETECTED:")

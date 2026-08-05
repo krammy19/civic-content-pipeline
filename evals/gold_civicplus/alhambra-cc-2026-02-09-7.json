@@ -1,0 +1,43 @@
+{
+  "id": "alhambra-cc-2026-02-09-7",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "7",
+  "item_title": "Street easement acceptance at 1000-1008 South Garfield Avenue",
+  "document_text": "7. STREET EASEMENT: 1000-1008 SOUTH GARFIELD AVENUE – F2M26-8, M2M26-27, D2M26-2038\n\nStaff requested that the City Council accept a street easement for the property located at 1000-1008 S. Garfield Avenue. Per the City of Alhambra Right-Of-Way and Lane Configuration Study of 1985, a dedication of the north west corner of the lot (Garfield Ave. and Linda Vista Ave.) was required.\n\nDiscussion: None.\n\nAction Taken: City Council adopted Minute Order No. M2M26-27 accepting that certain Easement (Deed No. D2M26-2038) from Buddhist Tzu Chi Foundation granting to the City of Alhambra an easement for public streets and highways and public utility purposes; and, directed staff to undertake the steps necessary to finalize Council's action.\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council adopted Minute Order No. M2M26-27 accepting that certain Easement (Deed No. D2M26-2038) from Buddhist Tzu Chi Foundation",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "1000-1008 South Garfield Avenue",
+        "source_text": "STREET EASEMENT: 1000-1008 SOUTH GARFIELD AVENUE"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "A street-address location with no dollar amount at all - checks the model doesn't invent a fee where the source states none. 'Buddhist Tzu Chi Foundation' is the easement grantor, not a person."
+}

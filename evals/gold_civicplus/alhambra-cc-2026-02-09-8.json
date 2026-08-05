@@ -1,0 +1,43 @@
+{
+  "id": "alhambra-cc-2026-02-09-8",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "8",
+  "item_title": "Nominate an appointee for the Metro San Gabriel Valley Service Council",
+  "document_text": "8. NOMINATE AN APPOINTEE FOR METRO SAN GABRIEL VALLEY SERVICE COUNCIL – F2M26-16, M2M26-29\n\nSan Gabriel City Council Member John Wu currently serves on behalf of the Cities of Alhambra, San Gabriel, San Marino, and South Pasadena as an appointee on Metro's San Gabriel Valley (SGV) Service Council. His term will expire on June 30, 2026. Councilmember Wu wishes to continue serving on the SGV Service Council.\n\nDiscussion: None.\n\nAction Taken: City Council voted to nominate San Gabriel City Council Member John Wu as an appointee to the Metro San Gabriel Valley Service Council; and, directed staff to undertake the steps necessary to finalize Council's action. (M2M26-29)\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council voted to nominate San Gabriel City Council Member John Wu as an appointee to the Metro San Gabriel Valley Service Council",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "John Wu",
+        "role": "public",
+        "source_text": "San Gabriel City Council Member John Wu"
+      },
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "John Wu is a council member of a DIFFERENT city (San Gabriel), not Alhambra - annotated 'public' rather than 'councilmember' since he holds no office on this body. A real test of role attribution beyond a name-title pattern match."
+}

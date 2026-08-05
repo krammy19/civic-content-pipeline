@@ -1,0 +1,50 @@
+{
+  "id": "alhambra-cc-2026-02-23-7",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "7",
+  "item_title": "Award contract for the Poplar Boulevard rehabilitation project",
+  "document_text": "7. AWARD CONTRACT: POPLAR BOULEVARD REHABILITATION PROJECT (STPL-5130(024)) – F2M25-55, N2M25-145, C2M26-13, M2M26-31\n\nThe Notice Inviting Bids for the Poplar Boulevard Rehabilitation Project was approved for distribution by the City Council on October 13, 2025. On December 4, 2025, the City Clerk received eight bids that ranged from $673,956.00 to $1,098,496.00. Staff reviewed the bids and found the one received from Gentry Brothers, Inc. in the amount of $673,956 to be the lowest responsible bid.\n\nDiscussion: None\n\nAction Taken: City Council awarded a contract, subject to final language approval by the City Manager and City Attorney, to Gentry Brothers, Inc. in the amount of $673,956.00 for the Poplar Boulevard Rehabilitation Project (HSIP-5130(024)); and, directed staff to undertake the steps necessary to finalize the Council's action. (M2M26-31)\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council awarded a contract ... to Gentry Brothers, Inc. in the amount of $673,956.00 for the Poplar Boulevard Rehabilitation Project",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "Poplar Boulevard",
+        "source_text": "AWARD CONTRACT: POPLAR BOULEVARD REHABILITATION PROJECT"
+      }
+    ],
+    "amounts": [
+      {
+        "raw_text": "$673,956.00",
+        "amount_usd": "673956.00",
+        "kind": "contract",
+        "source_text": "to Gentry Brothers, Inc. in the amount of $673,956.00"
+      }
+    ]
+  },
+  "notes": "Same shape as item 6 (multiple bid figures, only one awarded) - a second real instance of the same over-extraction risk, from a different vendor and street."
+}

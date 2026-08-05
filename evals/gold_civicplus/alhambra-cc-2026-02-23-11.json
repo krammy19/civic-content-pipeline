@@ -1,0 +1,43 @@
+{
+  "id": "alhambra-cc-2026-02-23-11",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-23",
+  "source_document": "alhambra-city-council-2026-02-23-minutes",
+  "item_number": "11",
+  "item_title": "Notice inviting bids for City Hall HVAC controls retrofit",
+  "document_text": "11. NOTICE INVITING BIDS: CITY HALL ENERGY MANAGEMENT SYSTEM HVAC CONTROLS RETROFIT AND UPGRADE – F2M26-25, N2M26-20\n\nThe City Hall Energy Management System (EMS) is beyond its useful life, and it is no longer supported by the manufacturer. This project would remove and replace the aging system with new hardware and furnish and install new controls and sensors needed for the new system.\n\nDiscussion: None.\n\nAction Taken: City Council authorized staff to issue a Notice Inviting Bids to prospective contractors for the City Hall Energy Management System (EMS) HVAC Controls retrofit and upgrade, with bids due no later than 10:30 a.m. on April 2, 2026, and opened on 11:00 a.m. that same day; and, directed staff to undertake the steps necessary to finalize the Council's action.\nVote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council authorized staff to issue a Notice Inviting Bids to prospective contractors for the City Hall Energy Management System (EMS) HVAC Controls retrofit and upgrade",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maza",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MAZA\nAyes: LEE, MAZA, ANDRADE-STADLER, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Moved: ANDRADE-STADLER"
+      },
+      {
+        "raw_name": "Maza",
+        "role": "councilmember",
+        "source_text": "Seconded: MAZA"
+      }
+    ],
+    "locations": [
+      {
+        "raw_text": "City Hall",
+        "source_text": "CITY HALL ENERGY MANAGEMENT SYSTEM"
+      }
+    ],
+    "amounts": []
+  },
+  "notes": "A bid solicitation, not an award - no dollar amount exists yet at this stage, since bids haven't been opened. Checks the model doesn't invent a figure for a not-yet-priced project."
+}

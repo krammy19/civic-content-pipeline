@@ -692,3 +692,60 @@ never built for - which is a more honest outcome than the run happening
 to look clean by accident. Full writeup, including what "not built for
 this yet" specifically means going forward:
 `docs/end-to-end-runner.md`.
+
+## 2026-08-05 — A second platform, scored honestly (T2.2 / SPEC M7)
+
+Every eval result up to this point was San José, one city on one
+platform. The generalization question this project exists to answer -
+does the approach work anywhere, or only on the one city it was tuned
+against - needed a second, structurally unrelated source: Alhambra, CA,
+which runs CivicPlus's AgendaCenter rather than Legistar.
+
+**Test coverage first, since none existed.** `CivicPlusConnector` had
+zero tests before this - `tests/connectors/test_civicplus.py` covers
+the same class of failure `test_legistar.py` already covers for the
+other connector, translated to CivicPlus's own shape: rows with no
+`<strong aria-label>` at all (the equivalent of a Legistar pager row
+sharing a table with real data), missing agenda/minutes/media links,
+and the three-tier category-discovery fallback (exact match, substring
+match, "contains council").
+
+**15 real gold cases, fetched live and hand-annotated the same way the
+original 44 were.** `CivicPlusConnector` + `document_text.fetch_and_extract()`
+pulled two real regular City Council meetings (February 9 and 23, 2026)
+directly from cityofalhambra.org during this session -
+`scripts/build_gold_set_civicplus.py` is the record of exactly how,
+matching `build_gold_set.py`'s own pattern. Scored with a dedicated
+`--gold-dir evals/gold_civicplus` flag that already existed on
+`run_eval.py`; the one piece of real infrastructure this needed was
+`baseline_path_for()`, since the regression check had `evals/baseline.json`
+hardcoded and would otherwise have "detected" a regression the moment
+any second gold set was scored, simply for being a different city.
+
+**The result was two fields better, two fields much worse, and both
+regressions were run down to a confirmed cause rather than left as a
+number.** Motions (F1 0.897) and locations (F1 0.737) held up fine or
+improved slightly over San José. People (F1 0.537, down from 0.815) and
+amounts (F1 0.606, down from 0.868) did not, and pulling raw extraction
+output for real cases - not guessing - showed exactly why:
+
+1. Alhambra's minutes name the full five-member roll call
+   (`Ayes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY`) on every single
+   item, not just a bare tally the way San José's usually do. The model
+   extracts every named voter as its own `people` fact - real,
+   verified, not hallucinated - while gold only credits the
+   mover/seconder, the same convention the original 44-case set already
+   uses. That convention had simply never been tested against a
+   document type that names every voter every time.
+2. Alhambra's minutes narrate the bidding process before the award
+   (`bids ranged from $444,760.00 to ... $726,250`), and the model
+   extracts the losing bid as its own `amounts` fact alongside the
+   actual award. This exact risk was written into the gold set's own
+   annotation notes before the eval ever ran, then confirmed by real
+   output afterward.
+
+Neither is a hallucination and neither was patched by touching the
+prompt - doing that would have meant tuning the model against the exact
+gold set built to test whether it generalizes, which defeats the
+purpose of building one. Full numbers, the raw-extraction evidence, and
+the one real schema failure this run also surfaced: `docs/evals.md`.

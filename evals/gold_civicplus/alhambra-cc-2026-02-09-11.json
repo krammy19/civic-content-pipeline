@@ -1,0 +1,38 @@
+{
+  "id": "alhambra-cc-2026-02-09-11",
+  "jurisdiction": "Alhambra",
+  "body": "City Council",
+  "meeting_date": "2026-02-09",
+  "source_document": "alhambra-city-council-2026-02-09-minutes",
+  "item_number": "11",
+  "item_title": "Introduction of an ordinance setting school-zone speed limits",
+  "document_text": "11. CONSIDERATION AND INTRODUCTION FOR FIRST READING OF AN ORDINANCE ADOPTING THE PRIMA FACIE SPEED LIMITS IN SCHOOL ZONES IN THE CITY – F2M26-7, O2M26-4857\n\nThe recent passage of AB 382 enabled cities to reduce the speed limit in school zones to 20 miles per hour when children are present. At the January 12, 2026 City Council meeting, Councilwoman Adele Andrade-Stadler requested that an item be agendized setting a speed limit of 20 miles per hour for the Council's consideration.\n\nDiscussion: Vice Mayor ANDRADE-STADLER thanked staff for the changes to speed limits in school zones.\n\nAction Taken: City Council declared introduced for its first reading the following ordinance entitled: Ordinance No. O2M26-4857: An Ordinance of the Alhambra City Council adding Section 11.08.075 to Chapter 11.08 of the Alhambra Municipal Code establishing a prima facia speed limit of 20 miles per hour in school zones, which ordinance would return for a second reading and adoption the next regular City Council meeting.\nVote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE",
+  "expected": {
+    "item_type": "consent",
+    "motions": [
+      {
+        "text": "City Council declared introduced for its first reading Ordinance No. O2M26-4857 establishing a prima facia speed limit of 20 miles per hour in school zones",
+        "moved_by": "Andrade-Stadler",
+        "seconded_by": "Maloney",
+        "outcome": "passed",
+        "tally": "5-0-0",
+        "source_text": "Vote: Moved: ANDRADE-STADLER Seconded: MALONEY\nAyes: MAZA, ANDRADE-STADLER, LEE, WANG, MALONEY\nNoes: NONE\nAbsent: NONE"
+      }
+    ],
+    "people": [
+      {
+        "raw_name": "Adele Andrade-Stadler",
+        "role": "councilmember",
+        "source_text": "Councilwoman Adele Andrade-Stadler requested that an item be agendized"
+      },
+      {
+        "raw_name": "Maloney",
+        "role": "mayor",
+        "source_text": "Seconded: MALONEY"
+      }
+    ],
+    "locations": [],
+    "amounts": []
+  },
+  "notes": "An ordinance's FIRST reading (introduction), not final adoption - outcome is still 'passed' for the introduction vote itself, not a second-reading adoption. Full first name available for Andrade-Stadler here, unlike other items in this same document."
+}
