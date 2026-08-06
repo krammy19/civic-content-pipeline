@@ -93,8 +93,8 @@ actually executes: [`docs/ingestion-pipeline.md`](docs/ingestion-pipeline.md).
 Requires Python 3.11+ and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/krammy19/civic-engagement-app.git
-cd civic-engagement-app
+git clone https://github.com/krammy19/civic-content-pipeline.git
+cd civic-content-pipeline
 uv sync
 
 # Scrape this month's meetings for every connectorized city
