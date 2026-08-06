@@ -1,4 +1,4 @@
-# Civic Engagement App
+# Civic Content Pipeline
 
 Turns municipal meeting records into structured, verifiable data, and
 into plain-language digests that can't publish until they pass an
